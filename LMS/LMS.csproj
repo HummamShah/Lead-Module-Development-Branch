@@ -225,6 +225,7 @@
     <Compile Include="Models\Enums\ModeOfCommunication.cs" />
     <Compile Include="Models\Enums\PmdStatus.cs" />
     <Compile Include="Models\Enums\QuotationStatus.cs" />
+    <Compile Include="Models\Enums\Roles.cs" />
     <Compile Include="Models\Enums\ServiceProviderType.cs" />
     <Compile Include="Models\Feature\Demo\DemoRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
