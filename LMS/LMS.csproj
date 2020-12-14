@@ -217,6 +217,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Enums\Approval.cs" />
+    <Compile Include="Models\Enums\BusinessSegmentation.cs" />
+    <Compile Include="Models\Enums\BusinessTime.cs" />
+    <Compile Include="Models\Enums\Designation.cs" />
+    <Compile Include="Models\Enums\LeadStatus.cs" />
+    <Compile Include="Models\Enums\ModeOfCommunication.cs" />
+    <Compile Include="Models\Enums\PmdStatus.cs" />
+    <Compile Include="Models\Enums\QuotationStatus.cs" />
+    <Compile Include="Models\Enums\ServiceProviderType.cs" />
     <Compile Include="Models\Feature\Demo\DemoRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
