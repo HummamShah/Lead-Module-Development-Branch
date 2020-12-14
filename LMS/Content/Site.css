@@ -22,3 +22,49 @@ select,
 textarea {
     max-width: 280px;
 }
+.LoginBG {
+    // background-color: white !important;
+    color: black;
+    /*border:dotted !important;*/
+    border-color: lavender;
+}
+
+    .LoginBG h2 {
+        text-align: center;
+    }
+
+.L-layout {
+    background-color: silver;
+}
+
+.L-input {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.float-none {
+    margin-left: 0% !important;
+    float: none !important;
+}
+.Footer {
+    background-color: #222;
+    border-color: #080808;
+    color: #9d9d9d;
+    height: 40px;
+}
+
+    .Footer p {
+        margin-top: 10px;
+    }
+
+.MainFooter {
+    background-color: #222;
+    border-color: #333333;
+    color: #9d9d9d;
+    height: 40px;
+    text-align: center;
+}
+
+    .MainFooter p {
+        margin-top: 10px;
+    }
