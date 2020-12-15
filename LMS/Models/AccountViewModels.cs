@@ -61,7 +61,31 @@ namespace LMS.Models
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
+    public class RegisterUserViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Contact1 { get; set; }
+        public string Contact2 { get; set; }
+        public string Address { get; set; }
+        public int? Designation { get; set; }
+        public int? DepartmentId { get; set; }
+        //public string Email { get; set; }
+        public string ImageUrl { get; set; }
+    }
     public class RegisterViewModel
     {
         [Required]
@@ -108,5 +132,11 @@ namespace LMS.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+    }
+    public class RegisterUserResponse
+    {
+        public bool Success { get; set; }
+        public IEnumerable<string> ValidationErrors { get; set; }
+        public bool IsRoleAdded { get; set; }
     }
 }

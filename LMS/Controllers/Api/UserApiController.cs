@@ -1,0 +1,89 @@
+﻿using LMS.Models;
+using LMS.Models.EntityModel;
+using LMS.Models.Enums;
+using Microsoft.AspNet.Identity.Owin;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
+using System.Web.Mvc;
+
+namespace LMS.Controllers.Api
+{
+    public class UserApiController : ApiController
+    {
+        private ApplicationUserManager _userManager;
+        public UserApiController()
+        {
+            _userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
+        }
+        private Sharptel_Lms_DbEntities db = new Sharptel_Lms_DbEntities();
+        // GET api/<controller>
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Authorize(Roles = "SuperAdmin")]
+        [ValidateAntiForgeryToken]
+        public async Task<object> RegisterAdmin(RegisterUserViewModel model)
+        {
+            var response = new RegisterUserResponse();
+            var RolesToBeAdded = new List<string>();
+            if (ModelState.IsValid && model.ConfirmPassword == model.Password)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email }; //We can put username field instead of email
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    var CurrentUserName = User.Identity.Name;
+                    var AgentData = new Agent();
+                    AgentData.UserId = user.Id;
+                    AgentData.Designation = model.Designation;
+                    AgentData.FisrtName = model.FirstName;
+                    AgentData.LastName = model.LastName;
+                    AgentData.Address = model.Address;
+                    AgentData.Contact1 = model.Contact1;
+                    AgentData.Contact2 = model.Contact2;
+                    AgentData.CreatedAt = DateTime.Now;
+                    AgentData.CreatedBy = CurrentUserName;
+                    AgentData.Email = model.Email;
+                    var AgentResult = db.Agent.Add(AgentData);
+                    var RoleResult = await _userManager.AddToRoleAsync(user.Id, Roles.Admin);
+                    if (RoleResult.Succeeded)
+                    {
+                        response.IsRoleAdded = true;
+                    }
+                    else
+                    {
+                        response.IsRoleAdded = false;
+                    }
+
+                    db.SaveChanges();
+                    response.Success = true;
+                    // await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return response;
+                }
+                if (model.ConfirmPassword != model.Password)
+                {
+                    response.ValidationErrors.ToList().Add("Password and confirm password does not match");
+                }
+                response.Success = false;
+                response.ValidationErrors = (result.Errors);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return response;
+        }
+
+
+    }
+}
