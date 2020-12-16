@@ -10,10 +10,12 @@ namespace LMS.Controllers
     public class UserController : Controller
     {
         // GET: User
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Index()
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult Add()
         {
             return View();

@@ -183,9 +183,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\CompanyApiController.cs" />
     <Compile Include="Controllers\Api\DemoApiController.cs" />
     <Compile Include="Controllers\Api\UserApiController.cs" />
     <Compile Include="Controllers\Api\VendorApiController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -255,6 +257,9 @@
     <Compile Include="Models\Enums\QuotationStatus.cs" />
     <Compile Include="Models\Enums\Roles.cs" />
     <Compile Include="Models\Enums\ServiceProviderType.cs" />
+    <Compile Include="Models\Feature\Company\AddCompanyRequest.cs" />
+    <Compile Include="Models\Feature\Company\GetCompanyRequest.cs" />
+    <Compile Include="Models\Feature\Company\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Demo\DemoRequest.cs" />
     <Compile Include="Models\Feature\Vendor\AddVendorRequest.cs" />
     <Compile Include="Models\Feature\Vendor\GetListingRequest.cs" />
@@ -347,6 +352,12 @@
     <Content Include="Views\Vendor\Edit.cshtml" />
     <Content Include="Views\Vendor\Detail.cshtml" />
     <Content Include="Views\Shared\_MainLayoutPage.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Add.cshtml" />
+    <Content Include="Views\Company\Detail.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Company\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

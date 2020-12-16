@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="CompanyCtrl" ng-init="initIndex()">
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Companies List</h2>
+        </div>
+        <div class="col-md-9 ">
+            <a class="btn btn-primary pull-right" style=" margin-top: 20px;" href="/Company/Add">Add</a>
+        </div>
+    </div>
+    <table class="table" width="100%">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Contact No
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Created At
+            </th>
+            <th>
+                Created By
+            </th>
+
+            <th>
+                Action
+            </th>
+
+        </tr>
+        <tr ng-repeat="Company in Companies">
+            <td>
+                {{Company.Id}}
+            </td>
+            <td>
+                {{Company.Name}}
+            </td>
+            <td>
+                {{Company.Description}}
+            </td>
+            <td>
+                {{Company.Address}}
+            </td>
+            <td>
+                {{Company.Email}}
+            </td>
+            <td>
+                {{Company.Contact}}
+            </td>
+            <td>
+                {{Company.CreatedAt | date:'MMM d, y'}}
+            </td>
+            <td>
+                {{Company.CreatedBy}}
+            </td>
+            <td>
+                <a href="/Company/Edit?Id={{Company.Id}}" title="Edit">E</a>
+                <a href="/Company/Details?Id={{Company.Id}}" title="Details">D</a>
+                <a href="/Company/Print?Id={{Company.Id}}" title="Print">P</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+

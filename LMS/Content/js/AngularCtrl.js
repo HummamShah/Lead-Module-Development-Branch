@@ -130,12 +130,62 @@ app.controller('VendorCtrl',
                         if (response.status == 200) {
                             alert("New Vendor Added Successfully!");
                             //window.open('/Vendor');
-                            window.Location = '/Vendor';
-                            //$timeout(function () { window.Location.href = '/Vendor';}, 2000);
+                            window.location = '/Vendor';
+                            $timeout(function () { window.location.href = '/Vendor';}, 2000);
                         }
                         
                     });
             }
            
+        }
+    ]);
+
+app.controller('CompanyCtrl',
+    [
+        "$scope",
+        "$rootScope",
+        "$timeout",
+        "$q",
+        "$window",
+        "$http",
+        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+            console.log("Connected to Company App");
+            $scope.initIndex = function () {
+                var promise = $http.get("/api/CompanyApi/GetListData", { params: null, headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Companies = response.data.Data;
+                    });
+            }
+            $scope.AddInit = function () {
+                $scope.Company = {};
+            }
+            $scope.AddCompany = function (Company) {
+                console.log(Company);
+                if (Company.Name == null || Company.Name == "") {
+                    alert("Name Is Required");
+                    return;
+                }
+                if (Company.Address == null || Company.Address == "") {
+                    alert("Address Is Required");
+                    return;
+                }
+                if (Company.Contact == null || Company.Contact == "") {
+                    alert("Contact Is Required");
+                    return;
+                }
+                var promise = $http.post("/api/CompanyApi/AddCompany", Company, { headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                            alert("New Company Added Successfully!");
+                            $timeout(function () { window.location.href = '/Company'; }, 2000);
+                        }
+
+                    });
+            }
+
         }
     ]);
