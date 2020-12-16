@@ -1,13 +1,13 @@
-﻿body {
+﻿/*body {
     padding-top: 50px;
     padding-bottom: 20px;
-}
+}*/
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
+/*.body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
+}*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -23,7 +23,7 @@ textarea {
     max-width: 280px;
 }
 .LoginBG {
-    // background-color: white !important;
+     background-color: white !important;
     color: black;
     /*border:dotted !important;*/
     border-color: lavender;
@@ -47,7 +47,7 @@ textarea {
     float: none !important;
 }
 .Footer {
-    background-color: #222;
+    background-color: #6c7fDC;
     border-color: #080808;
     color: #9d9d9d;
     height: 40px;
@@ -58,13 +58,184 @@ textarea {
     }
 
 .MainFooter {
-    background-color: #222;
+    background-color: transparent;
     border-color: #333333;
-    color: #9d9d9d;
+    color: white!important;
     height: 40px;
     text-align: center;
 }
 
     .MainFooter p {
         margin-top: 10px;
+        color: #6c7fDC !important;
     }
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+/* Side Bar*/
+
+
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+.wrapper {
+    display: flex;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+
+    #sidebar .sidebar-header {
+        padding: 0px;
+       /* background: #6d7fcc;*/
+    }
+
+    #sidebar ul.components {
+        padding: 20px 0;
+        border-bottom: 1px solid #47748b;
+    }
+
+    #sidebar ul p {
+        color: #fff;
+        padding: 10px;
+    }
+
+    #sidebar ul li a {
+        padding: 10px;
+        font-size: 1.1em;
+        display: block;
+    }
+
+        #sidebar ul li a:hover {
+            color: #7386D5;
+            background: #fff;
+        }
+
+    #sidebar ul li.active > a,
+    a[aria-expanded="true"] {
+        color: #fff;
+        background: #6d7fcc;
+    }
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20%;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+
+        #sidebar.active {
+            margin-left: 0;
+        }
+
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+.nav {
+    padding-top: 10%;
+}
+
+.MainNavBar {
+    padding-left: 2%;
+}
+
+.NavBar {
+    height: 72px;
+    background-color: #6d7fcc;
+}
+
+#content {
+    padding: 0%;
+}
+
+.header {
+    padding: 0%;
+}
+
+
+.LayoutProfile {
+    display: inline-block;
+    float: right;
+}
+.HeaderMenu {
+    background-color: #6c7fDC;
+}
+.padding-t-12 {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 18px;
+    padding-left: 9px;
+}
+.UserInfo a {
+    color: white !important;
+    padding-right: 10px;
+    padding-left: 8px;
+}
+.NavbarLink {
+    font-size: 13px;
+    float: right;
+}

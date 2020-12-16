@@ -129,8 +129,8 @@ app.controller('VendorCtrl',
                         console.log(response);
                         if (response.status == 200) {
                             alert("New Vendor Added Successfully!");
-                            window.open('/Vendor');
-                           // window.Location.href = '/Vendor';
+                            //window.open('/Vendor');
+                            window.Location = '/Vendor';
                             //$timeout(function () { window.Location.href = '/Vendor';}, 2000);
                         }
                         

@@ -268,6 +268,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\SharptelLogo.png" />
     <Content Include="Content\js\angular.min.js" />
     <Content Include="Content\js\AngularCtrl.js" />
     <Content Include="Content\js\jquery.min.js" />
@@ -345,6 +346,7 @@
     <Content Include="Views\Vendor\Add.cshtml" />
     <Content Include="Views\Vendor\Edit.cshtml" />
     <Content Include="Views\Vendor\Detail.cshtml" />
+    <Content Include="Views\Shared\_MainLayoutPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
