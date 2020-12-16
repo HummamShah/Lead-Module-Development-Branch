@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 </head>
-<body ng-controller="baseCtrl">
-    <div class="wrapper">
+<body ng-controller="baseCtrl" >
+    <div class="wrapper" style="overflow:hidden;">
         <nav class="" id="sidebar">
             <div class="sidebar-header">
                 <h3 style=" padding-left: 9px;">SharpTel</h3>
             </div>
             <ul class="lisst-unstyled components" style="padding-top: 2px;">
-                <li class="active">
+                <li class="">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home<b class="caret NavbarLink"></b></a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
@@ -64,12 +64,12 @@
         </nav>
 
 
-        <div id="content">
+        <div id="content" style="overflow: hidden;">
             <nav class=" navbar-expand-lg navbar-light header HeaderMenu">
                 <div class="">
                     <div class="padding-t-12">
-                        <button type="button" id="sidebarCollapse" class="btn  btn-info">
-                            <i class="fas fa-align-left"></i>
+                        <button type="button" id="sidebarCollapse" class="btn  btn-dark">
+                            <i class="fas fa-bars"></i>
                             <span></span>
                         </button>
                         <div class="LayoutProfile">

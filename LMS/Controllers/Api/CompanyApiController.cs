@@ -19,15 +19,22 @@ namespace LMS.Controllers.Api
             return result;
         }
         [HttpPost]
-        public object AddCompany([FromBody] AddCompanyRequest req)
+        public object AddCompany([FromBody] AddCompanyRequest req) //If not working remove frombody
         {
             req.CreatedBy = User.Identity.Name;
             var result = req.RunRequest(req);
             return result;
         }
         [HttpGet]
-        public object GetCompany([FromBody] GetCompanyRequest req)
+        public object GetCompany([FromUri] GetCompanyRequest req)
         {
+            var result = req.RunRequest(req);
+            return result;
+        }
+        [HttpPost]
+        public object EditCompany(AddCompanyRequest req) 
+        {
+            req.CreatedBy = User.Identity.Name;
             var result = req.RunRequest(req);
             return result;
         }

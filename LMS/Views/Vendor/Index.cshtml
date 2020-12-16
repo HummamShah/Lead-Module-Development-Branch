@@ -4,61 +4,66 @@
 }
 
 <div ng-controller="VendorCtrl" ng-init="initIndex()">
-    <div class="row">
-        <div class="col-md-3">
-            <h2>Vendors List</h2>
-        </div>
-        <div class="col-md-9 ">
-            <a class="btn btn-primary pull-right" style=" margin-top: 20px;" href="/Vendor/Add">Add</a>
+    <div class="jumbotron PageHeading">
+        <div class="row">
+            <div class="col-md-3">
+                <h2>Vendors List</h2>
+            </div>
+            <div class="col-md-9 ">
+                <a class="btn btn-primary pull-right" style=" margin-top: 20px;" href="/Vendor/Add">Add</a>
+            </div>
         </div>
     </div>
-    <table class="table" width="100%">
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Name
-            </th>
+    <div class="jumbotron PageHeading">
+        <table class="table" width="100%">
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
 
-            <th>
-                Description
-            </th>
-            <th>
-                Created At
-            </th>
-            <th>
-                Created By
-            </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Created At
+                </th>
+                <th>
+                    Created By
+                </th>
 
-            <th>
-                Action
-            </th>
+                <th>
+                    Action
+                </th>
 
-        </tr>
-        <tr ng-repeat="Vendor in Vendors">
-            <td>
-                {{Vendor.Id}}
-            </td>
-            <td>
-                {{Vendor.Name}}
-            </td>
-            <td>
-                {{Vendor.Description}}
-            </td>
-            <td>
-                {{Vendor.CreatedAt | date:'MMM d, y'}}
-            </td>
-            <td>
-                {{Vendor.CreatedBy}}
-            </td>
-            <td>
-                <a href="/Vendor/Edit?Id={{Vendor.Id}}" title="Edit">E</a>
-                <a href="/Vendor/Details?Id={{Vendor.Id}}" title="Details">D</a>
-                <a href="/Vendor/Print?Id={{Vendor.Id}}" title="Print">P</a>
-            </td>
-        </tr>
-    </table>
+            </tr>
+            <tr ng-repeat="Vendor in Vendors">
+                <td>
+                    {{Vendor.Id}}
+                </td>
+                <td>
+                    {{Vendor.Name}}
+                </td>
+                <td>
+                    {{Vendor.Description}}
+                </td>
+                <td>
+                    {{Vendor.CreatedAt | date:'MMM d, y'}}
+                </td>
+                <td>
+                    {{Vendor.CreatedBy}}
+                </td>
+                <td>
+                    <a href="/Vendor/Edit?Id={{Vendor.Id}}" title="Edit">E</a>
+                    <a href="/Vendor/Details?Id={{Vendor.Id}}" title="Details">D</a>
+                    <a href="/Vendor/Print?Id={{Vendor.Id}}" title="Print">P</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
 
 </div>
 

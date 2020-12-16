@@ -161,6 +161,21 @@ app.controller('CompanyCtrl',
             $scope.AddInit = function () {
                 $scope.Company = {};
             }
+            $scope.EditInit = function () {
+                $scope.Company = {};
+                var Id = $scope.GetUrlParameter("Id");
+                var data = {
+                    Id: parseInt(Id)
+                }
+                console.log(data);
+                var promise = $http.get("/api/CompanyApi/GetCompany", { params:data} ,{  headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Company = response.data;
+                    });
+
+            }
             $scope.AddCompany = function (Company) {
                 console.log(Company);
                 if (Company.Name == null || Company.Name == "") {
@@ -181,6 +196,32 @@ app.controller('CompanyCtrl',
                         console.log(response);
                         if (response.status == 200) {
                             alert("New Company Added Successfully!");
+                            $timeout(function () { window.location.href = '/Company'; }, 2000);
+                        }
+
+                    });
+            }
+
+            $scope.EditCompany = function (Company) {
+                console.log(Company);
+                if (Company.Name == null || Company.Name == "") {
+                    alert("Name Is Required");
+                    return;
+                }
+                if (Company.Address == null || Company.Address == "") {
+                    alert("Address Is Required");
+                    return;
+                }
+                if (Company.Contact == null || Company.Contact == "") {
+                    alert("Contact Is Required");
+                    return;
+                }
+                var promise = $http.post("/api/CompanyApi/EditCompany", Company, { headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                            alert("Company has been updated Successfully!");
                             $timeout(function () { window.location.href = '/Company'; }, 2000);
                         }
 

@@ -47,7 +47,7 @@ textarea {
     float: none !important;
 }
 .Footer {
-    background-color: #6c7fDC;
+    background-color: #2f4f4f;
     border-color: #080808;
     color: #9d9d9d;
     height: 40px;
@@ -67,7 +67,7 @@ textarea {
 
     .MainFooter p {
         margin-top: 10px;
-        color: #6c7fDC !important;
+        color: #2f4f4f !important;
     }
 .center {
     display: block;
@@ -117,7 +117,7 @@ a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: #2f4f4f;
     color: #fff;
     transition: all 0.3s;
 }
@@ -142,17 +142,18 @@ a:focus {
         padding: 10px;
         font-size: 1.1em;
         display: block;
+        background:#2f4f4f;
     }
 
         #sidebar ul li a:hover {
-            color: #7386D5;
-            background: #fff;
+            color: black;
+            background: #DCDCDC;
         }
 
     #sidebar ul li.active > a,
     a[aria-expanded="true"] {
         color: #fff;
-        background: #6d7fcc;
+        background: #E1E5E5;
     }
 
 a[data-toggle="collapse"] {
@@ -222,7 +223,7 @@ ul ul a {
     float: right;
 }
 .HeaderMenu {
-    background-color: #6c7fDC;
+    background-color: #2f4f4f;
 }
 .padding-t-12 {
     padding-top: 12px;
@@ -238,4 +239,10 @@ ul ul a {
 .NavbarLink {
     font-size: 13px;
     float: right;
+}
+.PageHeading {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 15px !important;
+    background-color: white !important;
 }
