@@ -15,46 +15,43 @@
     <div class="wrapper" style="overflow:hidden;">
         <nav class="" id="sidebar">
             <div class="sidebar-header">
-                <h3 style=" padding-left: 9px;">SharpTel</h3>
+                <a href="/Home"><h3 style=" padding-left: 9px;">SharpTel</h3></a>
             </div>
             <ul class="lisst-unstyled components" style="padding-top: 2px;">
-                <li class="">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home<b class="caret NavbarLink"></b></a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="/About">About</a>
-                        </li>
-                        <li>
-                            <a href="/Contact">Contact</a>
-                        </li>
-                    </ul>
+             
+                @if (User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.SuperAdmin))
+                {
+                    <li>
+                        <a href="/Department"> Departments <i class="fas fa-caret-right NavbarLink"></i></a>
+                    </li>
+                }
+
+                <li>
+                    <a href="/Vendor"> Vendors <i class="fas fa-caret-right NavbarLink"></i></a>
                 </li>
                 <li>
-                    <a href="/Vendor"> Vendor <i class="fas fa-caret-right NavbarLink"></i></a>
-                </li>
-                <li>
-                    <a href="/Company"> Company <i class="fas fa-caret-right NavbarLink"></i></a>
+                    <a href="/Company"> Companies <i class="fas fa-caret-right NavbarLink"></i></a>
                 </li>
                 @if (User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.SuperAdmin))
                 {
                     <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">User <b class="caret NavbarLink"></b></a>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Users <b class="caret NavbarLink"></b></a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
                             @if (User.IsInRole(UserRoles.SuperAdmin))
                             {
                                 <li>
-                                    <a href="/User/AddAdmin">Add Admin</a>
+                                    <a href="/User/AddAdmin">Add Admin <i class="fas fa-caret-right NavbarLink"></i></a>
                                 </li>
                             }
                             @if (User.IsInRole(UserRoles.Admin))
                             {
                                 <li>
-                                    <a href="/User/Add">Add User</a>
+                                    <a href="/User/Add">Add User <i class="fas fa-caret-right NavbarLink"></i></a>
                                 </li>
                             }
 
                             <li>
-                                <a href="/User/">Users</a>
+                                <a href="/User/">Users <i class="fas fa-caret-right NavbarLink"></i></a>
                             </li>
                         </ul>
                     </li>

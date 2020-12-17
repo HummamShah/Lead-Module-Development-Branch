@@ -23,6 +23,8 @@ namespace LMS.Models.Feature.Company
 			response.Email = Data.Email;
 			response.CreatedAt = Data.CreatedAt;
 			response.CreatedBy = Data.CreatedBy;
+			response.UpdatedAt = Data.UpdatedAt;
+			response.UpdatedBy = Data.UpdatedBy;
 			
 			return response;
 		
@@ -38,6 +40,8 @@ namespace LMS.Models.Feature.Company
         public string Contact { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? CreatedAt { get; set; }
+		public string UpdatedBy { get; set; }
+		public DateTime? UpdatedAt { get; set; }
 
-    }
+	}
 }

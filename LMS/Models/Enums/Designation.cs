@@ -7,6 +7,6 @@ namespace LMS.Models.Enums
 {
     public enum Designation
     {
-       Sales_Leads,Sales_Closer,Pmd,PreSales
+       Sales_Leads,Sales_Closer,Pmd,PreSales,Admin
     }
 }

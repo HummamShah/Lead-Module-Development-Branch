@@ -4,78 +4,80 @@
 }
 
 <div ng-controller="CompanyCtrl" ng-init="initIndex()">
-    <div class="row">
-        <div class="col-md-3">
-            <h2>Companies List</h2>
-        </div>
-        <div class="col-md-9 ">
-            <a class="btn btn-primary pull-right" style=" margin-top: 20px;" href="/Company/Add">Add</a>
+    <div class="jumbotron PageHeading">
+        <div class="row">
+            <div class="col-md-3">
+                <h2>Companies List</h2>
+            </div>
+            <div class="col-md-9 ">
+                <a class="btn btn-primary pull-right" style=" margin-top: 20px;" href="/Company/Add">Add</a>
+            </div>
         </div>
     </div>
-    <table class="table" width="100%">
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Address
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Contact No
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Created At
-            </th>
-            <th>
-                Created By
-            </th>
+    <div class="jumbotron PageHeading">
+        <table class="table" width="100%">
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Number
+                </th>
+                <th>
+                    Created At
+                </th>
+                <th>
+                    Created By
+                </th>
 
-            <th>
-                Action
-            </th>
+                <th>
+                    Action
+                </th>
 
-        </tr>
-        <tr ng-repeat="Company in Companies">
-            <td>
-                {{Company.Id}}
-            </td>
-            <td>
-                {{Company.Name}}
-            </td>
-            <td>
-                {{Company.Description}}
-            </td>
-            <td>
-                {{Company.Address}}
-            </td>
-            <td>
-                {{Company.Email}}
-            </td>
-            <td>
-                {{Company.Contact}}
-            </td>
-            <td>
-                {{Company.CreatedAt | date:'MMM d, y'}}
-            </td>
-            <td>
-                {{Company.CreatedBy}}
-            </td>
-            <td>
-                <a href="/Company/Edit?Id={{Company.Id}}" title="Edit">E</a>
-                <a href="/Company/Details?Id={{Company.Id}}" title="Details">D</a>
-                <a href="/Company/Print?Id={{Company.Id}}" title="Print">P</a>
-            </td>
-        </tr>
-    </table>
-
-</div>
+            </tr>
+            <tr ng-repeat="Company in Companies">
+                <td>
+                    {{Company.Id}}
+                </td>
+                <td>
+                    {{Company.Name}}
+                </td>
+                <td>
+                    {{Company.Description}}
+                </td>
+                <td>
+                    {{Company.Address}}
+                </td>
+                <td>
+                    {{Company.Email}}
+                </td>
+                <td>
+                    {{Company.Contact}}
+                </td>
+                <td>
+                    {{Company.CreatedAt | date:'MMM d, y'}}
+                </td>
+                <td>
+                    {{Company.CreatedBy}}
+                </td>
+                <td>
+                    <a href="/Company/Edit?Id={{Company.Id}}" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                    <a href="/Company/Detail?Id={{Company.Id}}" title="Details"><i class="fas fa-file"></i></a>
+                </td>
+            </tr>
+        </table>
+      </div>
+        </div>
 

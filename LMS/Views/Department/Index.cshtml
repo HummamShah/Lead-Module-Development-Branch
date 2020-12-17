@@ -3,14 +3,14 @@
     ViewBag.Title = "Index";
 }
 
-<div ng-controller="VendorCtrl" ng-init="initIndex()">
+<div ng-controller="DepartmentCtrl" ng-init="initIndex()">
     <div class="jumbotron PageHeading">
         <div class="row">
             <div class="col-md-3">
-                <h2>Vendors List</h2>
+                <h2>Department List</h2>
             </div>
             <div class="col-md-9 ">
-                <a class="btn btn-primary pull-right" style=" margin-top: 20px;" href="/Vendor/Add">Add</a>
+                <a class="btn btn-primary pull-right" style=" margin-top: 20px;" href="/Department/Add">Add</a>
             </div>
         </div>
     </div>
@@ -23,7 +23,6 @@
                 <th>
                     Name
                 </th>
-
                 <th>
                     Description
                 </th>
@@ -33,37 +32,32 @@
                 <th>
                     Created By
                 </th>
-
                 <th>
                     Action
                 </th>
-
             </tr>
-            <tr ng-repeat="Vendor in Vendors">
+            <tr ng-repeat="Department in Departments">
                 <td>
-                    {{Vendor.Id}}
+                    {{Department.Id}}
                 </td>
                 <td>
-                    {{Vendor.Name}}
+                    {{Department.Name}}
                 </td>
                 <td>
-                    {{Vendor.Description}}
+                    {{Department.Description}}
+                </td>
+             
+                <td>
+                    {{Department.CreatedAt | date:'MMM d, y'}}
                 </td>
                 <td>
-                    {{Vendor.CreatedAt | date:'MMM d, y'}}
+                    {{Department.CreatedBy}}
                 </td>
                 <td>
-                    {{Vendor.CreatedBy}}
-                </td>
-                <td>
-                    <a href="/Vendor/Edit?Id={{Vendor.Id}}" title="Edit"><i class="fas fa-pencil-alt" title="Edit"></i></a>
-                    <a href="/Vendor/Details?Id={{Vendor.Id}}" title="Details"><i class="fas fa-file" title="Details"></i></a>
-                    <a href="/Vendor/Print?Id={{Vendor.Id}}" title="Print"><i class="fas fa-print" title="Print"></i></a>
+                    <a href="/Department/Edit?Id={{Department.Id}}" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                 </td>
             </tr>
         </table>
     </div>
-    
-
 </div>
 

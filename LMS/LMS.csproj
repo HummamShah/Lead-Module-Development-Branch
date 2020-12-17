@@ -185,9 +185,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CompanyApiController.cs" />
     <Compile Include="Controllers\Api\DemoApiController.cs" />
+    <Compile Include="Controllers\Api\DepartmentApiController.cs" />
     <Compile Include="Controllers\Api\UserApiController.cs" />
     <Compile Include="Controllers\Api\VendorApiController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -258,9 +260,16 @@
     <Compile Include="Models\Enums\Roles.cs" />
     <Compile Include="Models\Enums\ServiceProviderType.cs" />
     <Compile Include="Models\Feature\Company\AddCompanyRequest.cs" />
+    <Compile Include="Models\Feature\Company\EditCompanyRequest.cs" />
     <Compile Include="Models\Feature\Company\GetCompanyRequest.cs" />
     <Compile Include="Models\Feature\Company\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Demo\DemoRequest.cs" />
+    <Compile Include="Models\Feature\Department\AddDepartmentRequest.cs" />
+    <Compile Include="Models\Feature\Department\EditDepartmentRequest.cs" />
+    <Compile Include="Models\Feature\Department\GetDepartmentRequest.cs" />
+    <Compile Include="Models\Feature\Department\GetDepartmentsDropdownRequest.cs" />
+    <Compile Include="Models\Feature\Department\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\User\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Vendor\AddVendorRequest.cs" />
     <Compile Include="Models\Feature\Vendor\GetListingRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -358,6 +367,9 @@
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Company\Add.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Department\Add.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

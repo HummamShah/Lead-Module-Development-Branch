@@ -1,4 +1,4 @@
-﻿using LMS.Models.Feature.Company;
+﻿using LMS.Models.Feature.Department;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,8 @@ using System.Web.Http;
 
 namespace LMS.Controllers.Api
 {
-    public class CompanyApiController : ApiController
+   
+    public class DepartmentApiController : ApiController
     {
         // GET api/<controller>
         [HttpGet]
@@ -18,22 +19,29 @@ namespace LMS.Controllers.Api
             var result = temp.RunRequest();
             return result;
         }
+        [HttpGet]
+        public object GetDepartmentsDropdown()
+        {
+            var temp = new GetDepartmentsDropdownRequest();
+            var result = temp.RunRequest();
+            return result;
+        }
         [HttpPost]
-        public object AddCompany([FromBody] AddCompanyRequest req) //If not working remove frombody
+        public object AddDepartment( AddDepartmentRequest req) //If not working remove frombody
         {
             req.CreatedBy = User.Identity.Name;
             var result = req.RunRequest(req);
             return result;
         }
         [HttpGet]
-        public object GetCompany([FromUri] GetCompanyRequest req)
+        public object GetDepartment([FromUri] GetDepartmentRequest req)
         {
-            
+
             var result = req.RunRequest(req);
             return result;
         }
         [HttpPost]
-        public object EditCompany(EditCompanyRequest req) 
+        public object EditDepartment(EditDepartmentRequest req)
         {
             req.UpdatedBy = User.Identity.Name;
             var result = req.RunRequest(req);

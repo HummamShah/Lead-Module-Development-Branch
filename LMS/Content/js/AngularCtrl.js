@@ -66,7 +66,7 @@ app.controller('UserCtrl',
                         console.log(response);
                         $scope.Users = response.data.Data;
                     });
-                // $scope.Inventories = $http.get("/api/InvenoryApi/GetAllData", { params: data, headers: { 'Accept': 'application/json' } });
+                
             }
             $scope.AddUser = function (user) {
                 console.log(user);
@@ -74,6 +74,12 @@ app.controller('UserCtrl',
                 promise.then(
                     function (response) {
                         console.log(response);
+                        if (response.status == 200) {
+                            alert("User has been Added Successfully!");
+                            $timeout(function () { window.location.href = '/User'; }, 2000);
+                        } else {
+                            alert("Could Not Add new User");
+                        }
                         
                     });
 
@@ -84,13 +90,30 @@ app.controller('UserCtrl',
                 promise.then(
                     function (response) {
                         console.log(response);
+                        if (response.status == 200) {
+                            alert("Admin has been added Successfully!");
+                            $timeout(function () { window.location.href = '/User'; }, 2000);
+                        } else {
+                            alert("Could Not Add new admin");
+                        }
 
                     });
 
             }
-          
-            $scope.AddInit = function () {
+            $scope.AddAdminInit = function () {
                 $scope.Admin = {};
+            }
+            $scope.AddInit = function () {
+                $scope.User = {};
+                //Need to call a request to get all the Departments id and name for dropdown
+                $scope.Departments = [];
+                var promise = $http.get("/api/DepartmentApi/GetDepartmentsDropdown", { params: null, headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Departments = response.data.Data;
+                    });
+                
             }
         }
     ]);
@@ -223,6 +246,88 @@ app.controller('CompanyCtrl',
                         if (response.status == 200) {
                             alert("Company has been updated Successfully!");
                             $timeout(function () { window.location.href = '/Company'; }, 2000);
+                        }
+
+                    });
+            }
+
+        }
+    ]);
+
+app.controller('DepartmentCtrl',
+    [
+        "$scope",
+        "$rootScope",
+        "$timeout",
+        "$q",
+        "$window",
+        "$http",
+        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+            console.log("Connected to Department App");
+            $scope.initIndex = function () {
+                var promise = $http.get("/api/DepartmentApi/GetListData", { params: null, headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Departments = response.data.Data;
+                    });
+            }
+            $scope.AddInit = function () {
+                $scope.Department = {};
+            }
+            $scope.EditInit = function () {
+                $scope.Company = {};
+                var Id = $scope.GetUrlParameter("Id");
+                var data = {
+                    Id: parseInt(Id)
+                }
+                console.log(data);
+                var promise = $http.get("/api/DepartmentApi/GetDepartment", { params: data }, { headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Department = response.data;
+                    });
+
+            }
+            $scope.AddDepartment = function (Department) {
+                console.log(Department);
+                if (Department.Name == null || Department.Name == "") {
+                    alert("Name Is Required");
+                    return;
+                }
+               
+                var promise = $http.post("/api/DepartmentApi/AddDepartment", Department, { headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                            alert("New Department Added Successfully!");
+                            $timeout(function () { window.location.href = '/Department'; }, 2000);
+                        }
+                        else {
+                            alert("Could not add new department");
+                        }
+
+                    });
+            }
+
+            $scope.EditDepartment = function (Department) {
+                console.log(Department);
+                if (Department.Name == null || Department.Name == "") {
+                    alert("Name Is Required");
+                    return;
+                }
+               
+                var promise = $http.post("/api/DepartmentApi/EditDepartment", Department, { headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                            alert("Department has been updated Successfully!");
+                            $timeout(function () { window.location.href = '/Department'; }, 2000);
+                        } else {
+                            alert("Could Not Update Department");
                         }
 
                     });
