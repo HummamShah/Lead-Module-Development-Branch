@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html ng-app="LmsApp">
 <head>
-    <title>@ViewBag.Title - LMS &#64 SharpTel</title>
+    <title>@ViewBag.Title - The Lead Management System</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script type="text/javascript" src="~/Content/js/Jquery.min.js"></script>
@@ -69,9 +69,28 @@
                             <i class="fas fa-bars"></i>
                             <span></span>
                         </button>
+
                         <div class="LayoutProfile">
                             @Html.Partial("_LoginPartial")
                         </div>
+                        <div class="dropdown LayoutProfile">
+                            <a class="dropdown-toggle bg-none" data-toggle="dropdown">
+                                <i class="fas fa-bell NotificationIcon dropdown-toggle" data-toggle="dropdown"></i> <span class="badge badge-notification">5</span>
+                            </a>
+                            <ul class="dropdown-menu"> @*with style means it has not yet been read*@
+                                <li class="Notification-notread"><a href="#">Lead#1001 has been Closed</a></li>
+                                <li class="Notification-read"><a href="#">Lead#1004 has been Disapproved</a></li>
+                                <li class="Notification-read"><a href="#">Lead#1006 has been Marked Feasible</a></li>
+                                <li class="Notification-notread"><a href="#">Lead#1002 has been Marked Not Feasible</a></li>
+                                <li class="Notification-notread"><a href="#">Lead#1003 has been Closed</a></li>
+                                <li class="Notification-read"><a href="#">Lead#1009 has been Closed</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" class="text-center">View All</a></li>
+                            </ul>
+                        </div>
+                        @*<div class="LayoutProfile dropdown">
+                            <a href="#nobody" data-toggle="dropdown"><i class="fas fa-bell NotificationIcon"></i> <span class="badge badge-notification">5</span></a>
+                        </div>*@
                     </div>
 
                 </div>
@@ -80,7 +99,7 @@
                 @RenderBody()
                 @*<hr />*@
                 <footer class="navbar-fixed-bottom  MainFooter">
-                    <p>&copy; @DateTime.Now.Year - LMS@Sharptel</p>
+                    <p>&copy; @DateTime.Now.Year - Daretech</p>
                 </footer>
             </div>
         </div>
