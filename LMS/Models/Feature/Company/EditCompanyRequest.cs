@@ -21,6 +21,8 @@ namespace LMS.Models.Feature.Company
 		public string Email { get; set; }
 		public string Address { get; set; }
 		public string Contact { get; set; }
+		public int? ParentCompanyId { get; set; }
+		public bool? IsBranch { get; set; }
 		public string UpdatedBy { get; set; }
 		public DateTime? UpdatedAt { get; set; }
 
@@ -35,6 +37,22 @@ namespace LMS.Models.Feature.Company
 			Company.Address = request.Address;
 			Company.Email = request.Email;
 			Company.Contact = request.Contact;
+			
+			if (request.IsBranch == false && Company.IsBranch==true)
+			{
+				//Company.IsParent = true;
+				Company.ParentCompanyId = null;
+				Company.IsBranch = request.IsBranch;
+			}
+            if (request.IsBranch == false)
+            {
+				Company.IsParent = true;
+			}
+			if (request.IsBranch == true)
+			{
+				Company.IsParent = false;
+				Company.ParentCompanyId = request.ParentCompanyId;
+			}
 			_dbContext.SaveChanges();
 			return response;
 		}

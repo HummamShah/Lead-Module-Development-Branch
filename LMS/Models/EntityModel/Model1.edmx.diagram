@@ -13,7 +13,6 @@
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Agent" Width="1.5" PointX="8.625" PointY="1.125" />
-        <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Company" Width="1.5" PointX="5.75" PointY="8.5" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.CompanyBranches" Width="1.5" PointX="8" PointY="11.25" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Department" Width="1.5" PointX="6.375" PointY="15.125" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Employee" Width="1.5" PointX="8" PointY="7.125" />
@@ -22,10 +21,12 @@
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Vendor" Width="1.5" PointX="0.75" PointY="17" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Agent_Department" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Agent_User" />
-        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Agent_Company" />
-        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Emp_Comp" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_PMD_Leads" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_PMD_Vendor" />
+        <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Company" Width="1.5" PointX="5.75" PointY="8.125" />
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Agent_Company" />
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Company_ParentCompany" />
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Emp_Comp" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

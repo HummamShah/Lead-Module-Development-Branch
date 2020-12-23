@@ -39,5 +39,19 @@ namespace LMS.Controllers.Api
             var result = req.RunRequest(req);
             return result;
         }
+        [HttpGet]
+        public object GetParentCompaniesDropdown()
+        {
+            var req = new GetParentCompaniesDropdownRequest();
+            var result = req.RunRequest();
+            return result;
+        }
+        [HttpGet]
+        public object GetCompaniesDropdown()
+        {
+            var req = new GetCompaniesDropdownRequest();
+            var result = req.RunRequest();
+            return result;
+        }
     }
 }

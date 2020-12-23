@@ -57,6 +57,10 @@ namespace LMS.Models.EntityModel
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Domain { get; set; }
+        public Nullable<int> AssignedPmdId { get; set; }
+        public Nullable<int> AssignedPreSaleId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PmdDetails> PmdDetails { get; set; }

@@ -84,13 +84,28 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="HasBranches" Type="bit" />
+          <Property Name="IsBranch" Type="bit" />
+          <Property Name="IsParent" Type="bit" />
+          <Property Name="ParentCompanyId" Type="int" />
           <Property Name="Latitude" Type="float" />
           <Property Name="Longitude" Type="float" />
           <Property Name="Address" Type="nvarchar(max)" />
           <Property Name="Contact" Type="nvarchar(max)" />
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ModeOfCommunication" Type="int" />
+          <Property Name="BusinessOperationTime" Type="int" />
+          <Property Name="AlternateNumber" Type="nvarchar(max)" />
+          <Property Name="Website" Type="nvarchar(max)" />
+          <Property Name="Area" Type="int" />
+          <Property Name="City" Type="int" />
+          <Property Name="NoEmployee" Type="int" />
+          <Property Name="BusinessIndustry" Type="int" />
+          <Property Name="CurrentItPlatform" Type="nvarchar(max)" />
+          <Property Name="CUDS" Type="int" />
+          <Property Name="CUDSService" Type="int" />
+          <Property Name="CUDSOtherService" Type="nvarchar(max)" />
+          <Property Name="NoLinks" Type="int" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
@@ -142,6 +157,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CompanyName" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Domain" Type="int" />
           <Property Name="ContactPersonName" Type="nvarchar(max)" />
           <Property Name="ContactPersonNumber" Type="nvarchar(max)" />
           <Property Name="AlternateNumber" Type="nvarchar(max)" />
@@ -173,6 +190,8 @@
           <Property Name="BandwidthRequirement" Type="nvarchar(max)" />
           <Property Name="BuildingHeight" Type="float" />
           <Property Name="ExpectedDeliveryTimeline" Type="datetime" />
+          <Property Name="AssignedPmdId" Type="int" />
+          <Property Name="AssignedPreSaleId" Type="int" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar(max)" />
@@ -240,6 +259,18 @@
             </Principal>
             <Dependent Role="Agent">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_ParentCompany">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Company1" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company1">
+              <PropertyRef Name="ParentCompanyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -360,6 +391,10 @@
           <AssociationSet Name="FK_Agent_User" Association="Self.FK_Agent_User">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Agent" EntitySet="Agent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_ParentCompany" Association="Self.FK_Company_ParentCompany">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Company1" EntitySet="Company" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -494,7 +529,6 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="Agent" EntityType="Sharptel_Lms_DbModel.Agent" />
-          <EntitySet Name="Company" EntityType="Sharptel_Lms_DbModel.Company" />
           <EntitySet Name="CompanyBranches" EntityType="Sharptel_Lms_DbModel.CompanyBranches" />
           <EntitySet Name="Department" EntityType="Sharptel_Lms_DbModel.Department" />
           <EntitySet Name="Employee" EntityType="Sharptel_Lms_DbModel.Employee" />
@@ -509,14 +543,6 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Agent" EntitySet="Agent" />
           </AssociationSet>
-          <AssociationSet Name="FK_Agent_Company" Association="Sharptel_Lms_DbModel.FK_Agent_Company">
-            <End Role="Company" EntitySet="Company" />
-            <End Role="CompanyBranches" EntitySet="CompanyBranches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Emp_Comp" Association="Sharptel_Lms_DbModel.FK_Emp_Comp">
-            <End Role="Company" EntitySet="Company" />
-            <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
           <AssociationSet Name="FK_PMD_Leads" Association="Sharptel_Lms_DbModel.FK_PMD_Leads">
             <End Role="Lead" EntitySet="Lead" />
             <End Role="PmdDetails" EntitySet="PmdDetails" />
@@ -524,6 +550,19 @@
           <AssociationSet Name="FK_PMD_Vendor" Association="Sharptel_Lms_DbModel.FK_PMD_Vendor">
             <End Role="Vendor" EntitySet="Vendor" />
             <End Role="PmdDetails" EntitySet="PmdDetails" />
+          </AssociationSet>
+          <EntitySet Name="Company" EntityType="Sharptel_Lms_DbModel.Company" />
+          <AssociationSet Name="FK_Agent_Company" Association="Sharptel_Lms_DbModel.FK_Agent_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanyBranches" EntitySet="CompanyBranches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_ParentCompany" Association="Sharptel_Lms_DbModel.FK_Company_ParentCompany">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Company1" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emp_Comp" Association="Sharptel_Lms_DbModel.FK_Emp_Comp">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Agent">
@@ -549,26 +588,6 @@
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Department" Relationship="Sharptel_Lms_DbModel.FK_Agent_Department" FromRole="Agent" ToRole="Department" />
           <NavigationProperty Name="AspNetUsers" Relationship="Sharptel_Lms_DbModel.FK_Agent_User" FromRole="Agent" ToRole="AspNetUsers" />
-        </EntityType>
-        <EntityType Name="Company">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HasBranches" Type="Boolean" />
-          <Property Name="Latitude" Type="Double" />
-          <Property Name="Longitude" Type="Double" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CompanyBranches" Relationship="Sharptel_Lms_DbModel.FK_Agent_Company" FromRole="Company" ToRole="CompanyBranches" />
-          <NavigationProperty Name="Employee" Relationship="Sharptel_Lms_DbModel.FK_Emp_Comp" FromRole="Company" ToRole="Employee" />
         </EntityType>
         <EntityType Name="CompanyBranches">
           <Key>
@@ -655,6 +674,10 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="PmdDetails" Relationship="Sharptel_Lms_DbModel.FK_PMD_Leads" FromRole="Lead" ToRole="PmdDetails" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Domain" Type="Int32" />
+          <Property Name="AssignedPmdId" Type="Int32" />
+          <Property Name="AssignedPreSaleId" Type="Int32" />
         </EntityType>
         <EntityType Name="PmdDetails">
           <Key>
@@ -712,30 +735,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Agent_Company">
-          <End Type="Sharptel_Lms_DbModel.Company" Role="Company" Multiplicity="0..1" />
-          <End Type="Sharptel_Lms_DbModel.CompanyBranches" Role="CompanyBranches" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CompanyBranches">
-              <PropertyRef Name="CompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Emp_Comp">
-          <End Type="Sharptel_Lms_DbModel.Company" Role="Company" Multiplicity="0..1" />
-          <End Type="Sharptel_Lms_DbModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="CompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PMD_Leads">
           <End Type="Sharptel_Lms_DbModel.Lead" Role="Lead" Multiplicity="0..1" />
           <End Type="Sharptel_Lms_DbModel.PmdDetails" Role="PmdDetails" Multiplicity="*" />
@@ -757,6 +756,79 @@
             </Principal>
             <Dependent Role="PmdDetails">
               <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsBranch" Type="Boolean" />
+          <Property Name="IsParent" Type="Boolean" />
+          <Property Name="ParentCompanyId" Type="Int32" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CompanyBranches" Relationship="Sharptel_Lms_DbModel.FK_Agent_Company" FromRole="Company" ToRole="CompanyBranches" />
+          <NavigationProperty Name="ParentCompanies" Relationship="Sharptel_Lms_DbModel.FK_Company_ParentCompany" FromRole="Company" ToRole="Company1" />
+          <NavigationProperty Name="ParentCompany" Relationship="Sharptel_Lms_DbModel.FK_Company_ParentCompany" FromRole="Company1" ToRole="Company" />
+          <NavigationProperty Name="Employee" Relationship="Sharptel_Lms_DbModel.FK_Emp_Comp" FromRole="Company" ToRole="Employee" />
+          <Property Name="ModeOfCommunication" Type="Int32" />
+          <Property Name="BusinessOperationTime" Type="Int32" />
+          <Property Name="AlternateNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="Int32" />
+          <Property Name="City" Type="Int32" />
+          <Property Name="NoEmployee" Type="Int32" />
+          <Property Name="BusinessIndustry" Type="Int32" />
+          <Property Name="CurrentItPlatform" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CUDS" Type="Int32" />
+          <Property Name="CUDSService" Type="Int32" />
+          <Property Name="CUDSOtherService" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoLinks" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Agent_Company">
+          <End Type="Sharptel_Lms_DbModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="Sharptel_Lms_DbModel.CompanyBranches" Role="CompanyBranches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyBranches">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_ParentCompany">
+          <End Type="Sharptel_Lms_DbModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="Sharptel_Lms_DbModel.Company" Role="Company1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company1">
+              <PropertyRef Name="ParentCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emp_Comp">
+          <End Type="Sharptel_Lms_DbModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="Sharptel_Lms_DbModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="CompanyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -842,25 +914,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Company">
-            <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Company">
-              <MappingFragment StoreEntitySet="Company">
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Contact" ColumnName="Contact" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="HasBranches" ColumnName="HasBranches" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CompanyBranches">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.CompanyBranches">
               <MappingFragment StoreEntitySet="CompanyBranches">
@@ -907,6 +960,10 @@
           <EntitySetMapping Name="Lead">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Lead">
               <MappingFragment StoreEntitySet="Lead">
+                <ScalarProperty Name="AssignedPreSaleId" ColumnName="AssignedPreSaleId" />
+                <ScalarProperty Name="AssignedPmdId" ColumnName="AssignedPmdId" />
+                <ScalarProperty Name="Domain" ColumnName="Domain" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -973,6 +1030,40 @@
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="NoLinks" ColumnName="NoLinks" />
+                <ScalarProperty Name="CUDSOtherService" ColumnName="CUDSOtherService" />
+                <ScalarProperty Name="CUDSService" ColumnName="CUDSService" />
+                <ScalarProperty Name="CUDS" ColumnName="CUDS" />
+                <ScalarProperty Name="CurrentItPlatform" ColumnName="CurrentItPlatform" />
+                <ScalarProperty Name="BusinessIndustry" ColumnName="BusinessIndustry" />
+                <ScalarProperty Name="NoEmployee" ColumnName="NoEmployee" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="AlternateNumber" ColumnName="AlternateNumber" />
+                <ScalarProperty Name="BusinessOperationTime" ColumnName="BusinessOperationTime" />
+                <ScalarProperty Name="ModeOfCommunication" ColumnName="ModeOfCommunication" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="ParentCompanyId" ColumnName="ParentCompanyId" />
+                <ScalarProperty Name="IsParent" ColumnName="IsParent" />
+                <ScalarProperty Name="IsBranch" ColumnName="IsBranch" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

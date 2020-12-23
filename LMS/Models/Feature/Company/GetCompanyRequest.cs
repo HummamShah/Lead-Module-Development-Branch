@@ -21,6 +21,13 @@ namespace LMS.Models.Feature.Company
 			response.Address = Data.Address;
 			response.Contact = Data.Contact;
 			response.Email = Data.Email;
+			response.IsBranch = Data.IsBranch;
+			response.IsParent = Data.IsParent;
+            if (Data.ParentCompanyId != null)
+            {
+				response.ParentCompanyId = Data.ParentCompanyId;
+				response.ParentCompanyName = Data.ParentCompany.Name;
+			}
 			response.CreatedAt = Data.CreatedAt;
 			response.CreatedBy = Data.CreatedBy;
 			response.UpdatedAt = Data.UpdatedAt;
@@ -38,7 +45,11 @@ namespace LMS.Models.Feature.Company
         public string Email { get; set; }
         public string Address { get; set; }
         public string Contact { get; set; }
-        public string CreatedBy { get; set; }
+		public string ParentCompanyName { get; set; }
+		public int? ParentCompanyId { get; set; }
+		public bool? IsParent { get; set; }
+		public bool? IsBranch { get; set; }
+		public string CreatedBy { get; set; }
         public DateTime? CreatedAt { get; set; }
 		public string UpdatedBy { get; set; }
 		public DateTime? UpdatedAt { get; set; }

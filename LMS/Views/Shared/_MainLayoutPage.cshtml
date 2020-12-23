@@ -11,18 +11,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 </head>
-<body ng-controller="baseCtrl" >
+<body ng-controller="baseCtrl">
+    <div id="loader" ng-if="IsServiceRunning"></div>
     <div class="wrapper" style="overflow:hidden;">
-        <nav class="" id="sidebar">
+        <nav class="nav-f" id="sidebar">
             <div class="sidebar-header">
                 <a href="/Home"><h3 style=" padding-left: 9px;">SharpTel</h3></a>
             </div>
             <ul class="lisst-unstyled components" style="padding-top: 2px;">
-             
-                @if (User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.SuperAdmin))
+
+                @if (User.IsInRole(UserRoles.SuperAdmin))
                 {
                     <li>
                         <a href="/Department"> Departments <i class="fas fa-caret-right NavbarLink"></i></a>
+                    </li>
+                }
+                @if (User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.Lead_Sales))
+                {
+                    <li>
+                        <a href="/Lead"> Leads <i class="fas fa-caret-right NavbarLink"></i></a>
                     </li>
                 }
 
@@ -77,7 +84,8 @@
                             <a class="dropdown-toggle bg-none" data-toggle="dropdown">
                                 <i class="fas fa-bell NotificationIcon dropdown-toggle" data-toggle="dropdown"></i> <span class="badge badge-notification">5</span>
                             </a>
-                            <ul class="dropdown-menu"> @*with style means it has not yet been read*@
+                            <ul class="dropdown-menu">
+                                @*with style means it has not yet been read*@
                                 <li class="Notification-notread"><a href="#">Lead#1001 has been Closed</a></li>
                                 <li class="Notification-read"><a href="#">Lead#1004 has been Disapproved</a></li>
                                 <li class="Notification-read"><a href="#">Lead#1006 has been Marked Feasible</a></li>
@@ -89,18 +97,23 @@
                             </ul>
                         </div>
                         @*<div class="LayoutProfile dropdown">
-                            <a href="#nobody" data-toggle="dropdown"><i class="fas fa-bell NotificationIcon"></i> <span class="badge badge-notification">5</span></a>
-                        </div>*@
+                                <a href="#nobody" data-toggle="dropdown"><i class="fas fa-bell NotificationIcon"></i> <span class="badge badge-notification">5</span></a>
+                            </div>*@
                     </div>
 
                 </div>
             </nav>
             <div class="container body-content">
                 @RenderBody()
+                <br />
+                <br />
                 @*<hr />*@
-                <footer class="navbar-fixed-bottom  MainFooter">
-                    <p>&copy; @DateTime.Now.Year - Daretech</p>
-                </footer>
+                <div>
+                    <footer class="navbar-fixed-bottom  MainFooter">
+                        <p>&copy; @DateTime.Now.Year - Daretech</p>
+                    </footer>
+                </div>
+
             </div>
         </div>
     </div>

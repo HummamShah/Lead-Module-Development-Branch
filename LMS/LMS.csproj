@@ -191,6 +191,7 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="Models\Enums\Approval.cs" />
     <Compile Include="Models\Enums\BusinessSegmentation.cs" />
     <Compile Include="Models\Enums\BusinessTime.cs" />
+    <Compile Include="Models\Enums\Departments.cs" />
     <Compile Include="Models\Enums\Designation.cs" />
     <Compile Include="Models\Enums\LeadStatus.cs" />
     <Compile Include="Models\Enums\ModeOfCommunication.cs" />
@@ -261,8 +263,10 @@
     <Compile Include="Models\Enums\ServiceProviderType.cs" />
     <Compile Include="Models\Feature\Company\AddCompanyRequest.cs" />
     <Compile Include="Models\Feature\Company\EditCompanyRequest.cs" />
+    <Compile Include="Models\Feature\Company\GetCompaniesDropdownRequest.cs" />
     <Compile Include="Models\Feature\Company\GetCompanyRequest.cs" />
     <Compile Include="Models\Feature\Company\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\Company\GetParentCompaniesDropdownRequest.cs" />
     <Compile Include="Models\Feature\Demo\DemoRequest.cs" />
     <Compile Include="Models\Feature\Department\AddDepartmentRequest.cs" />
     <Compile Include="Models\Feature\Department\EditDepartmentRequest.cs" />
@@ -370,6 +374,8 @@
     <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Department\Add.cshtml" />
     <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Lead\Index.cshtml" />
+    <Content Include="Views\Lead\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -130,19 +130,25 @@ namespace LMS.Controllers.Api
                    
                     var AgentResult = db.Agent.Add(AgentData);
                     var RoleToAdd = "";//new List<string>();
-                    if (model.Designation == (int)Designation.Sales_Leads)
+                    var DepartmentName = "";
+                    var Department = db.Department.Where(x => x.Id == model.DepartmentId).FirstOrDefault();
+                   if(Department != null)
+                    {
+                        DepartmentName = Department.Name;
+                    }
+                    if (DepartmentName == Departments.Sales_Lead.ToString())
                     {
                         RoleToAdd = Roles.Lead_Sales;
                     }
-                    if (model.Designation == (int)Designation.Sales_Closer)
+                    if (DepartmentName == Departments.Closer.ToString())
                     {
                         RoleToAdd = Roles.Closer;
                     }
-                    if (model.Designation == (int)Designation.PreSales)
+                    if (DepartmentName == Departments.Pre_Sale.ToString())
                     {
                         RoleToAdd = Roles.PreSale;
                     }
-                    if (model.Designation == (int)Designation.Pmd)
+                    if (DepartmentName == Departments.PMD.ToString())
                     {
                         RoleToAdd = Roles.Pmd_Feasibility;
                     }

@@ -38,6 +38,21 @@
                         <input type="text" class="form-control" ng-model="Company.Contact" />
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>Is Branch</label>
+                        <input type="checkbox" class="" ng-model="Company.IsBranch" />
+                    </div>
+                </div>
+                <div class="form-group" ng-if="Company.IsBranch">
+                    <div class="col-md-3">
+                        <label>Parent Company</label>
+                        <select ng-model="ParentCompanyId" class="form-control" ng-change="GetThisConsole(ParentCompanyId)">
+                            <option selected value="">Select Parent Company</option>
+                            <option ng-repeat="Company in Companies" value="{{Company.Id}}" ng-selected="ParentCompanyId == Company.Id">{{Company.Name}}</option>
+                        </select>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="row float-right">

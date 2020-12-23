@@ -1,4 +1,5 @@
 ﻿using LMS.Models.EntityModel;
+using LMS.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace LMS.Models.Feature.Department
 		{
 			var response = new GetDepartmentsDropdownResponse();
 			response.Data = new List<DepartmentDropDownData>();
-			var Data = _dbContext.Department;
+			var Data = _dbContext.Department.Where(x=>x.Name != Departments.Administration.ToString());
 			foreach (var d in Data)
 			{
 				var temp = new DepartmentDropDownData();

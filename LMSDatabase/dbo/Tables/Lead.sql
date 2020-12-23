@@ -2,6 +2,8 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY Identity(1,1),
 	[CompanyName] nvarchar(max),
+	[Name] nvarchar(max),
+	[Domain] int,
 	[ContactPersonName] nvarchar(max),
 	[ContactPersonNumber] nvarchar(max),
     [AlternateNumber] nvarchar(max),
@@ -33,6 +35,8 @@
 	[BandwidthRequirement] nvarchar(max),
 	[BuildingHeight] float,
 	[ExpectedDeliveryTimeline] datetime,
+	[AssignedPmdId] int,
+	[AssignedPreSaleId] int,
 	[CreatedBy] nvarchar(max),
 	[CreatedAt] DateTime,
 	[UpdatedBy] nvarchar(max),
