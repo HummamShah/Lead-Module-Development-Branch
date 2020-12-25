@@ -5,8 +5,8 @@ using System.Web;
 
 namespace LMS.Models.Enums
 {
-    public enum ModeOfCommunication
+    public enum Fiber
     {
-        Phone,Email,Fax,Visit
+        Fiber1,Fiver2,Fiber3
     }
 }

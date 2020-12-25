@@ -13,10 +13,14 @@
 	[Email] nvarchar(max),
 	[ImageUrl] nvarchar(max),
 	[IsActive] bit,
+	[SuperVisorId] int,
+	[IsSupervisor] bit,
+	[HasSupervisor] bit,
 	[CreatedBy] nvarchar(max),
 	[CreatedAt] DateTime,
 	[UpdatedBy] nvarchar(max),
 	[UpdatedAt] DateTime,
 	Constraint [FK_Agent_User] foreign key ([UserId]) References [dbo].[AspNetUsers] ([Id]),
+	Constraint [FK_Agent_Agent] foreign key ([SuperVisorId]) References [dbo].[Agent] ([Id]),
 	Constraint [FK_Agent_Department] foreign key ([DepartmentId]) References [dbo].[Department] ([Id])
 )

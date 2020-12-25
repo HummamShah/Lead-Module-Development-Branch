@@ -23,7 +23,7 @@ namespace LMS.Models.Feature.Company
 		{
 			var response = new GetCompaniesDropdownResponse();
 			response.Data = new List<GetCompaniesDropdownData>();
-			var Data = _dbContext.Company.Where(x => x.IsBranch == true);
+			var Data = _dbContext.Company;
 			foreach (var d in Data)
 			{
 				var temp = new GetCompaniesDropdownData();

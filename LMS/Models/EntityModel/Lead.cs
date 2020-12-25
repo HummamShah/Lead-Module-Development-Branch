@@ -22,46 +22,57 @@ namespace LMS.Models.EntityModel
     
         public int Id { get; set; }
         public string CompanyName { get; set; }
-        public string ContactPersonName { get; set; }
-        public string ContactPersonNumber { get; set; }
-        public string AlternateNumber { get; set; }
-        public Nullable<int> ModeOfCommunication { get; set; }
-        public Nullable<int> BusinessTime { get; set; }
-        public string Website { get; set; }
-        public string Email { get; set; }
-        public string City { get; set; }
-        public string Area { get; set; }
+        public Nullable<int> CompanyId { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Domain { get; set; }
         public string Address { get; set; }
-        public Nullable<int> NoOfEmployee { get; set; }
-        public Nullable<int> NumberOfBranches { get; set; }
-        public Nullable<int> BusinessSegmentaion { get; set; }
-        public string NtnNumber { get; set; }
-        public Nullable<bool> IsExistingCustomer { get; set; }
-        public Nullable<int> CurrentServiceProviderType { get; set; }
-        public string CurrentServiceProviderName { get; set; }
-        public Nullable<int> NumberOfLinks { get; set; }
+        public string Contact { get; set; }
+        public string Email { get; set; }
+        public string AlternateNumber { get; set; }
+        public string Website { get; set; }
+        public Nullable<int> Area { get; set; }
+        public Nullable<int> City { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> ModeOfCommunication { get; set; }
+        public Nullable<int> BusinessOperationTime { get; set; }
+        public Nullable<int> NoEmployee { get; set; }
+        public Nullable<int> BusinessIndustry { get; set; }
+        public string CurrentItPlatform { get; set; }
+        public Nullable<int> CUDS { get; set; }
+        public Nullable<int> CUDSService { get; set; }
+        public string CUDSOtherService { get; set; }
+        public Nullable<int> NoLinks { get; set; }
+        public string NTN { get; set; }
+        public Nullable<int> NumberOfBranchOffices { get; set; }
+        public Nullable<System.DateTime> EstimatedClosingDate { get; set; }
+        public Nullable<bool> IsEsisting { get; set; }
+        public Nullable<bool> HasTriedOurServie { get; set; }
+        public string Comments { get; set; }
+        public Nullable<int> AssignedPmdId { get; set; }
+        public Nullable<System.DateTime> PmdAssignedOn { get; set; }
+        public Nullable<System.DateTime> PresaleAssignedOn { get; set; }
+        public Nullable<System.DateTime> LeadAssignedOn { get; set; }
+        public Nullable<int> AssignedPreSaleId { get; set; }
+        public Nullable<int> AssignedToId { get; set; }
         public string LeadRemarks { get; set; }
         public Nullable<int> LeadStatus { get; set; }
         public Nullable<int> PmdStatus { get; set; }
+        public string PmdRemarks { get; set; }
         public Nullable<int> QuotationStatus { get; set; }
+        public string QuotationRemarks { get; set; }
         public Nullable<bool> IsApproved { get; set; }
         public string AdminRemarks { get; set; }
-        public string PmdRemarks { get; set; }
-        public string QuotationRemarks { get; set; }
-        public Nullable<double> Latitude { get; set; }
-        public Nullable<double> Longitude { get; set; }
-        public string BandwidthRequirement { get; set; }
-        public Nullable<double> BuildingHeight { get; set; }
-        public Nullable<System.DateTime> ExpectedDeliveryTimeline { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> Domain { get; set; }
-        public Nullable<int> AssignedPmdId { get; set; }
-        public Nullable<int> AssignedPreSaleId { get; set; }
+        public Nullable<decimal> Budget { get; set; }
+        public string ContactPersonName { get; set; }
+        public string ContactPersonNumber { get; set; }
     
+        public virtual Agent Agent { get; set; }
+        public virtual Agent Agent1 { get; set; }
+        public virtual Agent Agent2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PmdDetails> PmdDetails { get; set; }
     }

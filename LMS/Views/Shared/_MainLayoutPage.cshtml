@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 </head>
-<body ng-controller="baseCtrl">
-    <div id="loader" ng-if="IsServiceRunning"></div>
+<body ng-controller="baseCtrl" ng-class="ServiceClassBinder">
+    <div>
+        <div id="loader" ng-if="TotalNumberOfServicesRunning > 0"></div>
+    </div>
+    
     <div class="wrapper" style="overflow:hidden;">
         <nav class="nav-f" id="sidebar">
             <div class="sidebar-header">

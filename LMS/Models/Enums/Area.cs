@@ -5,8 +5,8 @@ using System.Web;
 
 namespace LMS.Models.Enums
 {
-    public enum ModeOfCommunication
+    public enum Area
     {
-        Phone,Email,Fax,Visit
+        Korangi_Industrial,II_Chundrhigarh_Road,Shafeeq_Mor
     }
 }

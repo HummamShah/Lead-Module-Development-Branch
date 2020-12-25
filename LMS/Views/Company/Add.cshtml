@@ -23,7 +23,7 @@
                         <input type="text" class="form-control" ng-model="Company.Description" />
                     </div>
                 </div>
-               
+
                 <div class="form-group">
                     <div class="col-md-2">
                         <label>Is Branch</label>
@@ -41,7 +41,7 @@
                 </div>
             </form>
         </div>
-      
+
     </div>
 
     <div class="jumbotron PageHeading">
@@ -66,33 +66,33 @@
                     <option value="2">24/7</option>
                 </select>
             </div>
-       
+
             <div class="col-md-4 form-group">
-               
-                    <label>Email</label>
-                    <input type="email" class="form-control" ng-model="Company.Email" />
-               
+
+                <label>Email</label>
+                <input type="email" class="form-control" ng-model="Company.Email" />
+
             </div>
             <div class="col-md-4 form-group">
-                    <label>Contact</label>
-                    <input type="text" class="form-control" ng-model="Company.Contact" />
+                <label>Contact</label>
+                <input type="text" class="form-control" ng-model="Company.Contact" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Alternate Number</label>
                 <input type="text" class="form-control" ng-model="Company.CompanyAlternateContact" placeholder="033xxxx.." />
             </div>
             @*<div class="col-md-4 form-group">
-            <label>Phone Number</label>
-            <input type="text" class="form-control" ng-model="Company.CompanyContact" placeholder="033xxxx.." />
-        </div>*@
+                    <label>Phone Number</label>
+                    <input type="text" class="form-control" ng-model="Company.CompanyContact" placeholder="033xxxx.." />
+                </div>*@
             @*<div class="col-md-4 form-group">
-            <label>Alternate Number</label>
-            <input type="text" class="form-control" ng-model="Company.CompanyAlternateContact" placeholder="033xxxx.." />
-        </div>*@
+                    <label>Alternate Number</label>
+                    <input type="text" class="form-control" ng-model="Company.CompanyAlternateContact" placeholder="033xxxx.." />
+                </div>*@
             @*<div class="col-md-4 form-group">
-            <label>Email</label>
-            <input type="email" class="form-control" ng-model="Company.CompanyEmail" placeholder="johndoe@live.com" />
-        </div>*@
+                    <label>Email</label>
+                    <input type="email" class="form-control" ng-model="Company.CompanyEmail" placeholder="johndoe@live.com" />
+                </div>*@
             <div class="col-md-4 form-group">
                 <label>Website</label>
                 <input type="text" class="form-control" ng-model="Company.Website" placeholder="www.sharptel.com" />
@@ -104,7 +104,6 @@
                     <option value="0">Korangi Industrial</option>
                     <option value="1">II Chudrigarh</option>
                     <option value="3">Shafeeq Mor</option>
-                    <option value="2">xyz</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
@@ -125,10 +124,6 @@
         </div>
     </div>
 
-
-
-
-
     <div class="jumbotron PageHeading">
         <div class="row text-center">
             <h2 class="SegmentHeading">Business Infromation</h2>
@@ -141,13 +136,13 @@
                     <option value="0">1-5</option>
                     <option value="1">5-10</option>
                     <option value="3">10-50</option>
-                    <option value="2">50-100</option>
-                    <option value="2">100+</option>
+                    <option value="3">50-100</option>
+                    <option value="4">100+</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
                 <label>Numbe of Branch offices</label>
-                <input type="text" ng-model="Company.NoBracnhOffices" class="form-control" />
+                <input type="number" ng-model="Company.NoBracnhOffices" class="form-control" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Business Industry</label>
@@ -201,30 +196,34 @@
                 <input type="number" class="form-control" ng-model="Company.NoLinks" />
             </div>
             @*<div class="col-md-4 form-group">
-            <label>Budget</label>
-            <input type="text" class="form-control" ng-model="Company.Budget" />
-        </div>*@
+                    <label>Budget</label>
+                    <input type="text" class="form-control" ng-model="Company.Budget" />
+                </div>*@
             @*<div class="col-md-4 form-group">
-            <label>Estimated Closing Date</label>
-            <input type="date" class="form-control" ng-model="Company.EstimatedClosingDate" />
-        </div>
-        <div class="col-md-4 form-group">
-            <label>Comments</label>
-            <input type="text" class="form-control" ng-model="Company.Comments" />
-        </div>*@
+                    <label>Estimated Closing Date</label>
+                    <input type="date" class="form-control" ng-model="Company.EstimatedClosingDate" />
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>Comments</label>
+                    <input type="text" class="form-control" ng-model="Company.Comments" />
+                </div>*@
             @*<div class="col-md-4 form-group">
-            <label>Is our Existing Customer</label>
-            <input type="checkbox" ng-model="Lead.IsEsisting" />
-        </div>*@
+                    <label>Is our Existing Customer</label>
+                    <input type="checkbox" ng-model="Lead.IsEsisting" />
+                </div>*@
             @*<div class="col-md-4 form-group">
-            <label>Ever Tried Our Service Before</label>
-            <input type="checkbox" ng-model="Lead.HasTriedOurServie" />
-        </div>*@
-        <div class="row float-right">
-            <a href="/Lead" class="btn btn-danger">Cancel</a>
-            <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="AddCompany(Company)">Add</button>
-        </div>
+                    <label>Ever Tried Our Service Before</label>
+                    <input type="checkbox" ng-model="Lead.HasTriedOurServie" />
+                </div>*@
+            <div class="row float-right">
+                <a href="/Lead" class="btn btn-danger">Cancel</a>
+                <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="AddCompany(Company)">Add</button>
+            </div>
         </div>
     </div>
+
+
+
+
 </div>
 

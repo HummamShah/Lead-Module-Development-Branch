@@ -50,6 +50,8 @@ namespace LMS.Models.EntityModel
         public Nullable<int> CUDSService { get; set; }
         public string CUDSOtherService { get; set; }
         public Nullable<int> NoLinks { get; set; }
+        public string NTN { get; set; }
+        public Nullable<int> NumberOfBranchOffices { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyBranches> CompanyBranches { get; set; }

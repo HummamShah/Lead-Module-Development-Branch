@@ -5,8 +5,8 @@ using System.Web;
 
 namespace LMS.Models.Enums
 {
-    public enum ModeOfCommunication
+    public enum BusinessOperationTime
     {
-        Phone,Email,Fax,Visit
+        Morning,Evening, Night,Twentifour_Seven
     }
 }

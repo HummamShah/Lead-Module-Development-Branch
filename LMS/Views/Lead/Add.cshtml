@@ -18,8 +18,8 @@
                 Domain
                 <div class="form-group" style="display:inline-block;">
                     <select ng-model="Lead.Domain" class="form-control">
-                        <option value="Services">Services</option>
-                        <option value="Connectivity">Connectivity</option>
+                        <option value="0" ng-selected="Lead.Domain == 0">Services</option>
+                        <option value="1" ng-selected="Lead.Domain == 1">Connectivity</option>
                     </select>
                 </div>
             </div>
@@ -42,9 +42,9 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <label>Company</label> <a href="#" data-toggle="modal" data-target="#myModal" ><i class="fas fa-plus"></i></a>
-                        <select ng-model="Lead.CompanyId" class="form-control">
+                        <select ng-model="Lead.CompanyId" class="form-control" ng-change="GetCompanyData(Lead.CompanyId)">
                             <option selected value="">Select Company</option>
-                            <option ng-repeat="Company in Companies" value="{{Company.Id}}">{{Company.Name}}</option>
+                            <option ng-repeat="Company in Companies" value="{{Company.Id}}" ng-selected="Lead.CompanyId == Company.Id">{{Company.Name}}</option>
                         </select>
                     </div>
                 </div>
@@ -76,22 +76,22 @@
                 <label>Mode Of Communication</label>
                 <select ng-model="Lead.MOCId" class="form-control">
                     <option selected value="">Mode of Commincation</option>
-                    <option ng-repeat="MOC in MOCS" value="{{MOC.Id}}">{{MOC.Name}}</option>
+                    <option ng-repeat="MOC in MOCS" ng-selected="MOC.Id == Lead.MOCId" value="{{MOC.Id}}">{{MOC.Name}}</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
                 <label>Business Operation Time</label>
                 <select ng-model="Lead.BOT" class="form-control">
                     <option selected value="">Operation Time</option>
-                    <option value="0">Morning</option>
-                    <option value="1">Evening</option>
-                    <option value="3">Night</option>
-                    <option value="2">24/7</option>
+                    <option ng-selected="Lead.BOT == 0" value="0">Morning</option>
+                    <option ng-selected="Lead.BOT == 1" value="1">Evening</option>
+                    <option ng-selected="Lead.BOT == 3" value="3">Night</option>
+                    <option ng-selected="Lead.BOT == 2" value="2">24/7</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
                 <label>Phone Number</label>
-                <input type="text" class="form-control" ng-model="Lead.CompanyContact" placeholder="033xxxx.." />
+                <input type="text" class="form-control" ng-model="Lead.Contact" placeholder="033xxxx.." />
             </div>
             <div class="col-md-4 form-group">
                 <label>Alternate Number</label>
@@ -99,7 +99,7 @@
             </div>
             <div class="col-md-4 form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" ng-model="Lead.CompanyEmail" placeholder="johndoe@live.com" />
+                <input type="email" class="form-control" ng-model="Lead.Email" placeholder="johndoe@live.com" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Website</label>
@@ -109,20 +109,19 @@
                 <label>Area / Territory</label>
                 <select ng-model="Lead.Area" class="form-control">
                     <option selected value="">Area</option>
-                    <option value="0">Korangi Industrial</option>
-                    <option value="1">II Chudrigarh</option>
-                    <option value="3">Shafeeq Mor</option>
-                    <option value="2">xyz</option>
+                    <option ng-selected="Lead.Area==0" value="0">Korangi Industrial</option>
+                    <option ng-selected="Lead.Area==1" value="1">II Chudrigarh</option>
+                    <option ng-selected="Lead.Area==2" value="2">Shafeeq Mor</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
                 <label>City</label>
                 <select ng-model="Lead.City" class="form-control">
-                    <option selected value="">Area</option>
-                    <option value="0">Karachi</option>
-                    <option value="1">Lahore</option>
-                    <option value="3">Multan</option>
-                    <option value="2">Islamabad</option>
+                    <option selected value="">City</option>
+                    <option ng-selected="Lead.City==0" value="0">Karachi</option>
+                    <option ng-selected="Lead.City==1" value="1">Lahore</option>
+                    <option ng-selected="Lead.City==3" value="3">Multan</option>
+                    <option ng-selected="Lead.City==2" value="2">Islamabad</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
@@ -145,12 +144,12 @@
             <div class="col-md-4 form-group">
                 <label>Number Of Employees</label>
                 <select ng-model="Lead.NOE" class="form-control">
-                    <option selected value="">Number of employees</option>
-                    <option value="0">1-5</option>
-                    <option value="1">5-10</option>
-                    <option value="3">10-50</option>
-                    <option value="2">50-100</option>
-                    <option value="2">100+</option>
+                    <option selected value="">Number Of Employees</option>
+                    <option ng-selected="Lead.NOE==0" value="0">1-5</option>
+                    <option ng-selected="Lead.NOE==1" value="1">5-10</option>
+                    <option ng-selected="Lead.NOE==2" value="2">10-50</option>
+                    <option ng-selected="Lead.NOE==3" value="3">50-100</option>
+                    <option ng-selected="Lead.NOE==4" value="4">100+</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
@@ -161,9 +160,9 @@
                 <label>Business Industry</label>
                 <select ng-model="Lead.BusinessIndustry" class="form-control">
                     <option selected value="">Business Industry</option>
-                    <option value="0">Food and beverages</option>
-                    <option value="1">IT and services</option>
-                    <option value="2">Wood craft</option>
+                    <option ng-selected="Lead.BusinessIndustry==0" value="0">Food and beverages</option>
+                    <option ng-selected="Lead.BusinessIndustry==1" value="1">IT and services</option>
+                    <option ng-selected="Lead.BusinessIndustry==2" value="2">Wood craft</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
@@ -182,11 +181,11 @@
                 <label>Currently Used Data/Internet Service</label>
                 <select ng-model="Lead.CUDS" class="form-control" ng-change="GetDropdownForServies(Lead.CUDS)">
                     <option selected value="">Current Service</option>
-                    <option value="0">DSL</option>
-                    <option value="1">VSAT</option>
-                    <option value="2">WiWax</option>
-                    <option value="3">Fiber</option>
-                    <option value="4">Other</option>
+                    <option ng-selected="Lead.CUDS==0" value="0">DSL</option>
+                    <option ng-selected="Lead.CUDS==1" value="1">VSAT</option>
+                    <option ng-selected="Lead.CUDS==2" value="2">WiWax</option>
+                    <option ng-selected="Lead.CUDS==3" value="3">Fiber</option>
+                    <option ng-selected="Lead.CUDS==4" value="4">Other</option>
                 </select>
             </div>
             <div class="col-md-4 form-group" ng-if="Lead.CUDS == null">
@@ -196,7 +195,7 @@
                 <span ng-if="Lead.CUDS != '4' ">
                     <label>Select Service</label>
                     <select ng-model="Lead.CUDSService" class="form-control">
-                        <option ng-repeat="service in CurrentServices" value="{{service.Id}}">{{service.Name}}</option>
+                        <option ng-repeat="service in CurrentServices" value="{{service.Id}} " ng-selected="service.Id == Lead.CUDSService">{{service.Name}}</option>
                     </select>
                 </span>
                 <span ng-if="Lead.CUDS == '4' ">
@@ -230,7 +229,7 @@
             </div>
             <div class="row float-right">
                 <a href="/Lead" class="btn btn-danger"  >Cancel</a>
-                <a href="/Lead" class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="AddCompany(Company)">Add</a>
+                <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="AddLead(Lead)">Add</button>
             </div>
 
         </div>

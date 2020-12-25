@@ -5,8 +5,8 @@ using System.Web;
 
 namespace LMS.Models.Enums
 {
-    public enum ModeOfCommunication
+    public enum WiWax
     {
-        Phone,Email,Fax,Visit
+        WiWax1,WiWax2,WiWax3
     }
 }

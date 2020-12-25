@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="812a8267753c45948f79b40b7b372a7e" Name="Diagram1">
+      <Diagram DiagramId="812a8267753c45948f79b40b7b372a7e" Name="Diagram1" ZoomLevel="97">
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
@@ -16,18 +16,22 @@
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.CompanyBranches" Width="1.5" PointX="8" PointY="11.25" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Department" Width="1.5" PointX="6.375" PointY="15.125" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Employee" Width="1.5" PointX="8" PointY="7.125" />
-        <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Lead" Width="1.5" PointX="0.75" PointY="7.25" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.PmdDetails" Width="1.5" PointX="3" PointY="9.625" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Vendor" Width="1.5" PointX="0.75" PointY="17" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Agent_Department" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Agent_User" />
-        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_PMD_Leads" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_PMD_Vendor" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Company" Width="1.5" PointX="5.75" PointY="8.125" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Agent_Company" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Company_ParentCompany" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Emp_Comp" />
-      </Diagram>
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Agent_Agent" />
+        <EntityTypeShape EntityType="Sharptel_Lms_DbModel.Lead" Width="1.5" PointX="10.875" PointY="15.625" />
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Lead_Agent_Lead" />
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Lead_Agent_PMD" />
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Lead_Agent_PreSale" />
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_PMD_Leads" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

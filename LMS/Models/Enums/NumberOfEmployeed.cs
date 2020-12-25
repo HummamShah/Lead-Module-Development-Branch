@@ -5,8 +5,8 @@ using System.Web;
 
 namespace LMS.Models.Enums
 {
-    public enum ModeOfCommunication
+    public enum NumberOfEmployeed
     {
-        Phone,Email,Fax,Visit
+        one_five,five_ten,ten_fifty, fifty_100,fifty_Plus
     }
 }

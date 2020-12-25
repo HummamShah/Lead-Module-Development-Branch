@@ -33,9 +33,9 @@ namespace LMS.Models.EntityModel
         public virtual DbSet<CompanyBranches> CompanyBranches { get; set; }
         public virtual DbSet<Department> Department { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
-        public virtual DbSet<Lead> Lead { get; set; }
         public virtual DbSet<PmdDetails> PmdDetails { get; set; }
         public virtual DbSet<Vendor> Vendor { get; set; }
         public virtual DbSet<Company> Company { get; set; }
+        public virtual DbSet<Lead> Lead { get; set; }
     }
 }

@@ -5,8 +5,8 @@ using System.Web;
 
 namespace LMS.Models.Enums
 {
-    public enum ModeOfCommunication
+    public enum DSL
     {
-        Phone,Email,Fax,Visit
+        DSL1,DSL2,DSL3
     }
 }

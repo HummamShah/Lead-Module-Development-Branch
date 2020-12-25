@@ -5,8 +5,8 @@ using System.Web;
 
 namespace LMS.Models.Enums
 {
-    public enum ModeOfCommunication
+    public enum VSAT
     {
-        Phone,Email,Fax,Visit
+        VSAT1, VSAT2, VSAT3
     }
 }

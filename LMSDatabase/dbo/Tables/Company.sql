@@ -24,6 +24,8 @@
 	[CUDSService] int,
 	[CUDSOtherService] nvarchar(max),
 	[NoLinks] int,
+	[NTN] nvarchar(max),
+	[NumberOfBranchOffices] int,
 	[CreatedAt] Datetime ,
 	[UpdatedAt] Datetime ,
 	[CreatedBy] nvarchar(max),

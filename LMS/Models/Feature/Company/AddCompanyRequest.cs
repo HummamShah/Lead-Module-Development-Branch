@@ -25,16 +25,16 @@ namespace LMS.Models.Feature.Company
 		public string Contact { get; set; }
 		public int? MOCId { get; set; }
 		public int? BOT { get; set; }
-		public int? CompanyAlternateContact { get; set; }
+		public string CompanyAlternateContact { get; set; }
 		public string Website { get; set; }
 		public int? Area { get; set; }
 		public int? City { get; set; }
-		public int? NOE { get; set; } //Number of Employees
-		public int? NoBracnhOffices { get; set; } //Number of Employees
+		public int? NOE { get; set; } //Number of Employees may be change it to string
+		public int? NoBracnhOffices { get; set; }  // need to add this field in database..
 		public int? BusinessIndustry { get; set; }
-		public string NTN { get; set; }
+		public string NTN { get; set; } // need to add this field in database..
 		public string CurrentItPlatform { get; set; }
-		public string FuturePlanOFExtention { get; set; }
+		public string FuturePlanOFExtention { get; set; } //not in db
 		public int? CUDS { get; set; }
 		public int? CUDSService { get; set; }
 		public string CUDSOtherService { get; set; }
@@ -54,15 +54,30 @@ namespace LMS.Models.Feature.Company
 			Company.Email = request.Email;
 			Company.Contact = request.Contact;
 			Company.IsBranch = request.IsBranch;
-            if (Company.IsBranch == false)
+            if (request.IsBranch == false)
             {
 				Company.IsParent = true;
             }
-            if (Company.IsBranch == true)
+            if (request.IsBranch == true)
             {
 				Company.IsParent = false;
 				Company.ParentCompanyId = request.ParentCompanyId;
 			}
+			Company.ModeOfCommunication = request.MOCId;
+			Company.BusinessOperationTime = request.BOT;
+			Company.AlternateNumber = request.CompanyAlternateContact;
+			Company.Website = request.Website;
+			Company.Area = request.Area;
+			Company.City = request.City;
+			Company.NoEmployee = request.NOE;
+			Company.BusinessIndustry = request.BusinessIndustry;
+			Company.NTN = request.NTN;
+			Company.NumberOfBranchOffices = request.NoBracnhOffices;
+			Company.CurrentItPlatform = request.CurrentItPlatform;
+			Company.CUDS = request.CUDS;
+			Company.CUDSOtherService = request.CUDSOtherService;
+			Company.CUDSService = request.CUDSService;
+			Company.NoLinks = request.NoLinks;
 			var result = _dbContext.Company.Add(Company);
 			_dbContext.SaveChanges();
 			return response;

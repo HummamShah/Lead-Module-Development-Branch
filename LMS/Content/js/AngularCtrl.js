@@ -8,7 +8,8 @@ app.controller('baseCtrl',
         "$timeout",
         "$q",
         "$window",
-        function ($scope, $rootScope, $timeout, $q, $window) {
+        "$http",
+        function ($scope, $rootScope, $timeout, $q, $window, $http) {
             console.log("Connected to lms App base ctrl");
             $scope.GetUrlParameter = function (param) {
                 const queryString = window.location.search;
@@ -16,38 +17,44 @@ app.controller('baseCtrl',
                 return urlParams.get(param);
             }
             $scope.IsServiceRunning = false;
+            $scope.ServiceClassBinder = "LoaderDeActivate"; // bydefualt loader is deactivated
+            $scope.TotalNumberOfServicesRunning = 0;
+            $scope.AjaxGet = function (link, data) {
+                $scope.ServiceClassBinder = "LoaderActivate"; // Loader class Activated
+                $scope.TotalNumberOfServicesRunning = $scope.TotalNumberOfServicesRunning + 1;
+                var promise = $http.get(link, { params: data, headers: { 'Accept': 'application/json' } });
+                 promise.then(
+                    function (response) {
+                         $scope.TotalNumberOfServicesRunning = $scope.TotalNumberOfServicesRunning - 1;
+                         $scope.ServiceClassBinder = "LoaderDeActivate"; // Loader class DeActivated
+                        console.log(response);
+                      
+                    }
+                );
+                return promise;
+            }
+
+            $scope.AjaxPost = function (link, data) {
+                $scope.ServiceClassBinder = "LoaderActivate"; // Loader class Activated
+                $scope.TotalNumberOfServicesRunning = $scope.TotalNumberOfServicesRunning + 1;
+                var promise = $http.post(link, data, { headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        
+                        $scope.TotalNumberOfServicesRunning = $scope.TotalNumberOfServicesRunning - 1;
+                        $scope.ServiceClassBinder = "LoaderActivate"; // Loader class DeActivated
+                        console.log(response);
+
+                    }
+                );
+                return promise;
+            }
+            
+
         }
     ]);
 
-app.controller('InventoryCtrl',
-    [
-        "$scope",
-        "$rootScope",
-        "$timeout",
-        "$q",
-        "$window",
-        "$http",
-        function ($scope, $rootScope, $timeout, $q, $window,$http) {
-            console.log("Connected to Inventory Ctrl");
-            $scope.initIndex = function () {
-                var data = null;
-                var promise = $http.get("/api/InventoryApi/GetAllData", { params: data, headers: { 'Accept': 'application/json' } });
-                promise.then(
-                    function (response) {
-                        console.log(response);
-                        $scope.Inventories = response.data;
-                    });
-                // $scope.Inventories = $http.get("/api/InvenoryApi/GetAllData", { params: data, headers: { 'Accept': 'application/json' } });
-            }
 
-            $scope.AddInit = function () {
-
-            }
-            $scope.AddInventory = function (inventory) {
-                console.log(inventory);
-            }
-        }
-    ]); 
 
 app.controller('UserCtrl',
     [
@@ -59,23 +66,18 @@ app.controller('UserCtrl',
         "$http",
         function ($scope, $rootScope, $timeout, $q, $window, $http) {
             console.log("Connected to User App");
+            //$scope.TryingAjaxService = function () {
+            //    $scope.AjaxGet("/api/UserApi/GetListData", null).then(
+            //        function (response) {
+            //            console.log(response);
+            //        })
+            //}
             $scope.initIndex = function () {
-                var data = null;
-                $scope.IsServiceRunning = true;
-                alert("Is Service started " + $scope.IsServiceRunning);
-                var promise = $http.get("/api/UserApi/GetListData", { params: data, headers: { 'Accept': 'application/json' } });
-                promise.then(
+                $scope.AjaxGet("/api/UserApi/GetListData", null).then(
                     function (response) {
-                      
                         console.log(response);
                         $scope.Users = response.data.Data;
-                    }).then(
-                        function (resp) {
-                            alert("Is Service ended " + $scope.IsServiceRunning);
-                            $scope.IsServiceRunning = false;
-                        }
-                    );
-                
+                    });
             }
             $scope.AddUser = function (user) {
                 console.log(user);
@@ -218,10 +220,13 @@ app.controller('CompanyCtrl',
                         $scope.Companies = response.data.Data;
                     });
             }
+
+          
+
             $scope.AddInit = function () {
                 $scope.Company = {};
                 $scope.Companies = [];
-                $scope.MOCS = [{ Name: "Telephone", Id: 1 }, { Name: "Email", Id: 2 }, { Name: "Fax", Id: 3 }];
+                $scope.MOCS = [{ Name: "Phone", Id: 0 }, { Name: "Email", Id: 1 }, { Name: "Fax", Id: 2 }, { Name: "Visit", Id: 3 }];
                 getCompaniesDropdown();
             }
             getCompaniesDropdown =function (){
@@ -240,16 +245,16 @@ app.controller('CompanyCtrl',
             $scope.Fiber = [{ Name: "Fiber", Id: 0 }, { Name: "Fiber1", Id: 1 }, { Name: "Fiber2", Id: 2 }];
             $scope.GetDropdownForServies = function (param) {
                 //0-dsl,1=Vsat,2=Wiwax,3=Fiber,4-other
-                if (param == 0) {
+                if (param == 0 || param == '0') {
                     $scope.CurrentServices = $scope.DSL;
                 }
-                if (param == 1) {
+                if (param == 1 || param == '1') {
                     $scope.CurrentServices = $scope.VSAT;
                 }
-                if (param == 2) {
+                if (param == 2 || param == '2') {
                     $scope.CurrentServices = $scope.WiWax;
                 }
-                if (param == 3) {
+                if (param == 3 || param == '3') {
                     $scope.CurrentServices = $scope.Fiber;
                 }
 
@@ -260,7 +265,9 @@ app.controller('CompanyCtrl',
             $scope.EditInit = function () {
                 $scope.Company = {};
                 $scope.Companies = [];
+                
                 getCompaniesDropdown();
+                $scope.MOCS = [{ Name: "Phone", Id: 0 }, { Name: "Email", Id: 1 }, { Name: "Fax", Id: 2 }, { Name: "Visit", Id: 3 }];
                 var Id = $scope.GetUrlParameter("Id");
                 var data = {
                     Id: parseInt(Id)
@@ -271,6 +278,7 @@ app.controller('CompanyCtrl',
                     function (response) {
                         console.log(response);
                         $scope.Company = response.data;
+                        $scope.GetDropdownForServies($scope.Company.CUDS);
                         $scope.ParentCompanyId = $scope.Company.ParentCompanyId;
                         console.log($scope.Company);
                     });
@@ -294,6 +302,8 @@ app.controller('CompanyCtrl',
                     alert("Contact Is Required");
                     return;
                 }
+                console.log(Company);
+        
                 var promise = $http.post("/api/CompanyApi/AddCompany", Company, { headers: { 'Accept': 'application/json' } });
                 promise.then(
                     function (response) {
@@ -426,7 +436,7 @@ app.controller('LeadCtrl',
         "$window",
         "$http",
         function ($scope, $rootScope, $timeout, $q, $window, $http) {
-            console.log("Connected to User App");
+            console.log("Connected to Lead App");
             $scope.initIndex = function () {
                 var data = null;
                 var promise = $http.get("/api/UserApi/GetListData", { params: data, headers: { 'Accept': 'application/json' } });
@@ -437,17 +447,26 @@ app.controller('LeadCtrl',
                     });
 
             }
-            $scope.AddLead = function (user) {
-                //console.log(user);
-                //var promise = $http.post("/api/UserApi/RegisterUser", user, { headers: { 'Accept': 'application/json' } });
+            $scope.AddLead = function (Lead) {
+                console.log(Lead);
+                $scope.AjaxPost("/api/LeadApi/AddLead", Lead).then(
+                    function (response) {
+                    if (response.status == 200) {
+                        alert("Lead has been Added Successfully!");
+                        $timeout(function () { window.location.href = '/Lead'; }, 2000);
+                    } else {
+                        alert("Could Not Add new Lead");
+                    }
+                });
+                //var promise = $http.post("/api/LeadApi/AddLead", Lead, { headers: { 'Accept': 'application/json' } });
                 //promise.then(
                 //    function (response) {
                 //        console.log(response);
                 //        if (response.status == 200) {
-                //            alert("User has been Added Successfully!");
-                //            $timeout(function () { window.location.href = '/User'; }, 2000);
+                //            alert("Lead has been Added Successfully!");
+                //            $timeout(function () { window.location.href = '/Lead'; }, 2000);
                 //        } else {
-                //            alert("Could Not Add new User");
+                //            alert("Could Not Add new Lead");
                 //        }
 
                 //    });
@@ -470,39 +489,38 @@ app.controller('LeadCtrl',
                     });
             }
             $scope.AddInit = function () {
+                $scope.Company = {};
+                $scope.Companies = [];
                 $scope.Lead = {};
+                $scope.Lead.Domain = 0;
+                $scope.MOCS = [{ Name: "Phone", Id: 0 }, { Name: "Email", Id: 1 }, { Name: "Fax", Id: 2 }, { Name: "Visit", Id: 3 }];
                 getCompaniesDropdown();
-                getParentCompaniesDropdown();
-                $scope.Lead.Domain = "Services"; // By default services
-              //  $scope.Companies = [{ Name: "RecoN", Id: 1 }, { Name: "GoUnlime", Id: 2 }, { Name: "Reddish Pvt ltd", Id: 3 }, { Name: " Nouse pvt ltd", Id: 4 }];
-                $scope.MOCS = [{ Name: "Telephone", Id: 1 }, { Name: "Email", Id: 2 }, { Name: "Fax", Id: 3 }];
-                $scope.CurrentServices = [];
             }
-            $scope.AddCompany = function (Company) {
-                console.log(Company);
-                if (Company.Name == null || Company.Name == "") {
-                    alert("Name Is Required");
-                    return;
-                }
-                if (Company.Address == null || Company.Address == "") {
-                    alert("Address Is Required");
-                    return;
-                }
-                if (Company.Contact == null || Company.Contact == "") {
-                    alert("Contact Is Required");
-                    return;
-                }
-                var promise = $http.post("/api/CompanyApi/AddCompany", Company, { headers: { 'Accept': 'application/json' } });
-                promise.then(
-                    function (response) {
-                        console.log(response);
-                        if (response.status == 200) {
-                            alert("New Company Added Successfully!");
-                            getCompaniesDropdown();
-                        }
+            //$scope.AddCompany = function (Company) {
+            //    console.log(Company);
+            //    if (Company.Name == null || Company.Name == "") {
+            //        alert("Name Is Required");
+            //        return;
+            //    }
+            //    if (Company.Address == null || Company.Address == "") {
+            //        alert("Address Is Required");
+            //        return;
+            //    }
+            //    if (Company.Contact == null || Company.Contact == "") {
+            //        alert("Contact Is Required");
+            //        return;
+            //    }
+            //    var promise = $http.post("/api/CompanyApi/AddCompany", Company, { headers: { 'Accept': 'application/json' } });
+            //    promise.then(
+            //        function (response) {
+            //            console.log(response);
+            //            if (response.status == 200) {
+            //                alert("New Company Added Successfully!");
+            //                getCompaniesDropdown();
+            //            }
 
-                    });
-            }
+            //        });
+            //}
             $scope.WiWax = [{ Name: "WiWax1", Id: 0 }, { Name: "WiWax2", Id: 1 }, { Name: "WiWax3", Id: 2 }];
             $scope.DSL = [{ Name: "DSL1", Id: 0 }, { Name: "DSL2", Id: 1 }, { Name: "DSL3", Id: 2 }];
             $scope.VSAT = [{ Name: "VSAT1", Id: 0 }, { Name: "VSAT2", Id: 1 }, { Name: "VSAT3", Id: 3 }];
@@ -530,6 +548,21 @@ app.controller('LeadCtrl',
                     Id: 6
                 }
                 $scope.Companies.push(temp);
+            }
+            $scope.GetCompanyData = function (Id) {
+               
+                var data = {
+                    Id: Id
+                }
+                var promise = $http.get("/api/CompanyApi/GetCompany", { params: data }, { headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Lead = response.data;
+                        $scope.Lead.CompanyId = Id;
+                        $scope.GetDropdownForServies($scope.Lead.CUDS);
+                       
+                    });
             }
         }
     ]);

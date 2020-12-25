@@ -26,7 +26,7 @@ namespace LMS.Models.EntityModel
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     
-        public virtual Lead Lead { get; set; }
         public virtual Vendor Vendor { get; set; }
+        public virtual Lead Lead { get; set; }
     }
 }

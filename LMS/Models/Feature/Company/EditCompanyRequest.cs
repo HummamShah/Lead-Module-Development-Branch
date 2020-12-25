@@ -23,6 +23,22 @@ namespace LMS.Models.Feature.Company
 		public string Contact { get; set; }
 		public int? ParentCompanyId { get; set; }
 		public bool? IsBranch { get; set; }
+		public int? MOCId { get; set; }
+		public int? BOT { get; set; }
+		public string CompanyAlternateContact { get; set; }
+		public string Website { get; set; }
+		public int? Area { get; set; }
+		public int? City { get; set; }
+		public int? NOE { get; set; } //Number of Employees may be change it to string
+		public int? NoBracnhOffices { get; set; }  // need to add this field in database..
+		public int? BusinessIndustry { get; set; }
+		public string NTN { get; set; } // need to add this field in database..
+		public string CurrentItPlatform { get; set; }
+		public string FuturePlanOFExtention { get; set; } //not in db
+		public int? CUDS { get; set; }
+		public int? CUDSService { get; set; }
+		public string CUDSOtherService { get; set; }
+		public int NoLinks { get; set; }
 		public string UpdatedBy { get; set; }
 		public DateTime? UpdatedAt { get; set; }
 
@@ -53,6 +69,21 @@ namespace LMS.Models.Feature.Company
 				Company.IsParent = false;
 				Company.ParentCompanyId = request.ParentCompanyId;
 			}
+			Company.ModeOfCommunication = request.MOCId;
+			Company.BusinessOperationTime = request.BOT;
+			Company.AlternateNumber = request.CompanyAlternateContact;
+			Company.Website = request.Website;
+			Company.Area = request.Area;
+			Company.City = request.City;
+			Company.NoEmployee = request.NOE;
+			Company.BusinessIndustry = request.BusinessIndustry;
+			Company.NTN = request.NTN;
+			Company.NumberOfBranchOffices = request.NoBracnhOffices;
+			Company.CurrentItPlatform = request.CurrentItPlatform;
+			Company.CUDS = request.CUDS;
+			Company.CUDSOtherService = request.CUDSOtherService;
+			Company.CUDSService = request.CUDSService;
+			Company.NoLinks = request.NoLinks;
 			_dbContext.SaveChanges();
 			return response;
 		}

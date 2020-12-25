@@ -5,8 +5,8 @@ using System.Web;
 
 namespace LMS.Models.Enums
 {
-    public enum ModeOfCommunication
+    public enum City
     {
-        Phone,Email,Fax,Visit
+        Karachi,Lahore,Multan,Islamabad
     }
 }
