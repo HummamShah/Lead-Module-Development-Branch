@@ -439,6 +439,7 @@ app.controller('LeadCtrl',
             console.log("Connected to Lead App");
             $scope.initIndex = function () {
                 $scope.Assignment = {};
+                $scope.AssignmentTypes = ["Lead","PMD","PreSale"];
                 $scope.AjaxGet("/api/LeadApi/GetListData", null).then(
                     function (response) {
                         console.log(response);
@@ -446,12 +447,13 @@ app.controller('LeadCtrl',
                     });
 
             }
-            $scope.SetAssigningDataToModal = function (Lead, Type) {
+            $scope.SetAssigningDataToModal = function (Lead) {
                 console.log(Lead);
-                console.log(Type);
                 $scope.Assignment.Id = Lead.Id;
-                $scope.Assignment.Type = Type;
-                $scope.Assignment.Header = "Assign " + Type;
+                $scope.Assignment.Header = "Assign A User";
+               
+            }
+            $scope.SetAssigningType = function (Type) {
                 $scope.AjaxGet("/api/UserApi/GetAgentsForAssignment", { Type: Type }).then(
                     function (response) {
                         console.log(response);
