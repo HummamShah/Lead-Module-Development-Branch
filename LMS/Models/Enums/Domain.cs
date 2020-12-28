@@ -5,8 +5,8 @@ using System.Web;
 
 namespace LMS.Models.Enums
 {
-    public enum PmdStatus
+    public enum Domain
     {
-        Feasible,NotFeasible,None
+        Services,Connectivity
     }
 }

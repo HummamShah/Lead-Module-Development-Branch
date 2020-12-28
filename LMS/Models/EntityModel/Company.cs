@@ -20,6 +20,7 @@ namespace LMS.Models.EntityModel
             this.CompanyBranches = new HashSet<CompanyBranches>();
             this.ParentCompanies = new HashSet<Company>();
             this.Employee = new HashSet<Employee>();
+            this.Lead = new HashSet<Lead>();
         }
     
         public int Id { get; set; }
@@ -60,5 +61,7 @@ namespace LMS.Models.EntityModel
         public virtual Company ParentCompany { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Lead> Lead { get; set; }
     }
 }

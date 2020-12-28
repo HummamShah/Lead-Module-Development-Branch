@@ -21,6 +21,7 @@ namespace LMS.Models.EntityModel
             this.Lead = new HashSet<Lead>();
             this.Lead1 = new HashSet<Lead>();
             this.Lead2 = new HashSet<Lead>();
+            this.Lead3 = new HashSet<Lead>();
         }
     
         public int Id { get; set; }
@@ -55,5 +56,7 @@ namespace LMS.Models.EntityModel
         public virtual ICollection<Lead> Lead1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lead> Lead2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Lead> Lead3 { get; set; }
     }
 }

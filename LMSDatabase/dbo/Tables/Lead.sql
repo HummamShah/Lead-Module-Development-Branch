@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[Lead]
 (
+	[AgentId] int not null default(0),
     [Id] INT NOT NULL PRIMARY KEY Identity(1,1),
 	[CompanyName] nvarchar(max),
 	[ContactPersonName] nvarchar(max),
@@ -52,7 +53,9 @@
 	[CreatedAt] DateTime,
 	[UpdatedBy] nvarchar(max),
 	[UpdatedAt] DateTime,
+	Constraint [FK_Lead_Company] foreign key ([CompanyId]) References [dbo].[Company] ([Id]),
 	Constraint [FK_Lead_Agent_PMD] foreign key ([AssignedPmdId]) References [dbo].[Agent] ([Id]),
 	Constraint [FK_Lead_Agent_PreSale] foreign key ([AssignedPreSaleId]) References [dbo].[Agent] ([Id]),
 	Constraint [FK_Lead_Agent_Lead] foreign key ([AssignedToId]) References [dbo].[Agent] ([Id]),
+	Constraint [FK_Lead_Agent_Creator] foreign key ([AgentId]) References [dbo].[Agent] ([Id]),
 )

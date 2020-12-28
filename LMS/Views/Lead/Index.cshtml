@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-<div>
+<div ng-controller="LeadCtrl" ng-init="initIndex()">
     @*ng-controller="UserCtrl" ng-init="initIndex()"*@
     <div class="jumbotron PageHeading">
         <div class="row">
@@ -52,25 +52,61 @@
                     Action
                 </th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Fiber Connection Lead</td>
-                <td>Habib University pvt ltd</td>
-                <td>Asad Ali</td>
-                <td>Feasible</td>
-                <td>Anas Malik</td>
-                <td>Approved</td>
-                <td>Open</td>
-                <td>Closing Stage</td>
-                <td>HummamShah@sharptel.com</td>
-                <td>12-23-20</td>
+            <tr ng-repeat="Lead in Leads">
+                <td>{{Lead.Id}}</td>
+                <td>{{Lead.Name}}</td>
+                <td>{{Lead.CompanyName}}</td>
+                <td>{{Lead.AssingnedPmdName}}</td>
+                <td>{{Lead.PmdStatusEnum}}</td>
+                <td>{{Lead.AssignedPreSaleName}}</td>
+                <td>{{Lead.PmdStatusEnum}}</td>
+                <td>{{Lead.LeadStatusEnum}}</td>
+                <td>-</td>
+                <td>{{Lead.CreatedBy}}</td>
+                <td>{{Lead.CreatedAt | date:'MMM d, y'}}</td>
                 <td>
-                    <a href="/Vendor/Edit?Id={{Vendor.Id}}" title="Edit"><i class="fas fa-pencil-alt" title="Edit"></i></a>
-                    <a href="/Vendor/Details?Id={{Vendor.Id}}" title="Details"><i class="fas fa-file" title="Details"></i></a>
-                    <a href="/Vendor/Print?Id={{Vendor.Id}}" title="Print"><i class="fas fa-print" title="Print"></i></a>
+                    @*<a href="/Lead/Edit?Id={{Lead.Id}}" title="Edit"><i class="fas fa-pencil-alt" title="Edit"></i></a>
+                        <a href="/Lead/Details?Id={{Lead.Id}}" title="Details"><i class="fas fa-file" title="Details"></i></a>
+                        <a href="/Lead/Print?Id={{Lead.Id}}" title="Print"><i class="fas fa-print" title="Print"></i></a>*@
+                    <a href="#" data-toggle="modal" data-target="#myModal" ng-click="SetAssigningDataToModal(Lead,'Lead')" title="Assign Lead"><i class="fas fa-plus"></i></a>
+                    <a href="#" data-toggle="modal" data-target="#myModal" ng-click="SetAssigningDataToModal(Lead,'PMD')" title="Assign PMD"><i class="fas fa-plus"></i></a>
+                    <a href="#" data-toggle="modal" data-target="#myModal" ng-click="SetAssigningDataToModal(Lead,'Presale')" title="Assign Presale"><i class="fas fa-plus"></i></a>
                 </td>
             </tr>
         </table>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{Assignment.Header}}</h4>
+                </div>
+                <div class="">
+                    <form id="AssignmentForm ">
+                        <div class="form-group" >
+                            <div class="col-md-6">
+                                <label>Users</label>
+                                <select ng-model="Assignment.AssignedUserId" class="form-control">
+                                    <option selected value="">Select Agent To Assign</option>
+                                    <option ng-repeat="Agent in AssignmentAgents" value="{{Agent.Id}}">{{Agent.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" style=" margin-top: 25px;" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" style=" margin-top: 25px;" data-dismiss="modal" ng-click="AssignUser(Assignment)">Add</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

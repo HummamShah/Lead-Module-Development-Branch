@@ -260,6 +260,7 @@
     <Compile Include="Models\Enums\DataServices.cs" />
     <Compile Include="Models\Enums\Departments.cs" />
     <Compile Include="Models\Enums\Designation.cs" />
+    <Compile Include="Models\Enums\Domain.cs" />
     <Compile Include="Models\Enums\DSL.cs" />
     <Compile Include="Models\Enums\Fiber.cs" />
     <Compile Include="Models\Enums\LeadStatus.cs" />
@@ -284,6 +285,8 @@
     <Compile Include="Models\Feature\Department\GetDepartmentsDropdownRequest.cs" />
     <Compile Include="Models\Feature\Department\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadRequest.cs" />
+    <Compile Include="Models\Feature\Lead\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\User\GetAgentsForAssignmentRequest.cs" />
     <Compile Include="Models\Feature\User\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Vendor\AddVendorRequest.cs" />
     <Compile Include="Models\Feature\Vendor\GetListingRequest.cs" />

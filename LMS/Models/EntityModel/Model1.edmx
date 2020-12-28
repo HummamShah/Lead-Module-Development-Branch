@@ -160,6 +160,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="AgentId" Type="int" Nullable="false" />
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CompanyName" Type="nvarchar(max)" />
           <Property Name="ContactPersonName" Type="nvarchar(max)" />
@@ -367,6 +368,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Lead_Agent_Creator">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="1" />
+          <End Role="Lead" Type="Self.Lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lead">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Lead_Agent_Lead">
           <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
           <End Role="Lead" Type="Self.Lead" Multiplicity="*" />
@@ -400,6 +413,18 @@
             </Principal>
             <Dependent Role="Lead">
               <PropertyRef Name="AssignedPreSaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lead_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Lead" Type="Self.Lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lead">
+              <PropertyRef Name="CompanyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -481,6 +506,10 @@
             <End Role="Company" EntitySet="Company" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
+          <AssociationSet Name="FK_Lead_Agent_Creator" Association="Self.FK_Lead_Agent_Creator">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Lead" EntitySet="Lead" />
+          </AssociationSet>
           <AssociationSet Name="FK_Lead_Agent_Lead" Association="Self.FK_Lead_Agent_Lead">
             <End Role="Agent" EntitySet="Agent" />
             <End Role="Lead" EntitySet="Lead" />
@@ -491,6 +520,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Lead_Agent_PreSale" Association="Self.FK_Lead_Agent_PreSale">
             <End Role="Agent" EntitySet="Agent" />
+            <End Role="Lead" EntitySet="Lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lead_Company" Association="Self.FK_Lead_Company">
+            <End Role="Company" EntitySet="Company" />
             <End Role="Lead" EntitySet="Lead" />
           </AssociationSet>
           <AssociationSet Name="FK_PMD_Leads" Association="Self.FK_PMD_Leads">
@@ -657,6 +690,14 @@
             <End Role="Lead" EntitySet="Lead" />
             <End Role="PmdDetails" EntitySet="PmdDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_Lead_Company" Association="Sharptel_Lms_DbModel.FK_Lead_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Lead" EntitySet="Lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lead_Agent_Creator" Association="Sharptel_Lms_DbModel.FK_Lead_Agent_Creator">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Lead" EntitySet="Lead" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Agent">
           <Key>
@@ -689,6 +730,7 @@
           <NavigationProperty Name="Lead" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_Lead" FromRole="Agent" ToRole="Lead" />
           <NavigationProperty Name="Lead1" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_PMD" FromRole="Agent" ToRole="Lead" />
           <NavigationProperty Name="Lead2" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_PreSale" FromRole="Agent" ToRole="Lead" />
+          <NavigationProperty Name="Lead3" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_Creator" FromRole="Agent" ToRole="Lead" />
           </EntityType>
         <EntityType Name="CompanyBranches">
           <Key>
@@ -839,6 +881,7 @@
           <Property Name="NoLinks" Type="Int32" />
           <Property Name="NTN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NumberOfBranchOffices" Type="Int32" />
+          <NavigationProperty Name="Lead" Relationship="Sharptel_Lms_DbModel.FK_Lead_Company" FromRole="Company" ToRole="Lead" />
         </EntityType>
         <Association Name="FK_Agent_Company">
           <End Type="Sharptel_Lms_DbModel.Company" Role="Company" Multiplicity="0..1" />
@@ -938,13 +981,16 @@
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Agent" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_Lead" FromRole="Lead" ToRole="Agent" />
-          <NavigationProperty Name="Agent1" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_PMD" FromRole="Lead" ToRole="Agent" />
-          <NavigationProperty Name="Agent2" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_PreSale" FromRole="Lead" ToRole="Agent" />
+          <NavigationProperty Name="AssignedTo" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_Lead" FromRole="Lead" ToRole="Agent" />
+          <NavigationProperty Name="AssignedPMD" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_PMD" FromRole="Lead" ToRole="Agent" />
+          <NavigationProperty Name="AssignedPreSale" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_PreSale" FromRole="Lead" ToRole="Agent" />
           <NavigationProperty Name="PmdDetails" Relationship="Sharptel_Lms_DbModel.FK_PMD_Leads" FromRole="Lead" ToRole="PmdDetails" />
           <Property Name="Budget" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="ContactPersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ContactPersonNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Company" Relationship="Sharptel_Lms_DbModel.FK_Lead_Company" FromRole="Lead" ToRole="Company" />
+          <Property Name="AgentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Agent" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_Creator" FromRole="Lead" ToRole="Agent" />
         </EntityType>
         <Association Name="FK_Lead_Agent_Lead">
           <End Type="Sharptel_Lms_DbModel.Agent" Role="Agent" Multiplicity="0..1" />
@@ -991,6 +1037,30 @@
             </Principal>
             <Dependent Role="PmdDetails">
               <PropertyRef Name="LeadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lead_Company">
+          <End Type="Sharptel_Lms_DbModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="Sharptel_Lms_DbModel.Lead" Role="Lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lead">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lead_Agent_Creator">
+          <End Type="Sharptel_Lms_DbModel.Agent" Role="Agent" Multiplicity="1" />
+          <End Type="Sharptel_Lms_DbModel.Lead" Role="Lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lead">
+              <PropertyRef Name="AgentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1192,6 +1262,7 @@
           <EntitySetMapping Name="Lead">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Lead">
               <MappingFragment StoreEntitySet="Lead">
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
                 <ScalarProperty Name="ContactPersonNumber" ColumnName="ContactPersonNumber" />
                 <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
                 <ScalarProperty Name="Budget" ColumnName="Budget" />

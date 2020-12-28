@@ -69,11 +69,14 @@ namespace LMS.Models.EntityModel
         public Nullable<decimal> Budget { get; set; }
         public string ContactPersonName { get; set; }
         public string ContactPersonNumber { get; set; }
+        public int AgentId { get; set; }
     
-        public virtual Agent Agent { get; set; }
-        public virtual Agent Agent1 { get; set; }
-        public virtual Agent Agent2 { get; set; }
+        public virtual Agent AssignedTo { get; set; }
+        public virtual Agent AssignedPMD { get; set; }
+        public virtual Agent AssignedPreSale { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PmdDetails> PmdDetails { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual Agent Agent { get; set; }
     }
 }

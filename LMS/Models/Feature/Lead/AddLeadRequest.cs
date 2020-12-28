@@ -17,6 +17,7 @@ namespace LMS.Models.Feature.Lead
 	public class AddLeadRequest
 	{
 		private Sharptel_Lms_DbEntities _dbContext = new Sharptel_Lms_DbEntities();
+		public string UserId {get;set;}
 		public int CompanyId { get; set; }
 		public string ContactPersonName { get; set; }
 		public string ContactPersonNumber { get; set; }
@@ -24,7 +25,6 @@ namespace LMS.Models.Feature.Lead
 		public string Description { get; set; }
 		public string Email { get; set; }
 		public int? ParentCompanyId { get; set; }
-		public bool? IsBranch { get; set; }
 		public string Address { get; set; }
 		public string Contact { get; set; }
 		public int? Domain { get; set; }
@@ -55,7 +55,9 @@ namespace LMS.Models.Feature.Lead
 		public object RunRequest(AddLeadRequest request)
 		{
 			var response = new AddLeadResponse();
+			var AgentId = _dbContext.Agent.Where(x => x.UserId == request.UserId).FirstOrDefault().Id;
 			var Lead = new LMS.Models.EntityModel.Lead();
+			Lead.AgentId = AgentId;
 			Lead.CompanyId = request.CompanyId;
 			Lead.CreatedAt = DateTime.Today;
 			Lead.CreatedBy = request.CreatedBy;
@@ -85,8 +87,12 @@ namespace LMS.Models.Feature.Lead
 			Lead.EstimatedClosingDate = request.EstimatedClosingDate;
 			Lead.IsEsisting = request.IsEsisting;
 			Lead.HasTriedOurServie = request.HasTriedOurServie;
+			Lead.Comments = request.Comments;
 
 			Lead.LeadStatus = (int) LeadStatus.Open;
+			Lead.PmdStatus = (int)PmdStatus.None;
+			Lead.QuotationStatus = (int)QuotationStatus.None;
+			//Lead.IsApproved =
 			var result = _dbContext.Lead.Add(Lead);
 			_dbContext.SaveChanges();
 			return response;

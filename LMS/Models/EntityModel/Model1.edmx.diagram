@@ -31,6 +31,8 @@
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Lead_Agent_PMD" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Lead_Agent_PreSale" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_PMD_Leads" />
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Lead_Company" />
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Lead_Agent_Creator" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

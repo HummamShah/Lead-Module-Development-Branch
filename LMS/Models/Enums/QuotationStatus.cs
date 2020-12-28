@@ -7,6 +7,6 @@ namespace LMS.Models.Enums
 {
     public enum QuotationStatus
     {
-        InBudget,OverBudget
+        InBudget,OverBudget,None
     }
 }

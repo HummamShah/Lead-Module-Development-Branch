@@ -32,7 +32,12 @@ namespace LMS.Controllers.Api
             var result = temp.RunRequest();
             return result;
         }
-
+        [System.Web.Http.HttpGet]
+        public object GetAgentsForAssignment([FromUri] GetAgentsForAssignmentRequest req)
+        {
+            var result = req.RunRequest(req);
+            return result;
+        }
 
 
 

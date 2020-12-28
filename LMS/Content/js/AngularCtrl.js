@@ -438,14 +438,28 @@ app.controller('LeadCtrl',
         function ($scope, $rootScope, $timeout, $q, $window, $http) {
             console.log("Connected to Lead App");
             $scope.initIndex = function () {
-                var data = null;
-                var promise = $http.get("/api/UserApi/GetListData", { params: data, headers: { 'Accept': 'application/json' } });
-                promise.then(
+                $scope.Assignment = {};
+                $scope.AjaxGet("/api/LeadApi/GetListData", null).then(
                     function (response) {
                         console.log(response);
-                        $scope.Users = response.data.Data;
+                        $scope.Leads = response.data.Data;
                     });
 
+            }
+            $scope.SetAssigningDataToModal = function (Lead, Type) {
+                console.log(Lead);
+                console.log(Type);
+                $scope.Assignment.Id = Lead.Id;
+                $scope.Assignment.Type = Type;
+                $scope.Assignment.Header = "Assign " + Type;
+                $scope.AjaxGet("/api/UserApi/GetAgentsForAssignment", { Type: Type }).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.AssignmentAgents = response.data.Data;
+                    });
+            }
+            $scope.AssignUser = function (Assignment) {
+                console.log(Assignment);
             }
             $scope.AddLead = function (Lead) {
                 console.log(Lead);
