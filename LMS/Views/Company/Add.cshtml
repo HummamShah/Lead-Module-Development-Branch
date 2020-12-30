@@ -184,8 +184,8 @@
                     <label>Select Service</label>
                     <select ng-model="Company.CUDSService" class="form-control">
                         <option ng-repeat="service in CurrentServices" value="{{service.Id}}">{{service.Name}}</option>
-                    </select>
-                </span>
+                        </select>
+</span>
                 <span ng-if="Lead.CUDS == '4' ">
                     <label>Select service</label>
                     <input type="text" class="form-control" ng-model="Company.CUDSOtherService" />

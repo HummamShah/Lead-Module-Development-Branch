@@ -286,6 +286,7 @@
     <Compile Include="Models\Feature\Department\GetDepartmentsDropdownRequest.cs" />
     <Compile Include="Models\Feature\Department\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadRequest.cs" />
+    <Compile Include="Models\Feature\Lead\GetLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\AssignLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetListingRequest.cs" />
     <Compile Include="Models\Feature\User\GetAgentsForAssignmentRequest.cs" />
@@ -392,6 +393,8 @@
     <Content Include="Views\Department\Edit.cshtml" />
     <Content Include="Views\Lead\Index.cshtml" />
     <Content Include="Views\Lead\Add.cshtml" />
+    <Content Include="Views\Lead\Detail.cshtml" />
+    <Content Include="Views\Lead\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

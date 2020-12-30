@@ -248,7 +248,7 @@ app.controller('CompanyCtrl',
                 getCompaniesDropdown();
             }
             getCompaniesDropdown =function (){
-                var promise = $http.get("/api/CompanyApi/GetParentCompaniesDropdown", { params: null, headers: { 'Accept': 'application/json' } });
+                var promise = $http.get("/api/CompanyApi/GetCompaniesDropdown", { params: null, headers: { 'Accept': 'application/json' } });
                 promise.then(
                     function (response) {
                         console.log(response);
@@ -528,31 +528,7 @@ app.controller('LeadCtrl',
                 $scope.MOCS = [{ Name: "Phone", Id: 0 }, { Name: "Email", Id: 1 }, { Name: "Fax", Id: 2 }, { Name: "Visit", Id: 3 }];
                 getCompaniesDropdown();
             }
-            //$scope.AddCompany = function (Company) {
-            //    console.log(Company);
-            //    if (Company.Name == null || Company.Name == "") {
-            //        alert("Name Is Required");
-            //        return;
-            //    }
-            //    if (Company.Address == null || Company.Address == "") {
-            //        alert("Address Is Required");
-            //        return;
-            //    }
-            //    if (Company.Contact == null || Company.Contact == "") {
-            //        alert("Contact Is Required");
-            //        return;
-            //    }
-            //    var promise = $http.post("/api/CompanyApi/AddCompany", Company, { headers: { 'Accept': 'application/json' } });
-            //    promise.then(
-            //        function (response) {
-            //            console.log(response);
-            //            if (response.status == 200) {
-            //                alert("New Company Added Successfully!");
-            //                getCompaniesDropdown();
-            //            }
-
-            //        });
-            //}
+           
             $scope.WiWax = [{ Name: "WiWax1", Id: 0 }, { Name: "WiWax2", Id: 1 }, { Name: "WiWax3", Id: 2 }];
             $scope.DSL = [{ Name: "DSL1", Id: 0 }, { Name: "DSL2", Id: 1 }, { Name: "DSL3", Id: 2 }];
             $scope.VSAT = [{ Name: "VSAT1", Id: 0 }, { Name: "VSAT2", Id: 1 }, { Name: "VSAT3", Id: 3 }];
@@ -595,6 +571,31 @@ app.controller('LeadCtrl',
                         $scope.GetDropdownForServies($scope.Lead.CUDS);
                        
                     });
+            }
+
+
+            $scope.Editinit = function () {
+                $scope.Company = {};
+                $scope.Companies = [];
+                $scope.Lead = {};
+                $scope.Lead.Domain = 0;
+                var Id = $scope.GetUrlParameter("Id");
+                var data = {
+                    Id: parseInt(Id)
+                }
+                console.log(data);
+                $scope.AjaxGet("/api/LeadApi/GetLead",  data ).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Lead = response.data;
+                        $scope.GetDropdownForServies($scope.Lead.CUDS);
+                    });
+             
+                $scope.MOCS = [{ Name: "Phone", Id: 0 }, { Name: "Email", Id: 1 }, { Name: "Fax", Id: 2 }, { Name: "Visit", Id: 3 }];
+                getCompaniesDropdown();
+            }
+            $scope.EditLead = function (Lead) {
+                console.log(Lead);
             }
         }
     ]);
