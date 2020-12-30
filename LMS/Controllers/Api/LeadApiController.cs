@@ -31,15 +31,16 @@ namespace LMS.Controllers.Api
             var result = req.RunRequest(req);
             return result;
         }
-        [HttpGet]
-        public object GetLead([FromUri] GetLeadRequest req)
+        [HttpPost]
+        public object AssignLead([FromBody] AssignLeadRequest req) //If not working remove frombody
         {
 
             var result = req.RunRequest(req);
             return result;
         }
-        [HttpPost]
-        public object AssignLead([FromBody] AssignLeadRequest req) //If not working remove frombody
+        [HttpGet]
+
+        public object GetLead([FromUri] GetLeadRequest req)
         {
 
             var result = req.RunRequest(req);
