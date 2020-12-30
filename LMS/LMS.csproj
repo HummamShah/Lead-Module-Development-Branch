@@ -291,6 +291,7 @@
     <Compile Include="Models\Feature\Lead\GetListingRequest.cs" />
     <Compile Include="Models\Feature\User\GetAgentsForAssignmentRequest.cs" />
     <Compile Include="Models\Feature\User\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\User\GetUsersByDepartmentRequest.cs" />
     <Compile Include="Models\Feature\Vendor\AddVendorRequest.cs" />
     <Compile Include="Models\Feature\Vendor\GetListingRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
