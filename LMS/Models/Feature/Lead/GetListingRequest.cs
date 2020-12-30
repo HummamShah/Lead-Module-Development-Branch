@@ -65,12 +65,14 @@ namespace LMS.Models.Feature.Lead
 			response.Data = new List<LeadData>();
 			var Data = _dbContext.Lead.ToList();
 			if (req.UserId != null && req.UserId != string.Empty)
-            {
+			{
 				var Agent = _dbContext.Agent.Where(x => x.UserId == req.UserId).FirstOrDefault();
-                if (Agent != null)
-                {
+				if (Agent != null)
+				{
 					var AgentId = Agent.Id;
-					 Data = Data.Where(x => x.AgentId == AgentId).ToList();
+					var SuperVisorId = Agent.SuperVisorId;
+					Data = Data.Where(x => x.AgentId == AgentId || x.AssignedToId == AgentId || x.AgentId == SuperVisorId).ToList();
+                    
 				}
 				
             }

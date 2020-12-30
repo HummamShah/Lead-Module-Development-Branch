@@ -122,6 +122,24 @@ app.controller('UserCtrl',
                     });
 
             }
+            $scope.GetUsersByDepartmentId = function (DepartmentId) {
+                if (DepartmentId != null) {
+                    var data = {
+                        DepartmentId: DepartmentId
+                    }
+                    $scope.AjaxGet("/api/UserApi/GetUsersByDepartment", data).then(
+                        function (response) {
+                            console.log(response);
+                            $scope.UsersList = response.data.Data;
+                        });
+                }
+            }
+            $scope.CheckForDepartment = function (Id) {
+                if (Id == null) {
+                    alert("Please Select Department First");
+                    $scope.User.HasSupervisor = false;
+                }
+            }
             $scope.AddAdmin = function (user) {
                 console.log(user);
                 var promise = $http.post("/api/UserApi/RegisterAdmin", user, { headers: { 'Accept': 'application/json' } });
@@ -462,6 +480,15 @@ app.controller('LeadCtrl',
             }
             $scope.AssignUser = function (Assignment) {
                 console.log(Assignment);
+                $scope.AjaxPost("/api/LeadApi/AssignLead", Assignment).then(
+                    function (response) {
+                        if (response.status == 200) {
+                            alert("User Has Been Assigned Successfully!");
+                            $timeout(function () { window.location.href = '/Lead'; }, 2000);
+                        } else {
+                            alert("Could Not Assign User");
+                        }
+                    });
             }
             $scope.AddLead = function (Lead) {
                 console.log(Lead);
@@ -474,18 +501,7 @@ app.controller('LeadCtrl',
                         alert("Could Not Add new Lead");
                     }
                 });
-                //var promise = $http.post("/api/LeadApi/AddLead", Lead, { headers: { 'Accept': 'application/json' } });
-                //promise.then(
-                //    function (response) {
-                //        console.log(response);
-                //        if (response.status == 200) {
-                //            alert("Lead has been Added Successfully!");
-                //            $timeout(function () { window.location.href = '/Lead'; }, 2000);
-                //        } else {
-                //            alert("Could Not Add new Lead");
-                //        }
-
-                //    });
+            
 
             }
             getParentCompaniesDropdown = function () {

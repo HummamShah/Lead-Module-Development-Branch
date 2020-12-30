@@ -38,6 +38,12 @@ namespace LMS.Controllers.Api
             var result = req.RunRequest(req);
             return result;
         }
+        //[System.Web.Http.HttpGet]
+        //public object GetUsersByDepartment([FromUri] GetUsersByDepartmentRequest req)
+        //{
+        //    var result = req.RunRequest(req);
+        //    return result;
+        //}
 
 
 

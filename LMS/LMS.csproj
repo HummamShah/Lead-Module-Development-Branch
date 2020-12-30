@@ -253,6 +253,7 @@
     </Compile>
     <Compile Include="Models\Enums\Approval.cs" />
     <Compile Include="Models\Enums\Area.cs" />
+    <Compile Include="Models\Enums\AssigningType.cs" />
     <Compile Include="Models\Enums\BusinessOperationTime.cs" />
     <Compile Include="Models\Enums\BusinessSegmentation.cs" />
     <Compile Include="Models\Enums\BusinessTime.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="Models\Feature\Department\GetDepartmentsDropdownRequest.cs" />
     <Compile Include="Models\Feature\Department\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadRequest.cs" />
+    <Compile Include="Models\Feature\Lead\AssignLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetListingRequest.cs" />
     <Compile Include="Models\Feature\User\GetAgentsForAssignmentRequest.cs" />
     <Compile Include="Models\Feature\User\GetListingRequest.cs" />
