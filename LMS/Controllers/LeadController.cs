@@ -19,5 +19,17 @@ namespace LMS.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "Lead_Sales")]
+        public ActionResult Detail()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Lead_Sales")]
+        public ActionResult Edit()
+        {
+            return View();
+        }
     }
 }

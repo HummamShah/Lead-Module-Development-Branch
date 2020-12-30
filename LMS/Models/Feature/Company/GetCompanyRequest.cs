@@ -26,6 +26,9 @@ namespace LMS.Models.Feature.Company
 			response.IsParent = Data.IsParent;
 			response.NoBracnhOffices = Data.NumberOfBranchOffices;
 			response.Website = Data.Website;
+			response.NTN = Data.NTN;
+			response.CurrentItPlatform = Data.CurrentItPlatform;
+
 			response.CompanyAlternateContact = Data.AlternateNumber;
             if (Data.ParentCompanyId != null)
             {
@@ -60,7 +63,7 @@ namespace LMS.Models.Feature.Company
 			if (Data.BusinessIndustry.HasValue)
 			{
 				response.BusinessIndustry = Data.BusinessIndustry;
-				response.BusinessIndustryEnum = ((NumberOfEmployeed)Data.BusinessIndustry.Value).ToString();
+				response.BusinessIndustryEnum = ((BusinessSegmentation)Data.BusinessIndustry.Value).ToString();
 			}
 			if (Data.CUDS.HasValue)
 			{
@@ -127,7 +130,7 @@ namespace LMS.Models.Feature.Company
 		public int? NoBracnhOffices { get; set; }  // need to add this field in database..
 		public int? BusinessIndustry { get; set; }
 		public string BusinessIndustryEnum { get; set; }
-		public string NTN { get; set; } // need to add this field in database..
+		public string NTN { get; set; }
 		public string CurrentItPlatform { get; set; }
 		public string FuturePlanOFExtention { get; set; } //not in db
 		public int? CUDS { get; set; }

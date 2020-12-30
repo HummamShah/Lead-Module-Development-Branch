@@ -127,7 +127,7 @@ namespace LMS.Models.Feature.Lead
 				if (d.ModeOfCommunication != null)
 				{
 					temp.MOCId = d.ModeOfCommunication;
-					temp.MOCName = ((Domain)d.ModeOfCommunication.Value).ToString();
+					temp.MOCName = ((ModeOfCommunication)d.ModeOfCommunication.Value).ToString();
 				}
                 if (d.LeadStatus.HasValue)
                 {

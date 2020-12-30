@@ -31,5 +31,12 @@ namespace LMS.Controllers.Api
             var result = req.RunRequest(req);
             return result;
         }
+
+        public object GetLead([FromUri] GetLeadRequest req)
+        {
+
+            var result = req.RunRequest(req);
+            return result;
+        }
     }
 }
