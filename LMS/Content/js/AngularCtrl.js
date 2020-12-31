@@ -1,4 +1,4 @@
-﻿var app = angular.module('LmsApp', []);
+﻿var app = angular.module('LmsApp', ['toaster']);
 
 'use strict';
 app.controller('baseCtrl',
@@ -9,10 +9,17 @@ app.controller('baseCtrl',
         "$q",
         "$window",
         "$http",
-        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+        "toaster",
+        function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to lms App base ctrl");
+            $scope.Pop = function () {
+                toaster.pop('success', "success", "Done Successfully");
+                toaster.pop('error', "error", "Error in task");
+                toaster.pop('warning', "warning", "this is Warning");
+                toaster.pop('note', "note", "thhis is note");
+            }
             $scope.BusinessSegmentationDropDown = [{ id: 0, Name: "IT" }, { id: 1, Name: "Food" }, { id: 2, Name: "Garments" }, { id: 3, Name: "Chemicals" }, { id: 4, Name: "Electronics" }];
-            $scope.CityDropDown = [{ id: 0, Name: "Karachi" }, { id: 1, Name: "Lahore" }, { id: 2, Name: "Sialkot" }, { id: 3, Name: "Faisalabad" }, { id: 4, Name: "Rawalpindi" }, { id: 5, Name: "Peshawar" }, { id: 6, Name: "SaiduSharif" }, { id: 7, Name: "Multan" }, { id: 8, Name: "Gujranwala" }, { id: 9, Name: "Islamabad" }, { id: 10, Name: "Quetta " }, { id: 11, Name: "Bahawalpur" }, { id: 12, Name: "Sargodha" }, { id: 13, Name: "Mirpur" }, { id: 14, Name: "Chiniot" }, { id: 15, Name: "Sukkur" }, { id: 16, Name: "Larkana " }, { id: 17, Name: "Shekhupura " }, { id: 18, Name: "Jhang " }, { id: 19, Name: "RahimyarKhan" }, { id: 20, Name:"Gujrat"}]
+            $scope.CityDropDown = [{ id: 0, Name: "Karachi" }, { id: 1, Name: "Lahore" }, { id: 2, Name: "Sialkot" }, { id: 3, Name: "Faisalabad" }, { id: 4, Name: "Rawalpindi" }, { id: 5, Name: "Peshawar" }, { id: 6, Name: "SaiduSharif" }, { id: 7, Name: "Multan" }, { id: 8, Name: "Gujranwala" }, { id: 9, Name: "Islamabad" }, { id: 10, Name: "Quetta " }, { id: 11, Name: "Bahawalpur" }, { id: 12, Name: "Sargodha" }, { id: 13, Name: "Mirpur" }, { id: 14, Name: "Chiniot" }, { id: 15, Name: "Sukkur" }, { id: 16, Name: "Larkana " }, { id: 17, Name: "Shekhupura " }, { id: 18, Name: "Jhang " }, { id: 19, Name: "RahimyarKhan" }, { id: 20, Name: "Gujrat" }]
             $scope.GetUrlParameter = function (param) {
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
@@ -107,6 +114,9 @@ app.controller('UserCtrl',
                     alert("Password and Confirm Password shoul match");
                     return;
                 }
+                if (User.HasSupervisor == true) {
+
+                }
                 //Loader need to make it generic so we could use this in a function
                 $scope.IsServiceRunning = true;
                 var promise = $http.post("/api/UserApi/RegisterUser", user, {headers: { 'Accept': 'application/json' } });
@@ -127,12 +137,12 @@ app.controller('UserCtrl',
             $scope.GetUsersByDepartmentId = function (DepartmentId) {
                 if (DepartmentId != null) {
                     var data = {
-                        DepartmentId: DepartmentId
+                       Id: DepartmentId
                     }
                     $scope.AjaxGet("/api/UserApi/GetUsersByDepartment", data).then(
                         function (response) {
                             console.log(response);
-                            $scope.UsersList = response.data.Data;
+                            $scope.Supervisors = response.data.Data;
                         });
                 }
             }
