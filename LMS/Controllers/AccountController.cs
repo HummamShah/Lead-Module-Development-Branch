@@ -139,7 +139,7 @@ namespace LMS.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+    [Authorize(Roles ="SuperAdmin")]
         public ActionResult Register()
         {
             return View();
@@ -148,7 +148,7 @@ namespace LMS.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "SuperAdmin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {

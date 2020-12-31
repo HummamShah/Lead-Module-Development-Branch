@@ -85,6 +85,8 @@ namespace LMS.Models
         public int? DepartmentId { get; set; }
         //public string Email { get; set; }
         public string ImageUrl { get; set; }
+        public bool? HasSupervisor { get; set; }
+        public int? SupervisorId { get; set; }
     }
     public class RegisterViewModel
     {
