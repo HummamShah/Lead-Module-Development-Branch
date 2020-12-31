@@ -572,6 +572,7 @@ app.controller('LeadCtrl',
             }
             $scope.AddLead = function (Lead) {
                 console.log(Lead);
+              
                 $scope.AjaxPost("/api/LeadApi/AddLead", Lead).then(
                     function (response) {
                     if (response.status == 200) {

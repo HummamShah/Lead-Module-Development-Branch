@@ -4,13 +4,13 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
-
+        
         <div class="UserInfo">
             <a href="/Manage/" title="Manage" class="">
                 Hello  @User.Identity.GetUserName()!
                 @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
             </a>
-            <a href="javascript:document.getElementById('logoutForm').submit()" ><i class="fas fa-sign-out-alt"></i></a>
+            <a href="javascript:document.getElementById('logoutForm').submit()" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
         </div>
     }
 }
