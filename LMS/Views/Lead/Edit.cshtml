@@ -120,11 +120,8 @@
             <div class="col-md-4 form-group">
                 <label>City</label>
                 <select ng-model="Lead.City" class="form-control">
-                    <option selected value="">City</option>
-                    <option ng-selected="Lead.City==0" value="0">Karachi</option>
-                    <option ng-selected="Lead.City==1" value="1">Lahore</option>
-                    <option ng-selected="Lead.City==3" value="3">Multan</option>
-                    <option ng-selected="Lead.City==2" value="2">Islamabad</option>
+                    <option selected value="">Select City</option>
+                    <option ng-repeat="City in CityDropDown" ng-selected="Lead.City==City.id" value="{{City.id}}">{{City.Name}}</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
@@ -163,9 +160,7 @@
                 <label>Business Industry</label>
                 <select ng-model="Lead.BusinessIndustry" class="form-control">
                     <option selected value="">Business Industry</option>
-                    <option ng-selected="Lead.BusinessIndustry==0" value="0">Food and beverages</option>
-                    <option ng-selected="Lead.BusinessIndustry==1" value="1">IT and services</option>
-                    <option ng-selected="Lead.BusinessIndustry==2" value="2">Wood craft</option>
+                    <option ng-repeat="segment in BusinessSegmentationDropDown" ng-selected="Lead.BusinessIndustry==segment.id" value="{{segment.id}}">{{segment.Name}}</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
@@ -216,7 +211,7 @@
             </div>
             <div class="col-md-4 form-group">
                 <label>Estimated Closing Date</label>
-                <input type="date" class="form-control" ng-model="Lead.EstimatedClosingDate" />
+                <input type="datetime" class="form-control" ng-model="Lead.EstimatedClosingDate" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Comments</label>
@@ -233,7 +228,7 @@
         </div>
         <div class="row float-right">
             <a href="/Lead" class="btn btn-danger">Cancel</a>
-            <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="EditLead(Lead)">Add</button>
+            <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="EditLead(Lead)">Save Changes</button>
         </div>
     </div>
 

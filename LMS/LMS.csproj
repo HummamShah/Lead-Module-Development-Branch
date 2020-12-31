@@ -286,6 +286,7 @@
     <Compile Include="Models\Feature\Department\GetDepartmentsDropdownRequest.cs" />
     <Compile Include="Models\Feature\Department\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadRequest.cs" />
+    <Compile Include="Models\Feature\Lead\EditLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\AssignLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetListingRequest.cs" />

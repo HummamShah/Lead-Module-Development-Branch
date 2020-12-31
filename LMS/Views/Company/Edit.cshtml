@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Edit";
 }
 <div ng-controller="CompanyCtrl" ng-init="EditInit()">
     <div class="jumbotron PageHeading">
@@ -36,7 +36,7 @@
                         <label>Parent Company</label>
                         <select ng-model="Company.ParentCompanyId" class="form-control">
                             <option selected value="">Select Parent Company</option>
-                            <option ng-repeat="Company in Companies" value="{{Company.Id}}">{{Company.Name}}</option>
+                            <option ng-repeat="Comp in Companies" value="{{Comp.Id}}" ng-selected="Comp.Id == Company.ParentCompanyId">{{Comp.Name}}</option>
                         </select>
                     </div>
                 </div>
@@ -110,11 +110,8 @@
             <div class="col-md-4 form-group">
                 <label>City</label>
                 <select ng-model="Company.City" class="form-control">
-                    <option selected value="">City</option>
-                    <option ng-selected="Company.City==0" value="0">Karachi</option>
-                    <option ng-selected="Company.City==1" value="1">Lahore</option>
-                    <option ng-selected="Company.City==3" value="3">Multan</option>
-                    <option ng-selected="Company.City==2" value="2">Islamabad</option>
+                    <option selected value="">Select City</option>
+                    <option ng-repeat="City in CityDropDown" ng-selected="Company.City==City.id" value="{{City.id}}">{{City.Name}}</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
@@ -149,9 +146,7 @@
                 <label>Business Industry</label>
                 <select ng-model="Company.BusinessIndustry" class="form-control">
                     <option selected value="">Business Industry</option>
-                    <option ng-selected="Company.BusinessIndustry==0"  value="0">Food and beverages</option>
-                    <option ng-selected="Company.BusinessIndustry==1" value="1">IT and services</option>
-                    <option ng-selected="Company.BusinessIndustry==2" value="2">Wood craft</option>
+                    <option ng-repeat="segment in BusinessSegmentationDropDown" ng-selected="Company.BusinessIndustry==segment.id" value="{{segment.id}}">{{segment.Name}}</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
@@ -162,10 +157,10 @@
                 <label>Currently using IT platform</label>
                 <input type="text" ng-model="Company.CurrentItPlatform" class="form-control" />
             </div>
-            <div class="col-md-4 form-group">
+            @*<div class="col-md-4 form-group">
                 <label>Future plan for extension in IT Service</label>
                 <input type="text" ng-model="Company.FuturePlanOFExtention" class="form-control" />
-            </div>
+            </div>*@
             <div class="col-md-4 form-group">
                 <label>Currently Used Data/Internet Service</label>
                 <select ng-model="Company.CUDS" class="form-control" ng-change="GetDropdownForServies(Company.CUDS)">
@@ -177,9 +172,9 @@
                     <option ng-selected="Company.CUDS==4" value="4">Other</option>
                 </select>
             </div>
-            <div class="col-md-4 form-group" ng-if="Company.CUDS == null">
+            @*<div class="col-md-4 form-group" ng-if="Company.CUDS == null">
                 <span ng-if="Company.CUDS == null">Please Select Currently Used Data/Internet Service</span>
-            </div>
+            </div>*@
             <div class="col-md-4 form-group" ng-if="Company.CUDS != null">
                 <span ng-if="Company.CUDS != '4' ">
                     <label>Select Service</label>
@@ -217,8 +212,8 @@
                     <input type="checkbox" ng-model="Lead.HasTriedOurServie" />
                 </div>*@
             <div class="row float-right">
-                <a href="/Lead" class="btn btn-danger">Cancel</a>
-                <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="EditCompany(Company)">Add</button>
+                <a href="/Company" class="btn btn-danger">Cancel</a>
+                <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="EditCompany(Company)">SaveChanges</button>
             </div>
         </div>
     </div>

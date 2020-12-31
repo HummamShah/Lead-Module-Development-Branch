@@ -58,7 +58,7 @@ namespace LMS.Models.Feature.Company
 			{
 				//Company.IsParent = true;
 				Company.ParentCompanyId = null;
-				Company.IsBranch = request.IsBranch;
+				
 			}
             if (request.IsBranch == false)
             {
@@ -68,7 +68,9 @@ namespace LMS.Models.Feature.Company
 			{
 				Company.IsParent = false;
 				Company.ParentCompanyId = request.ParentCompanyId;
+
 			}
+			Company.IsBranch = request.IsBranch;
 			Company.ModeOfCommunication = request.MOCId;
 			Company.BusinessOperationTime = request.BOT;
 			Company.AlternateNumber = request.CompanyAlternateContact;
