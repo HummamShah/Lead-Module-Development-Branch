@@ -7,15 +7,18 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script type="text/javascript" src="~/Content/js/Jquery.min.js"></script>
+    <link href="~/Content/toaster.css" rel="stylesheet" />
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 </head>
 <body ng-controller="baseCtrl" ng-class="ServiceClassBinder">
+    <toaster-container toaster-options="{'time-out': 7000}"></toaster-container>
+    @*<button class="btn-primary" ng-click="Pop()">Pop</button>*@
     <div>
         <div id="loader" ng-if="TotalNumberOfServicesRunning > 0"></div>
     </div>
-    
+
     <div class="wrapper" style="overflow:hidden;">
         <nav class="nav-f" id="sidebar">
             <div class="sidebar-header">
@@ -127,6 +130,7 @@
 
     <script src="~/Content/js/jquery.min.js"></script>
     <script src="~/Content/js/angular.min.js"></script>
+    <script src="~/Content/js/toaster.js"></script>
     <script src="~/Content/js/AngularCtrl.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

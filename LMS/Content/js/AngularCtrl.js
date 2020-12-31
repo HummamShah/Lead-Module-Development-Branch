@@ -1,4 +1,4 @@
-﻿var app = angular.module('LmsApp', []);
+﻿var app = angular.module('LmsApp', ['toaster']);
 
 'use strict';
 app.controller('baseCtrl',
@@ -9,8 +9,16 @@ app.controller('baseCtrl',
         "$q",
         "$window",
         "$http",
-        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+        "toaster",
+        function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to lms App base ctrl");
+            $scope.Pop = function () {
+                toaster.pop('success', "success", "Done Successfully");
+                toaster.pop('error', "error", "Error in task");
+                toaster.pop('warning', "warning", "this is Warning");
+                toaster.pop('note', "note", "thhis is note");
+            }
+           
             $scope.GetUrlParameter = function (param) {
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
@@ -105,6 +113,9 @@ app.controller('UserCtrl',
                     alert("Password and Confirm Password shoul match");
                     return;
                 }
+                if (User.HasSupervisor == true) {
+
+                }
                 //Loader need to make it generic so we could use this in a function
                 $scope.IsServiceRunning = true;
                 var promise = $http.post("/api/UserApi/RegisterUser", user, {headers: { 'Accept': 'application/json' } });
@@ -125,12 +136,12 @@ app.controller('UserCtrl',
             $scope.GetUsersByDepartmentId = function (DepartmentId) {
                 if (DepartmentId != null) {
                     var data = {
-                        DepartmentId: DepartmentId
+                       Id: DepartmentId
                     }
                     $scope.AjaxGet("/api/UserApi/GetUsersByDepartment", data).then(
                         function (response) {
                             console.log(response);
-                            $scope.UsersList = response.data.Data;
+                            $scope.Supervisors = response.data.Data;
                         });
                 }
             }
