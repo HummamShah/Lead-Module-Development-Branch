@@ -71,8 +71,19 @@ namespace LMS.Models.Feature.Lead
 				{
 					var AgentId = Agent.Id;
 					var SuperVisorId = Agent.SuperVisorId;
-					Data = Data.Where(x => x.AgentId == AgentId || x.AssignedToId == AgentId || x.AgentId == SuperVisorId).ToList();
-                    
+					var juniors = _dbContext.Agent.Where(x => x.SuperVisorId == AgentId);
+                   
+					foreach (var junior in juniors)
+                    {
+						Data = Data.Where(x => x.AgentId == AgentId || x.AssignedToId == AgentId || x.AgentId == junior.Id).ToList();
+					}
+					//|| x.AgentId == SuperVisorId
+					if (juniors.Count() <= 0) // if there are no juniors
+					{
+						Data = Data.Where(x => x.AgentId == AgentId || x.AssignedToId == AgentId).ToList();
+					}
+
+
 				}
 				
             }

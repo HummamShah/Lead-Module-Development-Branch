@@ -222,7 +222,8 @@ app.controller('VendorCtrl',
         "$q",
         "$window",
         "$http",
-        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+        "toaster",
+        function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to Vendor App");
             $scope.initIndex = function () {
                 var promise = $http.get("/api/VendorApi/GetListData", { params: null, headers: { 'Accept': 'application/json' } });
@@ -267,7 +268,8 @@ app.controller('CompanyCtrl',
         "$q",
         "$window",
         "$http",
-        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+        "toaster",
+        function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to Company App");
             $scope.initIndex = function () {
                 //var promise = $http.get("/api/CompanyApi/GetListData", { params: null, headers: { 'Accept': 'application/json' } });
@@ -439,7 +441,8 @@ app.controller('DepartmentCtrl',
         "$q",
         "$window",
         "$http",
-        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+        "toaster",
+        function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to Department App");
             $scope.initIndex = function () {
                 var promise = $http.get("/api/DepartmentApi/GetListData", { params: null, headers: { 'Accept': 'application/json' } });
@@ -527,7 +530,8 @@ app.controller('LeadCtrl',
         "$q",
         "$window",
         "$http",
-        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+        "toaster",
+        function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to Lead App");
             $scope.initIndex = function () {
                 $scope.Assignment = {};
