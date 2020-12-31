@@ -11,6 +11,8 @@ app.controller('baseCtrl',
         "$http",
         function ($scope, $rootScope, $timeout, $q, $window, $http) {
             console.log("Connected to lms App base ctrl");
+            $scope.BusinessSegmentationDropDown = [{ id: 0, Name: "IT" }, { id: 1, Name: "Food" }, { id: 2, Name: "Garments" }, { id: 3, Name: "Chemicals" }, { id: 4, Name: "Electronics" }];
+            $scope.CityDropDown = [{ id: 0, Name: "Karachi" }, { id: 1, Name: "Lahore" }, { id: 2, Name: "Sialkot" }, { id: 3, Name: "Faisalabad" }, { id: 4, Name: "Rawalpindi" }, { id: 5, Name: "Peshawar" }, { id: 6, Name: "SaiduSharif" }, { id: 7, Name: "Multan" }, { id: 8, Name: "Gujranwala" }, { id: 9, Name: "Islamabad" }, { id: 10, Name: "Quetta " }, { id: 11, Name: "Bahawalpur" }, { id: 12, Name: "Sargodha" }, { id: 13, Name: "Mirpur" }, { id: 14, Name: "Chiniot" }, { id: 15, Name: "Sukkur" }, { id: 16, Name: "Larkana " }, { id: 17, Name: "Shekhupura " }, { id: 18, Name: "Jhang " }, { id: 19, Name: "RahimyarKhan" }, { id: 20, Name:"Gujrat"}]
             $scope.GetUrlParameter = function (param) {
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
@@ -308,6 +310,7 @@ app.controller('CompanyCtrl',
             }
             $scope.AddCompany = function (Company) {
                 console.log(Company);
+ 
                 if (Company.Name == null || Company.Name == "") {
                     alert("Name Is Required");
                     return;
@@ -336,6 +339,7 @@ app.controller('CompanyCtrl',
 
             $scope.EditCompany = function (Company) {
                 console.log(Company);
+                //return;
                 if (Company.Name == null || Company.Name == "") {
                     alert("Name Is Required");
                     return;
@@ -596,6 +600,13 @@ app.controller('LeadCtrl',
             }
             $scope.EditLead = function (Lead) {
                 console.log(Lead);
+                $scope.AjaxPost("/api/LeadApi/EditLead", Lead).then(
+                    function (response) {
+                        if (response.status == 200) {
+                            alert("Lead has been Updated Successfully!");
+                            $timeout(function () { window.location.href = '/Lead'; }, 2000);
+                        }
+                    });
             }
         }
     ]);

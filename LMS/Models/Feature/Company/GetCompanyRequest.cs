@@ -28,6 +28,7 @@ namespace LMS.Models.Feature.Company
 			response.Website = Data.Website;
 			response.NTN = Data.NTN;
 			response.CurrentItPlatform = Data.CurrentItPlatform;
+			response.NoLinks = Data.NoLinks;
 
 			response.CompanyAlternateContact = Data.AlternateNumber;
             if (Data.ParentCompanyId != null)
@@ -138,7 +139,7 @@ namespace LMS.Models.Feature.Company
 		public int? CUDSService { get; set; }
 		public string CUDSServiceEnum { get; set; }
 		public string CUDSOtherService { get; set; }
-		public int NoLinks { get; set; }
+		public int? NoLinks { get; set; }
 		public string CreatedBy { get; set; }
         public DateTime? CreatedAt { get; set; }
 		public string UpdatedBy { get; set; }

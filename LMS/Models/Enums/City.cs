@@ -7,6 +7,6 @@ namespace LMS.Models.Enums
 {
     public enum City
     {
-        Karachi,Lahore,Multan,Islamabad
+        Karachi, Lahore, Sialkot, Faisalabad, Rawalpindi, Peshawar, SaiduSharif, Multan, Gujranwala, Islamabad, Quetta, Bahawalpur, Sargodha, Mirpur, Chiniot, Sukkur, Larkana, Shekhupura, Jhang, RahimyarKhan, Gujrat
     }
 }

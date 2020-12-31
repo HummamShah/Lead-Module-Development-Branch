@@ -38,6 +38,16 @@ namespace LMS.Controllers.Api
             var result = req.RunRequest(req);
             return result;
         }
+
+        [HttpPost]
+        public object EditLead(EditLeadRequest req)
+        {
+            req.UserId = User.Identity.GetUserId();
+            req.UpdatedBy = User.Identity.Name;
+            var result = req.RunRequest(req);
+            return result;
+        }
+
         [HttpGet]
 
         public object GetLead([FromUri] GetLeadRequest req)
