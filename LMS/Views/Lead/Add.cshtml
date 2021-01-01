@@ -115,10 +115,10 @@
                 </select>
             </div>
             <div class="col-md-4 form-group">
-                <label>City</label>
+                <label>City {{Lead.City}}</label>
                 <select ng-model="Lead.City" class="form-control">
                     <option selected value="">Select City</option>
-                    <option ng-repeat="City in CityDropDown" ng-selected="Lead.City==City.Id" value="{{City.Id}}">{{City.Name}}</option>
+                    <option ng-repeat="City in CityDropDown" ng-selected="Lead.City==City.id" value="{{City.id}}">{{City.Name}}</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">

@@ -132,10 +132,10 @@
                 <select ng-model="Company.NOE" class="form-control">
                     <option selected value="">Number of employees</option>
                     <option ng-selected="Company.NOE==0" value="0">1-5</option>
-                    <option ng-selected="Company.NOE==1"  value="1">5-10</option>
-                    <option ng-selected="Company.NOE==2"  value="2">10-50</option>
-                    <option ng-selected="Company.NOE==3"  value="3">50-100</option>
-                    <option ng-selected="Company.NOE==4"  value="4">100+</option>
+                    <option ng-selected="Company.NOE==1" value="1">5-10</option>
+                    <option ng-selected="Company.NOE==2" value="2">10-50</option>
+                    <option ng-selected="Company.NOE==3" value="3">50-100</option>
+                    <option ng-selected="Company.NOE==4" value="4">100+</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
@@ -192,29 +192,30 @@
                 <input type="number" class="form-control" ng-model="Company.NoLinks" />
             </div>
             @*<div class="col-md-4 form-group">
-                    <label>Budget</label>
-                    <input type="text" class="form-control" ng-model="Company.Budget" />
-                </div>*@
+                <label>Budget</label>
+                <input type="text" class="form-control" ng-model="Company.Budget" />
+            </div>*@
             @*<div class="col-md-4 form-group">
-                    <label>Estimated Closing Date</label>
-                    <input type="date" class="form-control" ng-model="Company.EstimatedClosingDate" />
-                </div>
-                <div class="col-md-4 form-group">
-                    <label>Comments</label>
-                    <input type="text" class="form-control" ng-model="Company.Comments" />
-                </div>*@
-            @*<div class="col-md-4 form-group">
-                    <label>Is our Existing Customer</label>
-                    <input type="checkbox" ng-model="Lead.IsEsisting" />
-                </div>*@
-            @*<div class="col-md-4 form-group">
-                    <label>Ever Tried Our Service Before</label>
-                    <input type="checkbox" ng-model="Lead.HasTriedOurServie" />
-                </div>*@
-            <div class="row float-right">
-                <a href="/Company" class="btn btn-danger">Cancel</a>
-                <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="EditCompany(Company)">SaveChanges</button>
+                <label>Estimated Closing Date</label>
+                <input type="date" class="form-control" ng-model="Company.EstimatedClosingDate" />
             </div>
+            <div class="col-md-4 form-group">
+                <label>Comments</label>
+                <input type="text" class="form-control" ng-model="Company.Comments" />
+            </div>*@
+            @*<div class="col-md-4 form-group">
+                <label>Is our Existing Customer</label>
+                <input type="checkbox" ng-model="Lead.IsEsisting" />
+            </div>*@
+            @*<div class="col-md-4 form-group">
+                <label>Ever Tried Our Service Before</label>
+                <input type="checkbox" ng-model="Lead.HasTriedOurServie" />
+            </div>*@
+
+        </div>
+        <div class="row float-right">
+            <a href="/Company" class="btn btn-danger">Cancel</a>
+            <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="EditCompany(Company)">SaveChanges</button>
         </div>
     </div>
 

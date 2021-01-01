@@ -73,7 +73,8 @@ app.controller('UserCtrl',
         "$q",
         "$window",
         "$http",
-        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+        "toaster",
+        function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to User App");
             //$scope.TryingAjaxService = function () {
             //    $scope.AjaxGet("/api/UserApi/GetListData", null).then(
@@ -91,46 +92,66 @@ app.controller('UserCtrl',
             $scope.AddUser = function (user) {
                 console.log(user);
                 if (user.DepartmentId == null || user.DepartmentId == 0) {
-                    alert("Please Select Department");
+                    //alert("Please Select Department");
+                    toaster.pop('error', "error", "Please Select Department");
                     return;
                 }
                 if (user.FirstName == null || user.FirstName == "") {
-                    alert("Please Enter First Name");
+                    //alert("Please Enter First Name");
+                    toaster.pop('error', "error", "Please Enter First Name");
                     return;
                 }
                 if (user.Email == null || user.Email == "") {
-                    alert("Please Enter Email!");
+                    //alert("Please Enter Email!");
+                    toaster.pop('error', "error", "Please Enter Email!");
                     return;
                 }
                 if (user.Contact1 == null) {
-                    alert("Please Enter Primary Contact");
+                    //alert("Please Enter Primary Contact");
+                    toaster.pop('error', "error", "Please Enter Primary Contact!");
                     return;
                 }
                 if (user.Password == null || user.Password == "") {
-                    alert("Enter Password");
+                    //alert("Enter Password");
+                    toaster.pop('error', "error", "Please Enter Password!");
                     return;
                 }
                 if (user.Password != user.ConfirmPassword) {
-                    alert("Password and Confirm Password shoul match");
+                    //alert("Password and Confirm Password shoul match");
+                    toaster.pop('error', "error", "Password and Confirm Password should match!");
                     return;
                 }
-                if (User.HasSupervisor == true) {
-
+                if (user.HasSupervisor == true) {
+                    if (user.SupervisorId == null) {
+                        toaster.pop('error', "error", "Please Select Supervisor");
+                        return;
+                    }
                 }
                 //Loader need to make it generic so we could use this in a function
                 $scope.IsServiceRunning = true;
-                var promise = $http.post("/api/UserApi/RegisterUser", user, {headers: { 'Accept': 'application/json' } });
-                promise.then(
+                //var promise = $http.post("/api/UserApi/RegisterUser", user, {headers: { 'Accept': 'application/json' } });
+                //promise.then(
+                //    function (response) {
+                //        $scope.IsServiceRunning = false;
+                //        console.log(response);
+                //        if (response.status == 200) {
+                //            //alert("User has been Added Successfully!");
+                //            toaster.pop('success', "success", "Password and Confirm Password shoul match!");
+                //            $timeout(function () { window.location.href = '/User'; }, 2000);
+                //        } else {
+                //            toaster.pop('error', "error", "Could Not Add User!");
+                //        }
+                        
+                //    });
+                $scope.AjaxPost("/api/UserApi/RegisterUser", user).then(
                     function (response) {
-                        $scope.IsServiceRunning = false;
-                        console.log(response);
                         if (response.status == 200) {
-                            alert("User has been Added Successfully!");
+                            //alert("User has been Added Successfully!");
+                            toaster.pop('success', "success", "User Has Been Added!");
                             $timeout(function () { window.location.href = '/User'; }, 2000);
                         } else {
-                            alert("Could Not Add new User");
+                            toaster.pop('error', "error", "Could Not Add User!");
                         }
-                        
                     });
 
             }
@@ -148,23 +169,34 @@ app.controller('UserCtrl',
             }
             $scope.CheckForDepartment = function (Id) {
                 if (Id == null) {
-                    alert("Please Select Department First");
+                    //alert("Please Select Department First");
+                    toaster.pop('error', "error", "Please Select Department First");
                     $scope.User.HasSupervisor = false;
                 }
             }
             $scope.AddAdmin = function (user) {
                 console.log(user);
-                var promise = $http.post("/api/UserApi/RegisterAdmin", user, { headers: { 'Accept': 'application/json' } });
-                promise.then(
+                //var promise = $http.post("/api/UserApi/RegisterAdmin", user, { headers: { 'Accept': 'application/json' } });
+                //promise.then(
+                //    function (response) {
+                //        console.log(response);
+                //        if (response.status == 200) {
+                //            alert("Admin has been added Successfully!");
+                //            $timeout(function () { window.location.href = '/User'; }, 2000);
+                //        } else {
+                //            alert("Could Not Add new admin");
+                //        }
+
+                //    });
+
+                $scope.AjaxPost("/api/UserApi/RegisterAdmin", user).then(
                     function (response) {
-                        console.log(response);
                         if (response.status == 200) {
-                            alert("Admin has been added Successfully!");
+                            toaster.pop('success', "success", "Admin Has Been Added Successfully");
                             $timeout(function () { window.location.href = '/User'; }, 2000);
                         } else {
-                            alert("Could Not Add new admin");
+                            toaster.pop('error', "error", "Could Not Add Admin!");
                         }
-
                     });
 
             }
@@ -173,16 +205,11 @@ app.controller('UserCtrl',
             }
             $scope.AddInit = function () {
                 $scope.User = {};
-                //Need to call a request to get all the Departments id and name for dropdown
-               // $scope.Departments = [{ Id: 0, Name: "Sales_Lead" }, { Id: 1, Name: "PMD" }, { Id: 2, Name: "Pre_Sale" }, { Id: 3, Name: "Closer" }];
-                //Sales_Lead,PMD,Pre_Sale,Closer,Administration
-                var promise = $http.get("/api/DepartmentApi/GetDepartmentsDropdown", { params: null, headers: { 'Accept': 'application/json' } });
-                promise.then(
+                $scope.AjaxGet("/api/DepartmentApi/GetDepartmentsDropdown", null).then(
                     function (response) {
                         console.log(response);
                         $scope.Departments = response.data.Data;
                     });
-                
             }
         }
     ]);
@@ -195,7 +222,8 @@ app.controller('VendorCtrl',
         "$q",
         "$window",
         "$http",
-        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+        "toaster",
+        function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to Vendor App");
             $scope.initIndex = function () {
                 var promise = $http.get("/api/VendorApi/GetListData", { params: null, headers: { 'Accept': 'application/json' } });
@@ -240,11 +268,17 @@ app.controller('CompanyCtrl',
         "$q",
         "$window",
         "$http",
-        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+        "toaster",
+        function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to Company App");
             $scope.initIndex = function () {
-                var promise = $http.get("/api/CompanyApi/GetListData", { params: null, headers: { 'Accept': 'application/json' } });
-                promise.then(
+                //var promise = $http.get("/api/CompanyApi/GetListData", { params: null, headers: { 'Accept': 'application/json' } });
+                //promise.then(
+                //    function (response) {
+                //        console.log(response);
+                //        $scope.Companies = response.data.Data;
+                //    });
+                $scope.AjaxGet("/api/CompanyApi/GetListData", null).then(
                     function (response) {
                         console.log(response);
                         $scope.Companies = response.data.Data;
@@ -260,8 +294,13 @@ app.controller('CompanyCtrl',
                 getCompaniesDropdown();
             }
             getCompaniesDropdown =function (){
-                var promise = $http.get("/api/CompanyApi/GetCompaniesDropdown", { params: null, headers: { 'Accept': 'application/json' } });
-                promise.then(
+                //var promise = $http.get("/api/CompanyApi/GetCompaniesDropdown", { params: null, headers: { 'Accept': 'application/json' } });
+                //promise.then(
+                //    function (response) {
+                //        console.log(response);
+                //        $scope.Companies = response.data.Data;
+                //    });
+                $scope.AjaxGet("/api/CompanyApi/GetCompaniesDropdown", null).then(
                     function (response) {
                         console.log(response);
                         $scope.Companies = response.data.Data;
@@ -303,8 +342,16 @@ app.controller('CompanyCtrl',
                     Id: parseInt(Id)
                 }
                 console.log(data);
-                var promise = $http.get("/api/CompanyApi/GetCompany", { params:data} ,{  headers: { 'Accept': 'application/json' } });
-                promise.then(
+                //var promise = $http.get("/api/CompanyApi/GetCompany", { params:data} ,{  headers: { 'Accept': 'application/json' } });
+                //promise.then(
+                //    function (response) {
+                //        console.log(response);
+                //        $scope.Company = response.data;
+                //        $scope.GetDropdownForServies($scope.Company.CUDS);
+                //        $scope.ParentCompanyId = $scope.Company.ParentCompanyId;
+                //        console.log($scope.Company);
+                //    });
+                $scope.AjaxGet("/api/CompanyApi/GetCompany", data).then(
                     function (response) {
                         console.log(response);
                         $scope.Company = response.data;
@@ -312,6 +359,7 @@ app.controller('CompanyCtrl',
                         $scope.ParentCompanyId = $scope.Company.ParentCompanyId;
                         console.log($scope.Company);
                     });
+
 
             }
             $scope.GetThisConsole = function (id) {
@@ -322,25 +370,29 @@ app.controller('CompanyCtrl',
                 console.log(Company);
  
                 if (Company.Name == null || Company.Name == "") {
-                    alert("Name Is Required");
+                    //alert("Name Is Required");
+                    toaster.pop('error', "error", "Name Is Required!");
                     return;
                 }
                 if (Company.Address == null || Company.Address == "") {
-                    alert("Address Is Required");
+                    //alert("Address Is Required");
+                    toaster.pop('error', "error", "Address Is Required!");
                     return;
                 }
                 if (Company.Contact == null || Company.Contact == "") {
-                    alert("Contact Is Required");
+                    //alert("Contact Is Required");
+                    toaster.pop('error', "error", "Contact Is Required!");
                     return;
                 }
                 console.log(Company);
-        
+        //TODOPOST
                 var promise = $http.post("/api/CompanyApi/AddCompany", Company, { headers: { 'Accept': 'application/json' } });
                 promise.then(
                     function (response) {
                         console.log(response);
                         if (response.status == 200) {
-                            alert("New Company Added Successfully!");
+                            //alert("New Company Added Successfully!");
+                            toaster.pop('success', "success", "Company Added Successfully");
                             $timeout(function () { window.location.href = '/Company'; }, 2000);
                         }
 
@@ -351,15 +403,18 @@ app.controller('CompanyCtrl',
                 console.log(Company);
                 //return;
                 if (Company.Name == null || Company.Name == "") {
-                    alert("Name Is Required");
+                    //alert("Name Is Required");
+                    toaster.pop('error', "error", "Name Is Required!");
                     return;
                 }
                 if (Company.Address == null || Company.Address == "") {
-                    alert("Address Is Required");
+                    //alert("Address Is Required");
+                    toaster.pop('error', "error", "Address Is Required!");
                     return;
                 }
                 if (Company.Contact == null || Company.Contact == "") {
-                    alert("Contact Is Required");
+                    //alert("Contact Is Required");
+                    toaster.pop('error', "error", "Contact Is Required!");
                     return;
                 }
                 var promise = $http.post("/api/CompanyApi/EditCompany", Company, { headers: { 'Accept': 'application/json' } });
@@ -367,7 +422,8 @@ app.controller('CompanyCtrl',
                     function (response) {
                         console.log(response);
                         if (response.status == 200) {
-                            alert("Company has been updated Successfully!");
+                            //alert("Company has been updated Successfully!");
+                            toaster.pop('success', "success", "Company has been updated successfully");
                             $timeout(function () { window.location.href = '/Company'; }, 2000);
                         }
 
@@ -385,7 +441,8 @@ app.controller('DepartmentCtrl',
         "$q",
         "$window",
         "$http",
-        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+        "toaster",
+        function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to Department App");
             $scope.initIndex = function () {
                 var promise = $http.get("/api/DepartmentApi/GetListData", { params: null, headers: { 'Accept': 'application/json' } });
@@ -416,7 +473,8 @@ app.controller('DepartmentCtrl',
             $scope.AddDepartment = function (Department) {
                 console.log(Department);
                 if (Department.Name == null || Department.Name == "") {
-                    alert("Name Is Required");
+                    //alert("Name Is Required");
+                    toaster.pop('error', "error", "Name Is Required!");
                     return;
                 }
                
@@ -425,11 +483,13 @@ app.controller('DepartmentCtrl',
                     function (response) {
                         console.log(response);
                         if (response.status == 200) {
-                            alert("New Department Added Successfully!");
+                            //alert("New Department Added Successfully!");
+                            toaster.pop('success', "success", "New Department added Successfully!");
                             $timeout(function () { window.location.href = '/Department'; }, 2000);
                         }
                         else {
-                            alert("Could not add new department");
+                            //alert("Could not add new department");
+                            toaster.pop('error', "error", "Could not add successfully!");
                         }
 
                     });
@@ -438,7 +498,8 @@ app.controller('DepartmentCtrl',
             $scope.EditDepartment = function (Department) {
                 console.log(Department);
                 if (Department.Name == null || Department.Name == "") {
-                    alert("Name Is Required");
+                    //alert("Name Is Required");
+                    toaster.pop('error', "error", "Name Is Required!");
                     return;
                 }
                
@@ -447,10 +508,12 @@ app.controller('DepartmentCtrl',
                     function (response) {
                         console.log(response);
                         if (response.status == 200) {
-                            alert("Department has been updated Successfully!");
+                            //alert("Department has been updated Successfully!");
+                            toaster.pop('success', "success", "Department has been added succesfully");
                             $timeout(function () { window.location.href = '/Department'; }, 2000);
                         } else {
-                            alert("Could Not Update Department");
+                            //alert("Could Not Update Department");
+                            toaster.pop('error', "error", "Could not add department!");
                         }
 
                     });
@@ -467,7 +530,8 @@ app.controller('LeadCtrl',
         "$q",
         "$window",
         "$http",
-        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+        "toaster",
+        function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to Lead App");
             $scope.initIndex = function () {
                 $scope.Assignment = {};
@@ -497,22 +561,27 @@ app.controller('LeadCtrl',
                 $scope.AjaxPost("/api/LeadApi/AssignLead", Assignment).then(
                     function (response) {
                         if (response.status == 200) {
-                            alert("User Has Been Assigned Successfully!");
+                            //alert("User Has Been Assigned Successfully!");
+                            toaster.pop('success', "success", "User Has Been Assigned Successfully!");
                             $timeout(function () { window.location.href = '/Lead'; }, 2000);
                         } else {
-                            alert("Could Not Assign User");
+                            //alert("Could Not Assign User");
+                            toaster.pop('error', "error", "Could not Assign User");
                         }
                     });
             }
             $scope.AddLead = function (Lead) {
                 console.log(Lead);
+              
                 $scope.AjaxPost("/api/LeadApi/AddLead", Lead).then(
                     function (response) {
                     if (response.status == 200) {
-                        alert("Lead has been Added Successfully!");
+                       // alert("Lead has been Added Successfully!");
+                        toaster.pop('success', "success", "Lead Has Been Added Successfully");
                         $timeout(function () { window.location.href = '/Lead'; }, 2000);
                     } else {
-                        alert("Could Not Add new Lead");
+                        //alert("Could Not Add new Lead");
+                        toaster.pop('error', "error", "Could not add lead!");
                     }
                 });
             
@@ -613,8 +682,11 @@ app.controller('LeadCtrl',
                 $scope.AjaxPost("/api/LeadApi/EditLead", Lead).then(
                     function (response) {
                         if (response.status == 200) {
-                            alert("Lead has been Updated Successfully!");
+                            //alert("Lead has been Updated Successfully!");
+                            toaster.pop('success', "success", "Lead Has Been Updated Successfully!");
                             $timeout(function () { window.location.href = '/Lead'; }, 2000);
+                        } else {
+                            toaster.pop('error', "error", "Unable to update lead!");
                         }
                     });
             }

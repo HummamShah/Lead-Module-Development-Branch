@@ -138,7 +138,11 @@ namespace LMS.Controllers.Api
                     AgentData.Email = model.Email;
                     AgentData.CreatedAt = DateTime.Now;
                     AgentData.CreatedBy = CurrentUserName;
-                   
+                    if (model.HasSupervisor.HasValue)
+                    {
+                        AgentData.HasSupervisor = model.HasSupervisor;
+                        AgentData.SuperVisorId = model.SupervisorId;
+                    }
                     var AgentResult = db.Agent.Add(AgentData);
                     var RoleToAdd = "";//new List<string>();
                     var DepartmentName = "";
