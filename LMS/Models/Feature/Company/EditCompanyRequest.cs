@@ -41,7 +41,8 @@ namespace LMS.Models.Feature.Company
 		public int NoLinks { get; set; }
 		public string UpdatedBy { get; set; }
 		public DateTime? UpdatedAt { get; set; }
-
+		public double? Latitude { get; set; }
+		public double? Longitude { get; set; }
 		public object RunRequest(EditCompanyRequest request)
 		{
 			var response = new EditCompanyResponse();
@@ -53,6 +54,8 @@ namespace LMS.Models.Feature.Company
 			Company.Address = request.Address;
 			Company.Email = request.Email;
 			Company.Contact = request.Contact;
+			Company.Latitude = request.Latitude;
+			Company.Longitude = request.Longitude;
 			
 			if (request.IsBranch == false && Company.IsBranch==true)
 			{

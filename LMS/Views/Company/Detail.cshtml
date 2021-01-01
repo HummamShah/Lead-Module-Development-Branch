@@ -95,24 +95,34 @@
                 <input type="text" readonly class="form-control" ng-model="Company.CompanyAlternateContact" placeholder="033xxxx.." />
             </div>
             @*<div class="col-md-4 form-group">
-                    <label>Phone Number</label>
-                    <input type="text" class="form-control" ng-model="Company.CompanyContact" placeholder="033xxxx.." />
-                </div>*@
+            <label>Phone Number</label>
+            <input type="text" class="form-control" ng-model="Company.CompanyContact" placeholder="033xxxx.." />
+        </div>*@
             @*<div class="col-md-4 form-group">
-                    <label>Alternate Number</label>
-                    <input type="text" class="form-control" ng-model="Company.CompanyAlternateContact" placeholder="033xxxx.." />
-                </div>*@
+            <label>Alternate Number</label>
+            <input type="text" class="form-control" ng-model="Company.CompanyAlternateContact" placeholder="033xxxx.." />
+        </div>*@
             @*<div class="col-md-4 form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" ng-model="Company.CompanyEmail" placeholder="johndoe@live.com" />
-                </div>*@
+            <label>Email</label>
+            <input type="email" class="form-control" ng-model="Company.CompanyEmail" placeholder="johndoe@live.com" />
+        </div>*@
             <div class="col-md-4 form-group">
                 <label>Website</label>
                 <input type="text" readonly class="form-control" ng-model="Company.Website" placeholder="www.sharptel.com" />
             </div>
             <div class="col-md-4 form-group">
-                <label>Area / Territory</label>
-                <input type="text" readonly class="form-control" ng-model="Company.AreaEnum" />
+                <label>Latitude</label>
+                <input type="number" readonly class="form-control" ng-model="Company.Latitude" placeholder="Latitude" />
+                @*<select ng-model="Company.Area" class="form-control">
+                <option selected value="">Area</option>
+                <option value="0">Korangi Industrial</option>
+                <option value="1">II Chudrigarh</option>
+                <option value="3">Shafeeq Mor</option>
+            </select>*@
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Longitude</label>
+                <input type="number" readonly class="form-control" ng-model="Company.Longitude" placeholder="Longitude" />
             </div>
             <div class="col-md-4 form-group">
                 <label>City</label>
@@ -132,7 +142,7 @@
         </div>
         <div class="row">
             <div class="col-md-4 form-group">
-                <label>Number Of Employees</label>
+                <label>Number Of Users</label>
                 <input type="text" readonly class="form-control" ng-model="Company.NOEEnum" />
             </div>
             <div class="col-md-4 form-group">
@@ -156,7 +166,7 @@
                 <input type="text" ng-model="Company.FuturePlanOFExtention" class="form-control" />
             </div>*@
             <div class="col-md-4 form-group">
-                <label>Currently Used Data/Internet Service</label>
+                <label>Currently Used Medium</label>
                 <input type="text" readonly ng-model="Company.CUDSEnum" class="form-control" />
             </div>
             <div class="col-md-4 form-group" ng-if="Company.CUDS == null">

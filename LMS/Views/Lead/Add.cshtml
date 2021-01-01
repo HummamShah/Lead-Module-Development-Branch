@@ -139,9 +139,9 @@
         </div>
         <div class="row">
             <div class="col-md-4 form-group">
-                <label>Number Of Employees</label>
+                <label>Number Of Users</label>
                 <select ng-model="Lead.NOE" class="form-control">
-                    <option selected value="">Number Of Employees</option>
+                    <option selected value="">Number Of Users</option>
                     <option ng-selected="Lead.NOE==0" value="0">1-5</option>
                     <option ng-selected="Lead.NOE==1" value="1">5-10</option>
                     <option ng-selected="Lead.NOE==2" value="2">10-50</option>
@@ -173,7 +173,7 @@
                 <input type="text" ng-model="Lead.FuturePlanOFExtention" class="form-control" />
             </div>*@
             <div class="col-md-4 form-group">
-                <label>Currently Used Data/Internet Service</label>
+                <label>Currently Used Medium</label>
                 <select ng-model="Lead.CUDS" class="form-control" ng-change="GetDropdownForServies(Lead.CUDS)">
                     <option selected value="">Current Service</option>
                     <option ng-selected="Lead.CUDS==0" value="0">DSL</option>

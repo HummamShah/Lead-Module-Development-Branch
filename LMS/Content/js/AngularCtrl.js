@@ -368,6 +368,7 @@ app.controller('CompanyCtrl',
             }
             $scope.AddCompany = function (Company) {
                 console.log(Company);
+
  
                 if (Company.Name == null || Company.Name == "") {
                     //alert("Name Is Required");

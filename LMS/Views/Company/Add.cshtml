@@ -70,56 +70,61 @@
             <div class="col-md-4 form-group">
 
                 <label>Email</label>
-                <input type="email" class="form-control" ng-model="Company.Email" placeholder="E-mail"/>
+                <input type="email" class="form-control" ng-model="Company.Email" placeholder="E-mail" />
 
             </div>
             <div class="col-md-4 form-group">
                 <label>Contact</label>
-                <input type="text" class="form-control" ng-model="Company.Contact" placeholder="03XX-XXXXXXX"/>
+                <input type="text" class="form-control" ng-model="Company.Contact" placeholder="03XX-XXXXXXX" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Alternate Number</label>
                 <input type="text" class="form-control" ng-model="Company.CompanyAlternateContact" placeholder="03XX-XXXXXXX" />
             </div>
             @*<div class="col-md-4 form-group">
-                    <label>Phone Number</label>
-                    <input type="text" class="form-control" ng-model="Company.CompanyContact" placeholder="033xxxx.." />
-                </div>*@
+            <label>Phone Number</label>
+            <input type="text" class="form-control" ng-model="Company.CompanyContact" placeholder="033xxxx.." />
+        </div>*@
             @*<div class="col-md-4 form-group">
-                    <label>Alternate Number</label>
-                    <input type="text" class="form-control" ng-model="Company.CompanyAlternateContact" placeholder="033xxxx.." />
-                </div>*@
+            <label>Alternate Number</label>
+            <input type="text" class="form-control" ng-model="Company.CompanyAlternateContact" placeholder="033xxxx.." />
+        </div>*@
             @*<div class="col-md-4 form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" ng-model="Company.CompanyEmail" placeholder="johndoe@live.com" />
-                </div>*@
+            <label>Email</label>
+            <input type="email" class="form-control" ng-model="Company.CompanyEmail" placeholder="johndoe@live.com" />
+        </div>*@
             <div class="col-md-4 form-group">
                 <label>Website</label>
                 <input type="text" class="form-control" ng-model="Company.Website" placeholder="www.demo.com" />
             </div>
             <div class="col-md-4 form-group">
-                <label>Area/Territory</label>
-                <select ng-model="Company.Area" class="form-control">
-                    <option selected value="">Area</option>
-                    <option value="0">Korangi Industrial</option>
-                    <option value="1">II Chudrigarh</option>
-                    <option value="3">Shafeeq Mor</option>
-                </select>
+                <label>Latitude</label>
+                <input type="number" class="form-control" ng-model="Company.Latitude" placeholder="Latitude" />
+                @*<select ng-model="Company.Area" class="form-control">
+                <option selected value="">Area</option>
+                <option value="0">Korangi Industrial</option>
+                <option value="1">II Chudrigarh</option>
+                <option value="3">Shafeeq Mor</option>
+            </select>*@
             </div>
             <div class="col-md-4 form-group">
-                <label>City</label>
-                <select ng-model="Company.City" class="form-control">
-                    <option selected value="">Select City</option>
-                    <option ng-repeat="City in CityDropDown" ng-selected="Company.City==City.id" value="{{City.id}}">{{City.Name}}</option>
-                </select>
+                <label>Latitude</label>
+                <input type="number" class="form-control" ng-model="Company.Longitude" placeholder="Longitude"/>
             </div>
-            <div class="col-md-4 form-group">
-                <label>Address</label>
-                <input type="text" ng-model="Company.Address" class="form-control" placeholder="Address" />
-            </div>
+                <div class="col-md-4 form-group">
+                    <label>City</label>
+                    <select ng-model="Company.City" class="form-control">
+                        <option selected value="">Select City</option>
+                        <option ng-repeat="City in CityDropDown" ng-selected="Company.City==City.id" value="{{City.id}}">{{City.Name}}</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>Address</label>
+                    <input type="text" ng-model="Company.Address" class="form-control" placeholder="Address" />
+                </div>
 
+            </div>
         </div>
-    </div>
 
     <div class="jumbotron PageHeading">
         <div class="row text-center">
@@ -127,9 +132,9 @@
         </div>
         <div class="row">
             <div class="col-md-4 form-group">
-                <label>Number Of Employees</label>
+                <label>Company Size</label>
                 <select ng-model="Company.NOE" class="form-control">
-                    <option selected value="">Number of employees</option>
+                    <option selected value="">Number of Users</option>
                     <option value="0">1-5</option>
                     <option value="1">5-10</option>
                     <option value="3">10-50</option>
@@ -161,7 +166,7 @@
                 <input type="text" ng-model="Company.FuturePlanOFExtention" class="form-control" />
             </div>*@
             <div class="col-md-4 form-group">
-                <label>Currently Used Data/Internet Service</label>
+                <label>Currently Used Medium</label>
                 <select ng-model="Company.CUDS" class="form-control" ng-change="GetDropdownForServies(Company.CUDS)">
                     <option selected value="">Current Service</option>
                     <option value="0">DSL</option>

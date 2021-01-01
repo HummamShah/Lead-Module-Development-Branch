@@ -29,6 +29,8 @@ namespace LMS.Models.Feature.Company
 			response.NTN = Data.NTN;
 			response.CurrentItPlatform = Data.CurrentItPlatform;
 			response.NoLinks = Data.NoLinks;
+			response.Latitude = Data.Latitude;
+			response.Longitude = Data.Longitude;
 
 			response.CompanyAlternateContact = Data.AlternateNumber;
             if (Data.ParentCompanyId != null)
@@ -144,6 +146,8 @@ namespace LMS.Models.Feature.Company
         public DateTime? CreatedAt { get; set; }
 		public string UpdatedBy { get; set; }
 		public DateTime? UpdatedAt { get; set; }
+		public double? Latitude { get; set; }
+		public double? Longitude { get; set; }
 
 	}
 }
