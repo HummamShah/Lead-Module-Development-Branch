@@ -9,24 +9,24 @@ namespace LMS.Controllers
     public class LeadController : Controller
     {
         // GET: Lead
-        [Authorize(Roles = "Lead_Sales")]
+        [Authorize(Roles = "Lead_Sales,Admin,SuperAdmin")]
         public ActionResult Index()
         {
             return View();
         }
-        [Authorize(Roles = "Lead_Sales")]
+        [Authorize(Roles = "Lead_Sales,Admin,SuperAdmin")]
         public ActionResult Add()
         {
             return View();
         }
 
-        [Authorize(Roles = "Lead_Sales")]
+        [Authorize(Roles = "Lead_Sales,Admin,SuperAdmin")]
         public ActionResult Detail()
         {
             return View();
         }
 
-        [Authorize(Roles = "Lead_Sales")]
+        [Authorize(Roles = "Lead_Sales,Admin,SuperAdmin")]
         public ActionResult Edit()
         {
             return View();
