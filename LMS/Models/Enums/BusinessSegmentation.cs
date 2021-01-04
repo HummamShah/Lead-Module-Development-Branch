@@ -7,6 +7,6 @@ namespace LMS.Models.Enums
 {
     public enum BusinessSegmentation
     {
-        It,Food,Garments,Chemicals,Electronics
+        ISPs,Distributors,SolutionIntegreator,SoftwareHouse,Manufacturer,GOVTSector,FinacialInstitues,FMCG,Logistics_Transpotation,Telcos,CallCenter_BPO,Pharmaceutical,Textile
     }
 }

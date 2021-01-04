@@ -34,21 +34,21 @@
             <form id="LeadAddForm ">
                 <div class="form-group">
                     <div class="col-md-3">
-                        <label>Name</label>
+                        <label>Lead Name</label>
                         <input type="text" class="form-control" ng-model="Lead.Name" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-3">
-                        <label>Company</label> <a href="#" data-toggle="modal" data-target="#myModal" ><i class="fas fa-plus"></i></a>
+                        <label>Company</label> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i></a>
                         <select ng-model="Lead.CompanyId" class="form-control" ng-change="GetCompanyData(Lead.CompanyId)">
                             <option selected value="">Select Company</option>
                             <option ng-repeat="Company in Companies" value="{{Company.Id}}" ng-selected="Lead.CompanyId == Company.Id">{{Company.Name}}</option>
                         </select>
                     </div>
                 </div>
-               
+
                 <div class="form-group">
                     <div class="col-md-3">
                         <label>Contact Person Name</label>
@@ -59,6 +59,24 @@
                     <div class="col-md-3">
                         <label>Contact Person Number</label>
                         <input type="text" class="form-control" ng-model="Lead.ContactPersonNumber" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>Contact Person Email</label>
+                        <input type="text" class="form-control" ng-model="Lead.ContactPersonEmail" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>Contact Person Title</label>
+                        <input type="text" class="form-control" ng-model="Lead.ContactPersonTitle" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>Contact Person Department</label>
+                        <input type="text" class="form-control" ng-model="Lead.ContactPersonDepartment"/>
                     </div>
                 </div>
             </form>
@@ -169,9 +187,9 @@
                 <input type="text" ng-model="Lead.CurrentItPlatform" class="form-control" />
             </div>
             @*<div class="col-md-4 form-group">
-                <label>Future Plan For Extension In IT Service</label>
-                <input type="text" ng-model="Lead.FuturePlanOFExtention" class="form-control" />
-            </div>*@
+            <label>Future Plan For Extension In IT Service</label>
+            <input type="text" ng-model="Lead.FuturePlanOFExtention" class="form-control" />
+        </div>*@
             <div class="col-md-4 form-group">
                 <label>Currently Used Medium</label>
                 <select ng-model="Lead.CUDS" class="form-control" ng-change="GetDropdownForServies(Lead.CUDS)">
@@ -203,6 +221,14 @@
                 <input type="text" class="form-control" ng-model="Lead.NoLinks" />
             </div>
             <div class="col-md-4 form-group">
+                <label>Need</label>
+                <input type="text" class="form-control" ng-model="Lead.Need" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Will</label>
+                <input type="text" class="form-control" ng-model="Lead.Will" />
+            </div>
+            <div class="col-md-4 form-group">
                 <label>Budget</label>
                 <input type="text" class="form-control" ng-model="Lead.Budget" />
             </div>
@@ -223,7 +249,7 @@
                 <input type="checkbox" ng-model="Lead.HasTriedOurServie" />
             </div>
             <div class="row float-right">
-                <a href="/Lead" class="btn btn-danger"  >Cancel</a>
+                <a href="/Lead" class="btn btn-danger">Cancel</a>
                 <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="AddLead(Lead)">Add</button>
             </div>
 

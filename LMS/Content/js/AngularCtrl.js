@@ -18,7 +18,7 @@ app.controller('baseCtrl',
                 toaster.pop('warning', "warning", "this is Warning");
                 toaster.pop('note', "note", "thhis is note");
             }
-            $scope.BusinessSegmentationDropDown = [{ id: 0, Name: "IT" }, { id: 1, Name: "Food" }, { id: 2, Name: "Garments" }, { id: 3, Name: "Chemicals" }, { id: 4, Name: "Electronics" }];
+            $scope.BusinessSegmentationDropDown = [{ id: 0, Name: "ISPs" }, { id: 1, Name: "Distributors" }, { id: 2, Name: "SolutionIntegreator" }, { id: 3, Name: "SoftwareHouse" }, { id: 5, Name: "GOVTSector" }, { id: 6, Name: "FinacialInstitues" }, { id: 7, Name: "FMCG" }, { id: 8, Name: "Telcos" }, { id: 9, Name: "CallCenter_BPO" }, { id: 10, Name: "Pharmaceutical" }, { id: 11, Name: "Textile" }]
             $scope.CityDropDown = [{ id: 0, Name: "Karachi" }, { id: 1, Name: "Lahore" }, { id: 2, Name: "Sialkot" }, { id: 3, Name: "Faisalabad" }, { id: 4, Name: "Rawalpindi" }, { id: 5, Name: "Peshawar" }, { id: 6, Name: "SaiduSharif" }, { id: 7, Name: "Multan" }, { id: 8, Name: "Gujranwala" }, { id: 9, Name: "Islamabad" }, { id: 10, Name: "Quetta " }, { id: 11, Name: "Bahawalpur" }, { id: 12, Name: "Sargodha" }, { id: 13, Name: "Mirpur" }, { id: 14, Name: "Chiniot" }, { id: 15, Name: "Sukkur" }, { id: 16, Name: "Larkana " }, { id: 17, Name: "Shekhupura " }, { id: 18, Name: "Jhang " }, { id: 19, Name: "RahimyarKhan" }, { id: 20, Name: "Gujrat" }]
             $scope.GetUrlParameter = function (param) {
                 const queryString = window.location.search;
@@ -573,6 +573,7 @@ app.controller('LeadCtrl',
             }
             $scope.AddLead = function (Lead) {
                 console.log(Lead);
+               
               
                 $scope.AjaxPost("/api/LeadApi/AddLead", Lead).then(
                     function (response) {
