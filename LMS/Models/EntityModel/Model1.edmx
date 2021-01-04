@@ -165,6 +165,9 @@
           <Property Name="CompanyName" Type="nvarchar(max)" />
           <Property Name="ContactPersonName" Type="nvarchar(max)" />
           <Property Name="ContactPersonNumber" Type="nvarchar(max)" />
+          <Property Name="ContactPersonEmail" Type="nvarchar(max)" />
+          <Property Name="ContactPersonTitle" Type="nvarchar(max)" />
+          <Property Name="ContactPersonDepartment" Type="nvarchar(max)" />
           <Property Name="CompanyId" Type="int" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="Domain" Type="int" />
@@ -991,6 +994,9 @@
           <NavigationProperty Name="Company" Relationship="Sharptel_Lms_DbModel.FK_Lead_Company" FromRole="Lead" ToRole="Company" />
           <Property Name="AgentId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Agent" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_Creator" FromRole="Lead" ToRole="Agent" />
+          <Property Name="ContactPersonEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonDepartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Lead_Agent_Lead">
           <End Type="Sharptel_Lms_DbModel.Agent" Role="Agent" Multiplicity="0..1" />
@@ -1262,6 +1268,9 @@
           <EntitySetMapping Name="Lead">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Lead">
               <MappingFragment StoreEntitySet="Lead">
+                <ScalarProperty Name="ContactPersonDepartment" ColumnName="ContactPersonDepartment" />
+                <ScalarProperty Name="ContactPersonTitle" ColumnName="ContactPersonTitle" />
+                <ScalarProperty Name="ContactPersonEmail" ColumnName="ContactPersonEmail" />
                 <ScalarProperty Name="AgentId" ColumnName="AgentId" />
                 <ScalarProperty Name="ContactPersonNumber" ColumnName="ContactPersonNumber" />
                 <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />

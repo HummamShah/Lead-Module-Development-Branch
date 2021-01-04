@@ -70,6 +70,9 @@ namespace LMS.Models.EntityModel
         public string ContactPersonName { get; set; }
         public string ContactPersonNumber { get; set; }
         public int AgentId { get; set; }
+        public string ContactPersonEmail { get; set; }
+        public string ContactPersonTitle { get; set; }
+        public string ContactPersonDepartment { get; set; }
     
         public virtual Agent AssignedTo { get; set; }
         public virtual Agent AssignedPMD { get; set; }

@@ -1,10 +1,13 @@
 ﻿CREATE TABLE [dbo].[Lead]
 (
-	[AgentId] int not null default(0),
+	[AgentId] int not null ,
     [Id] INT NOT NULL PRIMARY KEY Identity(1,1),
 	[CompanyName] nvarchar(max),
 	[ContactPersonName] nvarchar(max),
 	[ContactPersonNumber] nvarchar(max),
+	[ContactPersonEmail] nvarchar(max),
+	[ContactPersonTitle] nvarchar(max),
+	[ContactPersonDepartment] nvarchar(max),
 	[CompanyId] int,
 	[Name] nvarchar(max),
 	[Domain] int,

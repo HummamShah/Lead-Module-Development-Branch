@@ -42,6 +42,16 @@ app.controller('baseCtrl',
                 );
                 return promise;
             }
+            $scope.AjaxGetBackground = function (link, data) {
+                var promise = $http.get(link, { params: data, headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                       
+
+                    }
+                );
+                return promise;
+            }
 
             $scope.AjaxPost = function (link, data) {
                 $scope.ServiceClassBinder = "LoaderActivate"; // Loader class Activated
@@ -573,7 +583,15 @@ app.controller('LeadCtrl',
             }
             $scope.AddLead = function (Lead) {
                 console.log(Lead);
-               
+                if (Lead.CompanyId == null) {
+                    toaster.pop('error', "error", "Please Select Company!");
+                    return;
+                }
+                if (Lead.Domain == null) {
+                    toaster.pop('error', "error", "Please Select Domain!");
+                    return;
+                }
+                return;
               
                 $scope.AjaxPost("/api/LeadApi/AddLead", Lead).then(
                     function (response) {
@@ -598,12 +616,12 @@ app.controller('LeadCtrl',
                     });
             }
             getCompaniesDropdown = function () {
-                var promise = $http.get("/api/CompanyApi/GetCompaniesDropdown", { params: null, headers: { 'Accept': 'application/json' } });
-                promise.then(
+                $scope.AjaxGet("/api/CompanyApi/GetCompaniesDropdown", null).then(
                     function (response) {
                         console.log(response);
                         $scope.Companies = response.data.Data;
                     });
+
             }
             $scope.AddInit = function () {
                 $scope.Company = {};
@@ -634,13 +652,35 @@ app.controller('LeadCtrl',
                 }
                
             }
-            $scope.AddNewCompany = function (CompanyId) {
-                //Create a request to add a new company and thek refresh the list of company
-                var temp = {
-                    Name: "NewCompany",
-                    Id: 6
+            $scope.AddNewCompany = function (Company) {
+                //Create a request to add a new company and then refresh the list of company
+                if (Company.Name == null || Company.Name == "") {
+                    //alert("Name Is Required");
+                    toaster.pop('error', "error", "Name Is Required!");
+                    return;
                 }
-                $scope.Companies.push(temp);
+                if (Company.Address == null || Company.Address == "") {
+                    //alert("Address Is Required");
+                    toaster.pop('error', "error", "Address Is Required!");
+                    return;
+                }
+                if (Company.Contact == null || Company.Contact == "") {
+                    //alert("Contact Is Required");
+                    toaster.pop('error', "error", "Contact Is Required!");
+                    return;
+                }
+                console.log(Company);
+                $scope.AjaxPost("/api/CompanyApi/AddCompany", Company).then(function (response) {
+                    console.log(response);
+                    if (response.status == 200) {
+                        toaster.pop('success', "success", "Company Added Successfully");
+                        //$scope.AjaxGetBackground().then(function (resp) {
+
+                        //})
+                        getCompaniesDropdown();
+                    }
+                });
+                
             }
             $scope.GetCompanyData = function (Id) {
                
