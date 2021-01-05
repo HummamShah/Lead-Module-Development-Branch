@@ -18,8 +18,8 @@
                 Domain
                 <div class="form-group" style="display:inline-block;">
                     <select ng-model="Lead.Domain" class="form-control">
-                        <option value="0" ng-selected="Lead.Domain == 0">Services</option>
-                        <option value="1" ng-selected="Lead.Domain == 1">Connectivity</option>
+                        <option selected value="">Select Domain</option>
+                        <option ng-repeat="Domain in DomainDropDown" ng-selected="Lead.Domain==Domain.Id" value="{{Domain.Id}}">{{Domain.Name}}</option>
                     </select>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <label>Lead Name</label>
-                        <input type="text" class="form-control" ng-model="Lead.Name" />
+                        <input type="text" class="form-control" ng-model="Lead.Name"/>
                     </div>
                 </div>
 
@@ -190,8 +190,9 @@
             <label>Future Plan For Extension In IT Service</label>
             <input type="text" ng-model="Lead.FuturePlanOFExtention" class="form-control" />
         </div>*@
-            <div class="col-md-4 form-group">
+            @*<div class="col-md-4 form-group">
                 <label>Currently Used Medium</label>
+                <input type="text" class="form-control" ng-model="Lead.CUDS" />
                 <select ng-model="Lead.CUDS" class="form-control" ng-change="GetDropdownForServies(Lead.CUDS)">
                     <option selected value="">Current Service</option>
                     <option ng-selected="Lead.CUDS==0" value="0">DSL</option>
@@ -200,31 +201,31 @@
                     <option ng-selected="Lead.CUDS==3" value="3">Fiber</option>
                     <option ng-selected="Lead.CUDS==4" value="4">Other</option>
                 </select>
-            </div>
-            <div class="col-md-4 form-group" ng-if="Lead.CUDS == null">
+            </div>*@
+            @*<div class="col-md-4 form-group" ng-if="Lead.CUDS == null">
                 <span ng-if="Lead.CUDS == null">Please Select Currently Used Data/Internet Service</span>
-            </div>
-            <div class="col-md-4 form-group" ng-if="Lead.CUDS != null">
-                <span ng-if="Lead.CUDS != '4' ">
+            </div>*@
+            <div class="col-md-4 form-group">
+                @*<span ng-if="Lead.CUDS != '4' ">
                     <label>Select Service</label>
                     <select ng-model="Lead.CUDSService" class="form-control">
                         <option ng-repeat="service in CurrentServices" value="{{service.Id}} " ng-selected="service.Id == Lead.CUDSService">{{service.Name}}</option>
                     </select>
-                </span>
-                <span ng-if="Lead.CUDS == '4' ">
-                    <label>Select Service</label>
-                    <input type="text" class="form-control" ng-model="Lead.CUDSService" />
-                </span>
+                </span>*@
+                
+                    <label>Currently Used medium </label>
+                    <input type="text" class="form-control" ng-model="Lead.CUDSOtherService" />
+                
             </div>
             <div class="col-md-4 form-group">
                 <label>Number Of Links</label>
                 <input type="text" class="form-control" ng-model="Lead.NoLinks" />
             </div>
-            <div class="col-md-4 form-group">
+            <div class="col-md-4 form-group" ng-if="Lead.Domain==0">
                 <label>Need</label>
                 <input type="text" class="form-control" ng-model="Lead.Need" />
             </div>
-            <div class="col-md-4 form-group">
+            <div class="col-md-4 form-group" ng-if="Lead.Domain==0">
                 <label>Will</label>
                 <input type="text" class="form-control" ng-model="Lead.Will" />
             </div>

@@ -20,6 +20,7 @@ app.controller('baseCtrl',
             }
             $scope.BusinessSegmentationDropDown = [{ id: 0, Name: "ISPs" }, { id: 1, Name: "Distributors" }, { id: 2, Name: "SolutionIntegreator" }, { id: 3, Name: "SoftwareHouse" }, { id: 5, Name: "GOVTSector" }, { id: 6, Name: "FinacialInstitues" }, { id: 7, Name: "FMCG" }, { id: 8, Name: "Telcos" }, { id: 9, Name: "CallCenter_BPO" }, { id: 10, Name: "Pharmaceutical" }, { id: 11, Name: "Textile" }]
             $scope.CityDropDown = [{ id: 0, Name: "Karachi" }, { id: 1, Name: "Lahore" }, { id: 2, Name: "Sialkot" }, { id: 3, Name: "Faisalabad" }, { id: 4, Name: "Rawalpindi" }, { id: 5, Name: "Peshawar" }, { id: 6, Name: "SaiduSharif" }, { id: 7, Name: "Multan" }, { id: 8, Name: "Gujranwala" }, { id: 9, Name: "Islamabad" }, { id: 10, Name: "Quetta " }, { id: 11, Name: "Bahawalpur" }, { id: 12, Name: "Sargodha" }, { id: 13, Name: "Mirpur" }, { id: 14, Name: "Chiniot" }, { id: 15, Name: "Sukkur" }, { id: 16, Name: "Larkana " }, { id: 17, Name: "Shekhupura " }, { id: 18, Name: "Jhang " }, { id: 19, Name: "RahimyarKhan" }, { id: 20, Name: "Gujrat" }]
+            $scope.DomainDropDown = [{ Id: 0, Name: "SolutionSet" }, { Id: 1, Name: "Connectivity" }]
             $scope.GetUrlParameter = function (param) {
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
@@ -395,6 +396,16 @@ app.controller('CompanyCtrl',
                     toaster.pop('error', "error", "Contact Is Required!");
                     return;
                 }
+                if (Company.Latitude == null)
+                {
+                    toaster.pop('error', "error", "Latitide is required");
+                    return;
+                }
+                if (Company.Longitude == null) {
+                    toaster.pop('error', "error", "Longitude is required");
+                    return;
+                }
+
                 console.log(Company);
         //TODOPOST
                 var promise = $http.post("/api/CompanyApi/AddCompany", Company, { headers: { 'Accept': 'application/json' } });
@@ -583,6 +594,7 @@ app.controller('LeadCtrl',
             }
             $scope.AddLead = function (Lead) {
                 console.log(Lead);
+
                 if (Lead.CompanyId == null) {
                     toaster.pop('error', "error", "Please Select Company!");
                     return;
@@ -591,7 +603,28 @@ app.controller('LeadCtrl',
                     toaster.pop('error', "error", "Please Select Domain!");
                     return;
                 }
-                return;
+                if (Lead.ContactPersonName == null || Lead.ContactPersonName == "")
+                {
+                    toaster.pop('error', "error", "Please Enter Contact Person Name");
+                    return;
+                }
+                if (Lead.ContactPersonNumber == null || Lead.ContactPersonNumber == "") {
+                    toaster.pop('error', "error", "Please Enter Contact Person Number");
+                    return;
+                }
+                if (Lead.ContactPersonEmail == null || Lead.ContactPersonEmail == "") {
+                    toaster.pop('error', "error", "Please Enter Contact Person Email");
+                    return;
+                }
+                if (Lead.ContactPersonTitle == null || Lead.ContactPersonTitle == "") {
+                    toaster.pop('error', "error", "Please Enter Contact Person Title");
+                    return;
+                }
+                if (Lead.ContactPersonDepartment == null || Lead.ContactPersonDepartment == "") {
+                    toaster.pop('error', "error", "Please Enter Contact Person Department");
+                    return;
+                }
+                
               
                 $scope.AjaxPost("/api/LeadApi/AddLead", Lead).then(
                     function (response) {
@@ -627,7 +660,7 @@ app.controller('LeadCtrl',
                 $scope.Company = {};
                 $scope.Companies = [];
                 $scope.Lead = {};
-                $scope.Lead.Domain = 0;
+                //$scope.Lead.Domain = 0;
                 $scope.MOCS = [{ Name: "Phone", Id: 0 }, { Name: "Email", Id: 1 }, { Name: "Fax", Id: 2 }, { Name: "Visit", Id: 3 }];
                 getCompaniesDropdown();
             }
@@ -721,6 +754,35 @@ app.controller('LeadCtrl',
             }
             $scope.EditLead = function (Lead) {
                 console.log(Lead);
+                if (Lead.CompanyId == null) {
+                    toaster.pop('error', "error", "Please Select Company!");
+                    return;
+                }
+                if (Lead.Domain == null) {
+                    toaster.pop('error', "error", "Please Select Domain!");
+                    return;
+                }
+                if (Lead.ContactPersonName == null || Lead.ContactPersonName == "") {
+                    toaster.pop('error', "error", "Please Enter Contact Person Name");
+                    return;
+                }
+                if (Lead.ContactPersonNumber == null || Lead.ContactPersonNumber == "") {
+                    toaster.pop('error', "error", "Please Enter Contact Person Number");
+                    return;
+                }
+                if (Lead.ContactPersonEmail == null || Lead.ContactPersonEmail == "") {
+                    toaster.pop('error', "error", "Please Enter Contact Person Email");
+                    return;
+                }
+                if (Lead.ContactPersonTitle == null || Lead.ContactPersonTitle == "") {
+                    toaster.pop('error', "error", "Please Enter Contact Person Title");
+                    return;
+                }
+                if (Lead.ContactPersonDepartment == null || Lead.ContactPersonDepartment == "") {
+                    toaster.pop('error', "error", "Please Enter Contact Person Department");
+                    return;
+                }
+
                 $scope.AjaxPost("/api/LeadApi/EditLead", Lead).then(
                     function (response) {
                         if (response.status == 200) {

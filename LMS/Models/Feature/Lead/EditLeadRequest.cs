@@ -21,6 +21,9 @@ namespace LMS.Models.Feature.Lead
 		public int CompanyId { get; set; }
 		public string ContactPersonName { get; set; }
 		public string ContactPersonNumber { get; set; }
+		public string ContactPersonEmail { get; set; }
+		public string ContactPersonTitle { get; set; }
+		public string ContactPersonDepartment { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public string Email { get; set; }
@@ -70,6 +73,9 @@ namespace LMS.Models.Feature.Lead
 			Lead.Contact = request.Contact;
 			Lead.ContactPersonName = request.ContactPersonName;
 			Lead.ContactPersonNumber = request.ContactPersonNumber;
+			Lead.ContactPersonEmail = request.ContactPersonEmail;
+			Lead.ContactPersonTitle = request.ContactPersonTitle;
+			Lead.ContactPersonDepartment = request.ContactPersonDepartment;
 			Lead.Domain = request.Domain;
 			Lead.Website = request.Website;
 			Lead.Area = request.Area;

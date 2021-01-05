@@ -160,32 +160,32 @@
             <label>Future Plan For Extension In IT Service</label>
             <input type="text" ng-model="Lead.FuturePlanOFExtention" class="form-control" />
         </div>*@
-            <div class="col-md-4 form-group">
+            @*<div class="col-md-4 form-group">
                 <label>Currently Used Medium</label>
                 <input type="text" readonly ng-model="Lead.CUDSEnum" class="form-control" />
-            </div>
-            <div class="col-md-4 form-group" ng-if="Lead.CUDS == null">
+            </div>*@
+            @*<div class="col-md-4 form-group" ng-if="Lead.CUDS == null">
                 <span readonly ng-if="Lead.CUDS == null">N/A</span>
-            </div>
-            <div class="col-md-4 form-group" ng-if="Lead.CUDS != null">
-                <span ng-if="Lead.CUDS != '4' ">
+            </div>*@
+            <div class="col-md-4 form-group" ng-model="Lead.CUDSOtherService">
+                @*<span ng-if="Lead.CUDS != '4' ">
                     <label>Select Service</label>
                     <input type="text" readonly ng-model="Lead.CUDSServiceEnum" class="form-control" />
-                </span>
-                <span ng-if="Lead.CUDS == '4' ">
-                    <label>Select Service</label>
+                </span>*@
+                
+                    <label>Currently Used Medium</label>
                     <input type="text" readonly class="form-control" ng-model="Lead.CUDSOtherService" />
-                </span>
+                
             </div>
             <div class="col-md-4 form-group">
                 <label>Number Of Links</label>
                 <input type="text" readonly class="form-control" ng-model="Lead.NoLinks" />
             </div>
-            <div class="col-md-4 form-group">
+            <div class="col-md-4 form-group" ng-if="Lead.Domain==0">
                 <label>Need</label>
                 <input type="text" readonly class="form-control" ng-model="Lead.Need" />
             </div>
-            <div class="col-md-4 form-group">
+            <div class="col-md-4 form-group" ng-if="Lead.Domain==0">
                 <label>Will</label>
                 <input type="text" readonly class="form-control" ng-model="Lead.Will" />
             </div>

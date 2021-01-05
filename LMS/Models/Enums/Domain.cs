@@ -7,6 +7,6 @@ namespace LMS.Models.Enums
 {
     public enum Domain
     {
-        Services,Connectivity
+        SolutionSet,Connectivity
     }
 }

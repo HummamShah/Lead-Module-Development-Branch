@@ -118,36 +118,40 @@ namespace LMS.Models.Feature.Lead
 				response.CUDS = Data.CUDS;
 				response.CUDSEnum = ((DataServices)Data.CUDS.Value).ToString();
 			}
-			if (Data.CUDSService.HasValue)
-			{
-				response.CUDSService = Data.CUDSService;
-				if (Data.CUDS == (int)DataServices.WiWax)
-				{
-					response.CUDSServiceEnum = ((WiWax)Data.CUDSService.Value).ToString();
-				}
-				if (Data.CUDS == (int)DataServices.Fiber)
-				{
-					response.CUDSServiceEnum = ((Fiber)Data.CUDSService.Value).ToString();
-				}
-				if (Data.CUDS == (int)DataServices.VSAT)
-				{
-					response.CUDSServiceEnum = ((VSAT)Data.CUDSService.Value).ToString();
-				}
-				if (Data.CUDS == (int)DataServices.DSL)
-				{
-					response.CUDSServiceEnum = ((DSL)Data.CUDSService.Value).ToString();
-				}
-				if (Data.CUDS == (int)DataServices.Other)
-				{
-					response.CUDSServiceEnum = Data.CUDSOtherService;//((DSL)Data.CUDSService.Value).ToString();
-				}
-			}
+			//if (Data.CUDSService.HasValue)
+			//{
+			//	response.CUDSService = Data.CUDSService;
+			//	if (Data.CUDS == (int)DataServices.WiWax)
+			//	{
+			//		response.CUDSServiceEnum = ((WiWax)Data.CUDSService.Value).ToString();
+			//	}
+			//	if (Data.CUDS == (int)DataServices.Fiber)
+			//	{
+			//		response.CUDSServiceEnum = ((Fiber)Data.CUDSService.Value).ToString();
+			//	}
+			//	if (Data.CUDS == (int)DataServices.VSAT)
+			//	{
+			//		response.CUDSServiceEnum = ((VSAT)Data.CUDSService.Value).ToString();
+			//	}
+			//	if (Data.CUDS == (int)DataServices.DSL)
+			//	{
+			//		response.CUDSServiceEnum = ((DSL)Data.CUDSService.Value).ToString();
+			//	}
+			//	if (Data.CUDS == (int)DataServices.Other)
+			//	{
+			//		response.CUDSServiceEnum = Data.CUDSOtherService;//((DSL)Data.CUDSService.Value).ToString();
+			//	}
+			//}
+			response.CUDSOtherService = Data.CUDSOtherService;
 			response.IsEsisting = Data.IsEsisting;
 			response.HasTriedOurServie = Data.HasTriedOurServie;
 			response.NTN = Data.NTN;
 			response.IsApproved = Data.IsApproved;
 			response.ContactPersonName = Data.ContactPersonName;
 			response.ContactPersonNumber = Data.ContactPersonNumber;
+			response.ContactPersonEmail = Data.ContactPersonEmail;
+			response.ContactPersonTitle = Data.ContactPersonTitle;
+			response.ContactPersonDepartment = Data.ContactPersonDepartment;
 			response.NoBracnhOffices = Data.NumberOfBranchOffices;
 			response.Website = Data.Website;
 			response.CurrentItPlatform = Data.CurrentItPlatform;
@@ -165,6 +169,9 @@ namespace LMS.Models.Feature.Lead
 			public string ContactPersonName {get; set;}
 			public string CompanyAlternateContact { get; set; }
 			public string ContactPersonNumber { get; set; }
+			public string ContactPersonEmail { get; set; }
+			public string ContactPersonTitle { get; set; }
+			public string ContactPersonDepartment { get; set; }
 			public string Description { get; set; }
 			public int? City { get; set; }
 			public string CityEnum { get; set; }
