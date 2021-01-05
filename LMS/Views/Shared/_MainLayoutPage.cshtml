@@ -32,10 +32,16 @@
                         <a href="/Department"> Departments <i class="fas fa-caret-right NavbarLink"></i></a>
                     </li>
                 }
-                @if (User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.Lead_Sales))
+                @if (User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.Lead_Sales) )
                 {
                     <li>
                         <a href="/Lead"> Leads <i class="fas fa-caret-right NavbarLink"></i></a>
+                    </li>
+                }
+                @if (User.IsInRole(UserRoles.Admin)  || User.IsInRole(UserRoles.Pmd_Feasibility) || User.IsInRole(UserRoles.SuperAdmin))
+                {
+                    <li>
+                        <a href="/Lead/List"> Leads <i class="fas fa-caret-right NavbarLink"></i></a>
                     </li>
                 }
 

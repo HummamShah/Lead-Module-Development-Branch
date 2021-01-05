@@ -554,6 +554,16 @@ app.controller('LeadCtrl',
                     });
 
             }
+            $scope.initPmdIndex = function () {
+                $scope.Assignment = {};
+                $scope.AssignmentTypes = ["Lead", "PMD", "PreSale"];
+                $scope.AjaxGet("/api/LeadApi/GetListForPmd", null).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Leads = response.data.Data;
+                    });
+
+            }
             $scope.SetAssigningDataToModal = function (Lead) {
                 console.log(Lead);
                 $scope.Assignment.Id = Lead.Id;
@@ -569,6 +579,14 @@ app.controller('LeadCtrl',
             }
             $scope.AssignUser = function (Assignment) {
                 console.log(Assignment);
+                if (Assignment.Type == null) {
+                    toaster.pop('error', "error", "Select Type Of User");
+                    return;
+                }
+                if (Assignment.AssignedUserId == null) {
+                    toaster.pop('error', "error", "Select User To Assign");
+                    return;
+                }
                 $scope.AjaxPost("/api/LeadApi/AssignLead", Assignment).then(
                     function (response) {
                         if (response.status == 200) {
@@ -591,7 +609,7 @@ app.controller('LeadCtrl',
                     toaster.pop('error', "error", "Please Select Domain!");
                     return;
                 }
-                return;
+            
               
                 $scope.AjaxPost("/api/LeadApi/AddLead", Lead).then(
                     function (response) {

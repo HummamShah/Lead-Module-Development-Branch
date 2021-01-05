@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="LeadCtrl" ng-init="initPmdIndex()">
+    @*ng-controller="UserCtrl" ng-init="initIndex()"*@
+    <div class="jumbotron PageHeading">
+        <div class="row">
+            <div class="col-md-3">
+                <h2>Leads List</h2>
+            </div>
+            <div class="col-md-9 ">
+                <a class="btn btn-primary pull-right" style=" margin-top: 20px;" href="/Lead/Add">Add</a>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron PageHeading">
+        <table class="table" width="100%">
+            <tr class="table-head">
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Company Name
+                </th>
+
+                <th>
+                    Assigned PMD
+                </th>
+                <th>
+                    Feasibility
+                </th>
+                <th>
+                    Assigned PreSale
+                </th>
+                <th>Qutation Approval</th>
+                <th>
+                    Lead Status
+                </th>
+                <th>Stage</th>
+                <th>
+                    Created By
+                </th>
+                <th style="width: 10%;">
+                    Created At
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+            <tr ng-repeat="Lead in Leads">
+                <td>{{Lead.Id}}</td>
+                <td>{{Lead.Name}}</td>
+                <td>{{Lead.CompanyName}}</td>
+                <td>{{Lead.AssingnedPmdName}}</td>
+                <td>{{Lead.PmdStatusEnum}}</td>
+                <td>{{Lead.AssignedPreSaleName}}</td>
+                <td>{{Lead.PmdStatusEnum}}</td>
+                <td>{{Lead.LeadStatusEnum}}</td>
+                <td>-</td>
+                <td>{{Lead.CreatedBy}}</td>
+                <td>{{Lead.CreatedAt | date:'MMM d, y'}}</td>
+                <td>
+                    @*<a href="/Lead/Edit?Id={{Lead.Id}}" title="Edit"><i class="fas fa-pencil-alt" title="Edit"></i></a>
+                        <a href="/Lead/Details?Id={{Lead.Id}}" title="Details"><i class="fas fa-file" title="Details"></i></a>
+                        <a href="/Lead/Print?Id={{Lead.Id}}" title="Print"><i class="fas fa-print" title="Print"></i></a>*@
+
+                    <a href="#" data-toggle="modal" data-target="#myModal" ng-click="SetAssigningDataToModal(Lead)" title="Assign Lead"><i class="fas fa-users"></i></a>
+                    <a href="/Lead/Edit?Id={{Lead.Id}}" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                    <a href="/Lead/Detail?Id={{Lead.Id}}" title="Details"><i class="fas fa-file"></i></a>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{Assignment.Header}}</h4>
+                </div>
+                <div class="">
+                    <form id="AssignmentForm ">
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label>Assigning Agent Type</label>
+                                <select ng-model="Assignment.Type" class="form-control" ng-change="SetAssigningType(Assignment.Type)">
+                                    <option selected value="">Select Agent To Assign</option>
+                                    <option ng-repeat="Type in AssignmentTypes" value="{{Type}}">{{Type}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label>Users</label>
+                                <select ng-model="Assignment.AssignedUserId" class="form-control">
+                                    <option selected value="">Select Agent To Assign</option>
+                                    <option ng-repeat="Agent in AssignmentAgents" value="{{Agent.Id}}">{{Agent.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" style=" margin-top: 25px;" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" style=" margin-top: 25px;" data-dismiss="modal" ng-click="AssignUser(Assignment)">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

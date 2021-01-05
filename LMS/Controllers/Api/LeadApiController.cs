@@ -23,6 +23,20 @@ namespace LMS.Controllers.Api
             var result = temp.RunRequest(temp);
             return result;
         }
+
+
+        [HttpGet]
+        public object GetListForPmd()
+        {
+            var temp = new GetListingForPmdRequest();
+            if (!User.IsInRole(Roles.Admin) && !User.IsInRole(Roles.SuperAdmin))
+            {
+                temp.UserId = User.Identity.GetUserId();
+            }
+
+            var result = temp.RunRequest(temp);
+            return result;
+        }
         [HttpPost]
         public object AddLead([FromBody] AddLeadRequest req) //If not working remove frombody
         {
