@@ -285,16 +285,19 @@
     <Compile Include="Models\Feature\Department\GetDepartmentRequest.cs" />
     <Compile Include="Models\Feature\Department\GetDepartmentsDropdownRequest.cs" />
     <Compile Include="Models\Feature\Department\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\Lead\AddFeasibilityRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\EditLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\AssignLeadRequest.cs" />
+    <Compile Include="Models\Feature\Lead\GetListingForPmdRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetListingRequest.cs" />
     <Compile Include="Models\Feature\User\GetAgentsForAssignmentRequest.cs" />
     <Compile Include="Models\Feature\User\GetListingRequest.cs" />
     <Compile Include="Models\Feature\User\GetUsersByDepartmentRequest.cs" />
     <Compile Include="Models\Feature\Vendor\AddVendorRequest.cs" />
     <Compile Include="Models\Feature\Vendor\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\Vendor\GetVendorsRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -399,6 +402,8 @@
     <Content Include="Views\Lead\Add.cshtml" />
     <Content Include="Views\Lead\Detail.cshtml" />
     <Content Include="Views\Lead\Edit.cshtml" />
+    <Content Include="Views\Lead\List.cshtml" />
+    <Content Include="Views\Lead\AddFeasibility.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

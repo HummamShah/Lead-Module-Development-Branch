@@ -14,8 +14,19 @@ namespace LMS.Controllers
         {
             return View();
         }
+        [Authorize(Roles = "Admin,Pmd_Feasibility")]
+        public ActionResult List()
+        {
+            return View();
+        }
         [Authorize(Roles = "Lead_Sales,Admin,SuperAdmin")]
         public ActionResult Add()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin,SuperAdmin,Pmd_Feasibility")]
+        public ActionResult AddFeasibility()
         {
             return View();
         }

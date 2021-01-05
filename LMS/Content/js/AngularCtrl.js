@@ -573,6 +573,16 @@ app.controller('LeadCtrl',
                     });
 
             }
+            $scope.initPmdIndex = function () {
+                $scope.Assignment = {};
+                $scope.AssignmentTypes = ["Lead", "PMD", "PreSale"];
+                $scope.AjaxGet("/api/LeadApi/GetListForPmd", null).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Leads = response.data.Data;
+                    });
+
+            }
             $scope.SetAssigningDataToModal = function (Lead) {
                 console.log(Lead);
                 $scope.Assignment.Id = Lead.Id;
@@ -588,6 +598,14 @@ app.controller('LeadCtrl',
             }
             $scope.AssignUser = function (Assignment) {
                 console.log(Assignment);
+                if (Assignment.Type == null) {
+                    toaster.pop('error', "error", "Select Type Of User");
+                    return;
+                }
+                if (Assignment.AssignedUserId == null) {
+                    toaster.pop('error', "error", "Select User To Assign");
+                    return;
+                }
                 $scope.AjaxPost("/api/LeadApi/AssignLead", Assignment).then(
                     function (response) {
                         if (response.status == 200) {
@@ -611,8 +629,7 @@ app.controller('LeadCtrl',
                     toaster.pop('error', "error", "Please Select Domain!");
                     return;
                 }
-                if (Lead.ContactPersonName == null || Lead.ContactPersonName == "")
-                {
+                if (Lead.ContactPersonName == null || Lead.ContactPersonName == "") {
                     toaster.pop('error', "error", "Please Enter Contact Person Name");
                     return;
                 }
@@ -632,7 +649,6 @@ app.controller('LeadCtrl',
                     toaster.pop('error', "error", "Please Enter Contact Person Department");
                     return;
                 }
-                
               
                 $scope.AjaxPost("/api/LeadApi/AddLead", Lead).then(
                     function (response) {
@@ -744,7 +760,7 @@ app.controller('LeadCtrl',
                 $scope.Company = {};
                 $scope.Companies = [];
                 $scope.Lead = {};
-                $scope.Lead.Domain = 0;
+               // $scope.Lead.Domain = 0;
                 var Id = $scope.GetUrlParameter("Id");
                 var data = {
                     Id: parseInt(Id)
@@ -797,6 +813,78 @@ app.controller('LeadCtrl',
                             //alert("Lead has been Updated Successfully!");
                             toaster.pop('success', "success", "Lead Has Been Updated Successfully!");
                             $timeout(function () { window.location.href = '/Lead'; }, 2000);
+                        } else {
+                            toaster.pop('error', "error", "Unable to update lead!");
+                        }
+                    });
+            }
+            $scope.FeasibiltyInit = function () {
+                $scope.Lead = {};
+                $scope.LeadFeasibility = [];
+                $scope.Vendors = [];
+                $scope.FeasibilityStatus = 2;
+                $scope.ShowContactInformation = false;
+                $scope.ShowBusinessInformation = false;
+                $scope.ShowFeasibilityInformation = false;
+                var Id = $scope.GetUrlParameter("Id");
+                var data = {
+                    Id: parseInt(Id)
+                }
+                console.log(data);
+                $scope.AjaxGet("/api/LeadApi/GetLead", data).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Lead = response.data;
+                    });
+                getVendors();
+            }
+            getVendors = function () {
+                $scope.AjaxGet("/api/VendorApi/GetVendors", null).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Vendors = response.data.Data;
+                    });
+            }
+            $scope.ExpandCollapse = function (PortionName) {
+                if (PortionName == "BI") {
+                    $scope.ShowBusinessInformation = !$scope.ShowBusinessInformation;
+                }
+                if (PortionName == "CI") {
+                    $scope.ShowContactInformation = !$scope.ShowContactInformation;
+                }
+                if ("FF") {
+                    $scope.ShowFeasibilityInformation = !$scope.ShowFeasibilityInformation;
+                }
+            }
+            $scope.AddRow = function () {
+                var temp = {
+                    VendorId: null,
+                    LeadId: $scope.Lead.Id,
+                    OTC: 0,
+                    MRC: 0,
+                    BandWidth: "",
+                    Remarks:""
+                }
+                $scope.LeadFeasibility.push(temp);
+                console.log($scope.LeadFeasibility);
+            }
+            $scope.RemoveRow = function (index) {
+                console.log(index);
+                $scope.LeadFeasibility.splice(index, 1);
+            }
+            $scope.AddFeasibility = function (LeadFeasibility) {
+                console.log(LeadFeasibility);
+                var temp = {
+                    Feasibility: LeadFeasibility,
+                    Status: $scope.FeasibilityStatus
+                }
+                console.log(temp);
+                $scope.AjaxPost("/api/LeadApi/AddFeasibility", temp).then(
+                    function (response) {
+                        if (response.status == 200) {
+                            //alert("Lead has been Updated Successfully!");
+                            toaster.pop('success', "success", "Pmd Details Has Been Added Successfully!");
+                            $timeout(function () { window.location.href = '/Lead/List'; }, 2000);
                         } else {
                             toaster.pop('error', "error", "Unable to update lead!");
                         }

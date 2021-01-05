@@ -25,8 +25,22 @@ namespace LMS.Models.Feature.User
 		{
 			var response = new GetAgentsForAssignmentResponse();
 			response.Data = new List<AgentsDropdownData>();
-			//TODO set data  according to type = pmd,presale,lead
-			var Data = _dbContext.Agent;
+			//TODO set data  according to type = pmd=2,presale=3,lead =1
+			//Todo Fix the deparment id check need to send departmentid from angular
+
+			var Data = _dbContext.Agent.ToList();
+            if (req.Type == "Lead")
+            {
+				Data = Data.Where(x=>x.DepartmentId == 1).ToList();
+            }
+			if (req.Type == "PMD")
+			{
+				Data = Data.Where(x => x.DepartmentId == 2).ToList();
+			}
+			if (req.Type == "PreSale")
+			{
+				Data = Data.Where(x => x.DepartmentId == 3).ToList();
+			}
 			foreach (var d in Data)
 			{
 				var temp = new AgentsDropdownData();
