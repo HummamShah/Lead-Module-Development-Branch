@@ -32,13 +32,13 @@
                         <a href="/Department"> Departments <i class="fas fa-caret-right NavbarLink"></i></a>
                     </li>
                 }
-                @if (User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.Lead_Sales) )
+                @if (User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.Lead_Sales) || User.IsInRole(UserRoles.SuperAdmin))
                 {
                     <li>
                         <a href="/Lead"> Leads <i class="fas fa-caret-right NavbarLink"></i></a>
                     </li>
                 }
-                @if (User.IsInRole(UserRoles.Admin)  || User.IsInRole(UserRoles.Pmd_Feasibility) || User.IsInRole(UserRoles.SuperAdmin))
+                @if ( User.IsInRole(UserRoles.Pmd_Feasibility) )
                 {
                     <li>
                         <a href="/Lead/List"> Leads <i class="fas fa-caret-right NavbarLink"></i></a>
@@ -137,7 +137,8 @@
     <script src="~/Content/js/jquery.min.js"></script>
     <script src="~/Content/js/angular.min.js"></script>
     <script src="~/Content/js/toaster.js"></script>
-    <script src="~/Content/js/AngularCtrl.js"></script>
+    @*<script src="~/Content/js/AngularCtrl.js"></script>*@
+    @Scripts.Render("~/Content/js/Angular/AngularBundle")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
