@@ -439,6 +439,14 @@ app.controller('CompanyCtrl',
                     toaster.pop('error', "error", "Contact Is Required!");
                     return;
                 }
+                if (Company.Latitude == null) {
+                    toaster.pop('error', "error", "Latitide is required");
+                    return;
+                }
+                if (Company.Longitude == null) {
+                    toaster.pop('error', "error", "Longitude is required");
+                    return;
+                }
                 var promise = $http.post("/api/CompanyApi/EditCompany", Company, { headers: { 'Accept': 'application/json' } });
                 promise.then(
                     function (response) {
