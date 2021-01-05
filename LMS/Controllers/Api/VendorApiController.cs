@@ -18,6 +18,13 @@ namespace LMS.Controllers.Api
             var result = temp.RunRequest();
             return result;
         }
+        [HttpGet]
+        public object GetVendors()
+        {
+            var temp = new GetVendorsRequest();
+            var result = temp.RunRequest();
+            return result;
+        }
         [HttpPost]
         public object AddVendor([FromBody] AddVendorRequest req)
         {

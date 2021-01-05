@@ -48,7 +48,7 @@ namespace LMS.Models.Feature.Lead
 
 			if (Data.AssignedPmdId.HasValue)
 			{
-				response.AssingnedPmdName = Data.AssignedPMD.FisrtName + Data.AssignedTo.LastName;
+				response.AssingnedPmdName = Data.AssignedPMD.FisrtName +" " + Data.AssignedPMD.LastName;
 				response.AssignedPmdId = Data.AssignedPmdId;
 				response.PmdAssignedOn = Data.PmdAssignedOn;
 
@@ -56,7 +56,7 @@ namespace LMS.Models.Feature.Lead
 			}
 			if (Data.AssignedPreSaleId.HasValue)
 			{
-				response.AssignedPreSaleName = Data.AssignedPMD.FisrtName + Data.AssignedTo.LastName;
+				response.AssignedPreSaleName = Data.AssignedPreSale.FisrtName + " " +  Data.AssignedPreSale.LastName;
 				response.AssignedPreSaleId = Data.AssignedPreSaleId;
 				response.PreSaleAssignedOn = Data.PresaleAssignedOn;
 

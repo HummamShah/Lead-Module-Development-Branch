@@ -285,6 +285,7 @@
     <Compile Include="Models\Feature\Department\GetDepartmentRequest.cs" />
     <Compile Include="Models\Feature\Department\GetDepartmentsDropdownRequest.cs" />
     <Compile Include="Models\Feature\Department\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\Lead\AddFeasibilityRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\EditLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetLeadRequest.cs" />
@@ -296,6 +297,7 @@
     <Compile Include="Models\Feature\User\GetUsersByDepartmentRequest.cs" />
     <Compile Include="Models\Feature\Vendor\AddVendorRequest.cs" />
     <Compile Include="Models\Feature\Vendor\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\Vendor\GetVendorsRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

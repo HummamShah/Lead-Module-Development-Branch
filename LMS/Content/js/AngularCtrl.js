@@ -750,5 +750,77 @@ app.controller('LeadCtrl',
                         }
                     });
             }
+            $scope.FeasibiltyInit = function () {
+                $scope.Lead = {};
+                $scope.LeadFeasibility = [];
+                $scope.Vendors = [];
+                $scope.FeasibilityStatus = 2;
+                $scope.ShowContactInformation = false;
+                $scope.ShowBusinessInformation = false;
+                $scope.ShowFeasibilityInformation = false;
+                var Id = $scope.GetUrlParameter("Id");
+                var data = {
+                    Id: parseInt(Id)
+                }
+                console.log(data);
+                $scope.AjaxGet("/api/LeadApi/GetLead", data).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Lead = response.data;
+                    });
+                getVendors();
+            }
+            getVendors = function () {
+                $scope.AjaxGet("/api/VendorApi/GetVendors", null).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Vendors = response.data.Data;
+                    });
+            }
+            $scope.ExpandCollapse = function (PortionName) {
+                if (PortionName == "BI") {
+                    $scope.ShowBusinessInformation = !$scope.ShowBusinessInformation;
+                }
+                if (PortionName == "CI") {
+                    $scope.ShowContactInformation = !$scope.ShowContactInformation;
+                }
+                if ("FF") {
+                    $scope.ShowFeasibilityInformation = !$scope.ShowFeasibilityInformation;
+                }
+            }
+            $scope.AddRow = function () {
+                var temp = {
+                    VendorId: null,
+                    LeadId: $scope.Lead.Id,
+                    OTC: 0,
+                    MRC: 0,
+                    BandWidth: "",
+                    Remarks:""
+                }
+                $scope.LeadFeasibility.push(temp);
+                console.log($scope.LeadFeasibility);
+            }
+            $scope.RemoveRow = function (index) {
+                console.log(index);
+                $scope.LeadFeasibility.splice(index, 1);
+            }
+            $scope.AddFeasibility = function (LeadFeasibility) {
+                console.log(LeadFeasibility);
+                var temp = {
+                    Feasibility: LeadFeasibility,
+                    Status: $scope.FeasibilityStatus
+                }
+                console.log(temp);
+                $scope.AjaxPost("/api/LeadApi/AddFeasibility", temp).then(
+                    function (response) {
+                        if (response.status == 200) {
+                            //alert("Lead has been Updated Successfully!");
+                            toaster.pop('success', "success", "Pmd Details Has Been Added Successfully!");
+                            $timeout(function () { window.location.href = '/Lead/List'; }, 2000);
+                        } else {
+                            toaster.pop('error', "error", "Unable to update lead!");
+                        }
+                    });
+            }
         }
     ]);
