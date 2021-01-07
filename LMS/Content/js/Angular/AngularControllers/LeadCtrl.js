@@ -206,6 +206,9 @@
                 $scope.Company = {};
                 $scope.Companies = [];
                 $scope.Lead = {};
+                $scope.ShowContactInformation = false;
+                $scope.ShowBusinessInformation = false;
+                $scope.ShowFeasibilityInformation = false;
                 // $scope.Lead.Domain = 0;
                 var Id = $scope.GetUrlParameter("Id");
                 var data = {

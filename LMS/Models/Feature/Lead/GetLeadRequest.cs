@@ -169,6 +169,8 @@ namespace LMS.Models.Feature.Lead
 				FeasibilityRow.MRC = feasibility.MRC;
 				FeasibilityRow.OTC = feasibility.OTC;
 				FeasibilityRow.Remarks = feasibility.Remarks;
+				FeasibilityRow.VendorId = feasibility.VendorId;
+				FeasibilityRow.VendorName = feasibility.Vendor.Name;
 				response.FeasibilityDetails.Add(FeasibilityRow);
 
 

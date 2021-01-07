@@ -445,3 +445,9 @@ ul ul a {
 .OverBudget {
     background: red;
 }
+.EditFeasibiltyIcon {
+    font-size: 16px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 6px;
+}
