@@ -34,6 +34,7 @@ namespace LMS.Models.Feature.Lead
             var LeadId = request.Feasibility.FirstOrDefault().LeadId;
             var Lead = _dbContext.Lead.Where(x => x.Id == LeadId).FirstOrDefault();
             Lead.PmdStatus = request.Status;
+            var LeadStatusResult = _dbContext.SaveChanges();
             foreach (var feasibility in request.Feasibility)
             {
                 var Feasibility = new PmdDetails();
@@ -45,6 +46,7 @@ namespace LMS.Models.Feature.Lead
                 Feasibility.Remarks = feasibility.Remarks;
                 Feasibility.CreatedAt = DateTime.Now;
                 Feasibility.CreatedBy = request.CreatedBy;
+                _dbContext.PmdDetails.Add(Feasibility);
                 var Result = _dbContext.SaveChanges();
             }
             return resp;

@@ -8,13 +8,6 @@
         <div class="row">
             <div class="col-md-4 col-sm-4 col-lg-4"><h2>Lead Details</h2></div>
             <div class="col-md-4 col-sm-4 col-lg-4" style="padding: 0px; margin: 0px; margin-top: 14px;">
-                @*Domain
-                    <div class="form-group"  style="display:inline-block;">
-                        <select ng-model="Lead.Domain" class="form-control">
-                            <option value="Services">Services</option>
-                            <option value="Connectivity">Connectivity</option>
-                        </select>
-                    </div>*@
             </div>
             <div class="col-md-4 col-sm-4 col-lg-4" style=" margin-top: 15px; float: right; text-align: right;">
                 Domain
@@ -126,11 +119,6 @@
 
         </div>
     </div>
-
-
-
-
-
     <div class="jumbotron PageHeading">
         <div class="row text-center">
             <h2 class="SegmentHeading">Business Infromation</h2>
@@ -157,25 +145,25 @@
                 <input type="text" readonly ng-model="Lead.CurrentItPlatform" class="form-control" />
             </div>
             @*<div class="col-md-4 form-group">
-            <label>Future Plan For Extension In IT Service</label>
-            <input type="text" ng-model="Lead.FuturePlanOFExtention" class="form-control" />
-        </div>*@
+                    <label>Future Plan For Extension In IT Service</label>
+                    <input type="text" ng-model="Lead.FuturePlanOFExtention" class="form-control" />
+                </div>*@
             @*<div class="col-md-4 form-group">
-                <label>Currently Used Medium</label>
-                <input type="text" readonly ng-model="Lead.CUDSEnum" class="form-control" />
-            </div>*@
+                    <label>Currently Used Medium</label>
+                    <input type="text" readonly ng-model="Lead.CUDSEnum" class="form-control" />
+                </div>*@
             @*<div class="col-md-4 form-group" ng-if="Lead.CUDS == null">
-                <span readonly ng-if="Lead.CUDS == null">N/A</span>
-            </div>*@
+                    <span readonly ng-if="Lead.CUDS == null">N/A</span>
+                </div>*@
             <div class="col-md-4 form-group" ng-model="Lead.CUDSOtherService">
                 @*<span ng-if="Lead.CUDS != '4' ">
-                    <label>Select Service</label>
-                    <input type="text" readonly ng-model="Lead.CUDSServiceEnum" class="form-control" />
-                </span>*@
-                
-                    <label>Currently Used Medium</label>
-                    <input type="text" readonly class="form-control" ng-model="Lead.CUDSOtherService" />
-                
+                        <label>Select Service</label>
+                        <input type="text" readonly ng-model="Lead.CUDSServiceEnum" class="form-control" />
+                    </span>*@
+
+                <label>Currently Used Medium</label>
+                <input type="text" readonly class="form-control" ng-model="Lead.CUDSOtherService" />
+
             </div>
             <div class="col-md-4 form-group">
                 <label>Number Of Links</label>
@@ -211,9 +199,57 @@
             </div>
 
         </div>
-        <div class="row float-right"   style="margin-right: 46px;">
+        <div class="row float-right" style="margin-right: 46px;">
             <a href="/Lead" class="btn btn-danger">Cancel</a>
         </div>
 
     </div>
+
+
+    <div class="jumbotron PageHeading">
+        <div class="row text-center">
+            <h2 class="SegmentHeading">Feasibility </h2>
+        </div>
+        <div ng-if="LeadFeasibility.length > 0">
+            <table class="table " width="100%">
+                <tr>
+                    <th>SR#</th>
+                    <th>Vendor</th>
+                    <th>OTC</th>
+                    <th>MRC</th>
+                    <th>Bandwidth</th>
+                    <th>Remarks</th>
+                </tr>
+                <tr ng-repeat="feasibility in Lead.FeasibilityDetails">
+                    <td>{{$index+1}}</td>
+                    <td>
+                        {{feasibility.VendorName}}
+                    </td>
+                    <td>
+                        {{feasibility.OTC  | number}}
+                    </td>
+                    <td>
+                        {{feasibility.MRC | number}}
+                    </td>
+                    <td>
+                       {{feasibility.Bandwidth}}
+                    </td>
+                    <td>
+                       {{feasibility.Remarks}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="row float-right" style="margin-right: 46px;">
+            <a href="/Lead" class="btn btn-danger">Cancel</a>
+        </div>
+
+    </div>
+
+
+
+
 </div>

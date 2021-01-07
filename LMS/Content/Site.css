@@ -439,4 +439,9 @@ ul ul a {
 .NotFeasible{
     background:red;
 }
- 
+.InBudget {
+    background: green;
+}
+.OverBudget {
+    background: red;
+}

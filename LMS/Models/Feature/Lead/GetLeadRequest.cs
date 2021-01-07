@@ -22,6 +22,7 @@ namespace LMS.Models.Feature.Lead
 			response.Id = Data.Id;
 			response.Name = Data.Name;
 			response.CompanyId = Data.CompanyId.Value;
+			response.FeasibilityDetails = new List<FeasibilityDetails>();
 			if (Data.CompanyId.HasValue)
 			{
 				response.CompanyName = Data.Company.Name;
@@ -157,6 +158,23 @@ namespace LMS.Models.Feature.Lead
 			response.CurrentItPlatform = Data.CurrentItPlatform;
 			response.NoLinks = Data.NoLinks;
 
+			foreach(var feasibility in Data.PmdDetails)
+            {
+				var FeasibilityRow = new FeasibilityDetails();
+				FeasibilityRow.Bandwidth = feasibility.Bandwidth;
+				FeasibilityRow.CreatedAt = feasibility.CreatedAt;
+				FeasibilityRow.CreatedBy = feasibility.CreatedBy;
+				FeasibilityRow.Id = feasibility.Id;
+				FeasibilityRow.LeadId = feasibility.LeadId;
+				FeasibilityRow.MRC = feasibility.MRC;
+				FeasibilityRow.OTC = feasibility.OTC;
+				FeasibilityRow.Remarks = feasibility.Remarks;
+				response.FeasibilityDetails.Add(FeasibilityRow);
+
+
+
+			}
+
 			return response;
 		}
 
@@ -225,7 +243,21 @@ namespace LMS.Models.Feature.Lead
 			public DateTime? CreatedAt { get; set; }
 			public string UpdatedBy { get; set; }
 			public DateTime? UpdatedAt { get; set; }
+			public List<FeasibilityDetails> FeasibilityDetails { get; set; }
 
+		}
+		public class FeasibilityDetails
+		{
+			public int Id { get; set; }
+			public int? LeadId { get; set; }
+			public string Bandwidth { get; set; }
+			public decimal? OTC { get; set; }
+			public decimal? MRC { get; set; }
+			public int? VendorId { get; set; }
+			public string VendorName { get; set; }
+			public string Remarks { get; set; }
+			public string CreatedBy { get; set; }
+			public DateTime? CreatedAt { get; set; }
 		}
 	}
 }

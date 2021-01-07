@@ -112,7 +112,7 @@ namespace LMS.Models.Feature.Lead
 				
                 if (d.AssignedToId.HasValue)
                 {
-					temp.AssignedToName = d.AssignedTo.FisrtName + d.AssignedTo.LastName;
+					temp.AssignedToName = d.AssignedTo.FisrtName + " " + d.AssignedTo.LastName;
 					temp.AssignedToId = d.AssignedToId;
 					temp.AssignedOn = d.LeadAssignedOn;
 
@@ -120,14 +120,14 @@ namespace LMS.Models.Feature.Lead
 
 				if (d.AssignedPmdId.HasValue)
 				{
-					temp.AssingnedPmdName = d.AssignedPMD.FisrtName + d.AssignedPMD.LastName;
+					temp.AssingnedPmdName = d.AssignedPMD.FisrtName + " " + d.AssignedPMD.LastName;
 					temp.AssignedPmdId = d.AssignedPmdId;
 					
 
 				}
 				if (d.AssignedPreSaleId.HasValue)
 				{
-					temp.AssignedPreSaleName = d.AssignedPreSale.FisrtName + d.AssignedPreSale.LastName;
+					temp.AssignedPreSaleName = d.AssignedPreSale.FisrtName + " " + d.AssignedPreSale.LastName;
 					temp.AssignedPreSaleId = d.AssignedPreSaleId;
 
 
