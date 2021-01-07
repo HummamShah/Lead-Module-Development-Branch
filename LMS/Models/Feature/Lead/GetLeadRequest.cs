@@ -158,6 +158,12 @@ namespace LMS.Models.Feature.Lead
 			response.CurrentItPlatform = Data.CurrentItPlatform;
 			response.NoLinks = Data.NoLinks;
 
+            if (Data.Company != null) // need to remove this once all the data is filled with company
+            {
+				response.Latitude = Data.Company.Latitude??0;
+				response.Longitude = Data.Company.Longitude ?? 0;
+
+			}
 			foreach(var feasibility in Data.PmdDetails)
             {
 				var FeasibilityRow = new FeasibilityDetails();
@@ -241,6 +247,8 @@ namespace LMS.Models.Feature.Lead
 			public DateTime? PreSaleAssignedOn { get; set; }
 			public int? Area { get; set; }
 			public string AreaEnum { get; set; }
+			public double Latitude { get; set; }
+			public double Longitude { get; set; }
 			public string CreatedBy { get; set; }
 			public DateTime? CreatedAt { get; set; }
 			public string UpdatedBy { get; set; }
