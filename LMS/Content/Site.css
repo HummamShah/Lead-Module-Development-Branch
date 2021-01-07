@@ -419,3 +419,23 @@ ul ul a {
 .LoaderDeActivate {
     pointer-events: auto;
 }
+.Open {
+    background: #00b7a6;
+}
+.Completed {
+    background: green;
+}
+
+.Cancelled {
+    background: red;
+}
+.None{
+    background: #f89406;
+}
+.Feasible{
+    background:green;
+}
+.NotFeasible{
+    background:red;
+}
+ 
