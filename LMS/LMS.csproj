@@ -411,6 +411,7 @@
     <Content Include="Views\Lead\Edit.cshtml" />
     <Content Include="Views\Lead\List.cshtml" />
     <Content Include="Views\Lead\AddFeasibility.cshtml" />
+    <Content Include="Views\Lead\EditFeasibility.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

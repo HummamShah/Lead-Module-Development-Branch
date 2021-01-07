@@ -267,10 +267,31 @@
                         }
                     });
             }
-            $scope.FeasibiltyInit = function () {
+            $scope.FeasibiltyAddInit = function () {
                 $scope.Lead = {};
                 $scope.LeadFeasibility = [];
                 $scope.Vendors = [];
+                $scope.FeasibilityStatus = 2;
+                $scope.ShowContactInformation = false;
+                $scope.ShowBusinessInformation = false;
+                $scope.ShowFeasibilityInformation = false;
+                var Id = $scope.GetUrlParameter("Id");
+                var data = {
+                    Id: parseInt(Id)
+                }
+                console.log(data);
+                $scope.AjaxGet("/api/LeadApi/GetLead", data).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Lead = response.data;
+                    });
+                getVendors();
+            }
+            $scope.FeasibiltyEditInit = function () {
+                $scope.Lead = {};
+                $scope.LeadFeasibility = [];
+                $scope.Vendors = [];
+                $scope.DeletedRows = [];
                 $scope.FeasibilityStatus = 2;
                 $scope.ShowContactInformation = false;
                 $scope.ShowBusinessInformation = false;
@@ -317,9 +338,29 @@
                 $scope.LeadFeasibility.push(temp);
                 console.log($scope.LeadFeasibility);
             }
+            $scope.AddRowInEditForm = function () {
+                var temp = {
+                    Id:0,
+                    VendorId: null,
+                    LeadId: $scope.Lead.Id,
+                    OTC: 0,
+                    MRC: 0,
+                    BandWidth: "",
+                    Remarks: ""
+                }
+                $scope.Lead.FeasibilityDetails.push(temp);
+                console.log($scope.Lead.FeasibilityDetails);
+            }
             $scope.RemoveRow = function (index) {
                 console.log(index);
                 $scope.LeadFeasibility.splice(index, 1);
+            }
+            $scope.RemoveEditRow = function (index) {
+                console.log(index);
+                if ($scope.Lead.FeasibilityDetails[index].Id != 0) {
+                    $scope.DeletedRows.push($scope.Lead.FeasibilityDetails[index]);
+                }
+                $scope.Lead.FeasibilityDetails.splice(index, 1);
             }
             $scope.AddFeasibility = function (LeadFeasibility) {
                 console.log(LeadFeasibility);
@@ -338,6 +379,10 @@
                             toaster.pop('error', "error", "Unable to update lead!");
                         }
                     });
+            }
+            $scope.EditFeasibility  = function (LeadFeasibility) {
+                console.log(LeadFeasibility);
+                console.log($scope.DeletedRows);
             }
         }
     ]);

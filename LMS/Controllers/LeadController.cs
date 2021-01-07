@@ -42,5 +42,11 @@ namespace LMS.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "Pmd_Feasibility")]
+        public ActionResult EditFeasibility()
+        {
+            return View();
+        }
     }
 }
