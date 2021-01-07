@@ -312,6 +312,9 @@
     <Content Include="Content\js\angular.min.js" />
     <Content Include="Content\js\AngularCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\baseCtrl.js" />
+    <Content Include="Content\js\Angular\AngularControllers\CompanyCtrl.js" />
+    <Content Include="Content\js\Angular\AngularControllers\DepartmentCtrl.js" />
+    <Content Include="Content\js\Angular\AngularControllers\LeadCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\UserCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\VendorCtrl.js" />
     <Content Include="Content\js\Angular\app.js" />
