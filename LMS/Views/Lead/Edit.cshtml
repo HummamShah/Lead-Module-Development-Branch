@@ -126,14 +126,22 @@
                 <label>Website</label>
                 <input type="text" class="form-control" ng-model="Lead.Website" placeholder="www.sharptel.com" />
             </div>
+            @*<div class="col-md-4 form-group">
+            <label>Area / Territory</label>
+            <select ng-model="Lead.Area" class="form-control">
+                <option selected value="">Area</option>
+                <option ng-selected="Lead.Area==0" value="0">Korangi Industrial</option>
+                <option ng-selected="Lead.Area==1" value="1">II Chudrigarh</option>
+                <option ng-selected="Lead.Area==2" value="2">Shafeeq Mor</option>
+            </select>
+        </div>*@
             <div class="col-md-4 form-group">
-                <label>Area / Territory</label>
-                <select ng-model="Lead.Area" class="form-control">
-                    <option selected value="">Area</option>
-                    <option ng-selected="Lead.Area==0" value="0">Korangi Industrial</option>
-                    <option ng-selected="Lead.Area==1" value="1">II Chudrigarh</option>
-                    <option ng-selected="Lead.Area==2" value="2">Shafeeq Mor</option>
-                </select>
+                <label>Latitude</label>
+                <input type="number" readonly class="form-control" ng-model="Lead.Latitude" placeholder="Latitude" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Longitude</label>
+                <input type="number" readonly class="form-control" ng-model="Lead.Longitude" placeholder="Longitude" />
             </div>
             <div class="col-md-4 form-group">
                 <label>City</label>

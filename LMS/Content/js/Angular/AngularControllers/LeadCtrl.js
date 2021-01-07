@@ -162,6 +162,14 @@
                     toaster.pop('error', "error", "Name Is Required!");
                     return;
                 }
+                if (Company.Latitude == null ) {
+                    toaster.pop('error', "error", "Latitude Is Required!");
+                    return;
+                }
+                if (Company.Longitude == null) {
+                    toaster.pop('error', "error", "Longitude Is Required!");
+                    return;
+                }
                 if (Company.Address == null || Company.Address == "") {
                     //alert("Address Is Required");
                     toaster.pop('error', "error", "Address Is Required!");
