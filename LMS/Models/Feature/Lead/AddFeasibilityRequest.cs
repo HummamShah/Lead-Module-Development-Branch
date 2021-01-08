@@ -1,4 +1,5 @@
 ﻿using LMS.Models.EntityModel;
+using LMS.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace LMS.Models.Feature.Lead
         public string UserId { get; set; }
         public List<FeasibilityDetails> Feasibility { get; set; }
         public int? Status { get; set; }
+        public string PmdRemarks { get; set; } //not binded from angular TODO
         public string CreatedBy { get; set; }
         public DateTime? CreatedAt { get; set; }
         public object RunRequest(AddFeasibilityRequest request)
@@ -34,6 +36,11 @@ namespace LMS.Models.Feature.Lead
             var LeadId = request.Feasibility.FirstOrDefault().LeadId;
             var Lead = _dbContext.Lead.Where(x => x.Id == LeadId).FirstOrDefault();
             Lead.PmdStatus = request.Status;
+            if (Lead.PmdStatus == (int)PmdStatus.NotFeasible)
+            {
+                Lead.LeadStatus = (int)LeadStatus.Cancelled;
+            }
+            Lead.PmdRemarks = request.PmdRemarks;
             var LeadStatusResult = _dbContext.SaveChanges();
             foreach (var feasibility in request.Feasibility)
             {
