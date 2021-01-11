@@ -223,6 +223,7 @@
           <Property Name="VendorId" Type="int" />
           <Property Name="OTC" Type="decimal" Precision="18" Scale="3" />
           <Property Name="MRC" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="ConnectivityType" Type="int" Nullable="false" />
           <Property Name="Bandwidth" Type="nvarchar(max)" />
           <Property Name="Remarks" Type="nvarchar(max)" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
@@ -795,6 +796,7 @@
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Vendor" Relationship="Sharptel_Lms_DbModel.FK_PMD_Vendor" FromRole="PmdDetails" ToRole="Vendor" />
           <NavigationProperty Name="Lead" Relationship="Sharptel_Lms_DbModel.FK_PMD_Leads" FromRole="PmdDetails" ToRole="Lead" />
+          <Property Name="ConnectivityType" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Vendor">
           <Key>
@@ -1201,6 +1203,7 @@
           <EntitySetMapping Name="PmdDetails">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.PmdDetails">
               <MappingFragment StoreEntitySet="PmdDetails">
+                <ScalarProperty Name="ConnectivityType" ColumnName="ConnectivityType" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />

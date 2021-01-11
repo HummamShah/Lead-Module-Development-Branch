@@ -193,17 +193,18 @@
                 });
 
             }
-            $scope.GetCompanyData = function (Id) {
-
+            $scope.GetCompanyData = function (Company) {
+                console.log(Company.Id);
+                $scope.Lead.CompanyId = Company.Id;
                 var data = {
-                    Id: Id
+                    Id: Company.Id
                 }
                 var promise = $http.get("/api/CompanyApi/GetCompany", { params: data }, { headers: { 'Accept': 'application/json' } });
                 promise.then(
                     function (response) {
                         console.log(response);
                         $scope.Lead = response.data;
-                        $scope.Lead.CompanyId = Id;
+                        $scope.Lead.CompanyId = Company.Id;
                         $scope.GetDropdownForServies($scope.Lead.CUDS);
 
                     });
@@ -336,12 +337,14 @@
             }
             $scope.AddRow = function () {
                 var temp = {
+                    Id:0,
                     VendorId: null,
                     LeadId: $scope.Lead.Id,
                     OTC: 0,
                     MRC: 0,
                     BandWidth: "",
-                    Remarks: ""
+                    Remarks: "",
+                    ConnectivityType:0,
                 }
                 $scope.LeadFeasibility.push(temp);
                 console.log($scope.LeadFeasibility);
@@ -354,7 +357,8 @@
                     OTC: 0,
                     MRC: 0,
                     BandWidth: "",
-                    Remarks: ""
+                    Remarks: "",
+                    ConnectivityType:0,
                 }
                 $scope.Lead.FeasibilityDetails.push(temp);
                 console.log($scope.Lead.FeasibilityDetails);
@@ -391,6 +395,23 @@
             $scope.EditFeasibility  = function (LeadFeasibility) {
                 console.log(LeadFeasibility);
                 console.log($scope.DeletedRows);
+                console.log(LeadFeasibility);
+                var temp = {
+                    Feasibility: LeadFeasibility,
+                    Status: $scope.FeasibilityStatus,
+                    DeletedRows: $scope.DeletedRows
+                }
+                console.log(temp);
+                $scope.AjaxPost("/api/LeadApi/EditFeasibility", temp).then(
+                    function (response) {
+                        if (response.status == 200) {
+                            //alert("Lead has been Updated Successfully!");
+                            toaster.pop('success', "success", "Pmd Details Has Been Updated Successfully!");
+                            $timeout(function () { window.location.href = '/Lead/List'; }, 2000);
+                        } else {
+                            toaster.pop('error', "error", "Unable to update Feasibility!");
+                        }
+                    });
             }
         }
     ]);

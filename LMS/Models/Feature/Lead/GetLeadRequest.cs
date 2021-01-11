@@ -177,12 +177,10 @@ namespace LMS.Models.Feature.Lead
 				FeasibilityRow.Remarks = feasibility.Remarks;
 				FeasibilityRow.VendorId = feasibility.VendorId;
 				FeasibilityRow.VendorName = feasibility.Vendor.Name;
+				FeasibilityRow.ConnectivityType = feasibility.ConnectivityType;
+				FeasibilityRow.ConnectivityTypeEnum = ((ConnectivityType)feasibility.ConnectivityType).ToString();
 				response.FeasibilityDetails.Add(FeasibilityRow);
-
-
-
 			}
-
 			return response;
 		}
 
@@ -266,6 +264,8 @@ namespace LMS.Models.Feature.Lead
 			public int? VendorId { get; set; }
 			public string VendorName { get; set; }
 			public string Remarks { get; set; }
+			public int ConnectivityType { get; set; }
+			public string ConnectivityTypeEnum { get; set; }
 			public string CreatedBy { get; set; }
 			public DateTime? CreatedAt { get; set; }
 		}

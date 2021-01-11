@@ -5,6 +5,7 @@
 	[VendorId] int,
 	[OTC] decimal(18,3),
 	[MRC] decimal(18,3),
+	[ConnectivityType] int not null default(0),
 	[Bandwidth] nvarchar(max),
 	[Remarks] nvarchar(max),
     [CreatedBy] nvarchar(max),

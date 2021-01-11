@@ -259,6 +259,7 @@
                         <th>OTC</th>
                         <th>MRC</th>
                         <th>Bandwidth</th>
+                        <th>Type</th>
                         <th>Remarks</th>
                         
                     </tr>
@@ -280,8 +281,16 @@
                             <input type="text" class="form-control" ng-model="feasibility.Bandwidth" />
                         </td>
                         <td>
+                            <select ng-model="feasibility.ConnectivityType" class="form-control">
+                                <option selected value="">Select Connection Type</option>
+                                <option value="0" ng-selected="feasibility.ConnectivityType == 0">Fiber</option>
+                                <option value="1" ng-selected="feasibility.ConnectivityType == 1">Radio</option>
+                            </select>
+                        </td>
+                        <td>
                             <input type="text" class="form-control" ng-model="feasibility.Remarks" />
                         </td>
+
                         <td>
                             <i class="fas fa-minus" ng-click="RemoveRow($index)"></i>
                         </td>

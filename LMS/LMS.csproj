@@ -271,6 +271,7 @@
     <Compile Include="Models\Enums\QuotationStatus.cs" />
     <Compile Include="Models\Enums\Roles.cs" />
     <Compile Include="Models\Enums\ServiceProviderType.cs" />
+    <Compile Include="Models\Enums\ConnectivityType.cs" />
     <Compile Include="Models\Enums\VSAT.cs" />
     <Compile Include="Models\Enums\WiWax.cs" />
     <Compile Include="Models\Feature\Company\AddCompanyRequest.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Models\Feature\Department\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddFeasibilityRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadRequest.cs" />
+    <Compile Include="Models\Feature\Lead\EditFeasibilityRequest.cs" />
     <Compile Include="Models\Feature\Lead\EditLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\AssignLeadRequest.cs" />
@@ -320,6 +322,8 @@
     <Content Include="Content\js\Angular\app.js" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\toaster.js" />
+    <Content Include="Content\Select\Select.css" />
+    <Content Include="Content\Select\select.js" />
     <Content Include="Content\toaster.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

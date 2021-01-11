@@ -15,6 +15,7 @@ namespace LMS.Models.Feature.Lead
 	public class LeadData
 	{
 		public int Id { get; set; }
+		public bool IsFeasibilityAdded { get; set; }
 		public int CompanyId { get; set; }
 		public string CompanyName { get; set; }
 		public string Name { get; set; }
@@ -159,8 +160,6 @@ namespace LMS.Models.Feature.Lead
 				}
 
 				temp.IsApproved = d.IsApproved;
-
-
 				response.Data.Add(temp);
 			}
 			return response;

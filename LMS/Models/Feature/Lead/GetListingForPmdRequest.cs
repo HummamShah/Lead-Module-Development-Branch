@@ -107,7 +107,11 @@ namespace LMS.Models.Feature.Lead
 
 				temp.IsApproved = d.IsApproved;
 
+				if (d.PmdDetails.Count > 0)
+				{
+					temp.IsFeasibilityAdded = true;
 
+				}
 				response.Data.Add(temp);
 			}
 			return response;

@@ -35,17 +35,28 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <label>Lead Name</label>
-                        <input type="text" class="form-control" ng-model="Lead.Name"/>
+                        <input type="text" class="form-control" ng-model="Lead.Name" />
                     </div>
                 </div>
 
-                <div class="form-group">
+                @*<div class="form-group">
                     <div class="col-md-3">
                         <label>Company</label> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i></a>
                         <select ng-model="Lead.CompanyId" class="form-control" ng-change="GetCompanyData(Lead.CompanyId)">
                             <option selected value="">Select Company</option>
                             <option ng-repeat="Company in Companies" value="{{Company.Id}}" ng-selected="Lead.CompanyId == Company.Id">{{Company.Name}}</option>
                         </select>
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label >Company</label><a href="#" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i></a>
+                        <ui-select ng-model="CompanyId" theme="select2" class="form-control" ng-change="GetCompanyData(CompanyId)">
+                            <ui-select-match placeholder="Select a company in the list...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="item in Companies | filter: $select.search">
+                                <div ng-bind-html="item.Name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                 </div>
 
@@ -76,7 +87,7 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <label>Contact Person Department</label>
-                        <input type="text" class="form-control" ng-model="Lead.ContactPersonDepartment"/>
+                        <input type="text" class="form-control" ng-model="Lead.ContactPersonDepartment" />
                     </div>
                 </div>
             </form>

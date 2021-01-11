@@ -37,8 +37,6 @@
                         <input type="text" readonly class="form-control" ng-model="Lead.CompanyName" />
                     </div>
                 </div>
-                @if (!User.IsInRole("Pmd_Feasibility"))
-                {
                     <div class="form-group">
                         <div class="col-md-3">
                             <label>Contact Person Name</label>
@@ -69,7 +67,7 @@
                             <input type="text" readonly class="form-control" ng-model="Lead.ContactPersonDepartment" />
                         </div>
                     </div>
-                }
+                
             </form>
         </div>
         @*<div class="row float-right">
@@ -239,6 +237,7 @@
                     <th>OTC</th>
                     <th>MRC</th>
                     <th>Bandwidth</th>
+                    <th>Connection Type</th>
                     <th>Remarks</th>
                 </tr>
                 <tr ng-repeat="feasibility in Lead.FeasibilityDetails">
@@ -255,6 +254,7 @@
                     <td>
                         {{feasibility.Bandwidth}}
                     </td>
+                    <td>{{feasibility.ConnectivityTypeEnum}}</td>
                     <td>
                         {{feasibility.Remarks}}
                     </td>
