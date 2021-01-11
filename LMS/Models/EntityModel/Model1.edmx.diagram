@@ -33,6 +33,8 @@
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_PMD_Leads" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Lead_Company" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Lead_Agent_Creator" />
+        <EntityTypeShape EntityType="Sharptel_Lms_DbModel.SolutionDetails" Width="1.5" PointX="13.125" PointY="19.625" />
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_SolutionDetails_Leads" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

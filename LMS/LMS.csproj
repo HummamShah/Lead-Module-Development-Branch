@@ -248,6 +248,9 @@
     <Compile Include="Models\EntityModel\PmdDetails.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntityModel\SolutionDetails.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EntityModel\Vendor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

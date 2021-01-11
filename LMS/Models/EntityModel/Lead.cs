@@ -18,6 +18,7 @@ namespace LMS.Models.EntityModel
         public Lead()
         {
             this.PmdDetails = new HashSet<PmdDetails>();
+            this.SolutionDetails = new HashSet<SolutionDetails>();
         }
     
         public int Id { get; set; }
@@ -81,5 +82,7 @@ namespace LMS.Models.EntityModel
         public virtual ICollection<PmdDetails> PmdDetails { get; set; }
         public virtual Company Company { get; set; }
         public virtual Agent Agent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SolutionDetails> SolutionDetails { get; set; }
     }
 }

@@ -185,14 +185,6 @@
                 <label>Number Of Links</label>
                 <input type="text" readonly class="form-control" ng-model="Lead.NoLinks" />
             </div>
-            <div class="col-md-4 form-group" ng-if="Lead.Domain==0">
-                <label>Need</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.Need" />
-            </div>
-            <div class="col-md-4 form-group" ng-if="Lead.Domain==0">
-                <label>Will</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.Will" />
-            </div>
             <div class="col-md-4 form-group">
                 <label>Budget</label>
                 <input type="text" readonly class="form-control" ng-model="Lead.Budget" />
@@ -215,7 +207,7 @@
             </div>
 
         </div>
-        <div class="row float-right" style="margin-right: 46px;" ng-if="Lead.FeasibilityDetails.length < 0">
+        <div class="row float-right" style="margin-right: 46px;" ng-if="Lead.FeasibilityDetails.length == 0">
             <a href="/Lead" class="btn btn-danger">Cancel</a>
         </div>
 
