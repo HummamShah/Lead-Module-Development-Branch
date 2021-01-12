@@ -1,1 +1,1 @@
-﻿var app = angular.module('LmsApp', ['toaster']);
+﻿var app = angular.module('LmsApp', ['toaster', 'chart.js']);

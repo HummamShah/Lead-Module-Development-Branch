@@ -68,6 +68,18 @@ app.controller('baseCtrl',
                 return promise;
             }
 
+            $scope.initDashboard = function () {
 
+                $scope.labels = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                $scope.series = ['Open', 'Completed', 'Closed'];
+                Chart.defaults.global.colors = ["#f0ad4e", "#5cb85c", "#d9534f"];
+                $scope.data = [
+                    [65, 59, 80, 81, 56, 55, 40, 56, 76, 23, 89, 66],
+                    [28, 48, 40, 19, 86, 27, 90, 34, 55, 29, 62, 30],
+                    [34, 23, 76, 77, 20, 16, 43, 78, 12, 92, 45, 66],
+
+                ];
+                
+            }
         }
     ]);

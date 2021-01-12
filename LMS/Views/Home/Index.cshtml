@@ -5,26 +5,104 @@
     var UserId = User.Identity.GetUserId();
 }
 
-<br />
-<br />
-<br />
-<div class="row">
-    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
-
+<div class="container" ng-init="initDashboard()">
+    <div class="clearfix">
+        <h3 class="pull-left">Dashboard</h3>
     </div>
-    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
-        @if (User.IsInRole(UserRoles.Admin))
-        {
-            <h2>Welcom Admin <br />Coming Soon! InsAllah</h2>
-   
-        }
+    <div>
+        @*@if (User.IsInRole(UserRoles.Admin))*@
+        @* { *@
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12">
+                    <div class="panel hvr-glow">
+                        <div class="panel-heading crd-heading-bg-color">
+                            <h3 class="panel-title text-uppercase"><b>Leads</b></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div col-4>
+                                Open<span class="label label-warning text-capitalize float-right">43</span>
+                            </div>
+                            <div col-4>
+                                Complete<span class="label label-success text-capitalize float-right">43</span>
+                            </div>
+                            <div col-4>
+                                Closed<span class="label label-danger text-capitalize float-right">43</span>
+                            </div>
+                        </div>
+                        <div class="panel-footer text-center text-capitalize" style="padding: 0;">See More <span class="fa fa-chevron-circle-right"></span></div>
+                    </div>
+                </div>
+                @* Card 2 *@
+                <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12">
+                    <div class="panel hvr-glow">
+                        <div class="panel-heading crd-heading-bg-color">
+                            <h3 class="panel-title text-uppercase"><b>Leads Feasibility</b></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div col-4>
+                                Pending<span class="label label-warning text-capitalize float-right">43</span>
+                            </div>
+                            <div col-4>
+                                Feasible<span class="label label-success text-capitalize float-right">43</span>
+                            </div>
+                            <div col-4>
+                                Not-Feasible<span class="label label-danger text-capitalize float-right">43</span>
+                            </div>
+                        </div>
+                        <div class="panel-footer text-center text-capitalize" style="padding: 0;">See More <span class="fa fa-chevron-circle-right"></span></div>
+                    </div>
+                </div>
+                @* Card 03 *@
+                <div class="col-lg-4 col-sm-12 col-md-4 col-xs-12">
+                    <div class="panel hvr-glow">
+                        <div class="panel-heading crd-heading-bg-color">
+                            <h3 class="panel-title text-uppercase"><b>Leads Approval</b></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div col-4>
+                                Pending<span class="label label-warning text-capitalize float-right">43</span>
+                            </div>
+                            <div col-4>
+                                Approved<span class="label label-success text-capitalize float-right">43</span>
+                            </div>
+                            <div col-4>
+                                Not-Approved<span class="label label-danger text-capitalize float-right">43</span>
+                            </div>
+                        </div>
+                        <div class="panel-footer text-center text-capitalize" style="padding: 0;">See More <span class="fa fa-chevron-circle-right"></span></div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                    <div class="col-md-6">
+                        <h3>Sales leads</h3>
+                    </div>
+                    <div class="col-md-6 ">
+                        <h3 class="pull-right">Duration</h3>
+                        
+                    </div>         
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <canvas id="bar" class="chart chart-bar"
+                            chart-data="data" chart-labels="labels"
+                        chart-series="series">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        @* } *@
         @if (User.IsInRole(UserRoles.SuperAdmin))
         {
             <h2>Welcom Super Admin <br />Coming Soon! InsAllah</h2>
         }
 
     </div>
-    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+    @*<div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
 
-    </div>
+    </div>*@
 </div>
