@@ -31,7 +31,7 @@ namespace LMS.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Lead_Sales,Admin,SuperAdmin")]
+        [Authorize(Roles = "Lead_Sales,Admin,SuperAdmin,Pmd_Feasibility")]
         public ActionResult Detail()
         {
             return View();
@@ -39,6 +39,12 @@ namespace LMS.Controllers
 
         [Authorize(Roles = "Lead_Sales,Admin,SuperAdmin")]
         public ActionResult Edit()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Pmd_Feasibility")]
+        public ActionResult EditFeasibility()
         {
             return View();
         }

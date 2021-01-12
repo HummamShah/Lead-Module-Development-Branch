@@ -8,13 +8,6 @@
         <div class="row">
             <div class="col-md-4 col-sm-4 col-lg-4"><h2>Lead Details</h2></div>
             <div class="col-md-4 col-sm-4 col-lg-4" style="padding: 0px; margin: 0px; margin-top: 14px;">
-                @*Domain
-                    <div class="form-group"  style="display:inline-block;">
-                        <select ng-model="Lead.Domain" class="form-control">
-                            <option value="Services">Services</option>
-                            <option value="Connectivity">Connectivity</option>
-                        </select>
-                    </div>*@
             </div>
             <div class="col-md-4 col-sm-4 col-lg-4" style=" margin-top: 15px; float: right; text-align: right;">
                 Domain
@@ -27,7 +20,7 @@
     </div>
     <div class="jumbotron PageHeading">
         <div class="text-center">
-            <div class="row"> <h2 class="SegmentHeading">General Information</h2></div>
+            <div class="row"> <h2 class="SegmentHeading">General Lead Information</h2></div>
         </div>
         <div class="row">
             <form id="LeadAddForm ">
@@ -44,7 +37,6 @@
                         <input type="text" readonly class="form-control" ng-model="Lead.CompanyName" />
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-md-3">
                         <label>Contact Person Name</label>
@@ -72,20 +64,102 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <label>Contact Person Department</label>
-                        <input type="text" readonly class="form-control" ng-model="Lead.ContactPersonDepartment" />
+                        <input type="text"  readonly class="form-control" ng-model="Lead.ContactPersonDepartment" />
                     </div>
                 </div>
+
             </form>
         </div>
         @*<div class="row float-right">
                 <button class="btn btn-primary" ng-click="AddLead(Lead)">Add</button>
             </div>*@
     </div>
-    <div class="jumbotron PageHeading">
+    <!-- Connectivity -->
+    <div class="jumbotron PageHeading" ng-if="Lead.Domain == 1">
         <div class="row text-center">
-            <h2 class="SegmentHeading">Contact Information</h2>
+            <h2 class="SegmentHeading">Connectivity Details</h2>
         </div>
         <div class="row">
+            <div class="col-md-4 form-group">
+                <label>Currently Used medium </label>
+                <input type="text" readonly class="form-control" ng-model="Lead.CurrentlyUsedMedium" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Required Medium</label>
+                <input type="text" readonly ng-model="Lead.RequiredMedium" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Connectivity Type</label>
+                <span class="form-control" readonly>{{Lead.ConnectivityTypeEnum}}</span>
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Target Price</label>
+                <input type="number" class="form-control" readonly ng-model="Lead.Budget" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Estimated Closing Date</label>
+                <input type="date" class="form-control" readonly ng-model="Lead.EstimatedClosingDate" />
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label>Numbe of Branch offices</label>
+                <input type="text" ng-model="Lead.NoBracnhOffices" readonly class="form-control" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Bandwidth</label>
+                <input type="text" placeholder="5 MBs" readonly ng-model="Lead.Bandwidth" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Comments</label>
+                <input type="text" class="form-control" readonly ng-model="Lead.Comments" />
+            </div>
+            <div class="col-md-4 form-group" style="padding-bottom: 35px;">
+                <label>Is our Existing Customer</label>
+                <input type="checkbox" disabled ng-model="Lead.IsEsisting" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Ever Tried Our Service Before</label>
+                <input type="checkbox" disabled ng-model="Lead.HasTriedOurServie" />
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Solution -->
+    <div class="jumbotron PageHeading" ng-if="Lead.Domain == 0">
+        <div class="row text-center">
+            <h2 class="SegmentHeading">Solution Details</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>Type of Solution</label>
+                <select ng-model="Lead.SolutionDetails.SolutionType" class="form-control">
+                    <option selected value="">Solution Type</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionType==0" value="0">Security</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionType==1" value="1">Wifi</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionType==2" value="2">Hardware Supplies</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionType==3" value="3">Video Conferencing</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionType==4" value="4">Colation</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionType==5" value="5">Ip Telephony</option>
+                </select>
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Numbe of Branch offices</label>
+                <input type="text" ng-model="Lead.NoBracnhOffices" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Business Contact -->
+    <div class="jumbotron PageHeading">
+        <div class="row text-center">
+            <h2 class="SegmentHeading">
+                Company Information
+                <span ng-click="ExpandCollapse('CI')"><i class="fas fa-plus" ng-if="ShowContactInformation == false"></i></span>
+                <span ng-click="ExpandCollapse('CI')"><i class="fas fa-minus" ng-if="ShowContactInformation == true"></i></span>
+            </h2>
+        </div>
+        <div class="row" ng-if="ShowContactInformation == true">
             <div class="col-md-4 form-group">
                 <label>Mode Of Communication</label>
                 <input type="text" readonly class="form-control" ng-model="Lead.MOCName" />
@@ -110,10 +184,22 @@
                 <label>Website</label>
                 <input type="text" readonly class="form-control" ng-model="Lead.Website" placeholder="www.sharptel.com" />
             </div>
+            @*<div class="col-md-4 form-group">
+            <label>Area / Territory</label>
+            <select ng-model="Lead.Area" class="form-control">
+                <option selected value="">Area</option>
+                <option ng-selected="Lead.Area==0" value="0">Korangi Industrial</option>
+                <option ng-selected="Lead.Area==1" value="1">II Chudrigarh</option>
+                <option ng-selected="Lead.Area==2" value="2">Shafeeq Mor</option>
+            </select>
+        </div>*@
             <div class="col-md-4 form-group">
-                <label>Area / Territory</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.AreaEnum" />
-
+                <label>Latitude</label>
+                <input type="number" readonly class="form-control" ng-model="Lead.Latitude" placeholder="Latitude" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Longitude</label>
+                <input type="number" readonly class="form-control" ng-model="Lead.Longitude" placeholder="Longitude" />
             </div>
             <div class="col-md-4 form-group">
                 <label>City</label>
@@ -122,23 +208,6 @@
             <div class="col-md-4 form-group">
                 <label>Address</label>
                 <input type="text" readonly ng-model="Lead.Address" class="form-control" />
-            </div>
-
-        </div>
-    </div>
-
-
-
-
-
-    <div class="jumbotron PageHeading">
-        <div class="row text-center">
-            <h2 class="SegmentHeading">Business Infromation</h2>
-        </div>
-        <div class="row">
-            <div class="col-md-4 form-group">
-                <label>Number Of Users</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.NOEEnum" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Numbe of Branch offices</label>
@@ -152,68 +221,66 @@
                 <label>NTN</label>
                 <input type="text" readonly ng-model="Lead.NTN" class="form-control" />
             </div>
-            <div class="col-md-4 form-group">
-                <label>Currently Using IT Platform</label>
-                <input type="text" readonly ng-model="Lead.CurrentItPlatform" class="form-control" />
+        </div>
+    </div>
+    <div class="jumbotron PageHeading" id="Feasibility" ng-if="Lead.FeasibilityDetails.length > 0">
+        <div class="row text-center">
+            <h2 class="SegmentHeading">
+                Lead's Feasibility Infromation
+                @if (User.IsInRole("Pmd_Feasibility"))
+                {
+                    <a href="/Lead/EditFeasibility?Id={{Lead.Id}}" ng-if="Lead.PmdStatusEnum == 'None'" target="_blank"><i class="fas fa-pencil-alt EditFeasibiltyIcon"></i></a>
+                }
+            </h2>
+        </div>
+        <div>
+            <table class="table " width="100%">
+                <tr>
+                    <th>SR#</th>
+                    <th>Vendor</th>
+                    <th>OTC</th>
+                    <th>MRC</th>
+                    <th>Bandwidth</th>
+                    <th>Connection Type</th>
+                    <th>Remarks</th>
+                </tr>
+                <tr ng-repeat="feasibility in Lead.FeasibilityDetails">
+                    <td>{{$index+1}}</td>
+                    <td>
+                        {{feasibility.VendorName}}
+                    </td>
+                    <td>
+                        {{feasibility.OTC  | number}}
+                    </td>
+                    <td>
+                        {{feasibility.MRC | number}}
+                    </td>
+                    <td>
+                        {{feasibility.Bandwidth}}
+                    </td>
+                    <td>{{feasibility.ConnectivityTypeEnum}}</td>
+                    <td>
+                        {{feasibility.Remarks}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <br />
+        <br />
+        @if (User.IsInRole("Pmd_Feasibility"))
+        {
+            <div class="row float-right" style="margin-right: 46px;">
+                <a href="/Lead/List" class="btn btn-danger">Cancel</a>
             </div>
-            @*<div class="col-md-4 form-group">
-            <label>Future Plan For Extension In IT Service</label>
-            <input type="text" ng-model="Lead.FuturePlanOFExtention" class="form-control" />
-        </div>*@
-            @*<div class="col-md-4 form-group">
-                <label>Currently Used Medium</label>
-                <input type="text" readonly ng-model="Lead.CUDSEnum" class="form-control" />
-            </div>*@
-            @*<div class="col-md-4 form-group" ng-if="Lead.CUDS == null">
-                <span readonly ng-if="Lead.CUDS == null">N/A</span>
-            </div>*@
-            <div class="col-md-4 form-group" ng-model="Lead.CUDSOtherService">
-                @*<span ng-if="Lead.CUDS != '4' ">
-                    <label>Select Service</label>
-                    <input type="text" readonly ng-model="Lead.CUDSServiceEnum" class="form-control" />
-                </span>*@
-                
-                    <label>Currently Used Medium</label>
-                    <input type="text" readonly class="form-control" ng-model="Lead.CUDSOtherService" />
-                
+        }
+        else
+        {
+            <div class="row float-right" style="margin-right: 46px;">
+                <a href="/Lead/" class="btn btn-danger">Cancel</a>
             </div>
-            <div class="col-md-4 form-group">
-                <label>Number Of Links</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.NoLinks" />
-            </div>
-            <div class="col-md-4 form-group" ng-if="Lead.Domain==0">
-                <label>Need</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.Need" />
-            </div>
-            <div class="col-md-4 form-group" ng-if="Lead.Domain==0">
-                <label>Will</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.Will" />
-            </div>
-            <div class="col-md-4 form-group">
-                <label>Budget</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.Budget" />
-            </div>
-            <div class="col-md-4 form-group">
-                <label>Estimated Closing Date</label>
-                <input type="datetime" readonly class="form-control" ng-model="Lead.EstimatedClosingDate" />
-            </div>
-            <div class="col-md-4 form-group">
-                <label>Comments</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.Comments" />
-            </div>
-            <div class="col-md-4 form-group" style="padding-bottom: 35px;">
-                <label>Is our Existing Customer</label>
-                <input type="checkbox" class="disabled" readonly ng-model="Lead.IsEsisting" />
-            </div>
-            <div class="col-md-4 form-group">
-                <label>Ever Tried Our Service Before</label>
-                <input type="checkbox" class="disabled" readonly ng-model="Lead.HasTriedOurServie" />
-            </div>
+        }
 
-        </div>
-        <div class="row float-right"   style="margin-right: 46px;">
-            <a href="/Lead" class="btn btn-danger">Cancel</a>
-        </div>
 
     </div>
 </div>

@@ -60,19 +60,18 @@
                 <td><small ng-class="Lead.PmdStatusEnum" class="badge">{{Lead.PmdStatusEnum}}</small></td>
                 <td>{{Lead.AssignedPreSaleName}}</td>
                 <td>{{Lead.PmdStatusEnum}}</td>
-                <td><small ng-class="Lead.LeadStatusEnum" class="badge">{{Lead.LeadStatusEnum}}</small></td>
+                <td>{{Lead.LeadStatusEnum}}</td>
                 <td>-</td>
                 <td>{{Lead.CreatedBy}}</td>
                 <td>{{Lead.CreatedAt | date:'MMM d, y'}}</td>
                 <td>
-                    @*<a href="/Lead/Edit?Id={{Lead.Id}}" title="Edit"><i class="fas fa-pencil-alt" title="Edit"></i></a>
-                        <a href="/Lead/Details?Id={{Lead.Id}}" title="Details"><i class="fas fa-file" title="Details"></i></a>
-                        <a href="/Lead/Print?Id={{Lead.Id}}" title="Print"><i class="fas fa-print" title="Print"></i></a>*@
 
-                    @*<a href="#" data-toggle="modal" data-target="#myModal" ng-click="SetAssigningDataToModal(Lead)" title="Assign Lead"><i class="fas fa-users"></i></a>*@
-                    <a href="/Lead/AddFeasibility?Id={{Lead.Id}}" title="Add Feasibility"><i class="fas fa-plus"></i></a>
-                    <a href="/Lead/Detail?Id={{Lead.Id}}" title="Details"><i class="fas fa-file"></i></a>
-
+                    <a class="float-right" href="/Lead/Detail?Id={{Lead.Id}}" title="Details"><i class="fas fa-file"></i></a>
+                    @if (User.IsInRole("Pmd_Feasibility"))
+                    {
+                        <a class="float-left" ng-if="Lead.PmdStatusEnum == 'None' && Lead.IsFeasibilityAdded == false" href="/Lead/AddFeasibility?Id={{Lead.Id}}" title="Add Feasibility"><i class="fas fa-plus"></i></a>
+                        <a class="float-left" href="/Lead/EditFeasibility?Id={{Lead.Id}}" ng-if="Lead.PmdStatusEnum == 'None' && Lead.IsFeasibilityAdded == true" title="Edit Feasibility"><i class="fas fa-pencil-alt"></i></a>
+                    }
                 </td>
             </tr>
         </table>

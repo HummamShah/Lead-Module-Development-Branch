@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Lead]
 (
-	[AgentId] int not null ,
+	[AgentId] INT NOT NULL ,
     [Id] INT NOT NULL PRIMARY KEY Identity(1,1),
 	[CompanyName] nvarchar(max),
 	[ContactPersonName] nvarchar(max),
@@ -23,10 +23,8 @@
 	[BusinessOperationTime] int,
 	[NoEmployee] int,
 	[BusinessIndustry] int,
-	[CurrentItPlatform] nvarchar(max),
-	[CUDS]int,
-	[CUDSService] int,
-	[CUDSOtherService] nvarchar(max),
+	[RequiredMedium] nvarchar(max), -- was currentlyUsingItPlatform before
+	[CurrentlyUsedMedium] nvarchar(max),  --was CudsOtherSErvices before
 	[NoLinks] int,
 	[NTN] nvarchar(max),
 	[NumberOfBranchOffices] int,
@@ -35,6 +33,9 @@
 	[HasTriedOurServie] bit,
 	[Comments] nvarchar(max),
 	[Budget] decimal(18,3),
+	--new fields
+	[Bandwidth] nvarchar(max),
+	[ConnectivityType] int,
 	
 	[AssignedPmdId] int,
 	[PmdAssignedOn] DateTime,
@@ -56,6 +57,7 @@
 	[CreatedAt] DateTime,
 	[UpdatedBy] nvarchar(max),
 	[UpdatedAt] DateTime,
+	[Date] Datetime,
 	Constraint [FK_Lead_Company] foreign key ([CompanyId]) References [dbo].[Company] ([Id]),
 	Constraint [FK_Lead_Agent_PMD] foreign key ([AssignedPmdId]) References [dbo].[Agent] ([Id]),
 	Constraint [FK_Lead_Agent_PreSale] foreign key ([AssignedPreSaleId]) References [dbo].[Agent] ([Id]),

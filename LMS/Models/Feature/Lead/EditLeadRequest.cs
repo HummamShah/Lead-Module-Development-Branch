@@ -41,17 +41,20 @@ namespace LMS.Models.Feature.Lead
 		public int? NoBracnhOffices { get; set; }  // need to add this field in database..
 		public int? BusinessIndustry { get; set; }
 		public string NTN { get; set; } // need to add this field in database..
-		public string CurrentItPlatform { get; set; }
+		public string RequiredMedium { get; set; }
 		public string FuturePlanOFExtention { get; set; } //not in db
 		public int? CUDS { get; set; }
 		public int? CUDSService { get; set; }
-		public string CUDSOtherService { get; set; }
+		public string CurrentlyUsedMedium { get; set; }
 		public int NoLinks { get; set; }
 		public decimal Budget { get; set; }
+	
 		public DateTime? EstimatedClosingDate { get; set; }
 		public string Comments { get; set; }
 		public bool IsEsisting { get; set; }
 		public bool HasTriedOurServie { get; set; }
+		public int ConnectivityType { get; set; }
+		public string Bandwidth { get; set; }
 		public string UpdatedBy { get; set; }
 		public DateTime? UpdatedAt { get; set; }
 
@@ -84,17 +87,17 @@ namespace LMS.Models.Feature.Lead
 			Lead.BusinessIndustry = request.BusinessIndustry;
 			Lead.NTN = request.NTN;
 			Lead.NumberOfBranchOffices = request.NoBracnhOffices;
-			Lead.CurrentItPlatform = request.CurrentItPlatform;
-			Lead.CUDS = request.CUDS;
-			Lead.CUDSOtherService = request.CUDSOtherService;
-			Lead.CUDSService = request.CUDSService;
+			Lead.RequiredMedium = request.RequiredMedium;
+			Lead.CurrentlyUsedMedium = request.CurrentlyUsedMedium;
+			
 			Lead.NoLinks = request.NoLinks;
 			Lead.Budget = request.Budget;
 			Lead.EstimatedClosingDate = request.EstimatedClosingDate;
 			Lead.IsEsisting = request.IsEsisting;
 			Lead.HasTriedOurServie = request.HasTriedOurServie;
 			Lead.Comments = request.Comments;
-
+			Lead.Bandwidth = request.Bandwidth;
+			Lead.ConnectivityType = request.ConnectivityType;
 			Lead.LeadStatus = (int)LeadStatus.Open;
 			Lead.PmdStatus = (int)PmdStatus.None;
 			Lead.QuotationStatus = (int)QuotationStatus.None;

@@ -11,9 +11,14 @@
     @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-    @* hover.css *@
-    <script type="text/css" src="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.0/css/hover-min.css"></script>
-</head> 
+    @*Select2 Css*@
+    <!-- Select2 theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+
+    <!-- ui-select files -->
+
+    <link href="~/Content/Select/Select.css" rel="stylesheet" />
+</head>
 <body ng-controller="baseCtrl" ng-class="ServiceClassBinder">
     <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
     @*<button class="btn-primary" ng-click="Pop()">Pop</button>*@
@@ -141,6 +146,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="~/Content/js/toaster.js"></script>
     @*<script src="~/Content/js/AngularCtrl.js"></script>*@
+    <script src="~/Content/Select/select.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script>
     @Scripts.Render("~/Content/js/Angular/AngularBundle")
     @Scripts.Render("~/bundles/jquery")
     <script src="~/Content/js/Angular-Chart.js"></script>

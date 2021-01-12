@@ -55,6 +55,14 @@ namespace LMS.Controllers.Api
             return result;
         }
         [HttpPost]
+        public object EditFeasibility([FromBody] EditFeasibilityRequest req) //If not working remove frombody
+        {
+            req.UserId = User.Identity.GetUserId();
+            req.UpdatedBy = User.Identity.Name;
+            var result = req.RunRequest(req);
+            return result;
+        }
+        [HttpPost]
         public object AssignLead([FromBody] AssignLeadRequest req) //If not working remove frombody
         {
 

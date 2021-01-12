@@ -130,6 +130,8 @@
                 $scope.Company = {};
                 $scope.Companies = [];
                 $scope.Lead = {};
+                $scope.ShowContactInformation = false;
+                $scope.ShowBusinessInformation = false;
                 //$scope.Lead.Domain = 0;
                 $scope.MOCS = [{ Name: "Phone", Id: 0 }, { Name: "Email", Id: 1 }, { Name: "Fax", Id: 2 }, { Name: "Visit", Id: 3 }];
                 getCompaniesDropdown();
@@ -162,6 +164,14 @@
                     toaster.pop('error', "error", "Name Is Required!");
                     return;
                 }
+                if (Company.Latitude == null ) {
+                    toaster.pop('error', "error", "Latitude Is Required!");
+                    return;
+                }
+                if (Company.Longitude == null) {
+                    toaster.pop('error', "error", "Longitude Is Required!");
+                    return;
+                }
                 if (Company.Address == null || Company.Address == "") {
                     //alert("Address Is Required");
                     toaster.pop('error', "error", "Address Is Required!");
@@ -185,17 +195,18 @@
                 });
 
             }
-            $scope.GetCompanyData = function (Id) {
-
+            $scope.GetCompanyData = function (Company) {
+                console.log(Company.Id);
+                $scope.Lead.CompanyId = Company.Id;
                 var data = {
-                    Id: Id
+                    Id: Company.Id
                 }
                 var promise = $http.get("/api/CompanyApi/GetCompany", { params: data }, { headers: { 'Accept': 'application/json' } });
                 promise.then(
                     function (response) {
                         console.log(response);
                         $scope.Lead = response.data;
-                        $scope.Lead.CompanyId = Id;
+                        $scope.Lead.CompanyId = Company.Id;
                         $scope.GetDropdownForServies($scope.Lead.CUDS);
 
                     });
@@ -206,8 +217,12 @@
                 $scope.Company = {};
                 $scope.Companies = [];
                 $scope.Lead = {};
+                $scope.ShowContactInformation = false;
+                $scope.ShowBusinessInformation = false;
+                $scope.ShowFeasibilityInformation = false;
                 // $scope.Lead.Domain = 0;
                 var Id = $scope.GetUrlParameter("Id");
+                getCompaniesDropdown();
                 var data = {
                     Id: parseInt(Id)
                 }
@@ -216,11 +231,20 @@
                     function (response) {
                         console.log(response);
                         $scope.Lead = response.data;
+                       
+                        var Company = {};
+                        angular.forEach($scope.Companies, function (value, key) {
+                            if (value.Id == $scope.Lead.CompanyId) {
+                                Company = value;
+                                return;
+                            }
+                        }); 
+                        $scope.CompanyId = Company;
                         $scope.GetDropdownForServies($scope.Lead.CUDS);
                     });
 
                 $scope.MOCS = [{ Name: "Phone", Id: 0 }, { Name: "Email", Id: 1 }, { Name: "Fax", Id: 2 }, { Name: "Visit", Id: 3 }];
-                getCompaniesDropdown();
+                
             }
             $scope.EditLead = function (Lead) {
                 console.log(Lead);
@@ -264,10 +288,31 @@
                         }
                     });
             }
-            $scope.FeasibiltyInit = function () {
+            $scope.FeasibiltyAddInit = function () {
                 $scope.Lead = {};
                 $scope.LeadFeasibility = [];
                 $scope.Vendors = [];
+                $scope.FeasibilityStatus = 2;
+                $scope.ShowContactInformation = false;
+                $scope.ShowBusinessInformation = false;
+                $scope.ShowFeasibilityInformation = false;
+                var Id = $scope.GetUrlParameter("Id");
+                var data = {
+                    Id: parseInt(Id)
+                }
+                console.log(data);
+                $scope.AjaxGet("/api/LeadApi/GetLead", data).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Lead = response.data;
+                    });
+                getVendors();
+            }
+            $scope.FeasibiltyEditInit = function () {
+                $scope.Lead = {};
+                $scope.LeadFeasibility = [];
+                $scope.Vendors = [];
+                $scope.DeletedRows = [];
                 $scope.FeasibilityStatus = 2;
                 $scope.ShowContactInformation = false;
                 $scope.ShowBusinessInformation = false;
@@ -304,19 +349,42 @@
             }
             $scope.AddRow = function () {
                 var temp = {
+                    Id:0,
                     VendorId: null,
                     LeadId: $scope.Lead.Id,
                     OTC: 0,
                     MRC: 0,
                     BandWidth: "",
-                    Remarks: ""
+                    Remarks: "",
+                    ConnectivityType:0,
                 }
                 $scope.LeadFeasibility.push(temp);
                 console.log($scope.LeadFeasibility);
             }
+            $scope.AddRowInEditForm = function () {
+                var temp = {
+                    Id:0,
+                    VendorId: null,
+                    LeadId: $scope.Lead.Id,
+                    OTC: 0,
+                    MRC: 0,
+                    BandWidth: "",
+                    Remarks: "",
+                    ConnectivityType:0,
+                }
+                $scope.Lead.FeasibilityDetails.push(temp);
+                console.log($scope.Lead.FeasibilityDetails);
+            }
             $scope.RemoveRow = function (index) {
                 console.log(index);
                 $scope.LeadFeasibility.splice(index, 1);
+            }
+            $scope.RemoveEditRow = function (index) {
+                console.log(index);
+                if ($scope.Lead.FeasibilityDetails[index].Id != 0) {
+                    $scope.DeletedRows.push($scope.Lead.FeasibilityDetails[index]);
+                }
+                $scope.Lead.FeasibilityDetails.splice(index, 1);
             }
             $scope.AddFeasibility = function (LeadFeasibility) {
                 console.log(LeadFeasibility);
@@ -333,6 +401,27 @@
                             $timeout(function () { window.location.href = '/Lead/List'; }, 2000);
                         } else {
                             toaster.pop('error', "error", "Unable to update lead!");
+                        }
+                    });
+            }
+            $scope.EditFeasibility  = function (LeadFeasibility) {
+                console.log(LeadFeasibility);
+                console.log($scope.DeletedRows);
+                console.log(LeadFeasibility);
+                var temp = {
+                    Feasibility: LeadFeasibility,
+                    Status: $scope.FeasibilityStatus,
+                    DeletedRows: $scope.DeletedRows
+                }
+                console.log(temp);
+                $scope.AjaxPost("/api/LeadApi/EditFeasibility", temp).then(
+                    function (response) {
+                        if (response.status == 200) {
+                            //alert("Lead has been Updated Successfully!");
+                            toaster.pop('success', "success", "Pmd Details Has Been Updated Successfully!");
+                            $timeout(function () { window.location.href = '/Lead/List'; }, 2000);
+                        } else {
+                            toaster.pop('error', "error", "Unable to update Feasibility!");
                         }
                     });
             }

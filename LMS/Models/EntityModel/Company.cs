@@ -53,6 +53,7 @@ namespace LMS.Models.EntityModel
         public Nullable<int> NoLinks { get; set; }
         public string NTN { get; set; }
         public Nullable<int> NumberOfBranchOffices { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyBranches> CompanyBranches { get; set; }

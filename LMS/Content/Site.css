@@ -439,7 +439,6 @@ ul ul a {
 .NotFeasible{
     background:red;
 }
-
 .crd-heading-bg-color {
     color: white;
     background-color: #2f4f4f;
@@ -460,6 +459,7 @@ ul ul a {
     .hvr-glow:hover, .hvr-glow:focus, .hvr-glow:active {
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
     }
+
 .dashbord-card {
     background-color: #00a1e2;
     color: black;

@@ -3,7 +3,7 @@
     ViewBag.Title = "AddFeasibility";
 }
 
-<div ng-controller="LeadCtrl" ng-init="FeasibiltyInit()">
+<div ng-controller="LeadCtrl" ng-init="FeasibiltyAddInit()">
     <div class="jumbotron PageHeading">
         <div class="row">
             <div class="col-md-8 col-sm-8 col-lg-8"><h2>Add Feasibilty Check</h2></div>
@@ -84,7 +84,7 @@
     <div class="jumbotron PageHeading">
         <div class="row text-center">
             <h2 class="SegmentHeading">
-                Contact Information
+                Customer Contact Information
                 <span ng-click="ExpandCollapse('CI')"><i class="fas fa-plus" ng-if="ShowContactInformation == false"></i></span>
                 <span ng-click="ExpandCollapse('CI')"><i class="fas fa-minus" ng-if="ShowContactInformation == true"></i></span>
             </h2>
@@ -114,10 +114,18 @@
                 <label>Website</label>
                 <input type="text" readonly class="form-control" ng-model="Lead.Website" placeholder="www.sharptel.com" />
             </div>
-            <div class="col-md-4 form-group">
-                <label>Area / Territory</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.AreaEnum" />
+            @*<div class="col-md-4 form-group">
+            <label>Area / Territory</label>
+            <input type="text" readonly class="form-control" ng-model="Lead.AreaEnum" />
 
+        </div>*@
+            <div class="col-md-4 form-group">
+                <label>Latitude</label>
+                <input type="number" readonly class="form-control" ng-model="Lead.Latitude" placeholder="Latitude" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Longitude</label>
+                <input type="number" readonly class="form-control" ng-model="Lead.Longitude" placeholder="Longitude" />
             </div>
             <div class="col-md-4 form-group">
                 <label>City</label>
@@ -138,7 +146,7 @@
     <div class="jumbotron PageHeading">
         <div class="row text-center">
             <h2 class="SegmentHeading">
-                Business Infromation
+               Customer Business Infromation
                 <span ng-click="ExpandCollapse('BI')"><i class="fas fa-plus" ng-if="ShowBusinessInformation == false"></i></span>
                 <span ng-click="ExpandCollapse('BI')"><i class="fas fa-minus" ng-if="ShowBusinessInformation == true"></i></span>
             </h2>
@@ -189,14 +197,7 @@
                 <label>Number Of Links</label>
                 <input type="text" readonly class="form-control" ng-model="Lead.NoLinks" />
             </div>
-            <div class="col-md-4 form-group">
-                <label>Need</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.Need" />
-            </div>
-            <div class="col-md-4 form-group">
-                <label>Will</label>
-                <input type="text" readonly class="form-control" ng-model="Lead.Will" />
-            </div>
+          
             <div class="col-md-4 form-group">
                 <label>Budget</label>
                 <input type="text" readonly class="form-control" ng-model="Lead.Budget" />
@@ -211,20 +212,13 @@
             </div>
             <div class="col-md-4 form-group" style="padding-bottom: 35px;">
                 <label>Is our Existing Customer</label>
-                <input type="checkbox" class="disabled" readonly ng-model="Lead.IsEsisting" />
+                <input type="checkbox" disabled readonly ng-model="Lead.IsEsisting" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Ever Tried Our Service Before</label>
-                <input type="checkbox" class="disabled" readonly ng-model="Lead.HasTriedOurServie" />
+                <input type="checkbox" disabled readonly ng-model="Lead.HasTriedOurServie" />
             </div>
-            <div class="col-md-4 form-group">
-                <label>Latitude</label>
-                <input type="checkbox" class="disabled" readonly ng-model="Lead.Latitude" />
-            </div>
-            <div class="col-md-4 form-group">
-                <label>Longitude</label>
-                <input type="checkbox" class="disabled" readonly ng-model="Lead.Longitude" />
-            </div>
+          
         </div>
 
     </div>
@@ -251,6 +245,7 @@
                         <th>OTC</th>
                         <th>MRC</th>
                         <th>Bandwidth</th>
+                        <th>Type</th>
                         <th>Remarks</th>
                         
                     </tr>
@@ -272,8 +267,16 @@
                             <input type="text" class="form-control" ng-model="feasibility.Bandwidth" />
                         </td>
                         <td>
+                            <select ng-model="feasibility.ConnectivityType" class="form-control">
+                                <option selected value="">Select Connection Type</option>
+                                <option value="0" ng-selected="feasibility.ConnectivityType == 0">Fiber</option>
+                                <option value="1" ng-selected="feasibility.ConnectivityType == 1">Radio</option>
+                            </select>
+                        </td>
+                        <td>
                             <input type="text" class="form-control" ng-model="feasibility.Remarks" />
                         </td>
+
                         <td>
                             <i class="fas fa-minus" ng-click="RemoveRow($index)"></i>
                         </td>
