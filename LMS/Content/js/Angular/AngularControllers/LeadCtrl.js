@@ -130,6 +130,8 @@
                 $scope.Company = {};
                 $scope.Companies = [];
                 $scope.Lead = {};
+                $scope.ShowContactInformation = false;
+                $scope.ShowBusinessInformation = false;
                 //$scope.Lead.Domain = 0;
                 $scope.MOCS = [{ Name: "Phone", Id: 0 }, { Name: "Email", Id: 1 }, { Name: "Fax", Id: 2 }, { Name: "Visit", Id: 3 }];
                 getCompaniesDropdown();
@@ -220,6 +222,7 @@
                 $scope.ShowFeasibilityInformation = false;
                 // $scope.Lead.Domain = 0;
                 var Id = $scope.GetUrlParameter("Id");
+                getCompaniesDropdown();
                 var data = {
                     Id: parseInt(Id)
                 }
@@ -228,11 +231,20 @@
                     function (response) {
                         console.log(response);
                         $scope.Lead = response.data;
+                       
+                        var Company = {};
+                        angular.forEach($scope.Companies, function (value, key) {
+                            if (value.Id == $scope.Lead.CompanyId) {
+                                Company = value;
+                                return;
+                            }
+                        }); 
+                        $scope.CompanyId = Company;
                         $scope.GetDropdownForServies($scope.Lead.CUDS);
                     });
 
                 $scope.MOCS = [{ Name: "Phone", Id: 0 }, { Name: "Email", Id: 1 }, { Name: "Fax", Id: 2 }, { Name: "Visit", Id: 3 }];
-                getCompaniesDropdown();
+                
             }
             $scope.EditLead = function (Lead) {
                 console.log(Lead);

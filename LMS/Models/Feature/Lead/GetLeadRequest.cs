@@ -114,36 +114,9 @@ namespace LMS.Models.Feature.Lead
 				response.BusinessIndustry = Data.BusinessIndustry;
 				response.BusinessIndustryEnum = ((BusinessSegmentation)Data.BusinessIndustry.Value).ToString();
 			}
-			if (Data.CUDS.HasValue)
-			{
-				response.CUDS = Data.CUDS;
-				response.CUDSEnum = ((DataServices)Data.CUDS.Value).ToString();
-			}
-			//if (Data.CUDSService.HasValue)
-			//{
-			//	response.CUDSService = Data.CUDSService;
-			//	if (Data.CUDS == (int)DataServices.WiWax)
-			//	{
-			//		response.CUDSServiceEnum = ((WiWax)Data.CUDSService.Value).ToString();
-			//	}
-			//	if (Data.CUDS == (int)DataServices.Fiber)
-			//	{
-			//		response.CUDSServiceEnum = ((Fiber)Data.CUDSService.Value).ToString();
-			//	}
-			//	if (Data.CUDS == (int)DataServices.VSAT)
-			//	{
-			//		response.CUDSServiceEnum = ((VSAT)Data.CUDSService.Value).ToString();
-			//	}
-			//	if (Data.CUDS == (int)DataServices.DSL)
-			//	{
-			//		response.CUDSServiceEnum = ((DSL)Data.CUDSService.Value).ToString();
-			//	}
-			//	if (Data.CUDS == (int)DataServices.Other)
-			//	{
-			//		response.CUDSServiceEnum = Data.CUDSOtherService;//((DSL)Data.CUDSService.Value).ToString();
-			//	}
-			//}
-			response.CUDSOtherService = Data.CUDSOtherService;
+			
+			
+			response.CurrentlyUsedMedium = Data.CurrentlyUsedMedium;
 			response.IsEsisting = Data.IsEsisting;
 			response.HasTriedOurServie = Data.HasTriedOurServie;
 			response.NTN = Data.NTN;
@@ -155,8 +128,15 @@ namespace LMS.Models.Feature.Lead
 			response.ContactPersonDepartment = Data.ContactPersonDepartment;
 			response.NoBracnhOffices = Data.NumberOfBranchOffices;
 			response.Website = Data.Website;
-			response.CurrentItPlatform = Data.CurrentItPlatform;
+			response.RequiredMedium = Data.RequiredMedium;
 			response.NoLinks = Data.NoLinks;
+			response.ConnectivityType = Data.ConnectivityType;
+            if (Data.ConnectivityType.HasValue)
+            {
+				response.ConnectivityTypeEnum = ((ConnectionType)Data.ConnectivityType.Value).ToString();
+			}
+			
+			response.Bandwidth = Data.Bandwidth;
 
             if (Data.Company != null) // need to remove this once all the data is filled with company
             {
@@ -216,14 +196,11 @@ namespace LMS.Models.Feature.Lead
 			public string Comments { get; set; }
 			public int? NOE { get; set; } //Number of Employees may be change it to string
 			public string NOEEnum { get; set; }
-			public string CurrentItPlatform { get; set; }
+			public string RequiredMedium { get; set; }
 			public int? BusinessIndustry { get; set; }
 			public string BusinessIndustryEnum { get; set; }
-			public int? CUDS { get; set; }
-			public string CUDSEnum { get; set; }
-			public int? CUDSService { get; set; }
-			public string CUDSServiceEnum { get; set; }
-			public string CUDSOtherService{ get; set;}
+	
+			public string CurrentlyUsedMedium{ get; set;}
 			public int? NoLinks { get; set; }
 			public int? AssignedToId { get; set; }
 			public string AssignedToName { get; set; }
@@ -247,6 +224,10 @@ namespace LMS.Models.Feature.Lead
 			public string AreaEnum { get; set; }
 			public double Latitude { get; set; }
 			public double Longitude { get; set; }
+
+			public int? ConnectivityType { get; set; }
+			public string ConnectivityTypeEnum { get; set; }
+			public string Bandwidth { get; set; }
 			public string CreatedBy { get; set; }
 			public DateTime? CreatedAt { get; set; }
 			public string UpdatedBy { get; set; }

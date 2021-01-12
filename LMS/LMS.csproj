@@ -261,6 +261,7 @@
     <Compile Include="Models\Enums\BusinessSegmentation.cs" />
     <Compile Include="Models\Enums\BusinessTime.cs" />
     <Compile Include="Models\Enums\City.cs" />
+    <Compile Include="Models\Enums\ConnectionType.cs" />
     <Compile Include="Models\Enums\DataServices.cs" />
     <Compile Include="Models\Enums\Departments.cs" />
     <Compile Include="Models\Enums\Designation.cs" />

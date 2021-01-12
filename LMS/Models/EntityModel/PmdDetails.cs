@@ -26,6 +26,7 @@ namespace LMS.Models.EntityModel
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
         public int ConnectivityType { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Vendor Vendor { get; set; }
         public virtual Lead Lead { get; set; }

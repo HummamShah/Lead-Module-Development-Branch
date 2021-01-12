@@ -7,4 +7,5 @@
 	[CreatedAt] DateTime,
 	[UpdatedBy] nvarchar(max),
 	[UpdatedAt] DateTime,
+		[Date] Datetime,
 )

@@ -38,10 +38,6 @@ namespace LMS.Models.EntityModel
         public Nullable<int> BusinessOperationTime { get; set; }
         public Nullable<int> NoEmployee { get; set; }
         public Nullable<int> BusinessIndustry { get; set; }
-        public string CurrentItPlatform { get; set; }
-        public Nullable<int> CUDS { get; set; }
-        public Nullable<int> CUDSService { get; set; }
-        public string CUDSOtherService { get; set; }
         public Nullable<int> NoLinks { get; set; }
         public string NTN { get; set; }
         public Nullable<int> NumberOfBranchOffices { get; set; }
@@ -74,6 +70,11 @@ namespace LMS.Models.EntityModel
         public string ContactPersonEmail { get; set; }
         public string ContactPersonTitle { get; set; }
         public string ContactPersonDepartment { get; set; }
+        public string RequiredMedium { get; set; }
+        public string CurrentlyUsedMedium { get; set; }
+        public string Bandwidth { get; set; }
+        public Nullable<int> ConnectivityType { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Agent AssignedTo { get; set; }
         public virtual Agent AssignedPMD { get; set; }

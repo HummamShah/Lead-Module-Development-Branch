@@ -29,6 +29,7 @@
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar(max)" />
           <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -115,6 +116,7 @@
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
           <Property Name="UpdatedBy" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="CompanyBranches">
           <Key>
@@ -139,6 +141,7 @@
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar(max)" />
           <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -183,10 +186,8 @@
           <Property Name="BusinessOperationTime" Type="int" />
           <Property Name="NoEmployee" Type="int" />
           <Property Name="BusinessIndustry" Type="int" />
-          <Property Name="CurrentItPlatform" Type="nvarchar(max)" />
-          <Property Name="CUDS" Type="int" />
-          <Property Name="CUDSService" Type="int" />
-          <Property Name="CUDSOtherService" Type="nvarchar(max)" />
+          <Property Name="RequiredMedium" Type="nvarchar(max)" />
+          <Property Name="CurrentlyUsedMedium" Type="nvarchar(max)" />
           <Property Name="NoLinks" Type="int" />
           <Property Name="NTN" Type="nvarchar(max)" />
           <Property Name="NumberOfBranchOffices" Type="int" />
@@ -195,6 +196,8 @@
           <Property Name="HasTriedOurServie" Type="bit" />
           <Property Name="Comments" Type="nvarchar(max)" />
           <Property Name="Budget" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="Bandwidth" Type="nvarchar(max)" />
+          <Property Name="ConnectivityType" Type="int" />
           <Property Name="AssignedPmdId" Type="int" />
           <Property Name="PmdAssignedOn" Type="datetime" />
           <Property Name="PresaleAssignedOn" Type="datetime" />
@@ -213,6 +216,7 @@
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar(max)" />
           <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="PmdDetails">
           <Key>
@@ -230,6 +234,7 @@
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar(max)" />
           <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="SolutionDetails">
           <Key>
@@ -265,6 +270,7 @@
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar(max)" />
           <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <Association Name="FK_Agent_Agent">
           <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
@@ -779,6 +785,7 @@
           <NavigationProperty Name="Lead1" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_PMD" FromRole="Agent" ToRole="Lead" />
           <NavigationProperty Name="Lead2" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_PreSale" FromRole="Agent" ToRole="Lead" />
           <NavigationProperty Name="Lead3" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_Creator" FromRole="Agent" ToRole="Lead" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
           </EntityType>
         <EntityType Name="CompanyBranches">
           <Key>
@@ -805,6 +812,7 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Agent" Relationship="Sharptel_Lms_DbModel.FK_Agent_Department" FromRole="Department" ToRole="Agent" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -841,6 +849,7 @@
           <NavigationProperty Name="Vendor" Relationship="Sharptel_Lms_DbModel.FK_PMD_Vendor" FromRole="PmdDetails" ToRole="Vendor" />
           <NavigationProperty Name="Lead" Relationship="Sharptel_Lms_DbModel.FK_PMD_Leads" FromRole="PmdDetails" ToRole="Lead" />
           <Property Name="ConnectivityType" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Vendor">
           <Key>
@@ -855,6 +864,7 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="PmdDetails" Relationship="Sharptel_Lms_DbModel.FK_PMD_Vendor" FromRole="Vendor" ToRole="PmdDetails" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_Agent_Department">
           <End Type="Sharptel_Lms_DbModel.Department" Role="Department" Multiplicity="0..1" />
@@ -931,6 +941,7 @@
           <Property Name="NTN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NumberOfBranchOffices" Type="Int32" />
           <NavigationProperty Name="Lead" Relationship="Sharptel_Lms_DbModel.FK_Lead_Company" FromRole="Company" ToRole="Lead" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_Agent_Company">
           <End Type="Sharptel_Lms_DbModel.Company" Role="Company" Multiplicity="0..1" />
@@ -1001,10 +1012,6 @@
           <Property Name="BusinessOperationTime" Type="Int32" />
           <Property Name="NoEmployee" Type="Int32" />
           <Property Name="BusinessIndustry" Type="Int32" />
-          <Property Name="CurrentItPlatform" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CUDS" Type="Int32" />
-          <Property Name="CUDSService" Type="Int32" />
-          <Property Name="CUDSOtherService" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NoLinks" Type="Int32" />
           <Property Name="NTN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NumberOfBranchOffices" Type="Int32" />
@@ -1044,6 +1051,11 @@
           <Property Name="ContactPersonTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ContactPersonDepartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SolutionDetails" Relationship="Sharptel_Lms_DbModel.FK_SolutionDetails_Leads" FromRole="Lead" ToRole="SolutionDetails" />
+          <Property Name="RequiredMedium" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentlyUsedMedium" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bandwidth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConnectivityType" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_Lead_Agent_Lead">
           <End Type="Sharptel_Lms_DbModel.Agent" Role="Agent" Multiplicity="0..1" />
@@ -1214,6 +1226,7 @@
           <EntitySetMapping Name="Agent">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Agent">
               <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="HasSupervisor" ColumnName="HasSupervisor" />
                 <ScalarProperty Name="IsSupervisor" ColumnName="IsSupervisor" />
                 <ScalarProperty Name="SuperVisorId" ColumnName="SuperVisorId" />
@@ -1253,6 +1266,7 @@
           <EntitySetMapping Name="Department">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Department">
               <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -1283,6 +1297,7 @@
           <EntitySetMapping Name="PmdDetails">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.PmdDetails">
               <MappingFragment StoreEntitySet="PmdDetails">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ConnectivityType" ColumnName="ConnectivityType" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
@@ -1301,6 +1316,7 @@
           <EntitySetMapping Name="Vendor">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Vendor">
               <MappingFragment StoreEntitySet="Vendor">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -1315,6 +1331,7 @@
           <EntitySetMapping Name="Company">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Company">
               <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="NumberOfBranchOffices" ColumnName="NumberOfBranchOffices" />
                 <ScalarProperty Name="NTN" ColumnName="NTN" />
                 <ScalarProperty Name="NoLinks" ColumnName="NoLinks" />
@@ -1351,6 +1368,11 @@
           <EntitySetMapping Name="Lead">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Lead">
               <MappingFragment StoreEntitySet="Lead">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ConnectivityType" ColumnName="ConnectivityType" />
+                <ScalarProperty Name="Bandwidth" ColumnName="Bandwidth" />
+                <ScalarProperty Name="CurrentlyUsedMedium" ColumnName="CurrentlyUsedMedium" />
+                <ScalarProperty Name="RequiredMedium" ColumnName="RequiredMedium" />
                 <ScalarProperty Name="ContactPersonDepartment" ColumnName="ContactPersonDepartment" />
                 <ScalarProperty Name="ContactPersonTitle" ColumnName="ContactPersonTitle" />
                 <ScalarProperty Name="ContactPersonEmail" ColumnName="ContactPersonEmail" />
@@ -1383,10 +1405,6 @@
                 <ScalarProperty Name="NumberOfBranchOffices" ColumnName="NumberOfBranchOffices" />
                 <ScalarProperty Name="NTN" ColumnName="NTN" />
                 <ScalarProperty Name="NoLinks" ColumnName="NoLinks" />
-                <ScalarProperty Name="CUDSOtherService" ColumnName="CUDSOtherService" />
-                <ScalarProperty Name="CUDSService" ColumnName="CUDSService" />
-                <ScalarProperty Name="CUDS" ColumnName="CUDS" />
-                <ScalarProperty Name="CurrentItPlatform" ColumnName="CurrentItPlatform" />
                 <ScalarProperty Name="BusinessIndustry" ColumnName="BusinessIndustry" />
                 <ScalarProperty Name="NoEmployee" ColumnName="NoEmployee" />
                 <ScalarProperty Name="BusinessOperationTime" ColumnName="BusinessOperationTime" />

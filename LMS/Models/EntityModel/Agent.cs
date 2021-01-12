@@ -44,6 +44,7 @@ namespace LMS.Models.EntityModel
         public Nullable<int> SuperVisorId { get; set; }
         public Nullable<bool> IsSupervisor { get; set; }
         public Nullable<bool> HasSupervisor { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Department Department { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }

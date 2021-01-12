@@ -12,6 +12,7 @@
 	[CreatedAt] DateTime,
 	[UpdatedBy] nvarchar(max),
 	[UpdatedAt] DateTime,
+		[Date] Datetime,
 	Constraint [FK_PMD_Leads] foreign key ([LeadId]) References [dbo].[Lead] ([Id]),
 	Constraint [FK_PMD_Vendor] foreign key ([VendorId]) References [dbo].[Vendor] ([Id])
 )

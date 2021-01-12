@@ -30,5 +30,6 @@
 	[UpdatedAt] Datetime ,
 	[CreatedBy] nvarchar(max),
 	[UpdatedBy] nvarchar(max),
+		[Date] Datetime,
     Constraint [FK_Company_ParentCompany] foreign key ([ParentCompanyId]) References [dbo].[Company] ([Id]),
 )

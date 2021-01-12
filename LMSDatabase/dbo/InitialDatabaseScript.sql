@@ -77,6 +77,7 @@ CREATE TABLE [dbo].[Company]
 	[UpdatedAt] Datetime ,
 	[CreatedBy] nvarchar(max),
 	[UpdatedBy] nvarchar(max),
+		[Date] Datetime,
     Constraint [FK_Company_ParentCompany] foreign key ([ParentCompanyId]) References [dbo].[Company] ([Id]),
 )
 CREATE TABLE [dbo].[CompanyBranches]
@@ -99,6 +100,7 @@ CREATE TABLE [dbo].[Department]
 	[CreatedAt] DateTime,
 	[UpdatedBy] nvarchar(max),
 	[UpdatedAt] DateTime,
+		[Date] Datetime,
 )
 
 CREATE TABLE [dbo].[Agent]
@@ -123,6 +125,7 @@ CREATE TABLE [dbo].[Agent]
 	[CreatedAt] DateTime,
 	[UpdatedBy] nvarchar(max),
 	[UpdatedAt] DateTime,
+		[Date] Datetime,
 	Constraint [FK_Agent_User] foreign key ([UserId]) References [dbo].[AspNetUsers] ([Id]),
 	Constraint [FK_Agent_Agent] foreign key ([SuperVisorId]) References [dbo].[Agent] ([Id]),
 	Constraint [FK_Agent_Department] foreign key ([DepartmentId]) References [dbo].[Department] ([Id])
@@ -145,7 +148,7 @@ CREATE TABLE [dbo].[Employee]
 )
 CREATE TABLE [dbo].[Lead]
 (
-	[AgentId] int not null default(0),
+	[AgentId] int not null ,
     [Id] INT NOT NULL PRIMARY KEY Identity(1,1),
 	[CompanyName] nvarchar(max),
 	[ContactPersonName] nvarchar(max),
@@ -168,10 +171,8 @@ CREATE TABLE [dbo].[Lead]
 	[BusinessOperationTime] int,
 	[NoEmployee] int,
 	[BusinessIndustry] int,
-	[CurrentItPlatform] nvarchar(max),
-	[CUDS]int,
-	[CUDSService] int,
-	[CUDSOtherService] nvarchar(max),
+	[RequiredMedium] nvarchar(max), -- was currentlyUsingItPlatform before
+	[CurrentlyUsedMedium] nvarchar(max),  --was CudsOtherSErvices before
 	[NoLinks] int,
 	[NTN] nvarchar(max),
 	[NumberOfBranchOffices] int,
@@ -180,6 +181,9 @@ CREATE TABLE [dbo].[Lead]
 	[HasTriedOurServie] bit,
 	[Comments] nvarchar(max),
 	[Budget] decimal(18,3),
+	--new fields
+	[Bandwidth] nvarchar(max),
+	[ConnectivityType] int,
 	
 	[AssignedPmdId] int,
 	[PmdAssignedOn] DateTime,
@@ -201,12 +205,14 @@ CREATE TABLE [dbo].[Lead]
 	[CreatedAt] DateTime,
 	[UpdatedBy] nvarchar(max),
 	[UpdatedAt] DateTime,
+	[Date] Datetime,
 	Constraint [FK_Lead_Company] foreign key ([CompanyId]) References [dbo].[Company] ([Id]),
 	Constraint [FK_Lead_Agent_PMD] foreign key ([AssignedPmdId]) References [dbo].[Agent] ([Id]),
 	Constraint [FK_Lead_Agent_PreSale] foreign key ([AssignedPreSaleId]) References [dbo].[Agent] ([Id]),
 	Constraint [FK_Lead_Agent_Lead] foreign key ([AssignedToId]) References [dbo].[Agent] ([Id]),
 	Constraint [FK_Lead_Agent_Creator] foreign key ([AgentId]) References [dbo].[Agent] ([Id]),
 )
+
 CREATE TABLE [dbo].[Vendor]
 (
 	[Id] INT NOT NULL PRIMARY KEY Identity(1,1),
@@ -217,6 +223,7 @@ CREATE TABLE [dbo].[Vendor]
 	[CreatedAt] DateTime,
 	[UpdatedBy] nvarchar(max),
 	[UpdatedAt] DateTime,
+		[Date] Datetime,
 )
 CREATE TABLE [dbo].[PmdDetails]
 (
@@ -231,8 +238,30 @@ CREATE TABLE [dbo].[PmdDetails]
 	[CreatedAt] DateTime,
 	[UpdatedBy] nvarchar(max),
 	[UpdatedAt] DateTime,
+		[Date] Datetime,
 	Constraint [FK_PMD_Leads] foreign key ([LeadId]) References [dbo].[Lead] ([Id]),
 	Constraint [FK_PMD_Vendor] foreign key ([VendorId]) References [dbo].[Vendor] ([Id])
 )
 
 
+CREATE TABLE [dbo].[SolutionDetails]
+(
+	[Id] INT NOT NULL PRIMARY KEY identity(1,1),
+	[LeadId] int not null,
+	[Date] Datetime,
+	[SolutionType] int not null,
+	[SolutionSubType] int ,
+	[SolutionServiceProvider] nvarchar(max),
+	[SolutionServiceProduct] nvarchar(max),
+	[IsNew] bit,
+	[CurrentServiceInfo] nvarchar(max),
+	[Duration] Datetime,
+	[OtherMeasurements] nvarchar(max),
+	[Quantity] int,
+	[Remarks] nvarchar(max),
+	[CreatedBy] nvarchar(max),
+	[CreatedAt] DateTime,
+	[UpdatedBy] nvarchar(max),
+	[UpdatedAt] DateTime,
+	Constraint [FK_SolutionDetails_Leads] foreign key ([LeadId]) References [dbo].[Lead] ([Id]),
+)
