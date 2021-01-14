@@ -465,3 +465,9 @@ ul ul a {
     color: black;
     margin-bottom: 08px;
 }
+
+.CompanySearch {
+    padding: 0px;
+    height: inherit;
+    
+}

@@ -13,7 +13,7 @@
             <form id="VendorAddForm ">
                 <div class="form-group">
                     <div class="col-md-3">
-                        <label>Name</label>
+                        <label>Name <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" ng-model="Company.Name" placeholder="Company Name" />
                     </div>
                 </div>
@@ -74,7 +74,7 @@
 
             </div>
             <div class="col-md-4 form-group">
-                <label>Contact</label>
+                <label>Contact <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" ng-model="Company.Contact" placeholder="03XX-XXXXXXX" />
             </div>
             <div class="col-md-4 form-group">
@@ -98,7 +98,7 @@
                 <input type="text" class="form-control" ng-model="Company.Website" placeholder="www.demo.com" />
             </div>
             <div class="col-md-4 form-group">
-                <label>Latitude</label>
+                <label>Latitude <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" ng-model="Company.Latitude" placeholder="Latitude" />
                 @*<select ng-model="Company.Area" class="form-control">
                 <option selected value="">Area</option>
@@ -108,7 +108,7 @@
             </select>*@
             </div>
             <div class="col-md-4 form-group">
-                <label>Longitude</label>
+                <label>Longitude <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" ng-model="Company.Longitude" placeholder="Longitude"/>
             </div>
                 <div class="col-md-4 form-group">
@@ -119,7 +119,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label>Address</label>
+                    <label>Address <span class="text-danger">*</span></label>
                     <input type="text" ng-model="Company.Address" class="form-control" placeholder="Address" />
                 </div>
 
@@ -132,7 +132,7 @@
         </div>
         <div class="row">
             <div class="col-md-4 form-group">
-                <label>Company Size</label>
+                <label>>Number of Users</label>
                 <select ng-model="Company.NOE" class="form-control">
                     <option selected value="">Number of Users</option>
                     <option value="0">1-5</option>

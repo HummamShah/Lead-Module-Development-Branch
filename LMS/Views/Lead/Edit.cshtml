@@ -18,7 +18,7 @@
                     </div>*@
             </div>
             <div class="col-md-4 col-sm-4 col-lg-4" style=" margin-top: 15px; float: right; text-align: right;">
-                Domain
+                Domain <span class="text-danger">*</span>
                 <div class="form-group" style="display:inline-block;">
                     <select ng-model="Lead.Domain" class="form-control">
                         <option selected value="">Select Domain</option>
@@ -34,63 +34,57 @@
             <div class="row"> <h2 class="SegmentHeading">General Information</h2></div>
         </div>
         <div class="row">
-            <form id="LeadAddForm ">
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label>Lead Name</label>
-                        <input type="text" class="form-control" ng-model="Lead.Name" />
-                    </div>
-                </div>
-
+            <form id="LeadAddForm">
                 @*<div class="form-group">
-                        <div class="col-md-3">
-                            <label>Company</label> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i></a>
-                            <select ng-model="Lead.CompanyId" class="form-control" ng-change="GetCompanyData(Lead.CompanyId)">
-                                <option selected value="">Select Company</option>
-                                <option ng-repeat="Company in Companies" value="{{Company.Id}}" ng-selected="Lead.CompanyId == Company.Id">{{Company.Name}}</option>
-                            </select>
-                        </div>
-                    </div>*@
+            <div class="col-md-3">
+                <label>Company</label> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i></a>
+                <select ng-model="Lead.CompanyId" class="form-control" ng-change="GetCompanyData(Lead.CompanyId)">
+                    <option selected value="">Select Company</option>
+                    <option ng-repeat="Company in Companies" value="{{Company.Id}}" ng-selected="Lead.CompanyId == Company.Id">{{Company.Name}}</option>
+                </select>
+            </div>
+        </div>*@
                 <div class="form-group">
                     <div class="col-md-3">
-                        <label>Company</label><a href="#" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i></a>
-                        <ui-select ng-model="CompanyId" theme="select2" class="form-control" ng-change="GetCompanyData(CompanyId)">
+                        <label>Company</label><a href="#" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i> <span class="text-danger">*</span></a>   
+                        <ui-select ng-model="CompanyId" theme="select2" class="form-control CompanySearch" ng-change="GetCompanyData(CompanyId)">
                             <ui-select-match placeholder="Select a company in the list...">{{$select.selected.Name}}</ui-select-match>
                             <ui-select-choices repeat="item in Companies | filter: $select.search">
                                 <div ng-bind-html="item.Name | highlight: $select.search"></div>
                             </ui-select-choices>
-                        </ui-select>
+                        </ui-select>        
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label>Contact Person Name</label>
-                        <input type="text" class="form-control" ng-model="Lead.ContactPersonName" />
+                <div ng-if=" Lead.CompanyId != null">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label>Contact Person Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" ng-model="Lead.ContactPersonName" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label>Contact Person Number</label>
-                        <input type="text" class="form-control" ng-model="Lead.ContactPersonNumber" />
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label>Contact Person Number <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" ng-model="Lead.ContactPersonNumber" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label>Contact Person Email</label>
-                        <input type="text" class="form-control" ng-model="Lead.ContactPersonEmail" />
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label>Contact Person Email <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" ng-model="Lead.ContactPersonEmail" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label>Contact Person Title</label>
-                        <input type="text" class="form-control" ng-model="Lead.ContactPersonTitle" />
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label>Contact Person Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" ng-model="Lead.ContactPersonTitle" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label>Contact Person Department</label>
-                        <input type="text" class="form-control" ng-model="Lead.ContactPersonDepartment" />
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label>Contact Person Department <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" ng-model="Lead.ContactPersonDepartment" />
+                        </div>
                     </div>
                 </div>
             </form>
@@ -108,15 +102,15 @@
         </div>
         <div class="row">
             <div class="col-md-4 form-group">
-                <label>Currently Used medium </label>
+                <label>Currently Used medium <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" ng-model="Lead.CurrentlyUsedMedium" />
             </div>
             <div class="col-md-4 form-group">
-                <label>Required Medium</label>
+                <label>Required Medium <span class="text-danger">*</span></label>
                 <input type="text" ng-model="Lead.RequiredMedium" class="form-control" />
             </div>
             <div class="col-md-4 form-group">
-                <label>Connectivity Type</label>
+                <label>Connectivity Type <span class="text-danger">*</span></label>
                 <select ng-model="Lead.ConnectivityType" class="form-control">
                     <option selected value="">Connectivity Type</option>
                     <option value="0" ng-selected="Lead.ConnectivityType == 0">Data</option>
@@ -124,11 +118,11 @@
                 </select>
             </div>
             <div class="col-md-4 form-group">
-                <label>Target Price</label>
+                <label>Target Price <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" ng-model="Lead.Budget" />
             </div>
             <div class="col-md-4 form-group">
-                <label>Estimated Closing Date</label>
+                <label>Estimated Closing Date <span class="text-danger">*</span></label>
                 <input type="date" class="form-control" ng-model="Lead.EstimatedClosingDate" />
             </div>
 
@@ -137,7 +131,7 @@
                 <input type="text" ng-model="Lead.NoBracnhOffices" class="form-control" />
             </div>
             <div class="col-md-4 form-group">
-                <label>Bandwidth</label>
+                <label>Bandwidth <span class="text-danger">*</span></label>
                 <input type="text" placeholder="5 MBs" ng-model="Lead.Bandwidth" class="form-control" />
             </div>
             <div class="col-md-4 form-group">

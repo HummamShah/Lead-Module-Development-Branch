@@ -66,7 +66,7 @@
             }
             $scope.AddLead = function (Lead) {
                 console.log(Lead);
-                return;
+                
                 if (Lead.CompanyId == null) {
                     toaster.pop('error', "error", "Please Select Company!");
                     return;
@@ -93,6 +93,30 @@
                 }
                 if (Lead.ContactPersonDepartment == null || Lead.ContactPersonDepartment == "") {
                     toaster.pop('error', "error", "Please Enter Contact Person Department");
+                    return;
+                }
+                if (Lead.CurrentlyUsedMedium == null || Lead.CurrentlyUsedMedium == "") {
+                    toaster.pop('error', "error", "Please Enter Currently Used Medium");
+                    return;
+                }
+                if (Lead.RequiredMedium == null || Lead.RequiredMedium == "") {
+                    toaster.pop('error', "error", "Please Enter Required Medium");
+                    return;
+                }
+                if (Lead.ConnectivityType == null || Lead.ConnectivityType == "") {
+                    toaster.pop('error', "error", "Please Enter Connectivity Type");
+                    return;
+                }
+                if (Lead.Budget == null || Lead.Budget == "") {
+                    toaster.pop('error', "error", "Please Enter Target Price");
+                    return;
+                }
+                if (Lead.EstimatedClosingDate == null || Lead.EstimatedClosingDate == "") {
+                    toaster.pop('error', "error", "Please Enter Estimated Closing Date");
+                    return;
+                }
+                if (Lead.Bandwidth == null || Lead.Bandwidth == "") {
+                    toaster.pop('error', "error", "Please Enter Bandwidth");
                     return;
                 }
 
@@ -207,7 +231,7 @@
                 promise.then(
                     function (response) {
                         console.log(response);
-                        $scope.Lead = response.data;
+                        $scope.Lead.CompanyDetails= response.data;
                         $scope.Lead.CompanyId = Company.Id;
                         $scope.GetDropdownForServies($scope.Lead.CUDS);
 
@@ -276,6 +300,30 @@
                 }
                 if (Lead.ContactPersonDepartment == null || Lead.ContactPersonDepartment == "") {
                     toaster.pop('error', "error", "Please Enter Contact Person Department");
+                    return;
+                }
+                if (Lead.CurrentlyUsedMedium == null || Lead.CurrentlyUsedMedium == "") {
+                    toaster.pop('error', "error", "Please Enter Currently Used Medium");
+                    return;
+                }
+                if (Lead.RequiredMedium == null || Lead.RequiredMedium == "") {
+                    toaster.pop('error', "error", "Please Enter Required Medium");
+                    return;
+                }
+                if (Lead.ConnectivityType == null || Lead.ConnectivityType == "") {
+                    toaster.pop('error', "error", "Please Enter Connectivity Type");
+                    return;
+                }
+                if (Lead.Budget == null || Lead.Budget == "") {
+                    toaster.pop('error', "error", "Please Enter Target Price");
+                    return;
+                }
+                if (Lead.EstimatedClosingDate == null || Lead.EstimatedClosingDate == "") {
+                    toaster.pop('error', "error", "Please Enter Estimated Closing Date");
+                    return;
+                }
+                if (Lead.Bandwidth == null || Lead.Bandwidth == "") {
+                    toaster.pop('error', "error", "Please Enter Bandwidth");
                     return;
                 }
 
