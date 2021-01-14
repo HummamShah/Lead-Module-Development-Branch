@@ -276,6 +276,7 @@
     <Compile Include="Models\Enums\Roles.cs" />
     <Compile Include="Models\Enums\ServiceProviderType.cs" />
     <Compile Include="Models\Enums\ConnectivityType.cs" />
+    <Compile Include="Models\Enums\SolutionType.cs" />
     <Compile Include="Models\Enums\VSAT.cs" />
     <Compile Include="Models\Enums\WiWax.cs" />
     <Compile Include="Models\Feature\Company\AddCompanyRequest.cs" />

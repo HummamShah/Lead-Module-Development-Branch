@@ -33,12 +33,12 @@
         </div>
         <div class="row">
             <form id="LeadAddForm ">
-                <div class="form-group">
+                @*<div class="form-group">
                     <div class="col-md-3">
                         <label>Lead Name</label>
                         <input type="text" class="form-control" ng-model="Lead.Name" />
                     </div>
-                </div>
+                </div>*@
 
                 @*<div class="form-group">
                         <div class="col-md-3">
@@ -60,35 +60,36 @@
                         </ui-select>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label>Contact Person Name</label>
-                        <input type="text" class="form-control" ng-model="Lead.ContactPersonName" />
+                <div ng-if=" Lead.CompanyId != null">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label>Contact Person Name</label>
+                            <input type="text" class="form-control" ng-model="Lead.ContactPersonName" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label>Contact Person Number</label>
-                        <input type="text" class="form-control" ng-model="Lead.ContactPersonNumber" />
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label>Contact Person Number</label>
+                            <input type="text" class="form-control" ng-model="Lead.ContactPersonNumber" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label>Contact Person Email</label>
-                        <input type="text" class="form-control" ng-model="Lead.ContactPersonEmail" />
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label>Contact Person Email</label>
+                            <input type="text" class="form-control" ng-model="Lead.ContactPersonEmail" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label>Contact Person Title</label>
-                        <input type="text" class="form-control" ng-model="Lead.ContactPersonTitle" />
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label>Contact Person Title</label>
+                            <input type="text" class="form-control" ng-model="Lead.ContactPersonTitle" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label>Contact Person Department</label>
-                        <input type="text" class="form-control" ng-model="Lead.ContactPersonDepartment" />
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label>Contact Person Department</label>
+                            <input type="text" class="form-control" ng-model="Lead.ContactPersonDepartment" />
+                        </div>
                     </div>
                 </div>
             </form>
@@ -100,7 +101,7 @@
 
 
     <!-- Connectivity -->
-    <div class="jumbotron PageHeading" ng-if="Lead.Domain == 1">
+    <div class="jumbotron PageHeading" ng-if="Lead.Domain == 1 && Lead.CompanyId != null">
         <div class="row text-center">
             <h2 class="SegmentHeading">Connectivity Details</h2>
         </div>
@@ -131,7 +132,7 @@
             </div>
 
             <div class="col-md-4 form-group">
-                <label>Numbe of Branch offices</label>
+                <label>Number of Branch offices</label>
                 <input type="text" ng-model="Lead.NoBracnhOffices" class="form-control" />
             </div>
             <div class="col-md-4 form-group">
@@ -159,7 +160,7 @@
 
 
     <!-- Solution -->
-    <div class="jumbotron PageHeading" ng-if="Lead.Domain == 0">
+    <div class="jumbotron PageHeading" ng-if="Lead.Domain == 0 &&  Lead.CompanyId != null">
         <div class="row text-center">
             <h2 class="SegmentHeading">Solution Details</h2>
         </div>
@@ -172,20 +173,192 @@
                     <option ng-selected="Lead.SolutionDetails.SolutionType==1" value="1">Wifi</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionType==2" value="2">Hardware Supplies</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionType==3" value="3">Video Conferencing</option>
-                    <option ng-selected="Lead.SolutionDetails.SolutionType==4" value="4">Colation</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionType==4" value="4">Colocation</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionType==5" value="5">Ip Telephony</option>
                 </select>
             </div>
-            <div class="col-md-4 form-group">
-                <label>Numbe of Branch offices</label>
-                <input type="text" ng-model="Lead.NoBracnhOffices" class="form-control" />
+
+
+
+            @*Security start*@
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==0">
+                <label>SubType of Solution</label>
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                    <option selected value="">Solution Type</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType==0" value="0">End Point</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType==1" value="1">Email</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType==2" value="2">Firewall</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType==3" value="3">Other</option>
+                </select>
+            </div>
+            @*Other start*@
+            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType == 0 &&Lead.SolutionDetails.SolutionSubType==3">
+                <label>Details of Sub type of solution</label>
+                <input type="text" ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control" />
+            </div>
+            @*Other end*@
+            @*Firewall start*@
+            <div class="col-md-3 form-group" ng-if="Lead.SolutionDetails.SolutionType == 0 && Lead.SolutionDetails.SolutionSubType == 2">
+                <label>Product</label>
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control">
+                    <option selected value="">Solution Product</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==0" value="SOPHOS">SOPHOS</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==1" value="Fortigate">Fortigate</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==2" value="Sangfor">Sangfor</option>
+                </select>
+            </div>
+            @*Firewall end*@
+            @*Endpoint start*@
+            <div class="col-md-3 form-group" ng-if="Lead.SolutionDetails.SolutionType == 0 &&Lead.SolutionDetails.SolutionSubType == 0">
+                <label>Product</label>
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control">
+                    <option selected value="">Select Product</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==0" value="KaspersKy">KaspersKy</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==1" value="TrendMicro">TrendMicro</option>
+                    @*<option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==2" value="Sangfor">Other</option>*@
+                </select>
+            </div>
+            @*Endpoint end*@
+
+
+            @*Email start*@
+            <div class="col-md-3 form-group" ng-if=" Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.SolutionSubType == 1">
+                <label>Product</label>
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                    <option selected value="">Solution Type</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType==0" value="0">Kaspersky</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType==1" value="1">Trend Micro</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType==2" value="2">Fortimail</option>
+                    @*<option ng-selected="Lead.SolutionDetails.SolutionSubType==3" value="3">Other</option>*@
+                </select>
             </div>
 
-            <div class="row float-right">
-                <a href="/Lead" class="btn btn-danger">Cancel</a>
-                <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="AddLead(Lead)">Add</button>
+            @*Email end*@
+
+            @* Security end *@
+
+            @*Wifi Start*@
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==1">
+                <label>Solution Service Provider</label>
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control">
+                    <option selected value="">Provider Type</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='RUCKUS'" value="RUCKUS">RUCKUS</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider== 'Grandstream'" value="Grandstream">Grandstream</option>
+                </select>
+            </div>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==1">
+                <label>Solution Boundary Type</label>
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control">
+                    <option selected value="">Select Wifi Boundary</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='OnPremises'" value="OnPremises">On Premises</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='CloudController'" value="CloudController">Cloud Controller</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='CloudControllerPlusOnPremises'" value="CloudControllerPlusOnPremises">Cloud Controller + On Premises</option>
+                </select>
+            </div>
+            @*Wifi end*@
+            @*Hardware Supplies start*@
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==2">
+                <label>Providers of Solution</label>
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control">
+                    <option selected value="">Select Provider</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='HP'" value="HP">HP</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='Dell'" value="Dell">Dell</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='Lenovo'" value="Lenovo">Lenovo</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='Huawei'" value="Huawei">Huawei</option>
+                </select>
+            </div>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==2">
+                <label>Products</label>
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control">
+                    <option selected value="">Select Product</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='Switches'" value="Switches">Switches</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='Server'" value="Server">Server</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='Router'" value="Router">Router</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='Storage'" value="Storage">Storage</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='Laptop'" value="Laptop">Laptop</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='Desktop'" value="Desktop">Desktop</option>
+                </select>
             </div>
 
+            @*Hardware Supplies end*@
+
+            @*Video Conferencing start*@
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==3">
+                <label>Type Of Solution</label>
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                    <option selected value="">Select Type</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 0" value="0">P2P</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 1" value="1">P2MP</option>
+                </select>
+            </div>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==3">
+                <label>Providers of Solution</label>
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control">
+                    <option selected value="">Select Provider</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='GrandStream'" value="GrandStream">GrandStream</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='Yealink'" value="Yealink">Yealink</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='Cisco'" value="Cisco">Cisco</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='Polycom'" value="Polycom">Polycom</option>
+                </select>
+            </div>
+            @*Video Conferencing end*@
+
+            @*Colocation start*@
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==4">
+                <label>Type Of Solution</label>
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                    <option selected value="">Select Type</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 0" value="0">Model of hardware</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 1" value="1">Internet Or Data</option>
+                </select>
+            </div>
+            @*Colocation end*@
+
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType == 2 ||( Lead.SolutionDetails.SolutionType==4 && Lead.SolutionDetails.SolutionSubType== 0)">
+                <label>Quantity</label>
+                <input type="number" ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+            </div>
+            <div class="col-md-4" ng-if="Lead.SolutionDetails.SolutionType==4 && Lead.SolutionDetails.SolutionSubType== 1">
+                <div class="col-md-3 form-group">
+                    <label>Bandwidth</label>
+                    <input type="number" ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+                </div>
+                <div class="col-md-1 form-group">
+                    <span>MBs</span>
+                </div>
+                </div>
+
+            <div class="col-md-1 form-group" ng-if=" Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.SolutionSubType != null  && Lead.SolutionDetails.SolutionSubType != 3">
+                <label>IsNew</label>
+                <input type="checkbox" ng-model="Lead.SolutionDetails.IsNew" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.IsNew">
+                <label>Go To Questionare</label>
+                <a class="btn btn-primary form-control" href="/Lead/Questionare">Open</a>
+            </div>
+            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.IsNew == false && Lead.SolutionDetails.SolutionSubType != null &&  Lead.SolutionDetails.SolutionSubType != 3">
+                <label>Existing SKU / Serial No.</label>
+                <input type="text" ng-model="Lead.SolutionDetails.CurrentServiceInfo" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType == 0 && (Lead.SolutionDetails.SolutionSubType == 0 || Lead.SolutionDetails.SolutionSubType == 2)">
+                <label>Duration in Years</label>
+                <input type="number" ng-model="Lead.SolutionDetails.Duration" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group" ng-if="(Lead.SolutionDetails.SolutionType == 0  && Lead.SolutionDetails.SolutionSubType == 0) || Lead.SolutionDetails.SolutionType == 1">
+                <label>Number Of Users</label>
+                <input type="number" ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionSubType != null">
+                <label>Remarks</label>
+                <input type="text" ng-model="Lead.SolutionDetails.Remarks" class="form-control" />
+            </div>
+
+
+        </div>
+        <br />
+        <div class="row float-right">
+            <a href="/Lead" class="btn btn-danger">Cancel</a>
+            <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="AddLead(Lead)">Add</button>
         </div>
     </div>
 

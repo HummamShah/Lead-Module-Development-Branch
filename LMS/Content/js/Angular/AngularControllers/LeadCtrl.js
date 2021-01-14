@@ -66,7 +66,7 @@
             }
             $scope.AddLead = function (Lead) {
                 console.log(Lead);
-
+                return;
                 if (Lead.CompanyId == null) {
                     toaster.pop('error', "error", "Please Select Company!");
                     return;
@@ -130,6 +130,8 @@
                 $scope.Company = {};
                 $scope.Companies = [];
                 $scope.Lead = {};
+                $scope.Lead.SolutionDetails = {};
+                $scope.Lead.SolutionDetails.IsNew = false;
                 $scope.ShowContactInformation = false;
                 $scope.ShowBusinessInformation = false;
                 //$scope.Lead.Domain = 0;

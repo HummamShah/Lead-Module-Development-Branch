@@ -48,5 +48,15 @@ namespace LMS.Controllers
         {
             return View();
         }
+        [Authorize(Roles = "PreSale")]
+        public ActionResult AddCommercial ()
+        {
+            return View();
+        }
+        [Authorize(Roles = "PreSale")]
+        public ActionResult EditCommercial()
+        {
+            return View();
+        }
     }
 }
