@@ -59,8 +59,8 @@
                 <td>{{Lead.AssingnedPmdName}}</td>
                 <td><small ng-class="Lead.PmdStatusEnum" class="badge">{{Lead.PmdStatusEnum}}</small></td>
                 <td>{{Lead.AssignedPreSaleName}}</td>
-                <td>{{Lead.PmdStatusEnum}}</td>
-                <td>{{Lead.LeadStatusEnum}}</td>
+                <td><small ng-class="Lead.QuotationStatusEnum" class="badge">{{Lead.QuotationStatusEnum}}</small></td>
+                <td><small ng-class="Lead.LeadStatusEnum" class="badge">{{Lead.LeadStatusEnum}}</small></td>
                 <td>-</td>
                 <td>{{Lead.CreatedBy}}</td>
                 <td>{{Lead.CreatedAt | date:'MMM d, y'}}</td>
