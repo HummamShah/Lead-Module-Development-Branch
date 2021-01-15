@@ -32,6 +32,20 @@ namespace LMS.Controllers.Api
             var result = req.RunRequest(req);
             return result;
         }
+        [HttpGet]
+        public object GetVendorById([FromUri] GetVendorByIdRequest req)
+        {
+
+            var result = req.RunRequest(req);
+            return result;
+        }
+        [HttpPost]
+        public object EditVendor([FromBody] EditVendorRequest req)
+        {
+            req.UpdatedBy = User.Identity.Name;
+            var result = req.RunRequest(req);
+            return result;
+        }
 
     }
 }
