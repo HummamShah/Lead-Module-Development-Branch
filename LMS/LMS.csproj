@@ -183,12 +183,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\BugReportApiController.cs" />
     <Compile Include="Controllers\Api\CompanyApiController.cs" />
     <Compile Include="Controllers\Api\DemoApiController.cs" />
     <Compile Include="Controllers\Api\DepartmentApiController.cs" />
     <Compile Include="Controllers\Api\LeadApiController.cs" />
     <Compile Include="Controllers\Api\UserApiController.cs" />
     <Compile Include="Controllers\Api\VendorApiController.cs" />
+    <Compile Include="Controllers\BugReportController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -213,6 +215,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EntityModel\AspNetUsers.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityModel\BugReporting.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EntityModel\Company.cs">
@@ -282,6 +287,8 @@
     <Compile Include="Models\Enums\SolutionType.cs" />
     <Compile Include="Models\Enums\VSAT.cs" />
     <Compile Include="Models\Enums\WiWax.cs" />
+    <Compile Include="Models\Feature\BugReport\AddBugReportRequest.cs" />
+    <Compile Include="Models\Feature\BugReport\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Company\AddCompanyRequest.cs" />
     <Compile Include="Models\Feature\Company\EditCompanyRequest.cs" />
     <Compile Include="Models\Feature\Company\GetCompaniesDropdownRequest.cs" />
@@ -310,7 +317,9 @@
     <Compile Include="Models\Feature\User\GetListingRequest.cs" />
     <Compile Include="Models\Feature\User\GetUsersByDepartmentRequest.cs" />
     <Compile Include="Models\Feature\Vendor\AddVendorRequest.cs" />
+    <Compile Include="Models\Feature\Vendor\EditVendorRequest.cs" />
     <Compile Include="Models\Feature\Vendor\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\Vendor\GetVendorByIdRequest.cs" />
     <Compile Include="Models\Feature\Vendor\GetVendorsRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -328,6 +337,7 @@
     <Content Include="Content\js\angular.min.js" />
     <Content Include="Content\js\AngularCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\baseCtrl.js" />
+    <Content Include="Content\js\Angular\AngularControllers\BugCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\CompanyCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\DepartmentCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\LeadCtrl.js" />
@@ -432,6 +442,8 @@
     <Content Include="Views\Lead\AddFeasibility.cshtml" />
     <Content Include="Views\Lead\EditFeasibility.cshtml" />
     <Content Include="Views\Lead\Questionare.cshtml" />
+    <Content Include="Views\BugReport\Index.cshtml" />
+    <Content Include="Views\BugReport\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

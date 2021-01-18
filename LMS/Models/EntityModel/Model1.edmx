@@ -82,6 +82,20 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="BugReporting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Type" Type="int" />
+          <Property Name="AssignedDeveloperId" Type="int" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="Id" />
@@ -332,6 +346,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Bug_Agent">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="BugReporting" Type="Self.BugReporting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BugReporting">
+              <PropertyRef Name="AssignedDeveloperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Company_ParentCompany">
           <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
           <End Role="Company1" Type="Self.Company" Multiplicity="*" />
@@ -527,6 +553,7 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BugReporting" EntityType="Self.BugReporting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyBranches" EntityType="Self.CompanyBranches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
@@ -551,6 +578,10 @@
           <AssociationSet Name="FK_Agent_User" Association="Self.FK_Agent_User">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Agent" EntitySet="Agent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bug_Agent" Association="Self.FK_Bug_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="BugReporting" EntitySet="BugReporting" />
           </AssociationSet>
           <AssociationSet Name="FK_Company_ParentCompany" Association="Self.FK_Company_ParentCompany">
             <End Role="Company" EntitySet="Company" />
@@ -781,6 +812,11 @@
             <End Role="Lead" EntitySet="Lead" />
             <End Role="SolutionDetails" EntitySet="SolutionDetails" />
           </AssociationSet>
+          <EntitySet Name="BugReporting" EntityType="Sharptel_Lms_DbModel.BugReporting" />
+          <AssociationSet Name="FK_Bug_Agent" Association="Sharptel_Lms_DbModel.FK_Bug_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="BugReporting" EntitySet="BugReporting" />
+          </AssociationSet>
           <EntitySet Name="QuestionnareDetails" EntityType="Sharptel_Lms_DbModel.QuestionnareDetails" />
           <AssociationSet Name="FK_Questionnare_Lead" Association="Sharptel_Lms_DbModel.FK_Questionnare_Lead">
             <End Role="Lead" EntitySet="Lead" />
@@ -820,6 +856,7 @@
           <NavigationProperty Name="Lead2" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_PreSale" FromRole="Agent" ToRole="Lead" />
           <NavigationProperty Name="Lead3" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_Creator" FromRole="Agent" ToRole="Lead" />
           <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BugReporting" Relationship="Sharptel_Lms_DbModel.FK_Bug_Agent" FromRole="Agent" ToRole="BugReporting" />
           </EntityType>
         <EntityType Name="CompanyBranches">
           <Key>
@@ -1199,6 +1236,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BugReporting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="AssignedDeveloperId" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Agent" Relationship="Sharptel_Lms_DbModel.FK_Bug_Agent" FromRole="BugReporting" ToRole="Agent" />
+        </EntityType>
+        <Association Name="FK_Bug_Agent">
+          <End Type="Sharptel_Lms_DbModel.Agent" Role="Agent" Multiplicity="0..1" />
+          <End Type="Sharptel_Lms_DbModel.BugReporting" Role="BugReporting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BugReporting">
+              <PropertyRef Name="AssignedDeveloperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="QuestionnareDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -1504,6 +1568,21 @@
                 <ScalarProperty Name="SolutionType" ColumnName="SolutionType" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="LeadId" ColumnName="LeadId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BugReporting">
+            <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.BugReporting">
+              <MappingFragment StoreEntitySet="BugReporting">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="AssignedDeveloperId" ColumnName="AssignedDeveloperId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
