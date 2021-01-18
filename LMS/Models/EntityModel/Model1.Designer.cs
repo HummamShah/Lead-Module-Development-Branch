@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'F:\New Projects\LMSGitReposirtoy\LMS\Models\EntityModel\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'F:\Projects\LMS_New_repo\LMS\Models\EntityModel\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

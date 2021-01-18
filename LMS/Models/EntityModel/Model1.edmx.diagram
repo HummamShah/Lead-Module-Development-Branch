@@ -35,6 +35,8 @@
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Lead_Agent_Creator" />
         <EntityTypeShape EntityType="Sharptel_Lms_DbModel.SolutionDetails" Width="1.5" PointX="13.125" PointY="19.625" />
         <AssociationConnector Association="Sharptel_Lms_DbModel.FK_SolutionDetails_Leads" />
+        <EntityTypeShape EntityType="Sharptel_Lms_DbModel.BugReporting" Width="1.5" PointX="10.875" PointY="3" />
+        <AssociationConnector Association="Sharptel_Lms_DbModel.FK_Bug_Agent" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

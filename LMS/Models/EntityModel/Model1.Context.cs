@@ -38,5 +38,6 @@ namespace LMS.Models.EntityModel
         public virtual DbSet<Company> Company { get; set; }
         public virtual DbSet<Lead> Lead { get; set; }
         public virtual DbSet<SolutionDetails> SolutionDetails { get; set; }
+        public virtual DbSet<BugReporting> BugReporting { get; set; }
     }
 }
