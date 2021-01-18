@@ -38,17 +38,36 @@ namespace LMS.Models.Feature.Lead
             var LeadStatusResult = _dbContext.SaveChanges();
             foreach (var feasibility in request.Feasibility)
             {
-                var Feasibility = _dbContext.PmdDetails.Where(x=>x.Id == feasibility.Id).FirstOrDefault();
-                //Feasibility.LeadId = feasibility.LeadId;
-                Feasibility.Bandwidth = feasibility.Bandwidth;
-                Feasibility.OTC = feasibility.OTC;
-                Feasibility.MRC = feasibility.MRC;
-                Feasibility.VendorId = feasibility.VendorId;
-                Feasibility.Remarks = feasibility.Remarks;
-                Feasibility.UpdatedAt = DateTime.Now;
-                Feasibility.UpdatedBy = request.UpdatedBy;
-                Feasibility.ConnectivityType = feasibility.ConnectivityType;
-                var Result = _dbContext.SaveChanges();
+                if (feasibility.Id != 0)
+                {
+                    var Feasibility = _dbContext.PmdDetails.Where(x => x.Id == feasibility.Id).FirstOrDefault();
+                    //Feasibility.LeadId = feasibility.LeadId;
+                    Feasibility.Bandwidth = feasibility.Bandwidth;
+                    Feasibility.OTC = feasibility.OTC;
+                    Feasibility.MRC = feasibility.MRC;
+                    Feasibility.VendorId = feasibility.VendorId;
+                    Feasibility.Remarks = feasibility.Remarks;
+                    Feasibility.UpdatedAt = DateTime.Now;
+                    Feasibility.UpdatedBy = request.UpdatedBy;
+                    Feasibility.ConnectivityType = feasibility.ConnectivityType;
+                    var Result = _dbContext.SaveChanges();
+                }
+                if (feasibility.Id == 0)
+                {
+                    var Feasibility = new PmdDetails();
+                    Feasibility.LeadId = feasibility.LeadId;
+                    Feasibility.Bandwidth = feasibility.Bandwidth;
+                    Feasibility.OTC = feasibility.OTC;
+                    Feasibility.MRC = feasibility.MRC;
+                    Feasibility.VendorId = feasibility.VendorId;
+                    Feasibility.Remarks = feasibility.Remarks;
+                    Feasibility.UpdatedAt = DateTime.Now;
+                    Feasibility.UpdatedBy = request.UpdatedBy;
+                    Feasibility.ConnectivityType = feasibility.ConnectivityType;
+                    _dbContext.PmdDetails.Add(Feasibility);
+                    var Result = _dbContext.SaveChanges();
+                }
+                
             }
 
            

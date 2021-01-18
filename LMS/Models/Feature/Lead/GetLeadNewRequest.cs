@@ -174,7 +174,7 @@ namespace LMS.Models.Feature.Lead
 			}
 			if (Data.Domain == (int)Domain.SolutionSet)
 			{
-				if(Data.SolutionDetails != null)
+				if(Data.SolutionDetails.Count > 0)
                 {
 					var SolutionSet = Data.SolutionDetails.FirstOrDefault();
 					response.SolutionDetails.Id = SolutionSet.Id;

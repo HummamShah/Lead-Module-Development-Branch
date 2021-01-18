@@ -338,7 +338,7 @@
                 You can fill this by going to details and clicking questionnare link.
             </a>
             </div>-->
-            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.IsNew == false && Lead.SolutionDetails.SolutionSubType != null &&  Lead.SolutionDetails.SolutionSubType != 3">
+            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.IsNew == false && Lead.SolutionDetails.SolutionSubType != null &&  Lead.SolutionDetails.SolutionSubType != 3 && Lead.SolutionDetails.SolutionType != 3" >
                 <label>Existing SKU / Serial No.</label>
                 <input type="text" ng-model="Lead.SolutionDetails.CurrentServiceInfo" class="form-control" />
             </div>

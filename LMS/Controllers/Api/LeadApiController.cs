@@ -112,10 +112,12 @@ namespace LMS.Controllers.Api
             var result = req.RunRequest(req);
             return result;
         }
-        //[HttpGet]
-        //public object GetQuestionnareData([FromUri] GetQuestionnareDataRequest req)
-        //{
+        [HttpGet]
+        public object GetQuestionnareData([FromUri] GetQuestionnareDataRequest req)
+        {
+            var result = req.RunRequest(req);
+            return result;
 
-        //}
+        }
     }
 }
