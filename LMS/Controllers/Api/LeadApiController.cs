@@ -47,6 +47,15 @@ namespace LMS.Controllers.Api
         }
 
         [HttpPost]
+        public object AddLeadNew([FromBody] AddLeadNewRequest req) //If not working remove frombody
+        {
+            req.UserId = User.Identity.GetUserId();
+            req.CreatedBy = User.Identity.Name;
+            var result = req.RunRequest(req);
+            return result;
+        }
+
+        [HttpPost]
         public object AddFeasibility([FromBody] AddFeasibilityRequest req) //If not working remove frombody
         {
             req.UserId = User.Identity.GetUserId();
@@ -78,6 +87,14 @@ namespace LMS.Controllers.Api
             var result = req.RunRequest(req);
             return result;
         }
+        [HttpPost]
+        public object EditNewLead(EditNewLeadRequest req)
+        {
+            req.UserId = User.Identity.GetUserId();
+            req.UpdatedBy = User.Identity.Name;
+            var result = req.RunRequest(req);
+            return result;
+        }
 
         [HttpGet]
 
@@ -86,6 +103,19 @@ namespace LMS.Controllers.Api
 
             var result = req.RunRequest(req);
             return result;
+        }
+        [HttpGet]
+
+        public object GetNewLead([FromUri] GetLeadNewRequest req)
+        {
+
+            var result = req.RunRequest(req);
+            return result;
+        }
+        [HttpGet]
+        public object GetQuestionnareData([FromUri] GetQuestionnareDataRequest req)
+        {
+
         }
     }
 }

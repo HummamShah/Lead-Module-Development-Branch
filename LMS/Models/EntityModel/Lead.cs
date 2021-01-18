@@ -19,6 +19,7 @@ namespace LMS.Models.EntityModel
         {
             this.PmdDetails = new HashSet<PmdDetails>();
             this.SolutionDetails = new HashSet<SolutionDetails>();
+            this.QuestionnareDetails = new HashSet<QuestionnareDetails>();
         }
     
         public int Id { get; set; }
@@ -85,5 +86,7 @@ namespace LMS.Models.EntityModel
         public virtual Agent Agent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SolutionDetails> SolutionDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QuestionnareDetails> QuestionnareDetails { get; set; }
     }
 }

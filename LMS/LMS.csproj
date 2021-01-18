@@ -248,6 +248,9 @@
     <Compile Include="Models\EntityModel\PmdDetails.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntityModel\QuestionnareDetails.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EntityModel\SolutionDetails.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -292,13 +295,17 @@
     <Compile Include="Models\Feature\Department\GetDepartmentsDropdownRequest.cs" />
     <Compile Include="Models\Feature\Department\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddFeasibilityRequest.cs" />
+    <Compile Include="Models\Feature\Lead\AddLeadNewRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\EditFeasibilityRequest.cs" />
     <Compile Include="Models\Feature\Lead\EditLeadRequest.cs" />
+    <Compile Include="Models\Feature\Lead\EditNewLeadRequest.cs" />
+    <Compile Include="Models\Feature\Lead\GetLeadNewRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\AssignLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetListingForPmdRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\Lead\GetQuestionnareDataRequest.cs" />
     <Compile Include="Models\Feature\User\GetAgentsForAssignmentRequest.cs" />
     <Compile Include="Models\Feature\User\GetListingRequest.cs" />
     <Compile Include="Models\Feature\User\GetUsersByDepartmentRequest.cs" />
@@ -324,6 +331,7 @@
     <Content Include="Content\js\Angular\AngularControllers\CompanyCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\DepartmentCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\LeadCtrl.js" />
+    <Content Include="Content\js\Angular\AngularControllers\QuestionnareCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\UserCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\VendorCtrl.js" />
     <Content Include="Content\js\Angular\app.js" />
@@ -423,6 +431,7 @@
     <Content Include="Views\Lead\List.cshtml" />
     <Content Include="Views\Lead\AddFeasibility.cshtml" />
     <Content Include="Views\Lead\EditFeasibility.cshtml" />
+    <Content Include="Views\Lead\Questionare.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

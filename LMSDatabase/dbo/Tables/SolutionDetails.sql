@@ -9,7 +9,7 @@
 	[SolutionServiceProduct] nvarchar(max),
 	[IsNew] bit,
 	[CurrentServiceInfo] nvarchar(max),
-	[Duration] Datetime,
+	[Duration] int,
 	[OtherMeasurements] nvarchar(max),
 	[Quantity] int,
 	[Remarks] nvarchar(max),

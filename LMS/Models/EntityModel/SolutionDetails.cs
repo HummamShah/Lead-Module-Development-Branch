@@ -23,7 +23,7 @@ namespace LMS.Models.EntityModel
         public string SolutionServiceProduct { get; set; }
         public Nullable<bool> IsNew { get; set; }
         public string CurrentServiceInfo { get; set; }
-        public Nullable<System.DateTime> Duration { get; set; }
+        public Nullable<int> Duration { get; set; }
         public string OtherMeasurements { get; set; }
         public Nullable<int> Quantity { get; set; }
         public string Remarks { get; set; }

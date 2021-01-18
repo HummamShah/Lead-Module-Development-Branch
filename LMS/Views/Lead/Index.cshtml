@@ -21,9 +21,9 @@
                 <th>
                     Id
                 </th>
-                <th>
+                @*<th>
                     Name
-                </th>
+                </th>*@
                 <th>
                     Company Name
                 </th>
@@ -54,7 +54,7 @@
             </tr>
             <tr ng-repeat="Lead in Leads">
                 <td>{{Lead.Id}}</td>
-                <td>{{Lead.Name}}</td>
+                @*<td>{{Lead.Name}}</td>*@
                 <td>{{Lead.CompanyName}}</td>
                 <td>{{Lead.AssingnedPmdName}}</td>
                 <td><small ng-class="Lead.PmdStatusEnum" class="badge">{{Lead.PmdStatusEnum}}</small></td>
@@ -70,7 +70,7 @@
                         <a href="/Lead/Print?Id={{Lead.Id}}" title="Print"><i class="fas fa-print" title="Print"></i></a>*@
 
                     <a href="#" data-toggle="modal" data-target="#myModal" ng-click="SetAssigningDataToModal(Lead)" title="Assign Lead"><i class="fas fa-users"></i></a>
-                    <a href="/Lead/Edit?Id={{Lead.Id}}" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                    <a href="/Lead/Edit?Id={{Lead.Id}}" ng-if="Lead.AssingnedPmdName == null || Lead.AssingnedPmdName == ''" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                     <a href="/Lead/Detail?Id={{Lead.Id}}" title="Details"><i class="fas fa-file"></i></a>
 
                 </td>

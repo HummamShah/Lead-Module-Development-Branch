@@ -66,7 +66,6 @@
             }
             $scope.AddLead = function (Lead) {
                 console.log(Lead);
-                
                 if (Lead.CompanyId == null) {
                     toaster.pop('error', "error", "Please Select Company!");
                     return;
@@ -95,32 +94,34 @@
                     toaster.pop('error', "error", "Please Enter Contact Person Department");
                     return;
                 }
-                if (Lead.CurrentlyUsedMedium == null || Lead.CurrentlyUsedMedium == "") {
-                    toaster.pop('error', "error", "Please Enter Currently Used Medium");
-                    return;
+                if (Lead.Domain == 1) {
+                    if (Lead.ConnectivityDetails.CurrentlyUsedMedium == null || Lead.ConnectivityDetails.CurrentlyUsedMedium == "") {
+                        toaster.pop('error', "error", "Please Enter Currently Used Medium");
+                        return;
+                    }
+                    if (Lead.ConnectivityDetails.RequiredMedium == null || Lead.ConnectivityDetails.RequiredMedium == "") {
+                        toaster.pop('error', "error", "Please Enter Required Medium");
+                        return;
+                    }
+                    if (Lead.ConnectivityDetails.ConnectivityType == null || Lead.ConnectivityDetails.ConnectivityType == "") {
+                        toaster.pop('error', "error", "Please Enter Connectivity Type");
+                        return;
+                    }
+                    if (Lead.ConnectivityDetails.Budget == null || Lead.ConnectivityDetails.Budget == "") {
+                        toaster.pop('error', "error", "Please Enter Target Price");
+                        return;
+                    }
+                    if (Lead.ConnectivityDetails.EstimatedClosingDate == null || Lead.EstimatedClosingDate == "") {
+                        toaster.pop('error', "error", "Please Enter Estimated Closing Date");
+                        return;
+                    }
+                    if (Lead.ConnectivityDetails.Bandwidth == null || Lead.ConnectivityDetails.Bandwidth == "") {
+                        toaster.pop('error', "error", "Please Enter Bandwidth");
+                        return;
+                    }
                 }
-                if (Lead.RequiredMedium == null || Lead.RequiredMedium == "") {
-                    toaster.pop('error', "error", "Please Enter Required Medium");
-                    return;
-                }
-                if (Lead.ConnectivityType == null || Lead.ConnectivityType == "") {
-                    toaster.pop('error', "error", "Please Enter Connectivity Type");
-                    return;
-                }
-                if (Lead.Budget == null || Lead.Budget == "") {
-                    toaster.pop('error', "error", "Please Enter Target Price");
-                    return;
-                }
-                if (Lead.EstimatedClosingDate == null || Lead.EstimatedClosingDate == "") {
-                    toaster.pop('error', "error", "Please Enter Estimated Closing Date");
-                    return;
-                }
-                if (Lead.Bandwidth == null || Lead.Bandwidth == "") {
-                    toaster.pop('error', "error", "Please Enter Bandwidth");
-                    return;
-                }
-
-                $scope.AjaxPost("/api/LeadApi/AddLead", Lead).then(
+                //AddLead now AddnewLead changes need to verify
+                $scope.AjaxPost("/api/LeadApi/AddLeadNew", Lead).then(
                     function (response) {
                         if (response.status == 200) {
                             // alert("Lead has been Added Successfully!");
@@ -253,7 +254,8 @@
                     Id: parseInt(Id)
                 }
                 console.log(data);
-                $scope.AjaxGet("/api/LeadApi/GetLead", data).then(
+                //GetLead Before testing new request
+                $scope.AjaxGet("/api/LeadApi/GetNewLead", data).then(
                     function (response) {
                         console.log(response);
                         $scope.Lead = response.data;
@@ -302,32 +304,36 @@
                     toaster.pop('error', "error", "Please Enter Contact Person Department");
                     return;
                 }
-                if (Lead.CurrentlyUsedMedium == null || Lead.CurrentlyUsedMedium == "") {
-                    toaster.pop('error', "error", "Please Enter Currently Used Medium");
-                    return;
+                if (Lead.Domain == 1) {
+                    if (Lead.ConnectivityDetails.CurrentlyUsedMedium == null || Lead.ConnectivityDetails.CurrentlyUsedMedium == "") {
+                        toaster.pop('error', "error", "Please Enter Currently Used Medium");
+                        return;
+                    }
+                    if (Lead.ConnectivityDetails.RequiredMedium == null || Lead.ConnectivityDetails.RequiredMedium == "") {
+                        toaster.pop('error', "error", "Please Enter Required Medium");
+                        return;
+                    }
+                    if (Lead.ConnectivityDetails.ConnectivityType == null || Lead.ConnectivityDetails.ConnectivityType == "") {
+                        toaster.pop('error', "error", "Please Enter Connectivity Type");
+                        return;
+                    }
+                    if (Lead.ConnectivityDetails.Budget == null || Lead.ConnectivityDetails.Budget == "") {
+                        toaster.pop('error', "error", "Please Enter Target Price");
+                        return;
+                    }
+                    if (Lead.ConnectivityDetails.EstimatedClosingDate == null || Lead.EstimatedClosingDate == "") {
+                        toaster.pop('error', "error", "Please Enter Estimated Closing Date");
+                        return;
+                    }
+                    if (Lead.ConnectivityDetails.Bandwidth == null || Lead.ConnectivityDetails.Bandwidth == "") {
+                        toaster.pop('error', "error", "Please Enter Bandwidth");
+                        return;
+                    }
                 }
-                if (Lead.RequiredMedium == null || Lead.RequiredMedium == "") {
-                    toaster.pop('error', "error", "Please Enter Required Medium");
-                    return;
-                }
-                if (Lead.ConnectivityType == null || Lead.ConnectivityType == "") {
-                    toaster.pop('error', "error", "Please Enter Connectivity Type");
-                    return;
-                }
-                if (Lead.Budget == null || Lead.Budget == "") {
-                    toaster.pop('error', "error", "Please Enter Target Price");
-                    return;
-                }
-                if (Lead.EstimatedClosingDate == null || Lead.EstimatedClosingDate == "") {
-                    toaster.pop('error', "error", "Please Enter Estimated Closing Date");
-                    return;
-                }
-                if (Lead.Bandwidth == null || Lead.Bandwidth == "") {
-                    toaster.pop('error', "error", "Please Enter Bandwidth");
-                    return;
-                }
-
-                $scope.AjaxPost("/api/LeadApi/EditLead", Lead).then(
+               
+                
+                //$scope.AjaxPost("/api/LeadApi/EditLead", Lead).then(
+                $scope.AjaxPost("/api/LeadApi/EditNewLead", Lead).then( //New Request
                     function (response) {
                         if (response.status == 200) {
                             //alert("Lead has been Updated Successfully!");

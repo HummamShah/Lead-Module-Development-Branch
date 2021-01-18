@@ -236,6 +236,18 @@
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="Date" Type="datetime" />
         </EntityType>
+        <EntityType Name="QuestionnareDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeadId" Type="int" Nullable="false" />
+          <Property Name="Requirements" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HeadOffice" Type="nvarchar(max)" />
+          <Property Name="BranchOffice" Type="nvarchar(max)" />
+          <Property Name="Details" Type="nvarchar(max)" />
+          <Property Name="Type" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="SolutionDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -249,7 +261,7 @@
           <Property Name="SolutionServiceProduct" Type="nvarchar(max)" />
           <Property Name="IsNew" Type="bit" />
           <Property Name="CurrentServiceInfo" Type="nvarchar(max)" />
-          <Property Name="Duration" Type="datetime" />
+          <Property Name="Duration" Type="int" />
           <Property Name="OtherMeasurements" Type="nvarchar(max)" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Remarks" Type="nvarchar(max)" />
@@ -484,6 +496,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Questionnare_Lead">
+          <End Role="Lead" Type="Self.Lead" Multiplicity="1" />
+          <End Role="QuestionnareDetails" Type="Self.QuestionnareDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lead">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionnareDetails">
+              <PropertyRef Name="LeadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SolutionDetails_Leads">
           <End Role="Lead" Type="Self.Lead" Multiplicity="1" />
           <End Role="SolutionDetails" Type="Self.SolutionDetails" Multiplicity="*" />
@@ -509,6 +533,7 @@
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lead" EntityType="Self.Lead" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PmdDetails" EntityType="Self.PmdDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionnareDetails" EntityType="Self.QuestionnareDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SolutionDetails" EntityType="Self.SolutionDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Agent_Agent" Association="Self.FK_Agent_Agent">
@@ -578,6 +603,10 @@
           <AssociationSet Name="FK_PMD_Vendor" Association="Self.FK_PMD_Vendor">
             <End Role="Vendor" EntitySet="Vendor" />
             <End Role="PmdDetails" EntitySet="PmdDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questionnare_Lead" Association="Self.FK_Questionnare_Lead">
+            <End Role="Lead" EntitySet="Lead" />
+            <End Role="QuestionnareDetails" EntitySet="QuestionnareDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_SolutionDetails_Leads" Association="Self.FK_SolutionDetails_Leads">
             <End Role="Lead" EntitySet="Lead" />
@@ -751,6 +780,11 @@
           <AssociationSet Name="FK_SolutionDetails_Leads" Association="Sharptel_Lms_DbModel.FK_SolutionDetails_Leads">
             <End Role="Lead" EntitySet="Lead" />
             <End Role="SolutionDetails" EntitySet="SolutionDetails" />
+          </AssociationSet>
+          <EntitySet Name="QuestionnareDetails" EntityType="Sharptel_Lms_DbModel.QuestionnareDetails" />
+          <AssociationSet Name="FK_Questionnare_Lead" Association="Sharptel_Lms_DbModel.FK_Questionnare_Lead">
+            <End Role="Lead" EntitySet="Lead" />
+            <End Role="QuestionnareDetails" EntitySet="QuestionnareDetails" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Agent">
@@ -1050,12 +1084,13 @@
           <Property Name="ContactPersonEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ContactPersonTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ContactPersonDepartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SolutionDetails" Relationship="Sharptel_Lms_DbModel.FK_SolutionDetails_Leads" FromRole="Lead" ToRole="SolutionDetails" />
           <Property Name="RequiredMedium" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CurrentlyUsedMedium" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Bandwidth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ConnectivityType" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SolutionDetails" Relationship="Sharptel_Lms_DbModel.FK_SolutionDetails_Leads" FromRole="Lead" ToRole="SolutionDetails" />
+          <NavigationProperty Name="QuestionnareDetails" Relationship="Sharptel_Lms_DbModel.FK_Questionnare_Lead" FromRole="Lead" ToRole="QuestionnareDetails" />
         </EntityType>
         <Association Name="FK_Lead_Agent_Lead">
           <End Type="Sharptel_Lms_DbModel.Agent" Role="Agent" Multiplicity="0..1" />
@@ -1142,7 +1177,7 @@
           <Property Name="SolutionServiceProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsNew" Type="Boolean" />
           <Property Name="CurrentServiceInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Duration" Type="DateTime" Precision="3" />
+          <Property Name="Duration" Type="Int32" />
           <Property Name="OtherMeasurements" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1160,6 +1195,31 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="SolutionDetails">
+              <PropertyRef Name="LeadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="QuestionnareDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeadId" Type="Int32" Nullable="false" />
+          <Property Name="Requirements" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HeadOffice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchOffice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Lead" Relationship="Sharptel_Lms_DbModel.FK_Questionnare_Lead" FromRole="QuestionnareDetails" ToRole="Lead" />
+        </EntityType>
+        <Association Name="FK_Questionnare_Lead">
+          <End Type="Sharptel_Lms_DbModel.Lead" Role="Lead" Multiplicity="1" />
+          <End Type="Sharptel_Lms_DbModel.QuestionnareDetails" Role="QuestionnareDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lead">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionnareDetails">
               <PropertyRef Name="LeadId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1443,6 +1503,19 @@
                 <ScalarProperty Name="SolutionSubType" ColumnName="SolutionSubType" />
                 <ScalarProperty Name="SolutionType" ColumnName="SolutionType" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LeadId" ColumnName="LeadId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionnareDetails">
+            <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.QuestionnareDetails">
+              <MappingFragment StoreEntitySet="QuestionnareDetails">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="BranchOffice" ColumnName="BranchOffice" />
+                <ScalarProperty Name="HeadOffice" ColumnName="HeadOffice" />
+                <ScalarProperty Name="Requirements" ColumnName="Requirements" />
                 <ScalarProperty Name="LeadId" ColumnName="LeadId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

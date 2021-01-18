@@ -108,48 +108,48 @@
         <div class="row">
             <div class="col-md-4 form-group">
                 <label>Currently Used medium <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" ng-model="Lead.CurrentlyUsedMedium" />
+                <input type="text" class="form-control" ng-model="Lead.ConnectivityDetails.CurrentlyUsedMedium" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Required Medium <span class="text-danger">*</span></label>
-                <input type="text" ng-model="Lead.RequiredMedium"  class="form-control" />
+                <input type="text" ng-model="Lead.ConnectivityDetails.RequiredMedium"  class="form-control" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Connectivity Type <span class="text-danger">*</span></label>
-                <select ng-model="Lead.ConnectivityType" class="form-control">
+                <select ng-model="Lead.ConnectivityDetails.ConnectivityType" class="form-control">
                     <option selected value="">Connectivity Type</option>
-                    <option value="0" ng-selected="Lead.ConnectivityType == 0">Data</option>
-                    <option value="1" ng-selected="Lead.ConnectivityType == 1">Internet</option>
+                    <option value="0" ng-selected="Lead.ConnectivityDetails.ConnectivityType == 0">Data</option>
+                    <option value="1" ng-selected="Lead.ConnectivityDetails.ConnectivityType == 1">Internet</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
                 <label>Target Price <span class="text-danger">*</span></label>
-                <input type="number" class="form-control" ng-model="Lead.Budget" />
+                <input type="number" class="form-control" ng-model="Lead.ConnectivityDetails.Budget" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Estimated Closing Date <span class="text-danger">*</span></label>
-                <input type="date" class="form-control"  ng-model="Lead.EstimatedClosingDate" />
+                <input type="date" class="form-control"  ng-model="Lead.ConnectivityDetails.EstimatedClosingDate" />
             </div>
 
-            <div class="col-md-4 form-group">
+            @*<div class="col-md-4 form-group">
                 <label>Number of Branch offices</label>
-                <input type="text" ng-model="Lead.NoBracnhOffices" class="form-control" />
-            </div>
+                <input type="text" ng-model="Lead.ConnectivityDetails.NoBracnhOffices" class="form-control" />
+            </div>*@
             <div class="col-md-4 form-group">
                 <label>Bandwidth <span class="text-danger">*</span></label>
-                <input type="text" placeholder="5 MBs" ng-model="Lead.Bandwidth" class="form-control" />
+                <input type="text" placeholder="5 MBs" ng-model="Lead.ConnectivityDetails.Bandwidth" class="form-control" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Comments</label>
-                <input type="text" class="form-control" ng-model="Lead.Comments" />
+                <input type="text" class="form-control" ng-model="Lead.ConnectivityDetails.Comments" />
             </div>
             <div class="col-md-4 form-group" style="padding-bottom: 35px;">
                 <label>Is our Existing Customer</label>
-                <input type="checkbox" ng-model="Lead.IsEsisting" />
+                <input type="checkbox" ng-model="Lead.ConnectivityDetails.IsEsisting" />
             </div>
             <div class="col-md-4 form-group">
                 <label>Ever Tried Our Service Before</label>
-                <input type="checkbox" ng-model="Lead.HasTriedOurServie" />
+                <input type="checkbox" ng-model="Lead.ConnectivityDetails.HasTriedOurServie" />
             </div>
             <div class="row float-right">
                 <a href="/Lead" class="btn btn-danger">Cancel</a>
@@ -319,23 +319,25 @@
                 <input type="number" ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
             </div>
             <div class="col-md-4" ng-if="Lead.SolutionDetails.SolutionType==4 && Lead.SolutionDetails.SolutionSubType== 1">
-                <div class="col-md-3 form-group">
-                    <label>Bandwidth</label>
-                    <input type="number" ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
-                </div>
-                <div class="col-md-1 form-group">
-                    <span>MBs</span>
-                </div>
-                </div>
+                <label>Bandwidth</label>
+                <input type="number" ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+            </div>
 
             <div class="col-md-1 form-group" ng-if=" Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.SolutionSubType != null  && Lead.SolutionDetails.SolutionSubType != 3">
                 <label>IsNew</label>
                 <input type="checkbox" ng-model="Lead.SolutionDetails.IsNew" class="form-control" />
             </div>
-            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.IsNew">
-                <label>Go To Questionare</label>
-                <a class="btn btn-primary form-control" href="/Lead/Questionare">Open</a>
-            </div>
+            <!--<div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.IsNew">
+                <label>Go To Questionare</label>-->
+                @*<span class="form-control">
+                    For new Product you need to fill a questionnare before assigning this lead to presales.
+                    You can fill this by going to details and clicking questionnare link.
+                </span>*@
+            <!--<a class=" form-control">
+                For new Product you need to fill a questionnare before assigning this lead to presales.
+                You can fill this by going to details and clicking questionnare link.
+            </a>
+            </div>-->
             <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.IsNew == false && Lead.SolutionDetails.SolutionSubType != null &&  Lead.SolutionDetails.SolutionSubType != 3">
                 <label>Existing SKU / Serial No.</label>
                 <input type="text" ng-model="Lead.SolutionDetails.CurrentServiceInfo" class="form-control" />
@@ -385,8 +387,8 @@
                     <option selected value="">Operation Time</option>
                     <option ng-selected="Lead.CompanyDetails.BOT == 0" value="0">Morning</option>
                     <option ng-selected="Lead.CompanyDetails.BOT == 1" value="1">Evening</option>
-                    <option ng-selected="Lead.CompanyDetails.BOT == 3" value="3">Night</option>
-                    <option ng-selected="Lead.CompanyDetails.BOT == 2" value="2">24/7</option>
+                    <option ng-selected="Lead.CompanyDetails.BOT == 2" value="3">Night</option>
+                    <option ng-selected="Lead.CompanyDetails.BOT == 3" value="2">24/7</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
@@ -425,7 +427,7 @@
                 <input type="text" ng-model="Lead.CompanyDetails.Address" class="form-control" />
             </div>
             <div class="col-md-4 form-group">
-                <label>Numbe of Branch offices</label>
+                <label>Number of Branch offices</label>
                 <input type="text" ng-model="Lead.CompanyDetails.NoBracnhOffices" class="form-control" />
             </div>
             <div class="col-md-4 form-group">

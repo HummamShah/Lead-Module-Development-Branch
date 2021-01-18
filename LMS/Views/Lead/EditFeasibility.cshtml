@@ -7,7 +7,7 @@
     <div class="jumbotron PageHeading">
         <div class="row">
             <div class="col-md-8 col-sm-8 col-lg-8"><h2>Add Feasibilty Check</h2></div>
-            <div class="col-md-4 col-sm-4 col-lg-4">
+            @*<div class="col-md-4 col-sm-4 col-lg-4">
                 Feasibility
                 <div class="form-group" style="display:inline-block;">
                     <select ng-model="FeasibilityStatus" class="form-control">
@@ -16,7 +16,7 @@
                         <option value="2" ng-selected="FeasibilityStatus==2">None</option>
                     </select>
                 </div>
-            </div>
+            </div>*@
         </div>
     </div>
     <div class="jumbotron PageHeading">
@@ -235,56 +235,68 @@
         </div>
         <div class="row" ng-if="ShowFeasibilityInformation == true">
             <div class="col-md-12 form-group">
-                <button class="btn btn-primary pull-right" style=" margin-top: 20px;" ng-click="AddRowInEditForm()">Add Row</button>
+                <div class="col-md-4 col-sm-4 col-lg-4">
+                    Feasibility Status
+                    <div class="form-group" style="display:inline-block;">
+                        <select ng-model="FeasibilityStatus" class="form-control">
+                            <option value="0" ng-selected="FeasibilityStatus==0">Feasible</option>
+                            <option value="1" ng-selected="FeasibilityStatus==1">Not Feasible</option>
+                            <option value="2" ng-selected="FeasibilityStatus==2">None</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-lg-8">
+                    <button class="btn btn-primary pull-right"  ng-click="AddRowInEditForm()">Add Row</button>
+                </div>
             </div>
-            <div ng-if="Lead.FeasibilityDetails.length > 0">
-                <table class="table " width="100%">
-                    <tr>
-                        <th>SR#</th>
-                        <th>Vendor</th>
-                        <th>OTC</th>
-                        <th>MRC</th>
-                        <th>Bandwidth</th>
-                        <th>Type</th>
-                        <th>Remarks</th>
-                    </tr>
-                    <tr ng-repeat="feasibility in Lead.FeasibilityDetails">
-                        <td>{{$index+1}}</td>
-                        <td>
-                            <select ng-model="feasibility.VendorId" class="form-control">
-                                <option selected value="">Select Vendor</option>
-                                <option ng-repeat="Vendor in Vendors" value="{{Vendor.Id}}" ng-selected="feasibility.VendorId == Vendor.Id">{{Vendor.Name}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="number" class="form-control" ng-model="feasibility.OTC" />
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" ng-model="feasibility.MRC" />
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" ng-model="feasibility.Bandwidth" />
-                        </td>
-                        <td>
-                            <select ng-model="feasibility.ConnectivityType" class="form-control">
-                                <option selected value="">Select Connection Type</option>
-                                <option value="0" ng-selected="feasibility.ConnectivityType == 0">Fiber</option>
-                                <option value="1" ng-selected="feasibility.ConnectivityType == 1">Radio</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" ng-model="feasibility.Remarks" />
-                        </td>
-                        <td>
-                            <i class="fas fa-minus" ng-click="RemoveEditRow($index)"></i>
-                        </td>
-                    </tr>
-                </table>
+                <div ng-if="Lead.FeasibilityDetails.length > 0">
+                    <table class="table " width="100%">
+                        <tr>
+                            <th>SR#</th>
+                            <th>Vendor</th>
+                            <th>OTC</th>
+                            <th>MRC</th>
+                            <th>Bandwidth</th>
+                            <th>Type</th>
+                            <th>Remarks</th>
+                        </tr>
+                        <tr ng-repeat="feasibility in Lead.FeasibilityDetails">
+                            <td>{{$index+1}}</td>
+                            <td>
+                                <select ng-model="feasibility.VendorId" class="form-control">
+                                    <option selected value="">Select Vendor</option>
+                                    <option ng-repeat="Vendor in Vendors" value="{{Vendor.Id}}" ng-selected="feasibility.VendorId == Vendor.Id">{{Vendor.Name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" ng-model="feasibility.OTC" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" ng-model="feasibility.MRC" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" ng-model="feasibility.Bandwidth" />
+                            </td>
+                            <td>
+                                <select ng-model="feasibility.ConnectivityType" class="form-control">
+                                    <option selected value="">Select Connection Type</option>
+                                    <option value="0" ng-selected="feasibility.ConnectivityType == 0">Fiber</option>
+                                    <option value="1" ng-selected="feasibility.ConnectivityType == 1">Radio</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" ng-model="feasibility.Remarks" />
+                            </td>
+                            <td>
+                                <i class="fas fa-minus" ng-click="RemoveEditRow($index)"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
         <br />
         <br />
-        <div class="row float-right" style="margin-right: 46px;" ng-if="Lead.FeasibilityDetails.length > 0">
+        <div class="row float-right" style="margin-right: 46px;" >
             <a href="/Lead/List" class="btn btn-danger">Cancel</a>
             <button class="btn btn-primary" ng-click="EditFeasibility(Lead.FeasibilityDetails)">Update</button>
         </div>

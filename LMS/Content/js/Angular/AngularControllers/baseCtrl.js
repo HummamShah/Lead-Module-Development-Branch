@@ -37,6 +37,11 @@ app.controller('baseCtrl',
                         $scope.ServiceClassBinder = "LoaderDeActivate"; // Loader class DeActivated
                         console.log(response);
 
+                    }, function (resp) {
+                        console.log(resp);
+                        toaster.pop('error', "error", resp.status + "! Internal Error");
+                        $scope.TotalNumberOfServicesRunning = $scope.TotalNumberOfServicesRunning - 1;
+                        $scope.ServiceClassBinder = "LoaderDeActivate"; // Loader class DeActivated
                     }
                 );
                 return promise;
@@ -63,6 +68,11 @@ app.controller('baseCtrl',
                         $scope.ServiceClassBinder = "LoaderActivate"; // Loader class DeActivated
                         console.log(response);
 
+                    }, function (resp) {
+                        console.log(resp);
+                        toaster.pop('error', "error", resp.status + "! Internal Error" );
+                        $scope.TotalNumberOfServicesRunning = $scope.TotalNumberOfServicesRunning - 1;
+                        $scope.ServiceClassBinder = "LoaderDeActivate"; // Loader class DeActivated
                     }
                 );
                 return promise;
