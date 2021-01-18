@@ -56,7 +56,7 @@ namespace LMS.Models.Feature.Lead
 		public string SolutionServiceProduct { get; set; }
 		public bool? IsNew { get; set; }
 		public string CurrentServiceInfo { get; set; }
-		public DateTime? Duration { get; set; }
+		public int? Duration { get; set; }
 		public string OtherMeasurements { get; set; }
 		public int? Quantity { get; set; }
 		public string Remarks { get; set; }
@@ -187,8 +187,8 @@ namespace LMS.Models.Feature.Lead
 					response.SolutionDetails.SolutionServiceProvider = SolutionSet.SolutionServiceProvider;
 					response.SolutionDetails.SolutionSubType=SolutionSet.SolutionSubType;
 					response.SolutionDetails.SolutionType=SolutionSet.SolutionType;
-					SolutionSet.CurrentServiceInfo = SolutionSet.CurrentServiceInfo;
-					SolutionSet.Duration = SolutionSet.Duration;
+					response.SolutionDetails.CurrentServiceInfo = SolutionSet.CurrentServiceInfo;
+					response.SolutionDetails.Duration = SolutionSet.Duration;
 					response.SolutionDetails.CreatedAt= SolutionSet.CreatedAt;
 					response.SolutionDetails.Date=SolutionSet.Date;
 					response.SolutionDetails.CreatedBy = SolutionSet.CreatedBy;

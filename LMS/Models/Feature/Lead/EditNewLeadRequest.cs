@@ -81,7 +81,7 @@ namespace LMS.Models.Feature.Lead
 			if (request.Domain == (int)LMS.Models.Enums.Domain.SolutionSet)
 			{
 				var SolutionSet = new LMS.Models.EntityModel.SolutionDetails();
-                if (request.SolutionDetails.Id == 0)
+                if (request.SolutionDetails.Id > 0)
                 {
 					SolutionSet = _dbContext.SolutionDetails.Where(x => x.Id == request.SolutionDetails.Id).FirstOrDefault();
 					SolutionSet.LeadId = request.SolutionDetails.LeadId;

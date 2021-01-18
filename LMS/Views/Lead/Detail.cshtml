@@ -190,7 +190,7 @@
             @*Email start*@
             <div class="col-md-3 form-group" ng-if=" Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.SolutionSubType == 1">
                 <label>Product</label>
-                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control" readonly>
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
                     <option selected value="">Solution Type</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType==0" value="0">Kaspersky</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType==1" value="1">Trend Micro</option>
@@ -280,6 +280,39 @@
             </div>
             @*Colocation end*@
 
+
+            @*IpTelephony start*@
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5">
+                <label>Type Of Brand</label>
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                    <option selected value="">Select Brand</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 0" value="0">Grand Stream</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 1" value="1">Cisco</option>
+                    @*<option ng-selected="Lead.SolutionDetails.SolutionSubType== 2" value="2">Others</option>*@
+                </select>
+            </div>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5">
+                <label>Type Of Prodcut</label>
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                    <option selected value="">Select Type</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 0" value="0">PBX</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 1" value="1">IP-PHONEs</option>
+                </select>
+            </div>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionSubType== 0">
+                <label>Number Of CoLines</label>
+                <input ng-model="Lead.SolutionDetails.OtherMeasurements" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionSubType== 0">
+                <label>Number Of Users / Extensions</label>
+                <input ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionSubType== 1">
+                <label>Number Of Users / Extensions</label>
+                <input ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+            </div>
+            @*IpTelephony end*@
+
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType == 2 ||( Lead.SolutionDetails.SolutionType==4 && Lead.SolutionDetails.SolutionSubType== 0)">
                 <label>Quantity</label>
                 <input type="number" ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
@@ -293,17 +326,24 @@
                 <label>IsNew</label>
                 <input type="checkbox" ng-model="Lead.SolutionDetails.IsNew" class="form-control" />
             </div>
-            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.IsNew">
-                <label>Go To Questionare</label>
-                <a class="btn btn-primary form-control" href="/Lead/Questionare?LeadId={{Lead.Id}}&Type={{Lead.SolutionDetails.SolutionSubType}}">Open</a>
-            </div>
-            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.IsNew == false && Lead.SolutionDetails.SolutionSubType != null &&  Lead.SolutionDetails.SolutionSubType != 3">
+            <!--<div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.IsNew">
+        <label>Go To Questionare</label>-->
+            @*<span class="form-control">
+                For new Product you need to fill a questionnare before assigning this lead to presales.
+                You can fill this by going to details and clicking questionnare link.
+            </span>*@
+            <!--<a class=" form-control">
+            For new Product you need to fill a questionnare before assigning this lead to presales.
+            You can fill this by going to details and clicking questionnare link.
+        </a>
+        </div>-->
+            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.IsNew == false && Lead.SolutionDetails.SolutionSubType != null &&  Lead.SolutionDetails.SolutionSubType != 3 && Lead.SolutionDetails.SolutionType != 3 && Lead.SolutionDetails.SolutionType!=4 && Lead.SolutionDetails.SolutionType!=5">
                 <label>Existing SKU / Serial No.</label>
                 <input type="text" ng-model="Lead.SolutionDetails.CurrentServiceInfo" class="form-control" />
             </div>
             <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType == 0 && (Lead.SolutionDetails.SolutionSubType == 0 || Lead.SolutionDetails.SolutionSubType == 2)">
                 <label>Duration in Years</label>
-                <input type="number" ng-model="Lead.SolutionDetails.Duration" class="form-control" />
+                <input type="text" ng-model="Lead.SolutionDetails.Duration" class="form-control" />
             </div>
             <div class="col-md-4 form-group" ng-if="(Lead.SolutionDetails.SolutionType == 0  && Lead.SolutionDetails.SolutionSubType == 0) || Lead.SolutionDetails.SolutionType == 1">
                 <label>Number Of Users</label>
@@ -319,7 +359,7 @@
         <br />
         <div class="row float-right">
             <a href="/Lead" class="btn btn-danger">Cancel</a>
-            <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="AddLead(Lead)">Add</button>
+            @*<button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="AddLead(Lead)">Add</button>*@
         </div>
     </div>
 

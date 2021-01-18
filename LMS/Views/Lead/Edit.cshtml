@@ -29,6 +29,7 @@
 
         </div>
     </div>
+    <!-- General Info -->
     <div class="jumbotron PageHeading">
         <div class="text-center">
             <div class="row"> <h2 class="SegmentHeading">General Information</h2></div>
@@ -188,9 +189,9 @@
                 <label>Product</label>
                 <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control">
                     <option selected value="">Solution Product</option>
-                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='SOPHOS'" value="SOPHOS">SOPHOS</option>
-                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='Fortigate'" value="Fortigate">Fortigate</option>
-                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='Sangfor'" value="Sangfor">Sangfor</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==0" value="SOPHOS">SOPHOS</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==1" value="Fortigate">Fortigate</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==2" value="Sangfor">Sangfor</option>
                 </select>
             </div>
             @*Firewall end*@
@@ -199,8 +200,8 @@
                 <label>Product</label>
                 <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control">
                     <option selected value="">Select Product</option>
-                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='KaspersKy'" value="KaspersKy">KaspersKy</option>
-                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='TrendMicro'" value="TrendMicro">TrendMicro</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==0" value="KaspersKy">KaspersKy</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==1" value="TrendMicro">TrendMicro</option>
                     @*<option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==2" value="Sangfor">Other</option>*@
                 </select>
             </div>
@@ -300,6 +301,39 @@
             </div>
             @*Colocation end*@
 
+
+            @*IpTelephony start*@
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5">
+                <label>Type Of Brand</label>
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                    <option selected value="">Select Brand</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 0" value="0">Grand Stream</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 1" value="1">Cisco</option>
+                    @*<option ng-selected="Lead.SolutionDetails.SolutionSubType== 2" value="2">Others</option>*@
+                </select>
+            </div>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5">
+                <label>Type Of Prodcut</label>
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                    <option selected value="">Select Type</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 0" value="0">PBX</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 1" value="1">IP-PHONEs</option>
+                </select>
+            </div>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionSubType== 0">
+                <label>Number Of CoLines</label>
+                <input ng-model="Lead.SolutionDetails.OtherMeasurements" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionSubType== 0">
+                <label>Number Of Users / Extensions</label>
+                <input ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionSubType== 1">
+                <label>Number Of Users / Extensions</label>
+                <input ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+            </div>
+            @*IpTelephony end*@
+
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType == 2 ||( Lead.SolutionDetails.SolutionType==4 && Lead.SolutionDetails.SolutionSubType== 0)">
                 <label>Quantity</label>
                 <input type="number" ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
@@ -313,11 +347,18 @@
                 <label>IsNew</label>
                 <input type="checkbox" ng-model="Lead.SolutionDetails.IsNew" class="form-control" />
             </div>
-            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.IsNew">
-                <label>Go To Questionare</label>
-                <a class="btn btn-primary form-control" href="/Lead/Questionare?LeadId={{Lead.Id}}&Type={{Lead.SolutionDetails.SolutionSubType}}">Open</a>
-            </div>
-            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.IsNew == false && Lead.SolutionDetails.SolutionSubType != null &&  Lead.SolutionDetails.SolutionSubType != 3">
+            <!--<div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.IsNew">
+            <label>Go To Questionare</label>-->
+            @*<span class="form-control">
+                    For new Product you need to fill a questionnare before assigning this lead to presales.
+                    You can fill this by going to details and clicking questionnare link.
+                </span>*@
+            <!--<a class=" form-control">
+                For new Product you need to fill a questionnare before assigning this lead to presales.
+                You can fill this by going to details and clicking questionnare link.
+            </a>
+            </div>-->
+            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.IsNew == false && Lead.SolutionDetails.SolutionSubType != null &&  Lead.SolutionDetails.SolutionSubType != 3 && Lead.SolutionDetails.SolutionType != 3 && Lead.SolutionDetails.SolutionType!=4 && Lead.SolutionDetails.SolutionType!=5">
                 <label>Existing SKU / Serial No.</label>
                 <input type="text" ng-model="Lead.SolutionDetails.CurrentServiceInfo" class="form-control" />
             </div>
@@ -339,7 +380,7 @@
         <br />
         <div class="row float-right">
             <a href="/Lead" class="btn btn-danger">Cancel</a>
-            <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="EditLead(Lead)">Add</button>
+            <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="EditLead(Lead)">Update</button>
         </div>
     </div>
 
