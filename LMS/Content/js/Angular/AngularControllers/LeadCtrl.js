@@ -120,6 +120,69 @@
                         return;
                     }
                 }
+                if (Lead.Domain == 0)
+                {
+                    if (Lead.SolutionDetails.SolutionType == null || Lead.SolutionDetails.SolutionType == "") {
+                        toaster.pop('error', "error", "Please Select Solution Type");
+                        return;
+                    }
+                    if (Lead.SolutionDetails.SolutionType == 0 || Lead.SolutionDetails.SolutionType == 3 || Lead.SolutionDetails.SolutionType == 4)
+                    {
+
+                        if (Lead.SolutionDetails.SolutionSubType == null || Lead.SolutionDetails.SolutionSubType == "") {
+                            toaster.pop('error', "error", "Please Select Solution Sub Type");
+                            return;
+                        }
+                    }
+
+                    if (Lead.SolutionDetails.SolutionType == 1 || Lead.SolutionDetails.SolutionType == 2 || Lead.SolutionDetails.SolutionType == 3 || Lead.SolutionDetails.SolutionType == 5)
+                    {
+                        if (Lead.SolutionDetails.SolutionServiceProvider == null || Lead.SolutionDetails.SolutionServiceProvider == "") {
+                        toaster.pop('error', "error", "Please Select Solution Service Provider");
+                        return;
+                        }
+                    }
+
+                    if (Lead.SolutionDetails.SolutionType == 0 || Lead.SolutionDetails.SolutionType == 1 || Lead.SolutionDetails.SolutionType == 2 || Lead.SolutionDetails.SolutionType == 5)
+                    {
+                        if (Lead.SolutionDetails.SolutionServiceProduct == null || Lead.SolutionDetails.SolutionServiceProduct == "") {
+                            toaster.pop('error', "error", "Please Select Solution Service Product");
+                            return;
+                            }
+                    }
+                    
+                    if (Lead.SolutionDetails.SolutionType == 0)
+                    {
+
+                        if (Lead.SolutionDetails.CurrentServiceInfo == null || Lead.SolutionDetails.CurrentServiceInfo == "") {
+                            toaster.pop('error', "error", "Please Select Existing SKU / Serial No");
+                            return;
+                            }
+                    }
+
+                    if (Lead.SolutionDetails.SolutionType == 0 && (Lead.SolutionDetails.SolutionSubType == 0 || Lead.SolutionDetails.SolutionSubType == 2))
+                    {
+                        if (Lead.SolutionDetails.Duration == null || Lead.SolutionDetails.Duration == "") {
+                            toaster.pop('error', "error", "Please Select Duration");
+                            return;
+                            }
+                    }
+
+                    if ((Lead.SolutionDetails.SolutionType == 0 && Lead.SolutionDetails.SolutionSubType == 0) || Lead.SolutionDetails.SolutionType == 1 || Lead.SolutionDetails.SolutionType == 2 || Lead.SolutionDetails.SolutionType == 4 || Lead.SolutionDetails.SolutionType == 5) {
+                        if (Lead.SolutionDetails.Quantity == null || Lead.SolutionDetails.Quantity == "") {
+                            toaster.pop('error', "error", "Please Select Quantity/No of Users");
+                            return;
+                            }
+                    }
+
+                    if (Lead.SolutionDetails.SolutionType == 5 && Lead.SolutionDetails.SolutionServiceProduct == 0) {
+                        if (Lead.SolutionDetails.OtherMeasurements == null || Lead.SolutionDetails.OtherMeasurements == "") {
+                            toaster.pop('error', "error", "Please Select No of Co-Lines");
+                            return;
+                        }
+                    }
+                }
+                
                 //AddLead now AddnewLead changes need to verify
                 $scope.AjaxPost("/api/LeadApi/AddLeadNew", Lead).then(
                     function (response) {
@@ -133,7 +196,7 @@
                         }
                     });
 
-
+                
             }
             getParentCompaniesDropdown = function () {
                 var promise = $http.get("/api/CompanyApi/GetParentCompaniesDropdown", { params: null, headers: { 'Accept': 'application/json' } });
@@ -330,7 +393,62 @@
                         return;
                     }
                 }
-               
+                if (Lead.Domain == 0) {
+                    if (Lead.SolutionDetails.SolutionType == null || Lead.SolutionDetails.SolutionType == "") {
+                        toaster.pop('error', "error", "Please Select Solution Type");
+                        return;
+                    }
+                    if (Lead.SolutionDetails.SolutionType == 0 || Lead.SolutionDetails.SolutionType == 3 || Lead.SolutionDetails.SolutionType == 4) {
+
+                        if (Lead.SolutionDetails.SolutionSubType == null || Lead.SolutionDetails.SolutionSubType == "") {
+                            toaster.pop('error', "error", "Please Select Solution Sub Type");
+                            return;
+                        }
+                    }
+
+                    if (Lead.SolutionDetails.SolutionType == 1 || Lead.SolutionDetails.SolutionType == 2 || Lead.SolutionDetails.SolutionType == 3 || Lead.SolutionDetails.SolutionType == 5) {
+                        if (Lead.SolutionDetails.SolutionServiceProvider == null || Lead.SolutionDetails.SolutionServiceProvider == "") {
+                            toaster.pop('error', "error", "Please Select Solution Service Provider");
+                            return;
+                        }
+                    }
+
+                    if (Lead.SolutionDetails.SolutionType == 0 || Lead.SolutionDetails.SolutionType == 1 || Lead.SolutionDetails.SolutionType == 2 || Lead.SolutionDetails.SolutionType == 5) {
+                        if (Lead.SolutionDetails.SolutionServiceProduct == null || Lead.SolutionDetails.SolutionServiceProduct == "") {
+                            toaster.pop('error', "error", "Please Select Solution Service Product");
+                            return;
+                        }
+                    }
+
+                    if (Lead.SolutionDetails.SolutionType == 0) {
+
+                        if (Lead.SolutionDetails.CurrentServiceInfo == null || Lead.SolutionDetails.CurrentServiceInfo == "") {
+                            toaster.pop('error', "error", "Please Select Existing SKU / Serial No");
+                            return;
+                        }
+                    }
+
+                    if (Lead.SolutionDetails.SolutionType == 0 && (Lead.SolutionDetails.SolutionSubType == 0 || Lead.SolutionDetails.SolutionSubType == 2)) {
+                        if (Lead.SolutionDetails.Duration == null || Lead.SolutionDetails.Duration == "") {
+                            toaster.pop('error', "error", "Please Select Duration");
+                            return;
+                        }
+                    }
+
+                    if ((Lead.SolutionDetails.SolutionType == 0 && Lead.SolutionDetails.SolutionSubType == 0) || Lead.SolutionDetails.SolutionType == 1 || Lead.SolutionDetails.SolutionType == 2 || Lead.SolutionDetails.SolutionType == 4 || Lead.SolutionDetails.SolutionType == 5) {
+                        if (Lead.SolutionDetails.Quantity == null || Lead.SolutionDetails.Quantity == "") {
+                            toaster.pop('error', "error", "Please Select Quantity/No of Users");
+                            return;
+                        }
+                    }
+
+                    if (Lead.SolutionDetails.SolutionType == 5 && Lead.SolutionDetails.SolutionServiceProduct == 0) {
+                        if (Lead.SolutionDetails.OtherMeasurements == null || Lead.SolutionDetails.OtherMeasurements == "") {
+                            toaster.pop('error', "error", "Please Select No of Co-Lines");
+                            return;
+                        }
+                    }
+                }
                 
                 //$scope.AjaxPost("/api/LeadApi/EditLead", Lead).then(
                 $scope.AjaxPost("/api/LeadApi/EditNewLead", Lead).then( //New Request

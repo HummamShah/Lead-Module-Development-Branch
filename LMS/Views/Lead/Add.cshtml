@@ -305,7 +305,7 @@
 
             @*Colocation start*@
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==4">
-                <label>Type Of Solution</label>
+                <label>Sub Type Of Solution</label>
                 <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
                     <option selected value="">Select Type</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType== 0" value="0">Model of hardware</option>
@@ -318,31 +318,31 @@
             @*IpTelephony start*@
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5">
                 <label>Type Of Brand</label>
-                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control">
                     <option selected value="">Select Brand</option>
-                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 0" value="0">Grand Stream</option>
-                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 1" value="1">Cisco</option>
-                    @*<option ng-selected="Lead.SolutionDetails.SolutionSubType== 2" value="2">Others</option>*@
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider== 0" value="0">Grand Stream</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider== 1" value="1">Cisco</option>
+                    @*<option ng-selected="Lead.SolutionDetails.SolutionServiceProvider== 2" value="2">Others</option>*@
                 </select>
             </div>
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5">
                 <label>Type Of Prodcut</label>
-                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control">
                     <option selected value="">Select Type</option>
-                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 0" value="0">PBX</option>
-                    <option ng-selected="Lead.SolutionDetails.SolutionSubType== 1" value="1">IP-PHONEs</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct== 0" value="0">PBX</option>
+                    <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct== 1" value="1">IP-PHONEs</option>
                 </select>
             </div>
-            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionSubType== 0">
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionServiceProduct== 0">
                 <label>Number Of CoLines</label>
                 <input ng-model="Lead.SolutionDetails.OtherMeasurements" class="form-control" />
             </div>
-            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionSubType== 0">
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionServiceProduct== 0">
                 <label>Number Of Users / Extensions</label>
                 <input ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
             </div>
-            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionSubType== 1">
-                <label>Number Of Users / Extensions</label>
+            <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionServiceProduct== 1">
+                <label>Quantity</label>
                 <input ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
             </div>
             @*IpTelephony end*@
