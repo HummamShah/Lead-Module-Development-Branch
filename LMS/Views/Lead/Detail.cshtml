@@ -133,7 +133,7 @@
         <div class="row">
             <div class="col-md-4 form-group">
                 <label>Type of Solution</label>
-                <select ng-model="Lead.SolutionDetails.SolutionType" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionType" class="form-control" disabled>
                     <option selected value="">Solution Type</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionType==0" value="0">Security</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionType==1" value="1">Wifi</option>
@@ -149,7 +149,7 @@
             @*Security start*@
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==0">
                 <label>SubType of Solution</label>
-                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control" disabled>
                     <option selected value="">Solution Type</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType==0" value="0">End Point</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType==1" value="1">Email</option>
@@ -160,13 +160,13 @@
             @*Other start*@
             <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType == 0 &&Lead.SolutionDetails.SolutionSubType==3">
                 <label>Details of Sub type of solution</label>
-                <input type="text" ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control" />
+                <input type="text" ng-model="Lead.SolutionDetails.SolutionServiceProduct" readonly class="form-control" />
             </div>
             @*Other end*@
             @*Firewall start*@
             <div class="col-md-3 form-group" ng-if="Lead.SolutionDetails.SolutionType == 0 && Lead.SolutionDetails.SolutionSubType == 2">
                 <label>Product</label>
-                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control" disabled>
                     <option selected value="">Solution Product</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==0" value="SOPHOS">SOPHOS</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==1" value="Fortigate">Fortigate</option>
@@ -177,7 +177,7 @@
             @*Endpoint start*@
             <div class="col-md-3 form-group" ng-if="Lead.SolutionDetails.SolutionType == 0 &&Lead.SolutionDetails.SolutionSubType == 0">
                 <label>Product</label>
-                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control" disabled>
                     <option selected value="">Select Product</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==0" value="KaspersKy">KaspersKy</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct==1" value="TrendMicro">TrendMicro</option>
@@ -190,7 +190,7 @@
             @*Email start*@
             <div class="col-md-3 form-group" ng-if=" Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.SolutionSubType == 1">
                 <label>Product</label>
-                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control" disabled>
                     <option selected value="">Solution Type</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType==0" value="0">Kaspersky</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType==1" value="1">Trend Micro</option>
@@ -206,7 +206,7 @@
             @*Wifi Start*@
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==1">
                 <label>Solution Service Provider</label>
-                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control" disabled>
                     <option selected value="">Provider Type</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='RUCKUS'" value="RUCKUS">RUCKUS</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider== 'Grandstream'" value="Grandstream">Grandstream</option>
@@ -214,7 +214,7 @@
             </div>
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==1">
                 <label>Solution Boundary Type</label>
-                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control" disabled>
                     <option selected value="">Select Wifi Boundary</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='OnPremises'" value="OnPremises">On Premises</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='CloudController'" value="CloudController">Cloud Controller</option>
@@ -225,7 +225,7 @@
             @*Hardware Supplies start*@
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==2">
                 <label>Providers of Solution</label>
-                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control" disabled>
                     <option selected value="">Select Provider</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='HP'" value="HP">HP</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='Dell'" value="Dell">Dell</option>
@@ -235,7 +235,7 @@
             </div>
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==2">
                 <label>Products</label>
-                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProduct" class="form-control" disabled>
                     <option selected value="">Select Product</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='Switches'" value="Switches">Switches</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct=='Server'" value="Server">Server</option>
@@ -251,7 +251,7 @@
             @*Video Conferencing start*@
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==3">
                 <label>Type Of Solution</label>
-                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control" disabled>
                     <option selected value="">Select Type</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType== 0" value="0">P2P</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType== 1" value="1">P2MP</option>
@@ -259,7 +259,7 @@
             </div>
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==3">
                 <label>Providers of Solution</label>
-                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control" disabled>
                     <option selected value="">Select Provider</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='GrandStream'" value="GrandStream">GrandStream</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider=='Yealink'" value="Yealink">Yealink</option>
@@ -272,7 +272,7 @@
             @*Colocation start*@
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==4">
                 <label>Sub Type Of Solution</label>
-                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control" disabled>
                     <option selected value="">Select Type</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType== 0" value="0">Model of hardware</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType== 1" value="1">Internet Or Data</option>
@@ -284,7 +284,7 @@
             @*IpTelephony start*@
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5">
                 <label>Type Of Brand</label>
-                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionServiceProvider" class="form-control" disabled>
                     <option selected value="">Select Brand</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider== 0" value="0">Grand Stream</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProvider== 1" value="1">Cisco</option>
@@ -293,7 +293,7 @@
             </div>
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5">
                 <label>Type Of Prodcut</label>
-                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
+                <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control" disabled>
                     <option selected value="">Select Type</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct== 0" value="0">PBX</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionServiceProduct== 1" value="1">IP-PHONEs</option>
@@ -301,64 +301,101 @@
             </div>
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionServiceProduct== 0">
                 <label>Number Of CoLines</label>
-                <input ng-model="Lead.SolutionDetails.OtherMeasurements" class="form-control" />
+                <input ng-model="Lead.SolutionDetails.OtherMeasurements" readonly class="form-control" />
             </div>
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionServiceProduct== 0">
                 <label>Number Of Users / Extensions</label>
-                <input ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+                <input ng-model="Lead.SolutionDetails.Quantity" readonly class="form-control" />
             </div>
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==5 && Lead.SolutionDetails.SolutionServiceProduct== 1">
                 <label>Quantity</label>
-                <input ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+                <input ng-model="Lead.SolutionDetails.Quantity" readonly class="form-control" />
             </div>
             @*IpTelephony end*@
 
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType == 2 ||( Lead.SolutionDetails.SolutionType==4 && Lead.SolutionDetails.SolutionSubType== 0)">
                 <label>Quantity</label>
-                <input type="number" ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+                <input type="number" readonly ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
             </div>
             <div class="col-md-4" ng-if="Lead.SolutionDetails.SolutionType==4 && Lead.SolutionDetails.SolutionSubType== 1">
                 <label>Bandwidth</label>
-                <input type="number" ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+                <input type="number" readonly ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
             </div>
 
             <div class="col-md-1 form-group" ng-if=" Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.SolutionSubType != null  && Lead.SolutionDetails.SolutionSubType != 3">
                 <label>IsNew</label>
-                <input type="checkbox" ng-model="Lead.SolutionDetails.IsNew" class="form-control" />
+                <input type="checkbox" disabled ng-model="Lead.SolutionDetails.IsNew" class="form-control" />
             </div>
-            <!--<div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.IsNew">
-        <label>Go To Questionare</label>-->
-            @*<span class="form-control">
-                For new Product you need to fill a questionnare before assigning this lead to presales.
-                You can fill this by going to details and clicking questionnare link.
-            </span>*@
-            <!--<a class=" form-control">
-            For new Product you need to fill a questionnare before assigning this lead to presales.
-            You can fill this by going to details and clicking questionnare link.
-        </a>
-        </div>-->
+            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.IsNew">
+                <label>Go To Questionare</label>
+                <a class="btn btn-primary form-control" target="_blank" href="/Lead/Questionare?LeadId={{Lead.Id}}&Type={{Lead.SolutionDetails.SolutionSubType}}&IsViewOnly=true">Open</a>
+            </div>
             <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.IsNew == false && Lead.SolutionDetails.SolutionSubType != null &&  Lead.SolutionDetails.SolutionSubType != 3 && Lead.SolutionDetails.SolutionType != 3 && Lead.SolutionDetails.SolutionType!=4 && Lead.SolutionDetails.SolutionType!=5">
                 <label>Existing SKU / Serial No.</label>
-                <input type="text" ng-model="Lead.SolutionDetails.CurrentServiceInfo" class="form-control" />
+                <input type="text" readonly ng-model="Lead.SolutionDetails.CurrentServiceInfo" class="form-control" />
             </div>
             <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType == 0 && (Lead.SolutionDetails.SolutionSubType == 0 || Lead.SolutionDetails.SolutionSubType == 2)">
                 <label>Duration in Years</label>
-                <input type="text" ng-model="Lead.SolutionDetails.Duration" class="form-control" />
+                <input type="text" readonly ng-model="Lead.SolutionDetails.Duration" class="form-control" />
             </div>
             <div class="col-md-4 form-group" ng-if="(Lead.SolutionDetails.SolutionType == 0  && Lead.SolutionDetails.SolutionSubType == 0) || Lead.SolutionDetails.SolutionType == 1">
                 <label>Number Of Users</label>
-                <input type="number" ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
+                <input type="number" readonly ng-model="Lead.SolutionDetails.Quantity" class="form-control" />
             </div>
             <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionSubType != null">
                 <label>Remarks</label>
-                <input type="text" ng-model="Lead.SolutionDetails.Remarks" class="form-control" />
+                <input type="text" readonly ng-model="Lead.SolutionDetails.Remarks" class="form-control" />
             </div>
-
+            @if (User.IsInRole("PreSale"))
+            {
+                <div ng-if="Lead.QuotationStatusEnum == 'None'">
+                    <div class="col-md-4 form-group">
+                        <label>Commercial Assigned By PreSales</label>
+                        <input type="number" ng-model="Lead.Quotation" class="form-control" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Commercial Status</label>
+                        <select ng-model="Lead.QuotationStatus" class="form-control">
+                            <option selected value=""></option>
+                            <option ng-selected="Lead.QuotationStatus== 0" value="0"></option>
+                            <option ng-selected="Lead.QuotationStatus== 1" value="1"></option>
+                            <option ng-selected="Lead.QuotationStatus== 2" value="2"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Quotation Remarks</label>
+                        <input type="number" readonly ng-model="Lead.QuotationRemarks" class="form-control" />
+                    </div>
+                </div>
+            }
+        <div ng-if="Lead.QuotationStatusEnum != 'None'">
+            <div class="col-md-4 form-group">
+                <label>Commercial Assigned By PreSales</label>
+                <input type="number" readonly ng-model="Lead.Quotation" class="form-control" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Commercial Status</label>
+                <select ng-model="Lead.QuotationStatus" class="form-control" disabled>
+                    <option selected value="">Select Type</option>
+                    <option ng-selected="Lead.QuotationStatus== 0" value="0">In Budget</option>
+                    <option ng-selected="Lead.QuotationStatus== 1" value="1">Over Budget</option>
+                    <option ng-selected="Lead.QuotationStatus== 2" value="2">None</option>
+                </select>
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Remarks</label>
+                <input type="number" readonly ng-model="Lead.QuotationRemarks" class="form-control" />
+            </div>
+        </div>
 
         </div>
         <br />
         <div class="row float-right">
             <a href="/Lead" class="btn btn-danger">Cancel</a>
+            @if (User.IsInRole("PreSale"))
+            {
+                <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-if="Lead.QuotationStatusEnum == 'None'" ng-click="AddQuotation(Lead,Lead.Id)">Update</button>
+            }
             @*<button class="btn btn-primary" style=" margin-right: 61px!important;" ng-click="AddLead(Lead)">Add</button>*@
         </div>
     </div>

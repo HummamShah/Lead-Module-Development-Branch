@@ -33,7 +33,32 @@
                 console.log(Lead);
                 $scope.Assignment.Id = Lead.Id;
                 $scope.Assignment.Header = "Assign A User";
+                $scope.Assignment.Domain = Lead.Domain;
 
+            }
+            $scope.AddQuotation = function (Quot,Id) {
+                var temp = {
+                    LeadId : Id,
+                    Quotation: Quot.Quotation,
+                    QuotationStatus: Quot.QuotationStatus,
+                    QuotationRemarks: Quot.QuotationRemarks
+                }
+                $scope.AjaxPost("/api/LeadApi/AddQuotation", temp).then(
+                    function (response) {
+                        if (response.status == 200) {
+                            toaster.pop('success', "success", "Quotation Updated!");
+                            $timeout(function () { window.location.href = '/Lead/List'; }, 2000);
+                        } else {
+                            //alert("Could Not Assign User");
+                            toaster.pop('error', "error", "Could not Assign Commercial");
+                        }
+                    });
+                console.log(temp);
+            }
+            $scope.SetCommercialModal = function (Lead) {
+                $scope.Commercial = {};
+                $scope.Commercial.LeadId = Lead.Id;
+                $scope.Commercial.QuotationStatus = 2;
             }
             $scope.SetAssigningType = function (Type) {
                 $scope.AjaxGet("/api/UserApi/GetAgentsForAssignment", { Type: Type }).then(

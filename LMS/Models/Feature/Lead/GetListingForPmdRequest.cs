@@ -30,7 +30,7 @@ namespace LMS.Models.Feature.Lead
 				{
 					var AgentId = Agent.Id;
 					var SuperVisorId = Agent.SuperVisorId;
-					Data = Data.Where(x => x.AssignedPmdId == AgentId).ToList();
+					Data = Data.Where(x => x.AssignedPmdId == AgentId || x.AssignedPreSaleId == AgentId).ToList();
 				}
 
 			}

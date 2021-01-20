@@ -7,6 +7,6 @@ namespace LMS.Models.Enums
 {
     public enum Departments
     {
-        Sales_Lead,PMD,Pre_Sale,Closer,Administration
+        Sales_Lead,PMD,Pre_Sales,Closer,Administration
     }
 }

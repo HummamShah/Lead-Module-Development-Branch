@@ -76,6 +76,7 @@ namespace LMS.Models.EntityModel
         public string Bandwidth { get; set; }
         public Nullable<int> ConnectivityType { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<decimal> Quotation { get; set; }
     
         public virtual Agent AssignedTo { get; set; }
         public virtual Agent AssignedPMD { get; set; }

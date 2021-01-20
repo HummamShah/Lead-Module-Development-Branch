@@ -159,7 +159,7 @@ namespace LMS.Controllers.Api
                     {
                         RoleToAdd = Roles.Closer;
                     }
-                    if (DepartmentName == Departments.Pre_Sale.ToString())
+                    if (DepartmentName == Departments.Pre_Sales.ToString())
                     {
                         RoleToAdd = Roles.PreSale;
                     }

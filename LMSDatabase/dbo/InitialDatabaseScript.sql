@@ -199,7 +199,7 @@ CREATE TABLE [dbo].[Lead]
 	[QuotationRemarks] nvarchar(max),
 	[IsApproved] bit,
 	[AdminRemarks] nvarchar(max),
-	
+	[Quotation] decimal(18,3),
 	
 	[CreatedBy] nvarchar(max),
 	[CreatedAt] DateTime,

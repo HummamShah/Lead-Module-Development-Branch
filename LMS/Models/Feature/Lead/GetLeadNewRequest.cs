@@ -95,6 +95,7 @@ namespace LMS.Models.Feature.Lead
 			var Data = _dbContext.Lead.Where(x => x.Id == req.Id).FirstOrDefault();
 			response.Id = Data.Id;
 			response.Name = Data.Name;
+			response.Quotation = Data.Quotation;
 			response.CompanyId = Data.CompanyId.Value;
 			response.FeasibilityDetails = new List<FeasibilityDetails>();
 			if (Data.CompanyId.HasValue)
@@ -257,6 +258,7 @@ namespace LMS.Models.Feature.Lead
 
 		public class GetLeadNewResponse
 		{
+			public decimal? Quotation { get; set; }
 			public int Id { get; set; }
 			public int CompanyId { get; set; }
 			public string CompanyName { get; set; }

@@ -226,6 +226,7 @@
           <Property Name="QuotationRemarks" Type="nvarchar(max)" />
           <Property Name="IsApproved" Type="bit" />
           <Property Name="AdminRemarks" Type="nvarchar(max)" />
+          <Property Name="Quotation" Type="decimal" Precision="18" Scale="3" />
           <Property Name="CreatedBy" Type="nvarchar(max)" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar(max)" />
@@ -1128,6 +1129,7 @@
           <Property Name="Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SolutionDetails" Relationship="Sharptel_Lms_DbModel.FK_SolutionDetails_Leads" FromRole="Lead" ToRole="SolutionDetails" />
           <NavigationProperty Name="QuestionnareDetails" Relationship="Sharptel_Lms_DbModel.FK_Questionnare_Lead" FromRole="Lead" ToRole="QuestionnareDetails" />
+          <Property Name="Quotation" Type="Decimal" Precision="18" Scale="3" />
         </EntityType>
         <Association Name="FK_Lead_Agent_Lead">
           <End Type="Sharptel_Lms_DbModel.Agent" Role="Agent" Multiplicity="0..1" />
@@ -1492,6 +1494,7 @@
           <EntitySetMapping Name="Lead">
             <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Lead">
               <MappingFragment StoreEntitySet="Lead">
+                <ScalarProperty Name="Quotation" ColumnName="Quotation" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ConnectivityType" ColumnName="ConnectivityType" />
                 <ScalarProperty Name="Bandwidth" ColumnName="Bandwidth" />

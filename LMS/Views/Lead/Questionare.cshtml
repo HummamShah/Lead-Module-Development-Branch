@@ -26,15 +26,13 @@
                             {{Questionnare.Requirements}}
                         </td>
                         <td style=" width: 14%;">
-                            <input type="text" class="form-control" ng-model="Questionnare.HeadOffice" />
+                            <input type="text" ng-disabled="IsViewOnly == 'true'" class="form-control" ng-model="Questionnare.HeadOffice" />
                         </td>
                         <td style=" width: 14%;">
-                            <input type="text" class="form-control" ng-model="Questionnare.BranchOffice" />
+                            <input type="text" class="form-control" ng-disabled="IsViewOnly == 'true'" ng-model="Questionnare.BranchOffice" />
                         </td>
                         <td style=" width: 35%;">
-                            <textarea  type="text" class="form-control" ng-model="Questionnare.Details" cols="4"></textarea>
-            
-
+                            <textarea  type="text" class="form-control" ng-disabled="IsViewOnly == 'true'" ng-model="Questionnare.Details" cols="4"></textarea>
                             @*<input type="text" class="form-control" ng-model="Questionnare.Details" />*@
                         </td>
                     </tr>
@@ -42,7 +40,7 @@
             </table>
         </div>
         <div class="row float-right">
-            <button class="btn btn-primary" ng-click="AddQuestionnare(Questionnares)">Save</button>
+            <button class="btn btn-primary" ng-if="IsViewOnly == 'false'" ng-click="AddQuestionnare(Questionnares)">Save</button>
         </div>
     </div>
 

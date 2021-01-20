@@ -119,5 +119,19 @@ namespace LMS.Controllers.Api
             return result;
 
         }
+        [HttpPost]
+        public object SaveQuestionnareData([FromBody] SaveQuestionnareDataRequest req)
+        {
+            var result = req.RunRequest(req);
+            return result;
+
+        }
+        [HttpPost]
+        public object AddQuotation([FromBody] AddQuotationRequest req)
+        {
+            var result = req.RunRequest(req);
+            return result;
+
+        }
     }
 }

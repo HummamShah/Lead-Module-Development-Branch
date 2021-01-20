@@ -304,6 +304,7 @@
     <Compile Include="Models\Feature\Lead\AddFeasibilityRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadNewRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadRequest.cs" />
+    <Compile Include="Models\Feature\Lead\AddQuotationRequest.cs" />
     <Compile Include="Models\Feature\Lead\EditFeasibilityRequest.cs" />
     <Compile Include="Models\Feature\Lead\EditLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\EditNewLeadRequest.cs" />
@@ -313,6 +314,7 @@
     <Compile Include="Models\Feature\Lead\GetListingForPmdRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetQuestionnareDataRequest.cs" />
+    <Compile Include="Models\Feature\Lead\SaveQuestionnareDataRequest.cs" />
     <Compile Include="Models\Feature\User\GetAgentsForAssignmentRequest.cs" />
     <Compile Include="Models\Feature\User\GetListingRequest.cs" />
     <Compile Include="Models\Feature\User\GetUsersByDepartmentRequest.cs" />

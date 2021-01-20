@@ -14,7 +14,7 @@ namespace LMS.Controllers
         {
             return View();
         }
-        [Authorize(Roles = "Admin,Pmd_Feasibility")]
+        [Authorize(Roles = "Admin,Pmd_Feasibility,PreSale")]
         public ActionResult List()
         {
             return View();
@@ -31,7 +31,7 @@ namespace LMS.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Lead_Sales,Admin,SuperAdmin,Pmd_Feasibility")]
+        [Authorize(Roles = "Lead_Sales,Admin,SuperAdmin,Pmd_Feasibility,PreSale")]
         public ActionResult Detail()
         {
             return View();
@@ -53,11 +53,11 @@ namespace LMS.Controllers
         {
             return View();
         }
-        [Authorize(Roles = "PreSale")]
-        public ActionResult EditCommercial()
-        {
-            return View();
-        }
+        //[Authorize(Roles = "PreSale")]
+        //public ActionResult EditCommercial()
+        //{
+        //    return View();
+        //}
         public ActionResult Questionare()
         {
             return View();

@@ -45,7 +45,7 @@
                         <a href="/Lead"> Leads <i class="fas fa-caret-right NavbarLink"></i></a>
                     </li>
                 }
-                @if (User.IsInRole(UserRoles.Pmd_Feasibility))
+                @if (User.IsInRole(UserRoles.Pmd_Feasibility) || User.IsInRole(UserRoles.PreSale))
                 {
                     <li>
                         <a href="/Lead/List"> Leads <i class="fas fa-caret-right NavbarLink"></i></a>

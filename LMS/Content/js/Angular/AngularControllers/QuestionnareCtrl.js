@@ -13,7 +13,8 @@
                 $scope.Questionnares = [];
                 var Type =   $scope.GetUrlParameter("Type");
                 var LeadId = $scope.GetUrlParameter("LeadId");//Fw,Email,Wsp
-                console.log(Type + " " + LeadId);
+                $scope.IsViewOnly = $scope.GetUrlParameter("IsViewOnly");
+                console.log($scope.IsViewOnly);
                 $scope.AjaxGet("/api/LeadApi/GetQuestionnareData", { LeadId: LeadId}).then(
                     function (response) {
                         console.log(response);
@@ -225,7 +226,21 @@
              
             }
             $scope.AddQuestionnare = function (Questionnare) {
-                console.log(Questionnare);
+                console.log(Questionnare); 
+                var data = {
+                    Questionnares: Questionnare
+                }
+                $scope.AjaxPost("/api/LeadApi/SaveQuestionnareData", data).then(
+                    function (response) {
+                        if (response.status == 200) {
+                            // alert("Lead has been Added Successfully!");
+                            toaster.pop('success', "success", "Questionnare Been Updated Successfully");
+                            $timeout(function () { window.location.href = '/Lead'; }, 2000);
+                        } else {
+                            //alert("Could Not Add new Lead");
+                            toaster.pop('error', "error", "Could not add Questionnare!");
+                        }
+                    });
             }
         }
     ]);

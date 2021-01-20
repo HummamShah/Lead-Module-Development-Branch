@@ -347,17 +347,10 @@
                 <label>IsNew</label>
                 <input type="checkbox" ng-model="Lead.SolutionDetails.IsNew" class="form-control" />
             </div>
-            <!--<div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.IsNew">
-            <label>Go To Questionare</label>-->
-            @*<span class="form-control">
-                    For new Product you need to fill a questionnare before assigning this lead to presales.
-                    You can fill this by going to details and clicking questionnare link.
-                </span>*@
-            <!--<a class=" form-control">
-                For new Product you need to fill a questionnare before assigning this lead to presales.
-                You can fill this by going to details and clicking questionnare link.
-            </a>
-            </div>-->
+            <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.SolutionType==0 && Lead.SolutionDetails.IsNew">
+            <label>Go To Questionare</label>
+            <a class="btn btn-primary form-control" target="_blank" href="/Lead/Questionare?LeadId={{Lead.Id}}&Type={{Lead.SolutionDetails.SolutionSubType}}&IsViewOnly=false">Open</a>
+            </div>
             <div class="col-md-4 form-group" ng-if="Lead.SolutionDetails.IsNew == false && Lead.SolutionDetails.SolutionSubType != null &&  Lead.SolutionDetails.SolutionSubType != 3 && Lead.SolutionDetails.SolutionType != 3 && Lead.SolutionDetails.SolutionType!=4 && Lead.SolutionDetails.SolutionType!=5">
                 <label>Existing SKU / Serial No.</label>
                 <input type="text" ng-model="Lead.SolutionDetails.CurrentServiceInfo" class="form-control" />

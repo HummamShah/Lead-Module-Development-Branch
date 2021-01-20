@@ -70,7 +70,7 @@
                         <a href="/Lead/Print?Id={{Lead.Id}}" title="Print"><i class="fas fa-print" title="Print"></i></a>*@
 
                     <a href="#" data-toggle="modal" data-target="#myModal" ng-click="SetAssigningDataToModal(Lead)" title="Assign Lead"><i class="fas fa-users"></i></a>
-                    <a href="/Lead/Edit?Id={{Lead.Id}}" ng-if="Lead.AssingnedPmdName == null || Lead.AssingnedPmdName == ''" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                    <a href="/Lead/Edit?Id={{Lead.Id}}" ng-if="(Lead.AssingnedPmdName == null || Lead.AssingnedPmdName == '') && (Lead.AssignedPreSaleName == null || Lead.AssignedPreSaleName == '')" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                     <a href="/Lead/Detail?Id={{Lead.Id}}" title="Details"><i class="fas fa-file"></i></a>
 
                 </td>
@@ -98,7 +98,7 @@
                                 <label>Assigning Agent Type</label>
                                 <select ng-model="Assignment.Type" class="form-control" ng-change="SetAssigningType(Assignment.Type)">
                                     <option selected value="">Select Agent To Assign</option>
-                                    <option ng-repeat="Type in AssignmentTypes" value="{{Type}}">{{Type}}</option>
+                                    <option ng-repeat="Type in AssignmentTypes" value="{{Type}}" ng-disabled="Assignment.Domain == 0 && Type.Name =='PMD'">{{Type}}</option>
                                 </select>
                             </div>
                         </div>
