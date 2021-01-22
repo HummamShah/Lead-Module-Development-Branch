@@ -12,9 +12,9 @@ namespace LMS.Controllers.Api
     public class LeadApiController : ApiController
     {
         [HttpGet]
-        public object GetListData()
+        public object GetListData([FromUri] GetListingRequest temp)
         {
-            var temp = new GetListingRequest();
+            //var temp = new GetListingRequest();
             if (!User.IsInRole(Roles.Admin) && !User.IsInRole(Roles.SuperAdmin))
             {
                 temp.UserId = User.Identity.GetUserId();

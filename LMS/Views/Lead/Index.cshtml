@@ -16,14 +16,14 @@
         </div>
     </div>
     <div class="jumbotron PageHeading">
-        <table class="table" width="100%">
+        <table class="table pre-scrollable" width="100%">
             <tr class="table-head">
                 <th>
                     Id
                 </th>
-                @*<th>
-                    Name
-                </th>*@
+                 <th>
+                Domain Name
+                </th>
                 <th>
                     Company Name
                 </th>
@@ -54,7 +54,7 @@
             </tr>
             <tr ng-repeat="Lead in Leads">
                 <td>{{Lead.Id}}</td>
-                @*<td>{{Lead.Name}}</td>*@
+                <td>{{Lead.DomainName}}</td>
                 <td>{{Lead.CompanyName}}</td>
                 <td>{{Lead.AssingnedPmdName}}</td>
                 <td><small ng-class="Lead.PmdStatusEnum" class="badge">{{Lead.PmdStatusEnum}}</small></td>
@@ -66,8 +66,8 @@
                 <td>{{Lead.CreatedAt | date:'MMM d, y'}}</td>
                 <td>
                     @*<a href="/Lead/Edit?Id={{Lead.Id}}" title="Edit"><i class="fas fa-pencil-alt" title="Edit"></i></a>
-                        <a href="/Lead/Details?Id={{Lead.Id}}" title="Details"><i class="fas fa-file" title="Details"></i></a>
-                        <a href="/Lead/Print?Id={{Lead.Id}}" title="Print"><i class="fas fa-print" title="Print"></i></a>*@
+            <a href="/Lead/Details?Id={{Lead.Id}}" title="Details"><i class="fas fa-file" title="Details"></i></a>
+            <a href="/Lead/Print?Id={{Lead.Id}}" title="Print"><i class="fas fa-print" title="Print"></i></a>*@
 
                     <a href="#" data-toggle="modal" data-target="#myModal" ng-click="SetAssigningDataToModal(Lead)" title="Assign Lead"><i class="fas fa-users"></i></a>
                     <a href="/Lead/Edit?Id={{Lead.Id}}" ng-if="(Lead.AssingnedPmdName == null || Lead.AssingnedPmdName == '') && (Lead.AssignedPreSaleName == null || Lead.AssignedPreSaleName == '')" title="Edit"><i class="fas fa-pencil-alt"></i></a>
@@ -75,8 +75,27 @@
 
                 </td>
             </tr>
+            @*<tfoot>
+                <tr>
+                    <td colspan="11" class="float-right">
+                        <button ng-disabled="ListingOptions.CurrentPage == 1" ng-click="PreviousPage()">Previous</button> {{ListingOptions.CurrentPage}}
+                        <button ng-disabled="ListingOptions.TotalRecords < (ListingOptions.CurrentPage  * ListingOptions.PageSize)" ng-click="NextPage()">Next</button>
+                    </td>
+                </tr>
+            </tfoot>*@
         </table>
+        <div>
+            <div class="float-right">
+                <button ng-disabled="ListingOptions.CurrentPage == 1" ng-click="PreviousPage()">Previous</button>
+                <span>{{ListingOptions.CurrentPage}}</span>
+                <button ng-disabled="ListingOptions.TotalRecords < (ListingOptions.CurrentPage  * ListingOptions.PageSize)" ng-click="NextPage()">Next</button>
+                <span>
+                    <small>Showing from {{(ListingOptions.PageSize  * (ListingOptions.CurrentPage - 1))}} - {{ListingOptions.PageSize * ListingOptions.CurrentPage}} outof {{ListingOptions.TotalRecords}}</small>
+                </span>
+            </div>
+        </div>
     </div>
+
 
 
 
@@ -89,7 +108,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">{{Assignment.Header}}</h4>
-                </div>
+</div>
                 <div class="">
                     <form id="AssignmentForm ">
 

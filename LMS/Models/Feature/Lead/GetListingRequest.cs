@@ -11,9 +11,11 @@ namespace LMS.Models.Feature.Lead
 	public class GetListingResponse
 	{
 		public List<LeadData> Data { get; set; }
+		public int TotalRecords { get; set; }
 	}
 	public class LeadData
 	{
+	
 		public int Id { get; set; }
 		public bool IsFeasibilityAdded { get; set; }
 		public int CompanyId { get; set; }
@@ -60,11 +62,18 @@ namespace LMS.Models.Feature.Lead
 	{
 		private Sharptel_Lms_DbEntities _dbContext = new Sharptel_Lms_DbEntities();
 		public string UserId { get; set; }
+		//Pagination Fields
+		public int CurrentPage { get; set; }
+		public int PageSize{ get; set; }
+		
+
 		public object RunRequest(GetListingRequest req)
 		{
 			var response = new GetListingResponse();
 			response.Data = new List<LeadData>();
+			var SkippingNumber = req.PageSize * (req.CurrentPage - 1);
 			var Data = _dbContext.Lead.ToList();
+			
 			if (req.UserId != null && req.UserId != string.Empty)
 			{
 				var Agent = _dbContext.Agent.Where(x => x.UserId == req.UserId).FirstOrDefault();
@@ -77,6 +86,7 @@ namespace LMS.Models.Feature.Lead
 					foreach (var junior in juniors)
                     {
 						Data = Data.Where(x => x.AgentId == AgentId || x.AssignedToId == AgentId || x.AgentId == junior.Id ).ToList();
+						
 					}
 					//|| x.AgentId == SuperVisorId
 					if (juniors.Count() <= 0) // if there are no juniors
@@ -88,7 +98,8 @@ namespace LMS.Models.Feature.Lead
 				}
 				
             }
-			
+			response.TotalRecords = Data.Count();
+			Data = Data.Skip(SkippingNumber).Take(req.PageSize).ToList();
 			foreach (var d in Data)
 			{
 				var temp = new LeadData();

@@ -10,6 +10,11 @@ app.controller('baseCtrl',
         "toaster",
         function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to lms App base ctrl");
+            $scope.ListingOptions = {
+                CurrentPage:1,
+                PageSize: 10,
+                TotalRecords:20
+            }
             $scope.Pop = function () {
                 toaster.pop('success', "success", "Done Successfully");
                 toaster.pop('error', "error", "Error in task");

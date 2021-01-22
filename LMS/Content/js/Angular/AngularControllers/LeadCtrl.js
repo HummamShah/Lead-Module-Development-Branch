@@ -9,15 +9,44 @@
         "toaster",
         function ($scope, $rootScope, $timeout, $q, $window, $http, toaster) {
             console.log("Connected to Lead App");
+            $scope.NextPage = function () {
+                $scope.ListingOptions.CurrentPage = $scope.ListingOptions.CurrentPage + 1;
+                var ListingOptions = {
+                    CurrentPage: $scope.ListingOptions.CurrentPage,
+                    PageSize: $scope.ListingOptions.PageSize
+                }
+                $scope.ResetList(ListingOptions);
+            }
+            $scope.PreviousPage = function () {
+                $scope.ListingOptions.CurrentPage = $scope.ListingOptions.CurrentPage - 1;
+                var ListingOptions = {
+                    CurrentPage: $scope.ListingOptions.CurrentPage,
+                    PageSize: $scope.ListingOptions.PageSize
+                }
+                $scope.ResetList(ListingOptions);
+            }
             $scope.initIndex = function () {
                 $scope.Assignment = {};
                 $scope.AssignmentTypes = ["Lead", "PMD", "PreSale"];
-                $scope.AjaxGet("/api/LeadApi/GetListData", null).then(
+                var ListingOptions = {
+                    CurrentPage: 1,
+                    PageSize: 20
+                }
+                $scope.AjaxGet("/api/LeadApi/GetListData", $scope.ListingOptions).then(
                     function (response) {
                         console.log(response);
                         $scope.Leads = response.data.Data;
+                        $scope.ListingOptions.TotalRecords = response.data.TotalRecords;
                     });
 
+            }
+            $scope.ResetList = function (data) {
+                $scope.AjaxGet("/api/LeadApi/GetListData", data).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Leads = response.data.Data;
+                        $scope.ListingOptions.TotalRecords = response.data.TotalRecords;
+                    });
             }
             $scope.initPmdIndex = function () {
                 $scope.Assignment = {};
