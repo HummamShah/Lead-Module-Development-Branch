@@ -176,7 +176,7 @@
                             }
                     }
                     
-                    if (Lead.SolutionDetails.SolutionType == 0)
+                    if (Lead.SolutionDetails.SolutionType == 0 && Lead.SolutionDetails.IsNew == false)
                     {
 
                         if (Lead.SolutionDetails.CurrentServiceInfo == null || Lead.SolutionDetails.CurrentServiceInfo == "") {
@@ -445,7 +445,7 @@
                         }
                     }
 
-                    if (Lead.SolutionDetails.SolutionType == 0) {
+                    if (Lead.SolutionDetails.SolutionType == 0 && Lead.SolutionDetails.IsNew == false) {
 
                         if (Lead.SolutionDetails.CurrentServiceInfo == null || Lead.SolutionDetails.CurrentServiceInfo == "") {
                             toaster.pop('error', "error", "Please Select Existing SKU / Serial No");
