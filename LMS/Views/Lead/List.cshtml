@@ -71,11 +71,12 @@
                     {
                         <a class="float-left" ng-if="Lead.PmdStatusEnum == 'None' && Lead.IsFeasibilityAdded == false" href="/Lead/AddFeasibility?Id={{Lead.Id}}" title="Add Feasibility"><i class="fas fa-plus"></i></a>
                         <a class="float-left" href="/Lead/EditFeasibility?Id={{Lead.Id}}" ng-if="Lead.PmdStatusEnum == 'None' && Lead.IsFeasibilityAdded == true" title="Edit Feasibility"><i class="fas fa-pencil-alt"></i></a>
+                        <a class="float-left" href="#" data-toggle="modal" ng-if="Lead.PmdStatus==0 && Lead.AssignedPreSaleId==null"  ng-click="SetAssignmentModal(Lead);" data-target="#AssignmentModal" title="Assign Presale to this Lead"><i class="fas fa-users"></i></a>
                     }
                     @if (User.IsInRole("PreSale"))
                     {
 
-                        <a class="float-left" href="#" data-toggle="modal"ng-if="Lead.QuotationStatusEnum == 'None'" ng-click="SetCommercialModal(Lead);" data-target="#myModal" title="Add Commercial to this Lead"><i class="fas fa-plus"></i></a>
+                        <a class="float-left" href="#" data-toggle="modal" ng-if="Lead.QuotationStatusEnum == 'None'" ng-click="SetCommercialModal(Lead);" data-target="#myModal" title="Add Commercial to this Lead"><i class="fas fa-plus"></i></a>
 
                     }
                 </td>
@@ -128,29 +129,17 @@
         </div>
     </div>
 
+    <div id="AssignmentModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-
-    <!-- Modal -->
-    <!--<div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">-->
-    <!-- Modal content-->
-    <!--<div class="modal-content">
+            <!-- Modal content-->
+            <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">{{Assignment.Header}}</h4>
                 </div>
                 <div class="">
                     <form id="AssignmentForm ">
-
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label>Assigning Agent Type</label>
-                                <select ng-model="Assignment.Type" class="form-control" ng-change="SetAssigningType(Assignment.Type)">
-                                    <option selected value="">Select Agent To Assign</option>
-                                    <option ng-repeat="Type in AssignmentTypes" value="{{Type}}">{{Type}}</option>
-                                </select>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <div class="col-md-6">
                                 <label>Users</label>
@@ -164,10 +153,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" style=" margin-top: 25px;" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" style=" margin-top: 25px;" data-dismiss="modal" ng-click="AssignUser(Assignment)">Add</button>
+                    <button class="btn btn-primary" style="margin-top: 25px;" data-dismiss="modal" ng-click="AssignUser(Assignment,true)">Add</button>
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
+
+  
 </div>
 

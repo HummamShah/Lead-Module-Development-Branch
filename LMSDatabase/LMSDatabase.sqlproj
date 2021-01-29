@@ -79,5 +79,6 @@
     <None Include="dbo\InitialDatabaseScript.sql" />
     <Build Include="dbo\Tables\BugReporting.sql" />
     <Build Include="dbo\Tables\SolutionDetails.sql" />
+    <Build Include="dbo\Tables\Notification.sql" />
   </ItemGroup>
 </Project>

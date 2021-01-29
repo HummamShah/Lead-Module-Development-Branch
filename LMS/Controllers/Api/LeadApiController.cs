@@ -133,5 +133,20 @@ namespace LMS.Controllers.Api
             return result;
 
         }
+        [HttpPost]
+        public object AddApproval([FromBody] AddApprovalRequest req)
+        {
+            var result = req.RunRequest(req);
+            return result;
+        }
+
+        [HttpPost]
+        public object EditLeadStatusRequest([FromBody] EditLeadStatusRequest req)
+        {
+            var result = req.RunRequest(req);
+            return result;
+        }
+
+
     }
 }

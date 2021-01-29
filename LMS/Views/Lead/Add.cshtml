@@ -123,11 +123,11 @@
                 </select>
             </div>
             <div class="col-md-4 form-group">
-                <label>Target Price <span class="text-danger">*</span></label>
+                <label>Target Price</label>
                 <input type="number" class="form-control" ng-model="Lead.ConnectivityDetails.Budget" />
             </div>
             <div class="col-md-4 form-group">
-                <label>Estimated Closing Date <span class="text-danger">*</span></label>
+                <label>Estimated Closing Date</label>
                 <input type="date" class="form-control"  ng-model="Lead.ConnectivityDetails.EstimatedClosingDate" />
             </div>
 
@@ -184,7 +184,7 @@
             <div class="col-md-4 form-group" ng-if=" Lead.SolutionDetails.SolutionType==0">
                 <label>SubType of Solution</label>
                 <select ng-model="Lead.SolutionDetails.SolutionSubType" class="form-control">
-                    <option selected value="">Solution Type</option>
+                    <option selected value="">Solution Sub Type</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType==0" value="0">End Point</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType==1" value="1">Email</option>
                     <option ng-selected="Lead.SolutionDetails.SolutionSubType==2" value="2">Firewall</option>

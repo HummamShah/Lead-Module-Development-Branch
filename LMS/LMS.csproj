@@ -185,9 +185,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BugReportApiController.cs" />
     <Compile Include="Controllers\Api\CompanyApiController.cs" />
+    <Compile Include="Controllers\Api\DashboardApiController.cs" />
     <Compile Include="Controllers\Api\DemoApiController.cs" />
     <Compile Include="Controllers\Api\DepartmentApiController.cs" />
     <Compile Include="Controllers\Api\LeadApiController.cs" />
+    <Compile Include="Controllers\Api\NotificationApiController.cs" />
     <Compile Include="Controllers\Api\UserApiController.cs" />
     <Compile Include="Controllers\Api\VendorApiController.cs" />
     <Compile Include="Controllers\BugReportController.cs" />
@@ -196,6 +198,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -250,6 +253,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntityModel\Notification.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EntityModel\PmdDetails.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -301,12 +307,14 @@
     <Compile Include="Models\Feature\Department\GetDepartmentRequest.cs" />
     <Compile Include="Models\Feature\Department\GetDepartmentsDropdownRequest.cs" />
     <Compile Include="Models\Feature\Department\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\Lead\AddApprovalRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddFeasibilityRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadNewRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\AddQuotationRequest.cs" />
     <Compile Include="Models\Feature\Lead\EditFeasibilityRequest.cs" />
     <Compile Include="Models\Feature\Lead\EditLeadRequest.cs" />
+    <Compile Include="Models\Feature\Lead\EditLeadStatusRequest.cs" />
     <Compile Include="Models\Feature\Lead\EditNewLeadRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetLeadNewRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetLeadRequest.cs" />
@@ -315,6 +323,8 @@
     <Compile Include="Models\Feature\Lead\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Lead\GetQuestionnareDataRequest.cs" />
     <Compile Include="Models\Feature\Lead\SaveQuestionnareDataRequest.cs" />
+    <Compile Include="Models\Feature\Notification\GetListingRequest.cs" />
+    <Compile Include="Models\Feature\Notification\GetTopFiveNotificationsRequest.cs" />
     <Compile Include="Models\Feature\User\GetAgentsForAssignmentRequest.cs" />
     <Compile Include="Models\Feature\User\GetListingRequest.cs" />
     <Compile Include="Models\Feature\User\GetUsersByDepartmentRequest.cs" />
@@ -343,6 +353,7 @@
     <Content Include="Content\js\Angular\AngularControllers\CompanyCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\DepartmentCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\LeadCtrl.js" />
+    <Content Include="Content\js\Angular\AngularControllers\NotificationCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\QuestionnareCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\UserCtrl.js" />
     <Content Include="Content\js\Angular\AngularControllers\VendorCtrl.js" />
@@ -446,6 +457,7 @@
     <Content Include="Views\Lead\Questionare.cshtml" />
     <Content Include="Views\BugReport\Index.cshtml" />
     <Content Include="Views\BugReport\Add.cshtml" />
+    <Content Include="Views\Notification\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

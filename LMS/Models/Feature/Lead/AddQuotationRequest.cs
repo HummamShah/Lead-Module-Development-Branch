@@ -1,4 +1,5 @@
 ﻿using LMS.Models.EntityModel;
+using LMS.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,23 @@ namespace LMS.Models.Feature.Lead
 			Lead.Quotation = request.Quotation;
 			Lead.QuotationStatus = request.QuotationStatus;
 			Lead.QuotationRemarks = request.QuotationRemarks;
+
+			var Admins = from user in _dbContext.AspNetUsers
+						 where user.AspNetRoles.Any(r => r.Name == Roles.Admin.ToString())
+						 select user;
+            foreach (var admin in Admins)
+            {
+				var notification = new LMS.Models.EntityModel.Notification()
+				{
+					AgentId = admin.Agent.FirstOrDefault().Id,
+					CreatedAt = DateTime.Now,
+					Date = DateTime.Now.Date,
+					Link = "/Lead/Detail?Id=" + request.LeadId,
+					Content = "Quoatation has been provided on Lead #" + request.LeadId,
+					IsRead = false
+				};
+				var result=_dbContext.Notification.Add(notification);
+            }
 			_dbContext.SaveChanges();
 			return response;
 		}

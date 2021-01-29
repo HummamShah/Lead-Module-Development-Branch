@@ -21,8 +21,8 @@
                 <th>
                     Id
                 </th>
-                 <th>
-                Domain Name
+                <th>
+                    Domain Name
                 </th>
                 <th>
                     Company Name
@@ -32,10 +32,10 @@
                     Assigned PMD
                 </th>
                 <th>
-                    Feasibility
+                    Assigned PreSale
                 </th>
                 <th>
-                    Assigned PreSale
+                    Feasibility
                 </th>
                 <th>Qutation Approval</th>
                 <th>
@@ -57,8 +57,8 @@
                 <td>{{Lead.DomainName}}</td>
                 <td>{{Lead.CompanyName}}</td>
                 <td>{{Lead.AssingnedPmdName}}</td>
-                <td><small ng-class="Lead.PmdStatusEnum" class="badge">{{Lead.PmdStatusEnum}}</small></td>
                 <td>{{Lead.AssignedPreSaleName}}</td>
+                <td><small ng-class="Lead.PmdStatusEnum" class="badge">{{Lead.PmdStatusEnum}}</small></td>
                 <td><small ng-class="Lead.QuotationStatusEnum" class="badge">{{Lead.QuotationStatusEnum}}</small></td>
                 <td><small ng-class="Lead.LeadStatusEnum" class="badge">{{Lead.LeadStatusEnum}}</small></td>
                 <td>-</td>
@@ -90,7 +90,7 @@
                 <span>{{ListingOptions.CurrentPage}}</span>
                 <button ng-disabled="ListingOptions.TotalRecords < (ListingOptions.CurrentPage  * ListingOptions.PageSize)" ng-click="NextPage()">Next</button>
                 <span>
-                    <small>Showing from {{(ListingOptions.PageSize  * (ListingOptions.CurrentPage - 1))}} - {{ListingOptions.PageSize * ListingOptions.CurrentPage}} outof {{ListingOptions.TotalRecords}}</small>
+                    <small class="Pagination-text">Showing from {{(ListingOptions.PageSize  * (ListingOptions.CurrentPage - 1))}} - {{ListingOptions.PageSize * ListingOptions.CurrentPage}} outof {{ListingOptions.TotalRecords}}</small>
                 </span>
             </div>
         </div>
@@ -108,7 +108,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">{{Assignment.Header}}</h4>
-</div>
+                </div>
                 <div class="">
                     <form id="AssignmentForm ">
 
@@ -134,7 +134,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" style=" margin-top: 25px;" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" style=" margin-top: 25px;" data-dismiss="modal" ng-click="AssignUser(Assignment)">Add</button>
+                    <button class="btn btn-primary" style=" margin-top: 25px;" data-dismiss="modal" ng-click="AssignUser(Assignment,false)">Add</button>
                 </div>
             </div>
         </div>

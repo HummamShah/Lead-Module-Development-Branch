@@ -6,7 +6,7 @@
 <div ng-controller="LeadCtrl" ng-init="FeasibiltyEditInit()">
     <div class="jumbotron PageHeading">
         <div class="row">
-            <div class="col-md-8 col-sm-8 col-lg-8"><h2>Add Feasibilty Check</h2></div>
+            <div class="col-md-8 col-sm-8 col-lg-8"><h2>Edit Feasibilty Check</h2></div>
             @*<div class="col-md-4 col-sm-4 col-lg-4">
                 Feasibility
                 <div class="form-group" style="display:inline-block;">
@@ -236,7 +236,7 @@
         <div class="row" ng-if="ShowFeasibilityInformation == true">
             <div class="col-md-12 form-group">
                 <div class="col-md-4 col-sm-4 col-lg-4">
-                    Feasibility Status
+                    Feasibility Status {{FeasibilityStatus}}
                     <div class="form-group" style="display:inline-block;">
                         <select ng-model="FeasibilityStatus" class="form-control">
                             <option value="0" ng-selected="FeasibilityStatus==0">Feasible</option>
@@ -298,7 +298,7 @@
         <br />
         <div class="row float-right" style="margin-right: 46px;" >
             <a href="/Lead/List" class="btn btn-danger">Cancel</a>
-            <button class="btn btn-primary" ng-click="EditFeasibility(Lead.FeasibilityDetails)">Update</button>
+            <button class="btn btn-primary" ng-click="EditFeasibility(Lead.FeasibilityDetails,FeasibilityStatus)">Update</button>
         </div>
     </div>
 

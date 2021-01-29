@@ -199,6 +199,7 @@ namespace LMS.Models.Feature.Lead
 			}
 
 			response.IsApproved = Data.IsApproved;
+			response.AdminRemarks = Data.AdminRemarks;
 			response.ContactPersonName = Data.ContactPersonName;
 			response.ContactPersonNumber = Data.ContactPersonNumber;
 			response.ContactPersonEmail = Data.ContactPersonEmail;
@@ -215,6 +216,7 @@ namespace LMS.Models.Feature.Lead
 			response.CompanyDetails.Contact = Data.Contact;
 			response.CompanyDetails.Email = Data.Email;
 			response.CompanyDetails.CompanyAlternateContact = Data.AlternateNumber;
+			response.QuotationRemarks = Data.QuotationRemarks;
 			if (Data.ModeOfCommunication != null)
 			{
 				response.CompanyDetails.MOCId = Data.ModeOfCommunication;
@@ -265,6 +267,7 @@ namespace LMS.Models.Feature.Lead
 			public CompanyDetail CompanyDetails { get; set; }
 			public SolutionDetail SolutionDetails { get; set; }
 			public ConnectivityDetail ConnectivityDetails { get; set; }
+			public string QuotationRemarks { get; set; }
 			public string Name { get; set; }
 			public string ContactPersonName { get; set; }
 			public string CompanyAlternateContact { get; set; }
@@ -304,7 +307,7 @@ namespace LMS.Models.Feature.Lead
 			public int QuotationStatus { get; set; }
 			public string QuotationStatusEnum { get; set; }
 			public bool? IsApproved { get; set; }
-	
+			public string AdminRemarks { get; set; }
 			public DateTime? PmdAssignedOn { get; set; }
 			public DateTime? PreSaleAssignedOn { get; set; }
 			public int? Area { get; set; }

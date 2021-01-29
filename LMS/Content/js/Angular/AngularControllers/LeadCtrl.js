@@ -32,12 +32,16 @@
                     CurrentPage: 1,
                     PageSize: 20
                 }
+               
+                $scope.ListingOptions.Url = '/api/LeadApi/GetListData';
+                //$scope.InitListing();
                 $scope.AjaxGet("/api/LeadApi/GetListData", $scope.ListingOptions).then(
                     function (response) {
                         console.log(response);
                         $scope.Leads = response.data.Data;
                         $scope.ListingOptions.TotalRecords = response.data.TotalRecords;
                     });
+
 
             }
             $scope.ResetList = function (data) {
@@ -72,6 +76,7 @@
                     QuotationStatus: Quot.QuotationStatus,
                     QuotationRemarks: Quot.QuotationRemarks
                 }
+          
                 $scope.AjaxPost("/api/LeadApi/AddQuotation", temp).then(
                     function (response) {
                         if (response.status == 200) {
@@ -96,7 +101,7 @@
                         $scope.AssignmentAgents = response.data.Data;
                     });
             }
-            $scope.AssignUser = function (Assignment) {
+            $scope.AssignUser = function (Assignment,IsPMD) {
                 console.log(Assignment);
                 if (Assignment.Type == null) {
                     toaster.pop('error', "error", "Select Type Of User");
@@ -111,12 +116,59 @@
                         if (response.status == 200) {
                             //alert("User Has Been Assigned Successfully!");
                             toaster.pop('success', "success", "User Has Been Assigned Successfully!");
-                            $timeout(function () { window.location.href = '/Lead'; }, 2000);
+                            if (IsPMD) {
+                                $timeout(function () { window.location.href = '/Lead/List'; }, 2000);
+                            }
+                            if (!IsPMD) {
+                                $timeout(function () { window.location.href = '/Lead'; }, 2000);
+                            }
+                            
                         } else {
                             //alert("Could Not Assign User");
                             toaster.pop('error', "error", "Could not Assign User");
                         }
                     });
+            }
+        
+            $scope.EditLeadStatus = function (IsApproved,Id )
+            {
+                var data = { LeadId: Id, IsApproved: IsApproved };
+                console.log(data);
+                
+                $scope.AjaxPost("/api/LeadApi/EditLeadStatusRequest", data).then(
+                    function (response) {
+                        if (response.status == 200) {
+                            
+                            toaster.pop('success', "success", "Lead Has been Closed");
+                            $timeout(function () { window.location.href = '/Lead'; }, 2000);
+                        } else {
+                            
+                            toaster.pop('error', "error", "Could not Close Lead");
+                        }
+                    });
+            }
+
+            $scope.AddApproval = function (IsApproved, Id, AdminRemarks)
+            {
+                var temp = {
+                    IsApproved :IsApproved,
+                    LeadId: Id,
+                    AdminRemarks: AdminRemarks
+                }
+                console.log(temp);
+                
+                $scope.AjaxPost("/api/LeadApi/AddApproval", temp).then(
+                    function (response) {
+                        if (response.status == 200) {
+                            
+                            toaster.pop('success', "success", "Lead Approval has been Updated Successfully");
+                            $timeout(function () { window.location.href = '/Lead'; }, 2000);
+                        } else {
+                            
+                            toaster.pop('error', "error", "Could not Approved Lead");
+                        }
+                    });
+
             }
             $scope.AddLead = function (Lead) {
                 console.log(Lead);
@@ -161,14 +213,14 @@
                         toaster.pop('error', "error", "Please Enter Connectivity Type");
                         return;
                     }
-                    if (Lead.ConnectivityDetails.Budget == null || Lead.ConnectivityDetails.Budget == "") {
-                        toaster.pop('error', "error", "Please Enter Target Price");
-                        return;
-                    }
-                    if (Lead.ConnectivityDetails.EstimatedClosingDate == null || Lead.EstimatedClosingDate == "") {
-                        toaster.pop('error', "error", "Please Enter Estimated Closing Date");
-                        return;
-                    }
+                    //if (Lead.ConnectivityDetails.Budget == null || Lead.ConnectivityDetails.Budget == "") {
+                    //    toaster.pop('error', "error", "Please Enter Target Price");
+                    //    return;
+                    //}
+                    //if (Lead.ConnectivityDetails.EstimatedClosingDate == null || Lead.EstimatedClosingDate == "") {
+                    //    toaster.pop('error', "error", "Please Enter Estimated Closing Date");
+                    //    return;
+                    //}
                     if (Lead.ConnectivityDetails.Bandwidth == null || Lead.ConnectivityDetails.Bandwidth == "") {
                         toaster.pop('error', "error", "Please Enter Bandwidth");
                         return;
@@ -204,8 +256,8 @@
                             return;
                             }
                     }
-                    
-                    if (Lead.SolutionDetails.SolutionType == 0 && Lead.SolutionDetails.IsNew == false)
+
+                    if (Lead.SolutionDetails.SolutionType == 0 && (Lead.SolutionDetails.SolutionSubType != 3 && Lead.SolutionDetails.IsNew == false))
                     {
 
                         if (Lead.SolutionDetails.CurrentServiceInfo == null || Lead.SolutionDetails.CurrentServiceInfo == "") {
@@ -434,14 +486,14 @@
                         toaster.pop('error', "error", "Please Enter Connectivity Type");
                         return;
                     }
-                    if (Lead.ConnectivityDetails.Budget == null || Lead.ConnectivityDetails.Budget == "") {
-                        toaster.pop('error', "error", "Please Enter Target Price");
-                        return;
-                    }
-                    if (Lead.ConnectivityDetails.EstimatedClosingDate == null || Lead.EstimatedClosingDate == "") {
-                        toaster.pop('error', "error", "Please Enter Estimated Closing Date");
-                        return;
-                    }
+                    //if (Lead.ConnectivityDetails.Budget == null || Lead.ConnectivityDetails.Budget == "") {
+                    //    toaster.pop('error', "error", "Please Enter Target Price");
+                    //    return;
+                    //}
+                    //if (Lead.ConnectivityDetails.EstimatedClosingDate == null || Lead.EstimatedClosingDate == "") {
+                    //    toaster.pop('error', "error", "Please Enter Estimated Closing Date");
+                    //    return;
+                    //}
                     if (Lead.ConnectivityDetails.Bandwidth == null || Lead.ConnectivityDetails.Bandwidth == "") {
                         toaster.pop('error', "error", "Please Enter Bandwidth");
                         return;
@@ -474,7 +526,7 @@
                         }
                     }
 
-                    if (Lead.SolutionDetails.SolutionType == 0 && Lead.SolutionDetails.IsNew == false) {
+                    if (Lead.SolutionDetails.SolutionType == 0 && (Lead.SolutionDetails.SolutionSubType != 3 && Lead.SolutionDetails.IsNew == false)) {
 
                         if (Lead.SolutionDetails.CurrentServiceInfo == null || Lead.SolutionDetails.CurrentServiceInfo == "") {
                             toaster.pop('error', "error", "Please Select Existing SKU / Serial No");
@@ -632,13 +684,13 @@
                         }
                     });
             }
-            $scope.EditFeasibility  = function (LeadFeasibility) {
+            $scope.EditFeasibility = function (LeadFeasibility, FeasibilityStatus) {
                 console.log(LeadFeasibility);
                 console.log($scope.DeletedRows);
                 console.log(LeadFeasibility);
                 var temp = {
                     Feasibility: LeadFeasibility,
-                    Status: $scope.FeasibilityStatus,
+                    Status: FeasibilityStatus,
                     DeletedRows: $scope.DeletedRows
                 }
                 console.log(temp);
@@ -652,6 +704,12 @@
                             toaster.pop('error', "error", "Unable to update Feasibility!");
                         }
                     });
+            }
+            $scope.SetAssignmentModal = function (Lead) {
+                $scope.Assignment.Id = Lead.Id;
+                $scope.Assignment.Header = "Assign A User";
+                $scope.Assignment.Type = "PreSale";
+                $scope.SetAssigningType($scope.Assignment.Type);
             }
         }
     ]);

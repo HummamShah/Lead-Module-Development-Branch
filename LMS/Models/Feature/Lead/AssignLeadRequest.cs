@@ -24,6 +24,7 @@ namespace LMS.Models.Feature.Lead
 		public object RunRequest(AssignLeadRequest request)
 		{
 			var response = new AssignLeadResponse();
+			var Notification = new LMS.Models.EntityModel.Notification();
 			var Lead = _dbContext.Lead.Where(x => x.Id == request.Id).FirstOrDefault();
             if (request.Type == AssigningType.Lead.ToString())
             {
@@ -40,7 +41,14 @@ namespace LMS.Models.Feature.Lead
 				Lead.PresaleAssignedOn = DateTime.Now;
 				Lead.AssignedPreSaleId = request.AssignedUserId;
 			}
-			
+
+			Notification.AgentId = request.AssignedUserId;
+			Notification.CreatedAt = DateTime.Now;
+			Notification.Date = DateTime.Now.Date;
+			Notification.Content = "Lead # " + request.Id + " Has been assigned to you!";
+			Notification.Link = "/Lead/Detail?Id=" + request.Id;
+			Notification.IsRead = false;
+			var result = _dbContext.Notification.Add(Notification);
 			_dbContext.SaveChanges();
 			return response;
 		}

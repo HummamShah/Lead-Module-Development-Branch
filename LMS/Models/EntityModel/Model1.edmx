@@ -233,6 +233,22 @@
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="Date" Type="datetime" />
         </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentId" Type="int" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
         <EntityType Name="PmdDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -499,6 +515,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Notification_Agent">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PMD_Leads">
           <End Role="Lead" Type="Self.Lead" Multiplicity="0..1" />
           <End Role="PmdDetails" Type="Self.PmdDetails" Multiplicity="*" />
@@ -560,6 +588,7 @@
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lead" EntityType="Self.Lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PmdDetails" EntityType="Self.PmdDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionnareDetails" EntityType="Self.QuestionnareDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SolutionDetails" EntityType="Self.SolutionDetails" Schema="dbo" store:Type="Tables" />
@@ -627,6 +656,10 @@
           <AssociationSet Name="FK_Lead_Company" Association="Self.FK_Lead_Company">
             <End Role="Company" EntitySet="Company" />
             <End Role="Lead" EntitySet="Lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Agent" Association="Self.FK_Notification_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Notification" EntitySet="Notification" />
           </AssociationSet>
           <AssociationSet Name="FK_PMD_Leads" Association="Self.FK_PMD_Leads">
             <End Role="Lead" EntitySet="Lead" />
@@ -823,6 +856,11 @@
             <End Role="Agent" EntitySet="Agent" />
             <End Role="BugReporting" EntitySet="BugReporting" />
           </AssociationSet>
+          <EntitySet Name="Notification" EntityType="Sharptel_Lms_DbModel.Notification" />
+          <AssociationSet Name="FK_Notification_Agent" Association="Sharptel_Lms_DbModel.FK_Notification_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Agent">
           <Key>
@@ -858,6 +896,7 @@
           <NavigationProperty Name="Lead3" Relationship="Sharptel_Lms_DbModel.FK_Lead_Agent_Creator" FromRole="Agent" ToRole="Lead" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="BugReporting" Relationship="Sharptel_Lms_DbModel.FK_Bug_Agent" FromRole="Agent" ToRole="BugReporting" />
+          <NavigationProperty Name="Notification" Relationship="Sharptel_Lms_DbModel.FK_Notification_Agent" FromRole="Agent" ToRole="Notification" />
           </EntityType>
         <EntityType Name="CompanyBranches">
           <Key>
@@ -1290,6 +1329,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Agent" Relationship="Sharptel_Lms_DbModel.FK_Notification_Agent" FromRole="Notification" ToRole="Agent" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Notification_Agent">
+          <End Type="Sharptel_Lms_DbModel.Agent" Role="Agent" Multiplicity="0..1" />
+          <End Type="Sharptel_Lms_DbModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1599,6 +1667,23 @@
                 <ScalarProperty Name="AssignedDeveloperId" ColumnName="AssignedDeveloperId" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notification">
+            <EntityTypeMapping TypeName="Sharptel_Lms_DbModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

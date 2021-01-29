@@ -40,5 +40,6 @@ namespace LMS.Models.EntityModel
         public virtual DbSet<SolutionDetails> SolutionDetails { get; set; }
         public virtual DbSet<QuestionnareDetails> QuestionnareDetails { get; set; }
         public virtual DbSet<BugReporting> BugReporting { get; set; }
+        public virtual DbSet<Notification> Notification { get; set; }
     }
 }

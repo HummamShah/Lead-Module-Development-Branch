@@ -228,17 +228,21 @@ ul ul a {
     float: right;
     font-size: 19px;
     margin-top: 5px!important;
+
 }
 .NotificationIcon {
     font-size: 24px;
     color: white;
     margin-right: -14px;
+ 
 }
-.badge{
 
+.badge {
+    width: 80px;
 }
 .badge-notification {
-    background-color:red!important;
+    background-color: red !important;
+    width: auto!important;
 }
 .HeaderMenu {
     background-color: #2f4f4f;
@@ -283,8 +287,8 @@ ul ul a {
     z-index: 1000;
     display: none;
     float: left;
-    min-width: 270px;
-    max-width: 270px;
+    min-width: 300px;
+    max-width: 300px;
     padding: 5px 0;
     margin: 2px 0 0;
     font-size: 15px;
@@ -296,20 +300,22 @@ ul ul a {
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 10px;
 }
-    .dropdown-menu li a {
+    .dropdown-menu li a,small{
         color: white !important;
         padding-right: 1px;
         padding-left: 5px;
+        padding-bottom :0px;
     }
-    .dropdown-menu li a:hover {
+    .dropdown-menu li a:hover{
         color: black !important;
         background-color:#DCDCDC!important;
     }
-
+.Pagination-text {
+    color: Black !important;
+}
 .Notification-read {
     font-size: 15px;
     padding-bottom: 7px;
-   
 }
 
 .Notification-notread {
@@ -324,7 +330,9 @@ ul ul a {
     width: 100%;
     height: auto;
     word-wrap: break-word;
+    padding-bottom: 5px;
 }
+
 .SegmentHeading {
     margin-bottom: 30px;
     color: white;
@@ -437,6 +445,12 @@ ul ul a {
     background:green;
 }
 .NotFeasible{
+    background:red;
+}
+.Approved{
+    background:green;
+}
+.NotApproved{
     background:red;
 }
 .crd-heading-bg-color {

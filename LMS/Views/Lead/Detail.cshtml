@@ -6,8 +6,15 @@
 <div ng-controller="LeadCtrl" ng-init="Editinit()">
     <div class="jumbotron PageHeading">
         <div class="row">
-            <div class="col-md-4 col-sm-4 col-lg-4"><h2>Lead Details</h2></div>
-            <div class="col-md-4 col-sm-4 col-lg-4" style="padding: 0px; margin: 0px; margin-top: 14px;">
+            <div class="col-md-3 col-sm-3 col-lg-3"><h2>Lead Details</h2></div>
+            <div class="col-md-5 col-sm-5 col-lg-5" style="padding: 0px; margin: 0px; margin-top: 20px;">
+                <span ng-class="Lead.LeadStatusEnum" class="badge">{{Lead.LeadStatusEnum}}</span>
+                <span ng-if="Lead.Domain==0" ng-class="Lead.QuotationStatusEnum" class="badge">{{Lead.QuotationStatusEnum}}</span>
+                <span ng-if="Lead.IsApproved==true" class="badge Approved">Approved</span>
+                <span ng-if="Lead.IsApproved==false" class="badge NotApproved">Not Approved</span>
+                <span ng-if="Lead.Domain==1" ng-class="Lead.PmdStatusEnum" class="badge">{{Lead.PmdStatusEnum}}</span>
+
+
             </div>
             <div class="col-md-4 col-sm-4 col-lg-4" style=" margin-top: 15px; float: right; text-align: right;">
                 Domain
@@ -102,9 +109,9 @@
             </div>
 
             @*<div class="col-md-4 form-group">
-                    <label>Number of Branch offices</label>
-                    <input type="text" ng-model="Lead.ConnectivityDetails.NoBracnhOffices" readonly class="form-control" />
-                </div>*@
+            <label>Number of Branch offices</label>
+            <input type="text" ng-model="Lead.ConnectivityDetails.NoBracnhOffices" readonly class="form-control" />
+        </div>*@
             <div class="col-md-4 form-group">
                 <label>Bandwidth</label>
                 <input type="text" placeholder="5 MBs" readonly ng-model="Lead.ConnectivityDetails.Bandwidth" class="form-control" />
@@ -120,6 +127,63 @@
             <div class="col-md-4 form-group">
                 <label>Ever Tried Our Service Before</label>
                 <input type="checkbox" disabled ng-model="Lead.ConnectivityDetails.HasTriedOurServie" />
+            </div>
+            @if (User.IsInRole("PreSale"))
+            {
+                <div ng-if="Lead.QuotationStatusEnum == 'None'">
+                    <div class="col-md-4 form-group">
+                        <label>Commercial Assigned By PreSales</label>
+                        <input type="number" ng-model="Lead.Quotation" class="form-control" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Commercial Status</label>
+                        <select ng-model="Lead.QuotationStatus" class="form-control">
+
+                            <option selected value="">Select Type</option>
+                            <option ng-selected="Lead.QuotationStatus== 0" value="0">In Budget</option>
+                            <option ng-selected="Lead.QuotationStatus== 1" value="1">Over Budget</option>
+                            <option ng-selected="Lead.QuotationStatus== 2" value="2">None</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Quotation Remarks</label>
+                        <input type="text" ng-model="Lead.QuotationRemarks" class="form-control" />
+                    </div>
+                </div>
+            }
+            <div ng-if="Lead.QuotationStatusEnum != 'None'">
+                <div class="col-md-4 form-group">
+                    <label>Commercial Assigned By PreSales</label>
+                    <input type="number" readonly ng-model="Lead.Quotation" class="form-control" />
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>Commercial Status</label>
+                    <select ng-model="Lead.QuotationStatus" class="form-control" disabled>
+                        <option selected value="">Select Type</option>
+                        <option ng-selected="Lead.QuotationStatus== 0" value="0">In Budget</option>
+                        <option ng-selected="Lead.QuotationStatus== 1" value="1">Over Budget</option>
+                        <option ng-selected="Lead.QuotationStatus== 2" value="2">None</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>PreSales Remarks</label>
+                    <input type="text" readonly ng-model="Lead.QuotationRemarks" class="form-control" />
+                </div>
+            </div>
+            @if (User.IsInRole("Admin"))
+            {
+                <div ng-if="Lead.IsApproved==null">
+                    <div class="col-md-4 form-group">
+                        <label>Admin Remarks</label>
+                        <input type="text" ng-model="Lead.AdminRemarks" class="form-control" />
+                    </div>
+                </div>
+            }
+            <div ng-if="Lead.IsApproved!=null">
+                <div class="col-md-4 form-group">
+                    <label>Admin Remarks</label>
+                    <input type="text" readonly ng-model="Lead.AdminRemarks" class="form-control" />
+                </div>
             </div>
         </div>
     </div>
@@ -356,42 +420,77 @@
                     <div class="col-md-4 form-group">
                         <label>Commercial Status</label>
                         <select ng-model="Lead.QuotationStatus" class="form-control">
-                            <option selected value=""></option>
-                            <option ng-selected="Lead.QuotationStatus== 0" value="0"></option>
-                            <option ng-selected="Lead.QuotationStatus== 1" value="1"></option>
-                            <option ng-selected="Lead.QuotationStatus== 2" value="2"></option>
+
+                            <option selected value="">Select Type</option>
+                            <option ng-selected="Lead.QuotationStatus== 0" value="0">In Budget</option>
+                            <option ng-selected="Lead.QuotationStatus== 1" value="1">Over Budget</option>
+                            <option ng-selected="Lead.QuotationStatus== 2" value="2">None</option>
                         </select>
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Quotation Remarks</label>
-                        <input type="number" readonly ng-model="Lead.QuotationRemarks" class="form-control" />
+                        <input type="text" ng-model="Lead.QuotationRemarks" class="form-control" />
                     </div>
                 </div>
             }
-        <div ng-if="Lead.QuotationStatusEnum != 'None'">
-            <div class="col-md-4 form-group">
-                <label>Commercial Assigned By PreSales</label>
-                <input type="number" readonly ng-model="Lead.Quotation" class="form-control" />
+            <div ng-if="Lead.QuotationStatusEnum != 'None'">
+                <div class="col-md-4 form-group">
+                    <label>Commercial Assigned By PreSales</label>
+                    <input type="number" readonly ng-model="Lead.Quotation" class="form-control" />
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>Commercial Status</label>
+                    <select ng-model="Lead.QuotationStatus" class="form-control" disabled>
+                        <option selected value="">Select Type</option>
+                        <option ng-selected="Lead.QuotationStatus== 0" value="0">In Budget</option>
+                        <option ng-selected="Lead.QuotationStatus== 1" value="1">Over Budget</option>
+                        <option ng-selected="Lead.QuotationStatus== 2" value="2">None</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>PreSales Remarks</label>
+                    <input type="text" readonly ng-model="Lead.QuotationRemarks" class="form-control" />
+                </div>
             </div>
-            <div class="col-md-4 form-group">
-                <label>Commercial Status</label>
-                <select ng-model="Lead.QuotationStatus" class="form-control" disabled>
-                    <option selected value="">Select Type</option>
-                    <option ng-selected="Lead.QuotationStatus== 0" value="0">In Budget</option>
-                    <option ng-selected="Lead.QuotationStatus== 1" value="1">Over Budget</option>
-                    <option ng-selected="Lead.QuotationStatus== 2" value="2">None</option>
-                </select>
+            @if (User.IsInRole("Admin"))
+            {
+                <div ng-if="Lead.IsApproved==null">
+                    <div class="col-md-4 form-group">
+                        <label>Admin Remarks</label>
+                        <input type="text" ng-model="Lead.AdminRemarks" class="form-control" />
+                    </div>
+                </div>
+            }
+            <div ng-if="Lead.IsApproved!=null">
+                <div class="col-md-4 form-group">
+                    <label>Admin Remarks</label>
+                    <input type="text" readonly ng-model="Lead.AdminRemarks" class="form-control" />
+                </div>
             </div>
-            <div class="col-md-4 form-group">
-                <label>Remarks</label>
-                <input type="number" readonly ng-model="Lead.QuotationRemarks" class="form-control" />
-            </div>
-        </div>
-
         </div>
         <br />
         <div class="row float-right">
-            <a href="/Lead" class="btn btn-danger">Cancel</a>
+            @if (User.IsInRole("PreSale") || User.IsInRole("Pmd_Feasibility"))
+            {
+                <a href="/Lead/List" class="btn btn-danger">Cancel</a>
+            }
+            else
+            {
+                <a href="/Lead" class="btn btn-danger">Cancel</a>
+            }
+
+            @if (User.IsInRole("Lead_Sales"))
+            {
+
+                  <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-if="Lead.LeadStatus == 0" ng-click="EditLeadStatus(Lead.IsApproved,Lead.Id)">CloseLead</button> 
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <button class="btn btn-primary" ng-if="Lead.LeadStatus == 0 && Lead.IsApproved==null" ng-click="AddApproval(true, Lead.Id,Lead.AdminRemarks)">Approved</button>
+                <button class="btn btn-primary" style=" margin-right: 61px!important"; ng-if="Lead.LeadStatus == 0 && Lead.IsApproved==null " ng-click="AddApproval(false,Lead.Id,Lead.AdminRemarks)">Disapproved</button>
+
+
+            }
             @if (User.IsInRole("PreSale"))
             {
                 <button class="btn btn-primary" style=" margin-right: 61px!important;" ng-if="Lead.QuotationStatusEnum == 'None'" ng-click="AddQuotation(Lead,Lead.Id)">Update</button>
@@ -518,19 +617,27 @@
         <br />
         <br />
         <br />
-        @if (User.IsInRole("Pmd_Feasibility"))
-        {
-            <div class="row float-right" style="margin-right: 46px;">
-                <a href="/Lead/List" class="btn btn-danger">Cancel</a>
-            </div>
-        }
-        else
-        {
-            <div class="row float-right" style="margin-right: 46px;">
-                <a href="/Lead/" class="btn btn-danger">Cancel</a>
-            </div>
-        }
+        <div class="row float-right">
+            @if (User.IsInRole("Admin"))
+            {
+                <button class="btn btn-primary" ng-if="Lead.LeadStatus == 0 && Lead.IsApproved==null" ng-click="AddApproval(true, Lead.Id,Lead.AdminRemarks)">Approved</button>
+                <button class="btn btn-primary" ng-if="Lead.LeadStatus == 0 && Lead.IsApproved==null " ng-click="AddApproval(false,Lead.Id,Lead.AdminRemarks)">Disapproved</button>
+                <button class="btn btn-primary"  ng-if="Lead.LeadStatus == 0" ng-click="EditLeadStatus(Lead.IsApproved,Lead.Id)">CloseLead</button>
 
+            }
+            @if (User.IsInRole("Pmd_Feasibility"))
+            {
+                
+                    <a href="/Lead/List" style=" margin-right: 61px!important;" class="btn btn-danger">Cancel</a>
+               
+            }
+            else
+            {
+                
+                    <a href="/Lead/" style=" margin-right: 61px!important;" class="btn btn-danger">Cancel</a>
+                
+            }
+        </div>
 
     </div>
 </div>

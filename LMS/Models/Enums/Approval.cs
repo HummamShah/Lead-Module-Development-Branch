@@ -7,6 +7,6 @@ namespace LMS.Models.Enums
 {
     public enum Approval
     {
-        NotApproved,Approved
+        Approved, NotApproved
     }
 }

@@ -104,19 +104,20 @@
                             @Html.Partial("_LoginPartial")
                         </div>
                         <div class="dropdown LayoutProfile">
-                            <a class="dropdown-toggle bg-none" data-toggle="dropdown">
-                                <i class="fas fa-bell NotificationIcon dropdown-toggle" data-toggle="dropdown"></i> <span class="badge badge-notification">5</span>
+                            <a href="#" class="dropdown-toggle bg-none" data-toggle="dropdown">
+                                <i class="fas fa-bell NotificationIcon"></i> <span class="badge badge-notification" >{{Notifications.TotalNotification}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 @*with style means it has not yet been read*@
-                                <li class="Notification-notread"><a href="#">Lead#1001 has been Closed</a></li>
-                                <li class="Notification-read"><a href="#">Lead#1004 has been Disapproved</a></li>
-                                <li class="Notification-read"><a href="#">Lead#1006 has been Marked Feasible</a></li>
-                                <li class="Notification-notread"><a href="#">Lead#1002 has been Marked Not Feasible</a></li>
-                                <li class="Notification-notread"><a href="#">Lead#1003 has been Closed</a></li>
-                                <li class="Notification-read"><a href="#">Lead#1009 has been Closed</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#" class="text-center">View All</a></li>
+                                <li ng-repeat="noti in Notifications.Data" class="Notification-read" ng-if="noti.IsRead"><span>{{noti.CreatedAt | date:'MMM d, y'}}</span><a href="{{noti.Link}}">{{noti.Content}}</a><small>{{noti.Date}}</small></li>
+                                <li ng-repeat="noti in Notifications.Data" class="Notification-notread" ng-if="!noti.IsRead"><span>{{noti.CreatedAt | date:'MMM d, y'}}</span><a href="{{noti.Link}}">{{noti.Content}}</a><small>{{noti.Date| date:'MMM d, y' }}</small></li>
+                                @*<li class="Notification-read"><a href="#">Lead#1004 has been Disapproved</a></li>
+                                    <li class="Notification-read"><a href="#">Lead#1006 has been Marked Feasible</a></li>
+                                    <li class="Notification-notread"><a href="#">Lead#1002 has been Marked Not Feasible</a></li>
+                                    <li class="Notification-notread"><a href="#">Lead#1003 has been Closed</a></li>
+                                    <li class="Notification-read"><a href="#">Lead#1009 has been Closed</a></li>*@
+                                    <li class="divider" style="padding:0; margin:0px;"></li>
+                                <li style="padding-bottom:0px;"><a href="/Notification/" class="text-center">View All</a></li>
                             </ul>
                         </div>
                         @*<div class="LayoutProfile dropdown">
