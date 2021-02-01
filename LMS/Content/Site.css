@@ -485,3 +485,7 @@ ul ul a {
     height: inherit;
     
 }
+
+.Badge-Width {
+    width: 30px !important;
+}

@@ -148,23 +148,29 @@ app.controller('baseCtrl',
             }
           
             $scope.initDashboard = function () {
-                //$scope.AjaxGet("/api/DashboardApiController/GetUserReportData",null).then(
-                //    function (response) {
-                //        console.log(response);
-                //        $scope.UserReportData = response.data;
-                //    }
-                //);
+                $scope.AjaxGet("/api/DashboardApi/GetUserReportData",null).then(
+                    function (response) {
+                        console.log(response);
+                        $scope.UserReportData = response.data;
+                        $scope.data = [
+                            response.data.MonthlyLeadsData.MonthlyOpenLeadsData, //open
+                            response.data.MonthlyLeadsData.MonthlyCompletedLeadsData, //completed
+                            response.data.MonthlyLeadsData.MonthlyCancelledLeadsData, //Cancelled
+
+                        ];
+                    }
+                );
 
             
                 $scope.labels = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 $scope.series = ['Open', 'Completed', 'Closed'];
-                Chart.defaults.global.colors = ["#f0ad4e", "#5cb85c", "#d9534f"];
-                $scope.data = [
-                    [65, 59, 80, 81, 56, 55, 40, 56, 76, 23, 89, 66], //open
-                    [28, 48, 40, 19, 86, 27, 90, 34, 55, 29, 62, 30], //completed
-                    [34, 23, 76, 77, 20, 16, 43, 78, 12, 92, 45, 66], //closed
+                Chart.defaults.global.colors = ["#00b7a6", "#5cb85c", "#d9534f"];
+                //$scope.data = [
+                //    [65, 59, 80, 81, 56, 55, 40, 56, 76, 23, 89, 66], //open
+                //    [28, 48, 40, 19, 86, 27, 90, 34, 55, 29, 62, 30], //completed
+                //    [34, 23, 76, 77, 20, 16, 43, 78, 12, 92, 45, 66], //closed
 
-                ];
+                //];
 
                 
 

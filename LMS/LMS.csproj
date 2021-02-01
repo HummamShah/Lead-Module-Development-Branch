@@ -325,6 +325,7 @@
     <Compile Include="Models\Feature\Lead\SaveQuestionnareDataRequest.cs" />
     <Compile Include="Models\Feature\Notification\GetListingRequest.cs" />
     <Compile Include="Models\Feature\Notification\GetTopFiveNotificationsRequest.cs" />
+    <Compile Include="Models\Feature\UserReport\GetUserReportDataRequest.cs" />
     <Compile Include="Models\Feature\User\GetAgentsForAssignmentRequest.cs" />
     <Compile Include="Models\Feature\User\GetListingRequest.cs" />
     <Compile Include="Models\Feature\User\GetUsersByDepartmentRequest.cs" />
